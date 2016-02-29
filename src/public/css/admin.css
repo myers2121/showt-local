@@ -1,0 +1,138 @@
+#admin {
+  width: 100vw;
+  height: 100%;
+  background: #e3e3e3;
+  padding-top: 60px !important;
+}
+
+h3 {
+  font-family: inherit;
+}
+
+#hunt-calendar-section .content {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hunt-information-container {
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+}
+
+.fc-button-group, .fc button {
+  display: block;
+}
+
+.hunt-info-container {
+  width: 95%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+  padding: 12px;
+  text-align: center;
+  padding-top: 32px;
+  padding-bottom: 24px;
+}
+
+.hunt-info-container:hover {
+  cursor: pointer;
+  background: #00986A;
+  color: #FFF;
+}
+
+.hunt-info-container p {
+  text-align: center;
+  font-size: 56px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hunt-info-container h3 {
+  font-family: inherit;
+  text-align: center;
+
+}
+
+.first-header {
+  margin-top: 18px !important;
+}
+
+.fc-mon, .fc-tue, .fc-wed, .fc-thu {
+}
+
+.fc-day-number {
+  padding-bottom: 40px !important;
+}
+
+.fc-day-number:hover {
+  cursor: pointer;
+  background: #e3e3e3 !important;
+}
+
+.fc-content-skeleton table {
+  margin-bottom: -14px;
+}
+
+.fc-center {
+  color: #FFF;
+}
+
+.fc-today {
+  background: #00986A !important;
+  color: #fff !important;
+}
+
+#hunt-calendar-section,
+#hunt-price-section {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+}
+
+#hunt-calendar-section .hunt-dates-container,
+#hunt-price-section .hunt-prices-container {
+  background: #FFF;
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#calendar {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.close-calendar-popup {
+  background: #00986A;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  color: #FFF;
+  padding-left: 8px;
+  padding-top: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  border-radius: 2px;
+}
+
+.hunt-prices-container {
+  overflow: auto;
+  padding-bottom: 16px;
+}

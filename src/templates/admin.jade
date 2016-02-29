@@ -1,0 +1,36 @@
+extends ./adminLayout.jade
+
+block content
+        section#admin
+          h1.login-title Welcome, Billy
+          .hunt-information-container
+            .hunt-dates-container.col-sm-6
+              .hunt-info-container(data-bind='click: huntDatesContainerClicked')
+                p.fa.fa-calendar
+                h3.first-header Hunting
+                h3 Dates
+            .hunt-dates-container.col-sm-6
+              .hunt-info-container.hunt-prices-container-page(data-bind='click: huntPriceContainerClicked')
+                p.fa.fa-usd
+                h3.first-header Hunting
+                h3 Prices
+        section#hunt-calendar-section
+          .content
+            #calendar
+          .btn.btn-sm.close-calendar-popup CLOSE
+        section#hunt-price-section
+          .hunt-prices-container
+            h3 Hunting Prices
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup.exit-hunt-prices
+            .hunt-price-div.col-sm-4
+              h3 DEER
+              h3 $250
+              .btn.btn-sm EDIT
+            .hunt-price-div.col-sm-4
+              h3 PIG
+              h3 $250
+              .btn.btn-sm EDIT
+            .hunt-price-div.col-sm-4
+              h3 WATER FOWL
+              h3 $250
+              .btn.btn-sm EDIT

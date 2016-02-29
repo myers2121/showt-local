@@ -1,0 +1,24 @@
+extends ./faqTemplate.jade
+
+block content
+        section#faq
+          .back-button-container.faq-back-button
+            img.back-button(src='/static/img/back-button.png')
+          h1.faq-title FAQ
+          .question-container(data-bind="foreach: faqQuestions")
+            .question-list-container(data-bind="click: $parent.questionTypeClicked")
+              p.col-sm-9(data-bind="text: question")
+              .image-container.col-sm-3
+                img.question-next-button(src='/static/img/next.png')
+          .expanded-questions-container(data-bind="foreach: questionsArray")
+            .expanded-question-list-container
+              p.col-sm-9(data-bind="text: questionExpanded, click: $parent.questionClicked")
+              .image-container.col-sm-3
+                img.question-next-button(src='/static/img/next.png')
+          .back-button-questions-container(data-bind="click: backButtonClicked")
+            p BACK
+          section#answer-section
+            .faq-answer-container
+              p.fa.fa-times.exit-popup.exit-question-expanded
+              h3.question(data-bind="text: currentQuestion")
+              p.answer(data-bind="text: currentAnswer")

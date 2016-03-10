@@ -22,15 +22,17 @@ block content
           .hunt-prices-container
             h3 Hunting Prices
             p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup.exit-hunt-prices
-            .hunt-price-div.col-sm-4
-              h3 DEER
-              h3 $250
-              .btn.btn-sm EDIT
-            .hunt-price-div.col-sm-4
-              h3 PIG
-              h3 $250
-              .btn.btn-sm EDIT
-            .hunt-price-div.col-sm-4
-              h3 WATER FOWL
-              h3 $250
-              .btn.btn-sm EDIT
+            .hunt-price-for-div(data-bind="foreach: huntTypes")
+              .hunt-price-div.col-sm-3
+                img.img-responsive.person-picture-div.expanded-person-picture.hunt-image-prices(data-bind='attr: {src: img}')
+                h3(data-bind="text: animalType")
+                .btn.btn-sm.edit-hunt-button(data-bind="click: $parent.editButtonClicked") EDIT
+          .hunt-clicked-edit-container
+            p.fa.fa-times(data-bind="click: exitEditContatinerClicked")
+            h3.hunt-animal-type-title(data-bind="text: selectedAnimalType")
+            .animal-edit-container(data-bind="foreach: animalTypeAnimals")
+              .edit-animal-container
+                .animal-name.col-sm-6
+                  p.animal-name-edit(data-bind="text: animalName")
+                .animal-info-edit.col-sm-6
+                  input.update-hunting-prices-input.string.tel.required.__input(required='required', aria-required='true', type='tel', name='phone_number', data-bind='textInput: price, valueUpdate: "keyup", event: {keyup: $root.saveHuntPriceUpdate}')

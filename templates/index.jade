@@ -80,11 +80,12 @@ block content
               iframe(data-bind='attr: {src: locationFrameSRC}', width='600', height='450', frameborder='0', style='border:0', allowfullscreen='')
             .hunt-location-expanded-container
               p.fa.fa-times.exit-person-expanded.exit-location-expanded-hunt.exit-popup
-              h3.hunt-animal-type(data-bind='text: hunt_type')
-              .locations-conatiner(data-bind='foreach: locations')
-                .location-container(data-bind='click: $parent.locationSelected')
-                  p.city(data-bind='text: city')
-                  p.state(data-bind='text: state')
+              .animal-date-location-container(data-bind="foreach: locationsAnimals")
+                .animal-date-container.col-sm-3
+                  h3.hunt-animal-type(data-bind='text: animalName')
+                  h3.hunt-animal-price(data-bind="text: price")
+                  p Locations
+                  p Dates
           .hunt-type-popup
             .hunt-type-expanded-container
               h3.hunt-animal-type(data-bind='text: hunt_type')
@@ -96,8 +97,8 @@ block content
               h2.section-heading.hunting-heading HUNTING
               p.text-faded.hunting-text
                 | We at B&G have been hunting in the Northern California & Oregon mountains for over 30 years. This has allowed us to gain the experience of the four animals that
-                | we need to successfully take you on an amazing guided hunt that you won't forget.
-                | Below is the list of animals that we hunt and the time of year that we do guided tour hunts.
+                | we need to successfully take you on an amazing guided hunt that you won't forget. We offer wild pig, blacktail and mule deer, wild turkey, varmint, upland game and waterfowl hunts. All hunts are 100% fair chase
+                | and fit anyone's hunting style. Below is the list of animals that we hunt and the time of year that we do guided tour hunts.
                 | To get more information click on the animal, visit our FAQ page, or contact us!
             .hunt-explained-dialog
               h3.hunt-title Deer
@@ -105,13 +106,13 @@ block content
               .row.buttons-row
                 button.register-button-dialog REGISTER
                 button.ok-button-dialog OK
-            .row.hunting-type-container(data-bind='foreach: huntingTypes')
+            .row.hunting-type-container(data-bind='foreach: huntTypes')
               .col-sm-3.text-center
                 .image-container
-                  img.animal-image(data-bind='attr: {src: imageURL}, click: $parent.huntItemClicked')
-                h3.about-hunt-title(data-bind='text: animalName') DEER
+                  img.animal-image(data-bind='attr: {src: img}, click: $parent.huntItemClicked')
+                h3.about-hunt-title(data-bind='text: animalType') DEER
                 h3.about-hunt-time(data-bind='text: timeOfYear') SPRING
-                h3.about-hunt-time.locations-text(data-bind='click: $parent.locationClicked') Locations
+                h3.about-hunt-time.locations-text(data-bind='click: function(data,event) {$parent.locationClicked(data)}') Dates &amp; Locations
         section#contact
           .container
             .row

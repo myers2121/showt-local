@@ -136,3 +136,75 @@ h3 {
   overflow: auto;
   padding-bottom: 16px;
 }
+
+.hunt-price-div {
+  margin-top: 16px;
+}
+
+.edit-hunt-button {
+  background: #00986A;
+  color: #FFF;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.hunt-image-prices {
+  float: none !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 35px;
+  margin-bottom: 30px;
+  width: 80px;
+  height: 80px;
+}
+
+.hunt-clicked-edit-container {
+  display: none;
+  background: #FFF;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 2px;
+}
+
+.hunt-clicked-edit-container h3 {
+  font-family: inherit;
+  padding-top: 12px;
+  padding-left: 12px;
+  padding-bottom: 24px;
+  text-align: left;
+}
+
+.hunt-clicked-edit-container .fa-times {
+  float: right;
+  padding-top: 8px;
+  padding-right: 8px;
+  font-size: 20px;
+}
+
+.hunt-clicked-edit-container .fa-times:hover {
+  cursor: pointer;
+}
+
+.animal-edit-container {
+  overflow: auto;
+}
+
+.edit-animal-container {
+  overflow: auto;
+}
+
+.hunt-animal-type-title {
+  color:  #00986A;
+}
+
+.animal-name-edit {
+  text-align: left;
+  font-size: 20px;
+}

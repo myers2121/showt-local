@@ -13,6 +13,9 @@ $(document).ready(function() {
     self.locationFrameSRC = ko.observable("");
     self.animalSelected = ko.observableArray("");
     self.locationsAnimals = ko.observableArray("");
+    self.animalSelectedSpecific = ko.observable("");
+    self.animalSelectedSpecificDates = ko.observableArray("");
+    self.animalNameAndDateForLocation = ko.observable("");
 
     self.huntItemClicked = function(huntingType) {
       console.log(huntingType);
@@ -22,15 +25,36 @@ $(document).ready(function() {
       console.log(self.animalSelected());
       $('.hunt-type-popup').fadeIn();
       $('body').css('overflow','hidden');
-    }
+    };
 
     self.locationClicked = function(huntingType) {
       self.locationsAnimals(huntingType.animal);
+      self.hunt_type(huntingType.animalType);
       console.log(self.locationsAnimals());
       //self.hunt_type(huntingType.animalName);
       //self.locations(huntingType.locations);
       $('.hunt-location-popup').fadeIn();
       $('body').css('overflow','hidden');
+    };
+
+    self.specificAnimalClicked = function(huntingType) {
+      console.log(huntingType);
+      self.animalSelectedSpecific(huntingType.animalName);
+      self.animalSelectedSpecificDates(huntingType.huntingDates);
+      console.log(self.animalSelectedSpecificDates());
+      $('.hunt-location-expanded-container').fadeOut(250, function() {
+        $('.hunt-location-dates-container').fadeIn();
+      });
+    };
+
+    self.openGoogleMaps = function(huntType) {
+        console.log(huntType);
+        self.locationFrameSRC(huntType.url);
+        var animalNameAndDate = self.animalSelectedSpecific() + " - " + huntType.date
+        self.animalNameAndDateForLocation(animalNameAndDate);
+      $('.hunt-location-dates-container').fadeOut(250, function() {
+        $('.frame-container').fadeIn();
+      });
     }
 
     self.locationSelected = function(location) {
@@ -61,12 +85,20 @@ $(document).ready(function() {
   });
 
   $('.exit-location-expanded-frame').click(function() {
-    $('.frame-container').fadeOut();
+    $('.frame-container').fadeOut(250, function() {
+      $('.hunt-location-dates-container').fadeIn();
+    });
   });
 
   $('.exit-location-expanded-hunt').click(function() {
     $('.hunt-location-popup').fadeOut();
     $('body').css('overflow','auto');
+  });
+
+  $('.exit-location-expanded-dates').click(function() {
+    $('.hunt-location-dates-container').fadeOut(250, function() {
+      $('.hunt-location-expanded-container').fadeIn();
+    });
   });
 
 });

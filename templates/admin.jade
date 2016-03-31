@@ -15,8 +15,66 @@ block content
                 h3.first-header Hunting
                 h3 Prices
         section#hunt-calendar-section
-          .content
-            #calendar
+          .calendar-container
+            .content
+              #calendar
+          .create-hunt-first
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup.exit-hunt-calendar-first
+            h3.date-to-order-hunt(data-bind="text: dateSelected")
+            .types-of-hunts-container(data-bind="foreach: huntTypes")
+              .hunt-price-div.col-sm-3(data-bind='click: $parent.huntCalendarAnimalClicked')
+                img.img-responsive.person-picture-div.expanded-person-picture.hunt-image-prices(data-bind='attr: {src: img}')
+                h3(data-bind="text: animalType")
+          .create-hunt-second
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup.exit-hunt-calendar-second
+            h3.date-to-order-hunt(data-bind="text: selectedAnimalType")
+            .types-of-hunts-container(data-bind="foreach: animalTypeAnimals")
+              .animal-container.col-sm-4(data-bind='click: $parent.huntContainerAnimalTypeClicked')
+                h3.animal-name(data-bind="text: animalName")
+          .create-hunt-final
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup.exit-hunt-calendar-final
+            h3.date-to-order-hunt(data-bind="text: selectedAnimalTypeSpecific")
+            .form-container
+              form#contact-form.simple_form.new_quote_request
+                input(name='utf8', type='hidden', value='✓')
+                input(type='hidden', name='authenticity_token', value='A6vVgqnTtNvuksEFI0drl1m8a2HBDucqyzv47+Io/+G+xwBBjEAVKu6lQZBVnjh02Znr9p2KBNqxhBdTE10tqw==')
+                .__input-item.col-sm-6.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
+                  .input-wrapper
+                    label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+                      abbr(title='required')
+                      |  City
+                    input#hire-name-input.text-input.string.required.__input(required='required', aria-required='true', type='text', name='full_name',data-bind='textInput: huntLocationCity')
+                .__input-item.col-sm-6.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
+                  .input-wrapper
+                    label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+                      abbr(title='required')
+                      |  State
+                    input#hire-email-input.text-input.string.email.required.__input(required='required', aria-required='true', type='text', name='email',data-bind='textInput: huntLocationState')
+                .__input-item.col-sm-4.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
+                  .input-wrapper
+                    label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+                      abbr(title='required')
+                      |  Hour
+                    input#hire-name-input.text-input.string.required.__input(required='required', aria-required='true', type='text', name='full_name',data-bind='textInput: hourTime')
+                .__input-item.col-sm-4.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
+                  .input-wrapper
+                    label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+                      abbr(title='required')
+                      |  Minute
+                    input#hire-email-input.text-input.string.email.required.__input(required='required', aria-required='true', type='text', name='email',data-bind='textInput: minuteTime')
+                .__input-item.col-sm-4.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
+                  .input-wrapper
+                    label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+                      abbr(title='required')
+                      |  AM/PM
+                    input#hire-phone-input.text-input.string.tel.required.__input(required='required', aria-required='true', type='text', name='phone_number',data-bind='textInput: ampm')
+                .__input-item.col-sm-12.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
+                  .input-wrapper
+                    label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+                      abbr(title='required')
+                      |  Google Map Location URL
+                    input#hire-phone-input.text-input.string.tel.required.__input(required='required', aria-required='true', type='text', name='phone_number',data-bind='textInput: googleURL')
+                input.btn.__submit.create-hunt-save-button.js-submit(type='submit', value='SAVE', data-bind="click: createNewHunt")
           .btn.btn-sm.close-calendar-popup CLOSE
         section#hunt-price-section
           .hunt-prices-container

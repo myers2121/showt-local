@@ -4,7 +4,7 @@ block content
         header#home
           .header-content
             .header-content-inner
-              h1 B&G Outfitters
+              img(src='/static/img/bglogowhite.png')
               p B&G Outfitters takes you on a once in a lifetime guided tour hunt in the majestic mountains of Northern California and Oregon
           p.learn-more-button-p Learn More
           a.page-scroll(href='#about')
@@ -13,7 +13,7 @@ block content
           .about-people-expanded.about-people-expanded-billy
             .about-expanded-people-container
               img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/billy.jpg', alt='')
-              h3.expanded-person-name Billy Jones
+              h3.expanded-person-name Billy Bowles
               p.fa.fa-times.exit-person-expanded.exit-person-expanded-billy.exit-popup
               p.person-description-expanded
                 | B&G Outfitters is a hunting company based out of Northern California that provides a variety of hunting services. The core of what we do is take you
@@ -25,17 +25,10 @@ block content
               .animal-container
                 img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/duck-green.png', alt='')
                 p.favorite-gun-text Canadian Geese
-              .social-links.person-social-links
-                .col-sm-4.link-container
-                  p.fa.fa-facebook-official.facebook
-                .col-sm-4.link-container
-                  p.fa.fa-instagram.instagram
-                .col-sm-4.link-container
-                  p.fa.fa-twitter.twitter
           .about-people-expanded.about-people-expanded-janell
             .about-expanded-people-container
-              img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/connor_myers.jpg', alt='')
-              h3.expanded-person-name Janell Mother
+              img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/janell.jpg', alt='')
+              h3.expanded-person-name Janell Geringer
               p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup
               p.person-description-expanded
                 | B&G Outfitters is a hunting company based out of Northern California that provides a variety of hunting services. The core of what we do is take you
@@ -47,13 +40,6 @@ block content
               .animal-container
                 img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/deer-green.png', alt='')
                 p.favorite-gun-text Elk
-              .social-links.person-social-links
-                .col-sm-4.link-container
-                  p.fa.fa-facebook-official.facebook
-                .col-sm-4.link-container
-                  p.fa.fa-instagram.instagram
-                .col-sm-4.link-container
-                  p.fa.fa-twitter.twitter
           .container
             .row
               .col-lg-12.text-center
@@ -70,22 +56,32 @@ block content
                   h3.about-hunt-time Co-Founder
                 .col-sm-6.person-div.text-center
                   a.portfolio-box.text-center
-                    img.img-responsive.person-picture-div.janell-picture(src='/static/img/connor_myers.jpg', alt='')
+                    img.img-responsive.person-picture-div.janell-picture(src='/static/img/janell.jpg', alt='')
                   h3.about-hunt-title Janell
                   h3.about-hunt-time Co-Founder
         section#hunting
           .hunt-location-popup
             .frame-container
+              h3.hunt-animal-type(data-bind="text: animalNameAndDateForLocation")
               p.fa.fa-times.exit-person-expanded.exit-location-expanded-frame.exit-popup
               iframe(data-bind='attr: {src: locationFrameSRC}', width='600', height='450', frameborder='0', style='border:0', allowfullscreen='')
             .hunt-location-expanded-container
+              h3.hunt-animal-type(data-bind="text: hunt_type")
               p.fa.fa-times.exit-person-expanded.exit-location-expanded-hunt.exit-popup
               .animal-date-location-container(data-bind="foreach: locationsAnimals")
-                .animal-date-container.col-sm-3
-                  h3.hunt-animal-type(data-bind='text: animalName')
-                  h3.hunt-animal-price(data-bind="text: price")
-                  p Locations
-                  p Dates
+                .animal-date-container.col-sm-3(data-bind="click: $parent.specificAnimalClicked")
+                  .animal-inside-date-container
+                    h3.hunt-animal-type(data-bind='text: animalName')
+                    h3.hunt-animal-price(data-bind="text: price")
+            .hunt-location-dates-container
+              h3.hunt-animal-type(data-bind="text: animalSelectedSpecific")
+              p.fa.fa-times.exit-person-expanded.exit-location-expanded-dates.exit-popup
+              .animal-date-location-container(data-bind="foreach: animalSelectedSpecificDates")
+                .animal-date-container.col-sm-3(data-bind="click: $parent.openGoogleMaps")
+                  .animal-inside-date-container
+                    h3.hunt-animal-type.price-div(data-bind='text: date')
+                    h3.hunt-animal-price.price-div(data-bind="text: city")
+                    h3.hunt-animal-price.price-div(data-bind="text: state")
           .hunt-type-popup
             .hunt-type-expanded-container
               h3.hunt-animal-type(data-bind='text: hunt_type')
@@ -184,7 +180,7 @@ block content
                   .col-sm-3.link-container
                     a.page-scroll(href='#about') ABOUT US
                   .col-sm-3.link-container
-                    a.page-scroll(href='#people') PEOPLE
+                    a.page-scroll(href='#hunting') HUNTING
                   .col-sm-3.link-container
                     a.page-scroll(href='#contact') CONTACT
               .col-sm-3.social-links-container

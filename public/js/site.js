@@ -26,7 +26,7 @@
     $('.learn-more-arrow').click(function() {
     });
 
-    $('.header-content-inner h1').click(function() {
+    $('.header-content-inner img').click(function() {
       timesHeaderWasClicked++;
       if (timesHeaderWasClicked == 5) {
         location.href = '/login';

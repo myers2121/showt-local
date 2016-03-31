@@ -255,7 +255,7 @@
   width: 95%;
   margin-left: auto;
   margin-right: auto;
-  max-width: 750px;
+  max-width: 950px;
   background: #FFF;
   border-radius: 1px;
   padding: 16px;
@@ -269,4 +269,83 @@
   width: 150px;
   margin-top: 0px !important;
   font-family: inherit;
+}
+
+.animal-date-location-container {
+  overflow: auto;
+  margin-top: 32px;
+}
+
+.animal-date-container {
+  margin-bottom: 18px;
+
+}
+
+.animal-inside-date-container {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+    border-radius: 2px;
+    padding: 8px;
+    padding-top: 16px;
+    background: #00986A;
+    color: #FFF;
+}
+
+.animal-inside-date-container:hover {
+  background: #e3e3e3;
+  cursor: pointer;
+  color: #4a4a4a;
+}
+
+.animal-date-container h3,
+.animal-date-container p {
+  text-align: center;
+}
+
+.animal-date-container p {
+  margin-bottom: 8px !important;
+}
+
+.hunt-animal-type,
+.hunt-animal-price {
+  width: 100% !important;
+}
+
+.current-animal-locations {
+  margin-top: 24px;
+}
+
+.current-animal-locations,
+.current-animal-dates {
+  color: #000;
+}
+
+.current-animal-locations:hover,
+.current-animal-dates:hover {
+  cursor: pointer;
+  color: #FFF;
+}
+
+.hunt-location-dates-container {
+  display: none;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 950px;
+  background: #FFF;
+  border-radius: 1px;
+  padding: 16px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  overflow: auto;
+}
+
+.hunt-location-dates-container h3 {
+  font-family: inherit;
+  margin-top: 0px !important;
+}
+
+.hunt-location-dates-container .price-div {
+  margin-top: 24px !important;
+  margin-bottom: 24px;
 }

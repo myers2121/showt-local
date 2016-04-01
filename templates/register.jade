@@ -12,68 +12,59 @@ block content
                 input(type='hidden', name='authenticity_token', value='A6vVgqnTtNvuksEFI0drl1m8a2HBDucqyzv47+Io/+G+xwBBjEAVKu6lQZBVnjh02Znr9p2KBNqxhBdTE10tqw==')
                 .__input-item.col-sm-6.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
                   .input-wrapper
-                    label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+                    label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
                       abbr(title='required')
                       |  First name
                     input#hire-name-input.string.required.__input(required='required', aria-required='true', type='text', name='hire-me-full-name', data-bind="value: name")
                     p.error.name-error(data-bind="visible: nameCheck") Please enter in a valid name.
                 .__input-item.col-sm-6.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
                   .input-wrapper
-                    label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+                    label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
                       abbr(title='required')
                       |  Last name
                     input#hire-email-input.string.email.required.__input(required='required', aria-required='true', type='email', name='hire-me-email', data-bind='value: email')
                     p.error.email-error(data-bind="visible: emailCheck") Please enter in a valid email.
                 .__input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
                   .input-wrapper
-                    label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+                    label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
                       abbr(title='required')
                       |  Email
                     input#hire-phone-input.string.tel.required.__input(required='required', aria-required='true', type='tel', name='hire-me-phone', data-bind='value: phoneNumber')
                     p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code.
                 .__input-item.last-input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
                   .input-wrapper
-                    label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+                    label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
                       abbr(title='required')
                       |  Phone number
                     input#hire-phone-input.string.tel.required.__input(required='required', aria-required='true', type='tel', name='hire-me-phone', data-bind='value: phoneNumber')
                     p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code.
-                h3.hunt-type-title HUNT TYPE
-                .hunting-choices-container
+                h3.hunt-type-title SELECT HUNT TYPE
+                .hunting-choices-container(data-bind="foreach: huntTypes")
                   .col-sm-3
-                    .hunting-type-inner
+                    .hunting-type-inner(data-bind="click: $parent.huntTypeSelected")
                       .image-container
-                        img.animal-image(src='/static/img/deer-logo.png')
-                      h3.about-hunt-title DEER
-                      h3.about-hunt-time SPRING
-                      h3.about-hunt-price $240
+                        img.animal-image(data-bind="attr: {src: imgDark}")
+                      h3.about-hunt-title(data-bind="text: animalType")
+                      h3.about-hunt-time(data-bind="text: timeOfYear")
+                .hunt-choices-overall-container
+                  .hunt-choices-specific-container
+                    p.fa.fa-times.exit-person-expanded.exit-register-hunt-expanded.exit-popup
+                    .container-for-animals(data-bind="foreach: selectedHuntTypeAnimals")
+                      .col-sm-4
+                        .specific-animal-container(data-bind="click: $parent.loadDatesForHunt")
+                          h3.animal-name-specific(data-bind="text: animalName")
+                          h3.animal-price-specific(data-bind="text: price")
+                h3.hunt-type-title.hunt-day SELECT HUNT DAY
+                h3.current-selected-hunt(data-bind="text: currentHuntAnimal")
+                h3.current-selected-price(data-bind="text: currentHuntPrice")
+                .currentSelectedHuntContainer(data-bind="foreach: currentAvailableDatesForSelectedHunt")
                   .col-sm-3
-                    .hunting-type-inner
-                      .image-container
-                        img.animal-image(src='/static/img/duck-logo.png')
-                      h3.about-hunt-title DUCK
-                      h3.about-hunt-time FALL
-                      h3.about-hunt-price $180
-                  .col-sm-3
-                    .hunting-type-inner
-                      .image-container
-                        img.animal-image(src='/static/img/boar-logo.png')
-                      h3.about-hunt-title BOAR
-                      h3.about-hunt-time WINTER
-                      h3.about-hunt-price $400
-                  .col-sm-3
-                    .hunting-type-inner
-                      .image-container
-                        img.animal-image(src='/static/img/bear-logo.png')
-                      h3.about-hunt-title BEAR
-                      h3.about-hunt-time SUMMER
-                      h3.about-hunt-price $320
-                h3.hunt-type-title.hunt-day HUNT DAY
-                .__input-item.last-input-item.col-sm-12.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
-                  .input-wrapper
-                    input#date-of-hunt-input.string.tel.required.__input(required='required', aria-required='true', type='tel', placeholer='Day you want to hunt', name='hire-me-phone', data-bind='value: phoneNumber')
-                    p.error.phone-number-error(data-bind="visible: phoneCheck") You must pick a weekend to go on a hunt.
-                button.btn.__submit.js-submit(name='button', type='submit')
+                    .selected-date-container(data-bind="click: $parent.selectedDateForHunt")
+                      h3.date-city(data-bind="text: city")
+                      h3.date-state(data-bind="text: state")
+                      h3.date-available(data-bind="text: date")
+                      h3.time-of-hunt(data-bind="text: time")
+                button.btn.__submit.js-submit.register-information-button(data-bind="click: registrationInformationFinished")
                   | REGISTER
         section#footer.register-footer
           .container

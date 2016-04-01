@@ -87,6 +87,14 @@ block content
               h3.hunt-animal-type(data-bind='text: hunt_type')
               p.hunt-animal-type-text(data-bind='text: hunt_description')
               p.fa.fa-times.exit-person-expanded.exit-person-expanded-hunt.exit-popup
+              .types-of-animals-in-hunt(data-bind= "foreach: animalSelected")
+                .hunt-clicked-animal-container.col-sm-3(data-bind="click: $parent.showSelectedAnimalDetails")
+                  h3.hunt-animal-name(data-bind="text: animalName")
+            .hunt-animal-selected-expanded-container
+              p.fa.fa-times.exit-person-expanded.exit-person-expanded-hunt-final.exit-popup
+              h3.animal-name(data-bind="text: finalAnimalSelectedName")
+              h3.animal-price(data-bind="text: finalAnimalSelectedPrice")
+              p.animal-description(data-bind="text: finalAnimalSelectedDescription")
           .container
             .row
             .col-lg-12.text-center

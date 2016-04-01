@@ -2,6 +2,7 @@ $(document).ready(function() {
 
   var ref = new Firebase("https://bg-outfitters.firebaseio.com");
   var huntingRef = ref.child("huntingTypes");
+  var adminRef = ref.child("administrator");
 
   function AdminViewModel() {
 
@@ -13,6 +14,7 @@ $(document).ready(function() {
     self.dateSelected = ko.observable("");
     self.selectedAnimalTypeSpecific = ko.observable("");
     self.animalToSaveDates = ko.observableArray("");
+    self.currentAdminName = ko.observable("");
 
     // For handling the create hunt form
     self.huntLocationCity = ko.observable("");
@@ -21,6 +23,17 @@ $(document).ready(function() {
     self.ampm = ko.observable("");
     self.minuteTime = ko.observable("");
     self.hourTime = ko.observable("");
+
+    var authData = ref.getAuth();
+
+    // self.loadUserData = function() {
+    //   console.log(authData.uid);
+    //   adminRef.orderByChild("id").equalTo(authData.uid).once("value", function(snapshot) {
+    //     console.log(snapshot);
+    //   });
+    // };
+    //
+    // self.loadUserData();
 
     self.huntDatesContainerClicked = function() {
       $('#hunt-calendar-section').fadeIn();

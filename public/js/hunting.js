@@ -15,16 +15,29 @@ $(document).ready(function() {
     self.locationsAnimals = ko.observableArray("");
     self.animalSelectedSpecific = ko.observable("");
     self.animalSelectedSpecificDates = ko.observableArray("");
+    self.selectedAnimalArray = ko.observableArray("");
     self.animalNameAndDateForLocation = ko.observable("");
+    self.finalAnimalSelectedName = ko.observable("");
+    self.finalAnimalSelectedDescription = ko.observable("");
+    self.finalAnimalSelectedPrice = ko.observable("");
 
     self.huntItemClicked = function(huntingType) {
-      console.log(huntingType);
       self.hunt_type(huntingType.animalType);
       self.hunt_description(huntingType.description);
       self.animalSelected(huntingType.animal);
       console.log(self.animalSelected());
       $('.hunt-type-popup').fadeIn();
       $('body').css('overflow','hidden');
+    };
+
+    self.showSelectedAnimalDetails = function(selectedAnimal) {
+      console.log(selectedAnimal);
+      self.finalAnimalSelectedName(selectedAnimal.animalName);
+      self.finalAnimalSelectedPrice(selectedAnimal.price);
+      self.finalAnimalSelectedDescription(selectedAnimal.description);
+      $('.hunt-type-expanded-container').fadeOut(250, function() {
+        $('.hunt-animal-selected-expanded-container').fadeIn();
+      });
     };
 
     self.locationClicked = function(huntingType) {
@@ -69,7 +82,6 @@ $(document).ready(function() {
       $.each(huntingTypes, function(index,value) {
         self.huntTypes.push(value);
       });
-      console.log(self.huntTypes());
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
     });
@@ -82,6 +94,12 @@ $(document).ready(function() {
   $('.exit-person-expanded-hunt').click(function() {
     $('.hunt-type-popup').fadeOut();
     $('body').css('overflow','auto');
+  });
+
+  $('.exit-person-expanded-hunt-final').click(function() {
+    $('.hunt-animal-selected-expanded-container').fadeOut(250, function() {
+      $('.hunt-type-expanded-container').fadeIn();
+    });
   });
 
   $('.exit-location-expanded-frame').click(function() {

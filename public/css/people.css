@@ -349,3 +349,56 @@
   margin-top: 24px !important;
   margin-bottom: 24px;
 }
+
+.types-of-animals-in-hunt {
+  overflow: auto;
+  margin-top: 48px;
+  margin-bottom: 24px;
+}
+
+.types-of-animals-in-hunt .hunt-clicked-animal-container {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 2px;
+}
+
+.types-of-animals-in-hunt .hunt-clicked-animal-container:hover {
+  background: #e3e3e3;
+  cursor: pointer;
+}
+
+.types-of-animals-in-hunt .hunt-clicked-animal-container h3 {
+  margin-bottom: 0px !important;
+  text-align: center;
+}
+
+.hunt-animal-selected-expanded-container {
+  display: none;
+  background: #FFF;
+  width: 95%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hunt-animal-selected-expanded-container .animal-name {
+  padding-top: 16px;
+  padding-left: 16px;
+  color: #9A998C;
+}
+
+.hunt-animal-selected-expanded-container .animal-price {
+  padding-left: 16px;
+  color: #00986A;
+  margin-top: 10px !important;
+  margin-bottom: 20px !important;
+}
+
+.hunt-animal-selected-expanded-container .animal-description {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+}

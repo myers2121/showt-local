@@ -4,7 +4,7 @@ block content
         section#register
           .back-button-container
             img.back-button(src='/static/img/back-button.png')
-          .container
+          .container.register-first-container
             h3.register-title REGISTER
             .form-container
               form#contact-form.simple_form.new_quote_request(enctype='multipart/form-data', action='/', accept-charset='UTF-8', method='post', novalidate='novalidate')
@@ -65,7 +65,17 @@ block content
                       h3.date-available(data-bind="text: date")
                       h3.time-of-hunt(data-bind="text: time")
                 button.btn.__submit.js-submit.register-information-button(data-bind="click: registrationInformationFinished")
-                  | REGISTER
+                  | CHECKOUT
+        .register-payment-section
+          .register-payment-container
+            h3.checkout-title CHECKOUT
+            .checkout-info-container
+              .current-purchase-container.col-sm-3
+                .inside-info-container
+                  h3 Purchase
+              .card-information-conatiner.col-sm-9
+                .inside-info-container
+                  h3 Information
         section#footer.register-footer
           .container
             .row.register-container

@@ -24,7 +24,7 @@
   text-align: center;
   font-weight: bold;
   font-family: inherit !important;
-  font-size: 84px;
+  font-size: 64px;
 }
 
 .last-input-item {
@@ -33,6 +33,7 @@
 
 #register label {
   color: #b8b8b8;
+  font-size: 16px;
 }
 
 #register input {
@@ -40,7 +41,7 @@
 }
 
 #register .form-container #contact-form {
-  max-width: 1200px;
+  max-width: 1000px;
   text-align: center;
 }
 
@@ -213,4 +214,48 @@
 
 .current-selected-price {
   color: #8ad47b;
+}
+
+#register #contact-form {
+  margin-top: 75px !important;
+}
+
+.register-payment-container {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.checkout-info-container {
+  overflow: auto;
+}
+
+.register-payment-section {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.25);
+
+}
+
+.register-payment-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.checkout-title {
+  text-align: center;
+    font-size: 2em;
+}
+
+.current-purchase-container .card-information-container {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  background: #FFF;
+  border-radius: 3px;
 }

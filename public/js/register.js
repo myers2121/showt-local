@@ -183,6 +183,12 @@
     $('.hunt-choices-overall-container').fadeOut();
   });
 
+  $('.register-information-button').click(function() {
+    $('.register-first-container').fadeOut(250, function() {
+      $('.register-payment-section').fadeIn();
+    });
+  });
+
 $('.form-label').click(function() {
 
   $('.text-input').removeClass('input-method-animation');

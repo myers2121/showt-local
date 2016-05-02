@@ -7,13 +7,28 @@ block content
             .hunt-dates-container.col-sm-6
               .hunt-info-container(data-bind='click: huntDatesContainerClicked')
                 p.fa.fa-calendar
-                h3.first-header Hunting
-                h3 Dates
+                h3.first-header Create
+                h3 Hunt
             .hunt-dates-container.col-sm-6
               .hunt-info-container.hunt-prices-container-page(data-bind='click: huntPriceContainerClicked')
                 p.fa.fa-usd
                 h3.first-header Hunting
                 h3 Prices
+            .hunt-dates-container.col-sm-6.hunt-dates-container-second-row
+              .hunt-info-container(data-bind='click: currentHuntsContainerClicked')
+                p.fa.fa-bars
+                h3.first-header Current
+                h3 Hunts
+            .hunt-dates-container.col-sm-6.hunt-dates-container-second-row
+              .hunt-info-container.hunt-prices-container-page(data-bind='click: registerHunterContainerClicked')
+                p.fa.fa-pencil
+                h3.first-header Register
+                h3 Hunter
+            .hunt-dates-container.col-sm-6.hunt-dates-container-second-row
+              .hunt-info-container.hunt-prices-container-page(data-bind='click: registerHuntsContainerClicked')
+                p.fa.fa-binoculars
+                h3.first-header Registered
+                h3 Hunts
         section#hunt-calendar-section
           .calendar-container
             .content
@@ -94,3 +109,110 @@ block content
                   p.animal-name-edit(data-bind="text: animalName")
                 .animal-info-edit.col-sm-6
                   input.update-hunting-prices-input.string.tel.required.__input(required='required', aria-required='true', type='tel', name='phone_number', data-bind='textInput: price, valueUpdate: "keyup", event: {keyup: $root.saveHuntPriceUpdate}')
+        section#current-hunts-section
+          .created-hunts-container
+            h3 Available Hunts
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup.exit-created-hunts
+            .available-hunts-animal-type(data-bind="foreach: huntTypes")
+              .created-animal-container.col-sm-3(data-bind="click: $parent.animalTypeSelected")
+                img.img-responsive.person-picture-div.expanded-person-picture.hunt-image-prices(data-bind='attr: {src: img}')
+                h3.animal-type(data-bind="text: animalType")
+          .created-hunt-animal-selected-container
+            h3(data-bind="text: selectedAnimalType")
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup.exit-created-hunts-expanded
+            .available-hunts-animal-type-expanded(data-bind="foreach: animalTypeAnimals")
+              .created-animal-container.col-sm-3(data-bind="click: $parent.animalTypeSelectedExpanded")
+                h3.animal-type(data-bind="text: animalName")
+          .current-available-dates-for-animal
+            h3(data-bind="text: selectedAnimalTypeSpecific")
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup.exit-final-dates-container
+            .available-dates-container(data-bind="foreach: datesForAnimal")
+              .dates-container
+                .left-side-of-container.col-sm-6
+                  h3(data-bind="text: date")
+                .right-side-of-container.col-sm-6
+                  .btn.btn-sm.edit-date-button.date-button(data-bind="click: $parent.editThisDate") EDIT
+                  .btn.btn-sm.delete-date-button.date-button(data-bind="click: $parent.deleteThisDate") DELETE
+          .edit-current-date-container
+            h3(data-bind='text: currentDateDate')
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup.exit-date-editor
+            .dates-container.edit-date-input-container(data-bind="foreach: currentDate")
+              input.update-date-information-input.string.tel.required.__input(required='required', aria-required='true', type='text', name='phone_number', data-bind='textInput: city, valueUpdate: "keyup", event: {keyup: $root.saveHuntDateCity}', placeholder="City")
+              input.update-date-information-input.string.tel.required.__input(required='required', aria-required='true', type='text', name='phone_number', data-bind='textInput: state, valueUpdate: "keyup", event: {keyup: $root.saveHuntDateState}', placeholder="State")
+              input.update-date-information-input.string.tel.required.__input(required='required', aria-required='true', type='text', name='phone_number', data-bind='textInput: time, valueUpdate: "keyup", event: {keyup: $root.saveHuntDateTime}', placeholder="Date")
+              input.update-date-information-input.string.tel.required.__input(required='required', aria-required='true', type='text', name='phone_number', data-bind='textInput: url, valueUpdate: "keyup", event: {keyup: $root.saveHuntDateURL}', placeholder="URL")
+              .btn.btn-lg.save-current-date(data-bind="click: $parent.saveCurrentDate") SAVE
+        section#register-hunter-section
+          .container.register-hunter-container
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-register-hunter-container
+            h3.register-title REGISTER A HUNTER
+            .form-container
+              form#contact-form.register-hunter-form.simple_form.new_quote_request(enctype='multipart/form-data', accept-charset='UTF-8',  novalidate='novalidate')
+                input(name='utf8', type='hidden', value='✓')
+                input(type='hidden', name='authenticity_token', value='A6vVgqnTtNvuksEFI0drl1m8a2HBDucqyzv47+Io/+G+xwBBjEAVKu6lQZBVnjh02Znr9p2KBNqxhBdTE10tqw==')
+                .__input-item.col-sm-6.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
+                  .input-wrapper
+                    label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+                      abbr(title='required')
+                      |  First name
+                    input#hire-name-input.string.required.__input(required='required', aria-required='true', type='text', name='hire-me-full-name', data-bind="textInput: firstName, event: { keyup: checkFirstName }")
+                    p.error.name-error(data-bind="visible: firstNameCheck") Please enter in a valid first name.
+                .__input-item.col-sm-6.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
+                  .input-wrapper
+                    label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+                      abbr(title='required')
+                      |  Last name
+                    input#hire-email-input.string.email.required.__input(required='required', aria-required='true', type='text', name='hire-me-email', data-bind='textInput: lastName, event: { keyup: checkLastName }')
+                    p.error.email-error(data-bind="visible: lastNameCheck") Please enter in a valid last name.
+                .__input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
+                  .input-wrapper
+                    label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+                      abbr(title='required')
+                      |  Email
+                    input#hire-phone-input.string.tel.required.__input(required='required', aria-required='true', type='email', name='hire-me-phone', data-bind='textInput: email, event: { keyup: checkEmail }')
+                    p.error.phone-number-error(data-bind="visible: emailCheck") Please enter in a valid email.
+                .__input-item.last-input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
+                  .input-wrapper
+                    label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+                      abbr(title='required')
+                      |  Phone number
+                    input#hire-phone-input.string.tel.required.__input(required='required', aria-required='true', type='tel', name='hire-me-phone', data-bind='textInput: phoneNumber, event: { keyup: checkPhone }')
+                    p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code.
+                h3.hunt-type-title SELECT HUNT TYPE
+                .hunting-choices-container(data-bind="foreach: huntTypes")
+                  .col-sm-3
+                    .hunting-type-inner(data-bind="click: $parent.huntTypeSelected")
+                      .image-container
+                        img.animal-image(data-bind="attr: {src: imgDark}")
+                      h3.about-hunt-title(data-bind="text: animalType")
+                      h3.about-hunt-time(data-bind="text: timeOfYear")
+                .hunt-choices-overall-container
+                  .hunt-choices-specific-container
+                    p.fa.fa-times.exit-person-expanded.exit-register-hunt-expanded.exit-popup
+                    .container-for-animals(data-bind="foreach: selectedHuntTypeAnimals")
+                      .col-sm-4
+                        .specific-animal-container.page-scroll(data-bind="click: $parent.loadDatesForHunt")
+                          h3.animal-name-specific(data-bind="text: animalName")
+                          h3.animal-price-specific(data-bind="text: price")
+                h3#current-hunt-date-container.hunt-type-title.hunt-day SELECT HUNT DAY
+                h3.current-selected-hunt(data-bind="text: currentHuntAnimal")
+                h3.current-selected-price(data-bind="text: currentHuntPrice")
+                .currentSelectedHuntContainer(data-bind="foreach: currentAvailableDatesForSelectedHunt")
+                  .col-sm-3
+                    .selected-date-container(data-bind="click: $parent.selectedDateForHunt")
+                      h3.date-city(data-bind="text: city")
+                      h3.date-state(data-bind="text: state")
+                      h3.date-available(data-bind="text: date")
+                      h3.time-of-hunt(data-bind="text: time")
+                button.btn.__submit.js-submit.register-information-button(data-bind="click: registrationInformationFinished")
+                  | REGISTER HUNTER
+          .hunter-registration-finished-container
+            h3 Finished
+            p The registration process for the hunter has been conmpleted and they have been sent an email with further instructions on how and when to pay for a hunt as well as what the hunt will entail itself.
+            .btn.btn-sm.finish-registration-button FINISH
+        section#register-hunts-section
+          .container.register-hunter-container
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-register-hunts-container
+            h3.register-title Registered hunts
+            .hunts-registered-container(data-bind="foreach: huntTypes")
+              h3 This is the title

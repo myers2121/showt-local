@@ -15,6 +15,13 @@ $(document).ready(function() {
     self.selectedAnimalTypeSpecific = ko.observable("");
     self.animalToSaveDates = ko.observableArray("");
     self.currentAdminName = ko.observable("");
+    self.datesForAnimal = ko.observableArray("");
+    self.currentDate = ko.observableArray("");
+    self.currentDateCity = ko.observable("");
+    self.currentDateState = ko.observable("");
+    self.currentDateTime = ko.observable("");
+    self.currentDateDate = ko.observable("");
+    self.currentDateURL = ko.observable("");
 
     // For handling the create hunt form
     self.huntLocationCity = ko.observable("");
@@ -34,6 +41,29 @@ $(document).ready(function() {
     // };
     //
     // self.loadUserData();
+
+    self.currentHuntsContainerClicked = function() {
+      self.huntTypes([]);
+      console.log(self.huntTypes());
+      firebaseFuncs.ref.child("/huntingTypes").once("value", function(snapshot) {
+        var huntingTypes = snapshot.val();
+        $.each(huntingTypes, function(index,value) {
+          self.huntTypes.push(value);
+        });
+        console.log(self.huntTypes());
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+      $('#current-hunts-section').fadeIn(250,function() {
+
+      });
+    };
+
+    self.registerHunterContainerClicked = function() {
+      $('#register-hunter-section').fadeIn(250,function() {
+
+      });
+    };
 
     self.huntDatesContainerClicked = function() {
       $('#hunt-calendar-section').fadeIn();
@@ -127,7 +157,6 @@ $(document).ready(function() {
 
     self.huntPriceContainerClicked = function() {
       self.huntTypes([]);
-      console.log(self.huntTypes());
       firebaseFuncs.ref.child("/huntingTypes").once("value", function(snapshot) {
         var huntingTypes = snapshot.val();
         $.each(huntingTypes, function(index,value) {
@@ -157,9 +186,306 @@ $(document).ready(function() {
       });
     };
 
+    var isFirstClick = true;
+
+    self.registerHuntsContainerClicked = function() {
+      self.huntTypes([]);
+      firebaseFuncs.ref.child("/huntingTypes").once("value", function(snapshot) {
+        var huntingTypes = snapshot.val();
+        console.log('Hunt types before');
+        console.log(self.huntTypes());
+        if (isFirstClick) {
+          isFirstClick = false;
+        } else {
+          $.each(huntingTypes, function(index,value) {
+            self.huntTypes.push(value);
+            console.log("This is stupid");
+            console.log(self.huntTypes());
+          });
+        }
+        console.log("The last hunt types");
+        console.log(self.huntTypes());
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+      $('#register-hunts-section').fadeIn();
+    };
+
     self.saveHuntPriceUpdate = function(data) {
-      console.log(self.huntTypes());
       huntingRef.update(self.huntTypes());
+    };
+
+    self.saveHuntDateCity = function(data) {
+      huntingRef.set(self.huntTypes());
+    };
+
+    self.saveHuntDateState = function(data) {
+        huntingRef.update(self.huntTypes());
+    };
+
+    self.saveHuntDateTime = function(data) {
+        huntingRef.update(self.huntTypes());
+    };
+
+    self.saveHuntDateURL = function(data) {
+        huntingRef.update(self.huntTypes());
+    };
+
+    self.animalTypeSelected = function(huntType) {
+      self.animalTypeAnimals(huntType.animal);
+      self.selectedAnimalType(huntType.animalType);
+      $('.created-hunts-container').fadeOut(250, function() {
+        $('.created-hunt-animal-selected-container').fadeIn();
+      });
+    };
+
+    self.animalTypeSelectedExpanded = function(huntAnimal) {
+      console.log(huntAnimal.huntingDates);
+      self.selectedAnimalTypeSpecific(huntAnimal.animalName);
+      self.datesForAnimal(huntAnimal.huntingDates);
+      $('.created-hunt-animal-selected-container').fadeOut(250, function() {
+        $('.current-available-dates-for-animal').fadeIn();
+      });
+    };
+
+    self.editThisDate = function(currentDate) {
+        self.currentDate(currentDate);
+        $('.current-available-dates-for-animal').fadeOut(250, function () {
+          $('.edit-current-date-container').fadeIn();
+        });
+    };
+
+    self.deleteThisDate = function(currentDate) {
+      self.currentDate("");
+      var indexToDelete = 0;
+      for(var i = 0; i < self.datesForAnimal().length; i++) {
+        var city = self.datesForAnimal()[i].city;
+        var date = self.datesForAnimal()[i].date;
+        var state = self.datesForAnimal()[i].state;
+        var time = self.datesForAnimal()[i].time;
+        var url = self.datesForAnimal()[i].url;
+
+        if (city == currentDate.city && date == currentDate.date && state == currentDate.state && time == currentDate.time && url == currentDate.url) {
+          console.log(self.datesForAnimal()[i]);
+          indexToDelete = i;
+        }
+
+        self.datesForAnimal.splice(indexToDelete, indexToDelete + 1);
+        huntingRef.update(self.huntTypes());
+      }
+
+    };
+
+    self.saveCurrentDate = function() {
+      $('.edit-current-date-container').fadeOut(250, function() {
+        $('.created-hunts-container').fadeIn();
+      });
+    };
+
+
+    // Below are the methods and variables used to register a hunter
+
+    self.email = ko.observable("");
+    self.phoneNumber = ko.observable("");
+    self.selectedHuntTypeAnimals = ko.observableArray("");
+    self.firstName = ko.observable("");
+    self.lastName = ko.observable("");
+    self.registeredHunterToSave = ko.observableArray("");
+
+    self.currentAvailableDatesForSelectedHunt = ko.observableArray("");
+
+    self.currentHuntAnimal = ko.observable("");
+    self.currentHuntPrice = ko.observable("");
+    var dateSelected = "";
+    var timeSelected = "";
+    var citySelected = "";
+    var stateSelected = "";
+    var nameRegistered = '';
+
+    self.isFormNotValidated = ko.observable(true);
+
+    self.huntTypes = ko.observableArray("");
+
+    self.huntTypeSelected = function(huntType) {
+      self.selectedHuntTypeAnimals(huntType.animal);
+      self.registeredHunterToSave(huntType.huntersRegistered);
+      $('.hunt-choices-overall-container').fadeIn();
+    };
+
+    self.registrationInformationFinished = function() {
+
+      // Create a hunt in the database for the animal
+
+      var confirmationNumber = Math.floor(Math.random() * 1000000000);
+
+      console.log(confirmationNumber);
+
+      self.registeredHunterToSave.push({
+        animalType: self.currentHuntAnimal(),
+        animalPrice: self.currentHuntPrice(),
+        name: self.firstName() + " " + self.lastName(),
+        email: self.email(),
+        phoneNumber: self.phoneNumber(),
+        city: citySelected,
+        date: dateSelected,
+        state: stateSelected,
+        time: timeSelected,
+        paid: false,
+        confirmationNumber: confirmationNumber
+      });
+
+      huntingRef.set(self.huntTypes());
+
+      $.post("/registeredHunter",
+        {
+          animalType: self.currentHuntAnimal(),
+          animalPrice: self.currentHuntPrice(),
+          name: self.firstName() + " " + self.lastName(),
+          email: self.email(),
+          phoneNumber: self.phoneNumber(),
+          city: citySelected,
+          date: dateSelected,
+          state: stateSelected,
+          time: timeSelected,
+          confirmationNumber: confirmationNumber
+        },
+        function(data, status){
+          //  alert("Data: " + data + "\nStatus: " + status);
+            $('.register-hunter-container').fadeOut(250, function() {
+              $('#register-hunter-section').css('height','100vh');
+              $('.hunter-registration-finished-container').fadeIn();
+            });
+      });
+
+
+
+    };
+
+    self.loadDatesForHunt = function(huntType) {
+      self.currentHuntAnimal(huntType.animalName);
+      self.currentHuntPrice(huntType.price);
+      self.currentAvailableDatesForSelectedHunt(huntType.huntingDates);
+      console.log(self.currentAvailableDatesForSelectedHunt());
+      $('.hunt-choices-overall-container').fadeOut();
+      $('html, body').animate({
+        scrollTop: $("#current-hunt-date-container").offset().top - 60
+      }, 2000);
+    };
+
+    self.selectedDateForHunt = function(date, event) {
+      $('.selected-date-container').css('background','#fff');
+      $(event.currentTarget).css('background','#e3e3e3');
+      console.log(date);
+      dateSelected = date.date;
+      citySelected = date.city;
+      stateSelected = date.state;
+      timeSelected = date.time;
+      nameRegistered = self.firstName() + " " + self.lastName();
+    };
+
+    self.loadHuntTypes = function() {
+      firebaseFuncs.ref.child("/huntingTypes").once("value", function(snapshot) {
+        var huntingTypes = snapshot.val();
+        $.each(huntingTypes, function(index,value) {
+          self.huntTypes.push(value);
+        });
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+    };
+
+    self.loadHuntTypes();
+
+    self.firstNameCheck = ko.observable(false);
+    self.firstNameIsVerified = ko.observable(false)
+    self.checkFirstName = function(namer) {
+      if(self.firstName().length == 0) {
+        self.firstNameCheck(false);
+      } else if (self.firstName().length < 2) {
+        self.firstNameCheck(true);
+        self.firstNameIsVerified(false);
+        self.isButtonActive();
+      } else {
+        self.firstNameCheck(false);
+        self.firstNameIsVerified(true)
+        self.isButtonActive();
+      }
+    };
+
+    self.lastNameCheck = ko.observable(false);
+    self.lastNameIsVerified = ko.observable(false)
+    self.checkLastName = function(namer) {
+      if(self.lastName().length == 0) {
+        self.lastNameCheck(false);
+      } else if (self.lastName().length < 2) {
+        self.lastNameCheck(true);
+        self.lastNameIsVerified(false);
+        self.isButtonActive();
+      } else {
+        self.lastNameCheck(false);
+        self.lastNameIsVerified(true)
+        self.isButtonActive();
+      }
+    };
+
+    self.emailCheck = ko.observable(false);
+    self.emailIsVerified = ko.observable(false)
+    self.checkEmail = function() {
+      // Check to see if the email is valid
+      if(self.email().length == 0) {
+        self.emailCheck(false);
+      } else if (self.email().length < 2) {
+        self.emailCheck(true);
+        self.emailIsVerified(false);
+        self.isButtonActive();
+      } else if(self.validateEmail(self.email())) {
+        self.emailCheck(false);
+        self.emailIsVerified(true)
+        self.isButtonActive();
+      } else {
+        self.emailCheck(true)
+        self.emailIsVerified(false);
+        self.isButtonActive();
+      }
+    };
+
+    self.validateEmail = function(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+
+    self.validatePhone = function(phoneNumber) {
+      var re = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/;
+      return re.test(phoneNumber)
+    }
+
+    self.phoneCheck = ko.observable(false);
+    self.phoneIsVerified = ko.observable(false)
+    self.checkPhone = function() {
+      // Check to see if the phone number is valid
+      if(self.phoneNumber().length == 0) {
+        self.phoneCheck(false);
+      } else if (self.phoneNumber().length < 2) {
+        self.phoneCheck(true)
+        self.phoneIsVerified(false);
+        self.isButtonActive();
+      } else if(self.validatePhone(self.phoneNumber())) {
+        self.phoneCheck(false);
+        self.phoneIsVerified(true);
+        self.isButtonActive();
+      } else {
+        self.phoneCheck(true);
+        self.phoneIsVerified(false);
+        self.isButtonActive();
+      }
+    };
+
+    self.isButtonActive = function() {
+      if(self.firstNameIsVerified() && self.lastNameIsVerified() && self.emailIsVerified() && self.phoneIsVerified() && citySelected != "") {
+        self.isFormNotValidated(false);
+      } else {
+        self.isFormNotValidated(true);
+      }
     };
 
 };
@@ -169,6 +495,9 @@ $(document).ready(function() {
   ko.applyBindings(adminObjectVm,$("#admin")[0]);
   ko.applyBindings(adminObjectVm,$("#hunt-price-section")[0]);
   ko.applyBindings(adminObjectVm,$("#hunt-calendar-section")[0]);
+  ko.applyBindings(adminObjectVm,$("#current-hunts-section")[0]);
+  ko.applyBindings(adminObjectVm,$("#register-hunter-section")[0]);
+  ko.applyBindings(adminObjectVm,$("#register-hunts-section")[0]);
 
   window.onload = function() {
     var authData = ref.getAuth();
@@ -206,8 +535,64 @@ $(document).ready(function() {
      });
   });
 
+  $('.exit-created-hunts').click(function() {
+    $('#current-hunts-section').fadeOut(250, function() {
+
+    });
+  });
+
+  $('.exit-created-hunts-expanded').click(function() {
+    $('.created-hunt-animal-selected-container').fadeOut(250,function() {
+      $('.created-hunts-container').fadeIn();
+    });
+  });
+
+  $('.exit-final-dates-container').click(function() {
+    $('.current-available-dates-for-animal').fadeOut(250, function() {
+      $('.created-hunt-animal-selected-container').fadeIn();
+    });
+  });
+
+  $('.exit-date-editor').click(function() {
+    $('.edit-current-date-container').fadeOut(function() {
+      $('.current-available-dates-for-animal').fadeIn();
+    });
+  });
+
+  $('.exit-register-hunter-container').click(function() {
+    $('#register-hunter-section').fadeOut();
+  });
+
   var previousInput;
   var currentSelectedSection = "";
+
+  $('.exit-register-hunt-expanded').click(function() {
+    $('.hunt-choices-overall-container').fadeOut();
+  });
+
+  $('.register-information-button').click(function() {
+
+  });
+
+  $('.exit-checkout').click(function() {
+    $('.register-payment-section').fadeOut(250, function() {
+        $('.register-first-container').fadeIn();
+        $('#footer').fadeIn();
+        $('.back-button').css('display','block');
+    });
+  });
+
+  $('.exit-register-hunts-container').click(function() {
+    $('#register-hunts-section').fadeOut();
+  });
+
+  $('.finish-registration-button').click(function() {
+    $('#register-hunter-section').fadeOut(250, function() {
+      $('#register-hunter-section').css('height','auto');
+      $('.hunter-registration-finished-container').fadeOut();
+      $('.register-hunter-container').fadeIn();
+    });
+  });
 
   $('.form-label').click(function() {
 

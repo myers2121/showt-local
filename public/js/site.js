@@ -3,10 +3,6 @@
 
     var timesHeaderWasClicked = 0;
 
-    $('.footer-register-button').click(function() {
-      location.href = '/register';
-    });
-
     $('.back-button').click(function() {
       location.href = '/';
     });
@@ -38,11 +34,11 @@
     });
 
     $('.instagram').click(function() {
-      location.href = 'http://www.instagram.com';
+      location.href = 'https://www.instagram.com/bgoutfitters/';
     });
 
     $('.twitter').click(function() {
-      location.href = 'http://www.twitter.com';
+      location.href = 'https://twitter.com/bg_outfitters';
     });
 
 })(jQuery); // End of use strict

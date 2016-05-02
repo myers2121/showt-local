@@ -67,8 +67,8 @@ app.post('/', jsonParser ,function(req,res) {
 	var transporter = nodemailer.createTransport({
 	    service: 'Gmail',
 	    auth: {
-	        user: 'connor.myers21@gmail.com',
-	        pass: 'Astral21!'
+	        user: 'ontargetarchery38@gmail.com',
+	        pass: 'Koda69bear'
 	    }
 	});
 
@@ -79,10 +79,62 @@ app.post('/', jsonParser ,function(req,res) {
 	var mailOptions = {
 	    from: fullName + " " + email, // sender address
 	    //to: 'david@trelleborgtechnologyservices.com', // list of receivers
-			to: 'connor.myers21@gmail.com',
+			to: email,
 	    subject: subject, // Subject line
 	    text: message, // plaintext body
 	    html: '<p>Name: ' + fullName + '</b><p>Email:' + email + '</b><p>Subject: ' + subject + '</b><p>' + message + '</p>'   // html body
+	};
+
+	// send mail with defined transport object
+	transporter.sendMail(mailOptions, function(error, info){
+	    if(error){
+	        return console.log(error);
+	    }
+	    console.log('Message sent: ' + info.response);
+	});
+
+	var backURL=req.header('Referer') || '/';
+    // do your thang
+	res.render('index',{
+		formSubmission: true
+	});
+
+});
+
+app.post('/registeredHunter', jsonParser ,function(req,res) {
+	// This is checking to see if there is a query variable named raw.
+
+	var name = req.body.name;
+	var email = req.body.email;
+	var subject = "B&G Outfitters hunt registration confirmation";
+	var phoneNumber = req.body.phoneNumber;
+	var animalType = req.body.animalType;
+	var animalPrice = req.body.animalPrice;
+	var animalCity = req.body.city;
+	var animalState = req.body.state;
+	var animalDate = req.body.date;
+	var animalTime = req.body.time;
+	var confirmationNumber = req.body.confirmationNumber;
+
+	// create reusable transporter object using SMTP transport
+	var transporter = nodemailer.createTransport({
+	    service: 'Gmail',
+	    auth: {
+	        user: 'ontargetarchery38@gmail.com',
+	        pass: 'Koda69bear'
+	    }
+	});
+
+	// NB! No need to recreate the transporter object. You can use
+	// the same transporter object for all e-mails
+
+	// setup e-mail data with unicode symbols
+	var mailOptions = {
+	    from: name + " " + email, // sender address
+	    //to: 'david@trelleborgtechnologyservices.com', // list of receivers
+			to: email,
+	    subject: subject, // Subject line
+	    html: '<div><h3>' + name + '</h3><p>Thank you for registering for a hunt with us here at B&amp;G Outfitters. There is only one thing left that you need to complete in order to get all of the information for the hunt and that is to pay for the hunt. Below is a description of the hunt you registered for as well as a code that you will be needing when paying for the hunt. To pay for the hunt simply head to our website at www.bg-outfitters.com and click pay in the navigation bar at the top.</p></div><div><h3>Hunt Description</h3><p>' + animalType + '</p><p>$' + animalPrice + '</p><p>' +animalDate + '</p><p>' + animalCity + ', ' + animalState + '</p><p>' + animalTime + '</p></div><div><h3>Confirmation Number</h3><p>' + confirmationNumber + '</p></div>'  // html body
 	};
 
 	// send mail with defined transport object

@@ -164,23 +164,25 @@ block content
                     input.btn.__submit.contact-submit-button.js-submit(type='submit', value='Submit', data-bind='disable: isFormNotValidated')
             .row.contact-extra-types-container
               .extra-contact-types
-                .phone-contact-div.col-sm-6
+                p Have any further questions or want to register for one of our exciting guided tour hunts? Give us a call using the number below we would love to hear from you!
+                .phone-contact-div
                   img.img-responsive.person-picture-div(src='/static/img/phone-icon.png', alt='')
                   h3.extra-contact-title Call us
-                  p.phone-number (559) 940-9699
-              .extra-contact-types
-                .faq-info-div.col-sm-6
-                  img.img-responsive.person-picture-div(src='/static/img/help-icon.png', alt='')
-                  h3.extra-contact-title More help
-                  p.faq-selector FAQ page
+                  p.phone-number (541) 604-1261
         section#footer
           .container
             .row.register-container
               h3.footer-top-text Want to go on a guided tour hunt?
-              h1.footer-register-button REGISTER
+              h1.footer-register-button CALL US TODAY!
             .row.bottom-footer-row
-              .col-sm-3.copyright-container
-                p &copy; 2016 B&G Outfitters Inc.
+              .col-sm-3.social-links-container
+                .social-links
+                  .col-sm-4.link-container
+                    p.fa.fa-facebook-official.facebook
+                  .col-sm-4.link-container
+                    p.fa.fa-instagram.instagram
+                  .col-sm-4.link-container
+                    p.fa.fa-twitter.twitter
               .col-sm-6.footer-links-container
                 .links-container
                   .col-sm-3.link-container
@@ -191,11 +193,5 @@ block content
                     a.page-scroll(href='#hunting') HUNTING
                   .col-sm-3.link-container
                     a.page-scroll(href='#contact') CONTACT
-              .col-sm-3.social-links-container
-                .social-links
-                  .col-sm-4.link-container
-                    p.fa.fa-facebook-official.facebook
-                  .col-sm-4.link-container
-                    p.fa.fa-instagram.instagram
-                  .col-sm-4.link-container
-                    p.fa.fa-twitter.twitter
+              .col-sm-3.copyright-container
+                p &copy; 2016 B&G Outfitters Inc.

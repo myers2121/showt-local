@@ -13,11 +13,17 @@
     self.subject = ko.observable("");
     self.message = ko.observable("");
     self.selectedHuntTypeAnimals = ko.observableArray("");
+    self.firstName = ko.observable();
+    self.lastName = ko.observable();
+    self.confirmationNumber = ko.observable("");
 
-    self.currentAvailableDatesForSelectedHunt = ko.observableArray("");
-
-    self.currentHuntAnimal = ko.observable("");
-    self.currentHuntPrice = ko.observable("");
+    self.animalType = ko.observable("");
+    self.animalDate = ko.observable("");
+    self.animalCity = ko.observable("");
+    self.animalState = ko.observable("");
+    self.animalTime = ko.observable("");
+    self.animalPrice = ko.observable("");
+    self.animalImage = ko.observable("");
 
     self.isFormNotValidated = ko.observable(true);
 
@@ -28,8 +34,34 @@
       $('.hunt-choices-overall-container').fadeIn();
     };
 
-    self.registrationInformationFinished = function() {
+    self.confirmationCodeSubmission = function() {
       // Check to make sure the user has selected a hunt, a date, and entered in all of their information before proceeding.
+
+      for (var i = 0; i < self.huntTypes().length; i++) {
+        var length = self.huntTypes()[i].huntersRegistered.length;
+        for (var j = 0; j < length; j++) {
+          console.log(self.huntTypes()[i].huntersRegistered[j]);
+          if (self.huntTypes()[i].huntersRegistered[j].confirmationNumber == self.confirmationNumber()) {
+            // Break from the loop because this is the hunt we need.
+            self.animalType(self.huntTypes()[i].huntersRegistered[j].animalType);
+            self.animalDate(self.huntTypes()[i].huntersRegistered[j].date);
+            self.animalCity(self.huntTypes()[i].huntersRegistered[j].city);
+            self.animalState(self.huntTypes()[i].huntersRegistered[j].state);
+            self.animalTime(self.huntTypes()[i].huntersRegistered[j].time);
+            self.animalPrice(self.huntTypes()[i].huntersRegistered[j].animalPrice);
+
+            self.animalImage(self.huntTypes()[i].imgDark);
+          }
+        }
+      };
+
+      $('.register-first-container').fadeOut(250, function() {
+        $('#footer').fadeOut();
+        $('.back-button').css('display', 'none');
+        $('.register-payment-section').fadeIn();
+        $('#register').css('margin-bottom','0px');
+        window.scrollTo(0, 0);
+      });
     };
 
     self.loadDatesForHunt = function(huntType) {
@@ -38,6 +70,9 @@
       self.currentAvailableDatesForSelectedHunt(huntType.huntingDates);
       console.log(self.currentAvailableDatesForSelectedHunt());
       $('.hunt-choices-overall-container').fadeOut();
+      $('html, body').animate({
+        scrollTop: $("#current-hunt-date-container").offset().top - 60
+      }, 2000);
     };
 
     self.selectedDateForHunt = function(date, event) {
@@ -170,11 +205,21 @@
       }
     };
 
+    self.purchaseHunt = function() {
+      $('.register-payment-container').fadeOut(500, function() {
+        $('.register-confirmation-container').fadeIn();
+      });
+    };
+
+    self.finishRegistrationProcess = function() {
+
+    };
   };
 
 
   var registerObjectVm = new RegisterViewModel();
   ko.applyBindings(registerObjectVm,$("#register")[0]);
+  ko.applyBindings(registerObjectVm,$(".register-payment-section")[0]);
 
   var previousInput;
   var currentSelectedSection = "";
@@ -184,9 +229,19 @@
   });
 
   $('.register-information-button').click(function() {
-    $('.register-first-container').fadeOut(250, function() {
-      $('.register-payment-section').fadeIn();
+
+  });
+
+  $('.exit-checkout').click(function() {
+    $('.register-payment-section').fadeOut(250, function() {
+        $('.register-first-container').fadeIn();
+        $('#footer').fadeIn();
+        $('.back-button').css('display','block');
     });
+  });
+
+  $('.bg-outfitters-button').click(function() {
+    location.href = '/';
   });
 
 $('.form-label').click(function() {

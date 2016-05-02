@@ -4,6 +4,7 @@
   -moz-box-shadow:   0 5px 6px 0px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 5px 6px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 6px 0px rgba(0, 0, 0, 0.2);
+  height: 100vh;
 }
 
 .back-button-container {
@@ -25,6 +26,12 @@
   font-weight: bold;
   font-family: inherit !important;
   font-size: 64px;
+}
+
+.register-first-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .last-input-item {
@@ -233,7 +240,6 @@
 .register-payment-section {
   display: none;
   width: 100vw;
-  height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
@@ -242,20 +248,110 @@
 }
 
 .register-payment-container {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-bottom: 50px;
 }
 
 .checkout-title {
   text-align: center;
     font-size: 2em;
+    margin-top: 48px;
 }
 
-.current-purchase-container .card-information-container {
+.current-purchase-container {
+  margin-top: 24px;
+  padding-bottom: 16px;
+}
+
+.card-information-container {
+  margin-top: 24px;
+}
+
+.current-purchase-container,
+.card-information-container {
   width: 95%;
   margin-left: auto;
   margin-right: auto;
   background: #FFF;
   border-radius: 3px;
+}
+
+.inside-info-container {
+  text-align: center;
+  padding-top: 12px;
+}
+
+.animal-image {
+  margin-top: 16px;
+}
+
+.purchase-animal-type {
+  font-size: 32px;
+  margin-top: 32px;
+  color: #CDCCBA;
+}
+
+.purchase-animal-price {
+  color: #8ad47b;
+}
+
+.purchase-hunt-button {
+  margin-bottom: 24px;
+  background: #8ad47b;
+  color: #fff;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.16),0px 2px 5px 0px rgba(0,0,0,0.23);
+}
+
+.purchase-hunt-button:hover {
+  cursor: pointer;
+  color: #fff;
+  background: #CDCCBA;
+}
+
+.register-confirmation-container {
+  display: none;
+}
+
+.register-confirmation-container {
+  height: 100vh;
+}
+
+.confirmation-container {
+  background: #FFF;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 1px;
+  text-aign: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 24px 12px;
+}
+
+.exit-checkout {
+  right: 30px;
+}
+
+@media(max-width: 785px) {
+  #register {
+    margin-bottom: 0px !important;
+    box-shadow: 0px !important;
+  }
+}
+
+@media(max-width: 485px) {
+  .bg-outfitters-button {
+    font-size: 48px !important;
+  }
+
+  .selected-date-container {
+    margin-top: 24px;
+  }
+}
+
+@media(min-width: 785px) {
+
 }

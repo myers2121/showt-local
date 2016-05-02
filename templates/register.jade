@@ -5,94 +5,80 @@ block content
           .back-button-container
             img.back-button(src='/static/img/back-button.png')
           .container.register-first-container
-            h3.register-title REGISTER
+            h3.register-title PAY
             .form-container
-              form#contact-form.simple_form.new_quote_request(enctype='multipart/form-data', action='/', accept-charset='UTF-8', method='post', novalidate='novalidate')
+              form#contact-form.simple_form.new_quote_request(enctype='multipart/form-data', accept-charset='UTF-8',  novalidate='novalidate')
                 input(name='utf8', type='hidden', value='✓')
                 input(type='hidden', name='authenticity_token', value='A6vVgqnTtNvuksEFI0drl1m8a2HBDucqyzv47+Io/+G+xwBBjEAVKu6lQZBVnjh02Znr9p2KBNqxhBdTE10tqw==')
-                .__input-item.col-sm-6.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
+                .__input-item.col-sm-12.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
                   .input-wrapper
                     label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
                       abbr(title='required')
-                      |  First name
-                    input#hire-name-input.string.required.__input(required='required', aria-required='true', type='text', name='hire-me-full-name', data-bind="value: name")
+                      |  Enter confirmation number
+                    input#hire-name-input.string.required.__input(required='required', aria-required='true', type='text', name='hire-me-full-name', data-bind="textInput: confirmationNumber")
                     p.error.name-error(data-bind="visible: nameCheck") Please enter in a valid name.
-                .__input-item.col-sm-6.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
-                  .input-wrapper
-                    label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
-                      abbr(title='required')
-                      |  Last name
-                    input#hire-email-input.string.email.required.__input(required='required', aria-required='true', type='email', name='hire-me-email', data-bind='value: email')
-                    p.error.email-error(data-bind="visible: emailCheck") Please enter in a valid email.
-                .__input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
-                  .input-wrapper
-                    label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
-                      abbr(title='required')
-                      |  Email
-                    input#hire-phone-input.string.tel.required.__input(required='required', aria-required='true', type='tel', name='hire-me-phone', data-bind='value: phoneNumber')
-                    p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code.
-                .__input-item.last-input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
-                  .input-wrapper
-                    label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
-                      abbr(title='required')
-                      |  Phone number
-                    input#hire-phone-input.string.tel.required.__input(required='required', aria-required='true', type='tel', name='hire-me-phone', data-bind='value: phoneNumber')
-                    p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code.
-                h3.hunt-type-title SELECT HUNT TYPE
-                .hunting-choices-container(data-bind="foreach: huntTypes")
-                  .col-sm-3
-                    .hunting-type-inner(data-bind="click: $parent.huntTypeSelected")
-                      .image-container
-                        img.animal-image(data-bind="attr: {src: imgDark}")
-                      h3.about-hunt-title(data-bind="text: animalType")
-                      h3.about-hunt-time(data-bind="text: timeOfYear")
-                .hunt-choices-overall-container
-                  .hunt-choices-specific-container
-                    p.fa.fa-times.exit-person-expanded.exit-register-hunt-expanded.exit-popup
-                    .container-for-animals(data-bind="foreach: selectedHuntTypeAnimals")
-                      .col-sm-4
-                        .specific-animal-container(data-bind="click: $parent.loadDatesForHunt")
-                          h3.animal-name-specific(data-bind="text: animalName")
-                          h3.animal-price-specific(data-bind="text: price")
-                h3.hunt-type-title.hunt-day SELECT HUNT DAY
-                h3.current-selected-hunt(data-bind="text: currentHuntAnimal")
-                h3.current-selected-price(data-bind="text: currentHuntPrice")
-                .currentSelectedHuntContainer(data-bind="foreach: currentAvailableDatesForSelectedHunt")
-                  .col-sm-3
-                    .selected-date-container(data-bind="click: $parent.selectedDateForHunt")
-                      h3.date-city(data-bind="text: city")
-                      h3.date-state(data-bind="text: state")
-                      h3.date-available(data-bind="text: date")
-                      h3.time-of-hunt(data-bind="text: time")
-                button.btn.__submit.js-submit.register-information-button(data-bind="click: registrationInformationFinished")
-                  | CHECKOUT
+                button.btn.__submit.js-submit.register-information-button(data-bind="click: confirmationCodeSubmission")
+                  | SUBMIT
         .register-payment-section
           .register-payment-container
+            p.fa.fa-times.exit-person-expanded.exit-person-expanded-hunt.exit-popup.exit-checkout
             h3.checkout-title CHECKOUT
             .checkout-info-container
               .current-purchase-container.col-sm-3
                 .inside-info-container
-                  h3 Purchase
-              .card-information-conatiner.col-sm-9
+                  img.animal-image(data-bind="attr: {src: animalImage}")
+                  h3.purchase-animal-type(data-bind="text: animalType")
+                  h3.purchase-animal-date(data-bind="text: animalDate")
+                  h3.purchase-animal-city(data-bind="text: animalCity")
+                  h3.purchase-animal-state(data-bind="text: animalState")
+                  h3.purchase-animal-price(data-bind="text: animalPrice")
+              .card-information-container.col-sm-9
                 .inside-info-container
-                  h3 Information
+                  h3 Payment
+                  form#contact-form.simple_form.new_quote_request
+                    input(name='utf8', type='hidden', value='✓')
+                    input(type='hidden', name='authenticity_token', value='A6vVgqnTtNvuksEFI0drl1m8a2HBDucqyzv47+Io/+G+xwBBjEAVKu6lQZBVnjh02Znr9p2KBNqxhBdTE10tqw==')
+                    .__input-item.col-sm-6.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
+                      .input-wrapper
+                        label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+                          abbr(title='required')
+                          |  Email *
+                        input#hire-name-input.string.required.__input(type='email', name='hire-me-full-name', data-bind="value: name",placeholder='Enter your email *')
+                        p.error.name-error(data-bind="visible: nameCheck") Please enter in a valid name.
+                    .__input-item.col-sm-6.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
+                      .input-wrapper
+                        label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+                          abbr(title='required')
+                          |  Card Number *
+                        input#hire-email-input.string.email.required.__input(type='text', name='hire-me-email', placeholder='Enter card #', data-bind='value: email')
+                        p.error.email-error(data-bind="visible: emailCheck") Please enter in a valid email.
+                    .__input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
+                      .input-wrapper
+                        label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+                          abbr(title='required')
+                          |  Expiration *
+                        input#hire-phone-input.string.tel.required.__input(type='text', name='hire-me-phone', placeholder='02/17')
+                        p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code.
+                    .__input-item.last-input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
+                      .input-wrapper
+                        label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+                          abbr(title='required')
+                          |  CVV *
+                        input#hire-phone-input.string.tel.required.__input(type='password', name='hire-me-phone', placeholder='Security code')
+                        p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code.
+                    .btn.purchase-hunt-button(data-bind="click: purchaseHunt")
+                      | PURCHASE
+          .register-confirmation-container
+            .confirmation-container
+              h3 Congratulations
+              p This is going to be the paragraph that lets you know all of the information that is necessary when the user purchases a hunt.
+              button.btn.__submit.js-submit.register-information-button(data-bind="click: finishRegistrationProcess")
+                | SWEET
         section#footer.register-footer
           .container
             .row.register-container
-              h1.footer-register-button B&G OUTFITTERS
+              h1.footer-register-button.bg-outfitters-button B&G OUTFITTERS
             .row.bottom-footer-row
-              .col-sm-3.copyright-container
-                p &copy; 2016 B&G Outfitters Inc.
-              .col-sm-6.footer-links-container
-                .links-container
-                  .col-sm-3.link-container
-                    a.page-scroll(href='#home') HOME
-                  .col-sm-3.link-container
-                    a.page-scroll(href='#about') ABOUT US
-                  .col-sm-3.link-container
-                    a.page-scroll(href='#people') PEOPLE
-                  .col-sm-3.link-container
-                    a.page-scroll(href='#contact') CONTACT
               .col-sm-3.social-links-container
                 .social-links
                   .col-sm-4.link-container
@@ -101,3 +87,5 @@ block content
                     p.fa.fa-instagram.instagram
                   .col-sm-4.link-container
                     p.fa.fa-twitter.twitter
+              .col-sm-3.copyright-container
+                p &copy; 2016 B&G Outfitters Inc.

@@ -52,8 +52,8 @@ app.get('/', function(req,res){
 
 //app.get('/', routes.index);
 //app.get('/create', routes.create);
-app.get('/execute', routes.execute);
-app.get('/cancel', routes.cancel);
+//app.get('/execute', routes.execute);
+//app.get('/cancel', routes.cancel);
 
 app.post('/paynow', function(req, res) {
    // paypal payment configuration.

@@ -46,11 +46,11 @@ app.use(session({
 app.set('view engine', 'jade');
 app.set('views', __dirname +  '/templates');
 
-// app.get('/', function(req,res){
-// 	res.render('index');
-// });
+app.get('/', function(req,res){
+	res.render('index');
+});
 
-app.get('/', routes.index);
+//app.get('/', routes.index);
 //app.get('/create', routes.create);
 app.get('/execute', routes.execute);
 app.get('/cancel', routes.cancel);

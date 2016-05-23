@@ -1,7 +1,7 @@
 'use strict';
 
 var express = require('express');
-//var routes = require('./routes');
+var routes = require('./routes');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
 var fs = require('fs');

@@ -24,6 +24,8 @@
     self.animalTime = ko.observable("");
     self.animalPrice = ko.observable("");
     self.animalImage = ko.observable("");
+    self.registeredUsersFirstName = ko.observable("");
+    self.registeredUsersLastName = ko.observable("");
 
     self.isFormNotValidated = ko.observable(true);
 
@@ -49,6 +51,11 @@
             self.animalState(self.huntTypes()[i].huntersRegistered[j].state);
             self.animalTime(self.huntTypes()[i].huntersRegistered[j].time);
             self.animalPrice(self.huntTypes()[i].huntersRegistered[j].animalPrice);
+
+            var fullName = self.huntTypes()[i].huntersRegistered[j].name;
+
+            self.registeredUsersFirstName(fullName.split(' ').slice(0, -1).join(' '));
+            self.registeredUsersLastName(fullName.split(' ').slice(-1).join(' '));
 
             self.animalImage(self.huntTypes()[i].imgDark);
           }

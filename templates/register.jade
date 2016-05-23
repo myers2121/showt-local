@@ -35,38 +35,50 @@ block content
               .card-information-container.col-sm-9
                 .inside-info-container
                   h3 Payment
-                  form#contact-form.simple_form.new_quote_request
+                  form#contact-form.simple_form.new_quote_request(action="/paynow", method="post", role="form")
                     input(name='utf8', type='hidden', value='✓')
+                    input(type='hidden', name='method', value='credit_card')
+                    input(type='hidden', name='amount', data-bind="value: animalPrice")
+                    input(type='hidden', name='currency', value='usd')
+                    input(type='hidden', name='first_name', data-bind="value: registeredUsersFirstName")
+                    input(type='hidden', name='last_name', data-bind="value: registeredUsersLastName")
                     input(type='hidden', name='authenticity_token', value='A6vVgqnTtNvuksEFI0drl1m8a2HBDucqyzv47+Io/+G+xwBBjEAVKu6lQZBVnjh02Znr9p2KBNqxhBdTE10tqw==')
-                    .__input-item.col-sm-6.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
-                      .input-wrapper
-                        label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
-                          abbr(title='required')
-                          |  Email *
-                        input#hire-name-input.string.required.__input(type='email', name='hire-me-full-name', data-bind="value: name",placeholder='Enter your email *')
-                        p.error.name-error(data-bind="visible: nameCheck") Please enter in a valid name.
                     .__input-item.col-sm-6.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
                       .input-wrapper
                         label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
                           abbr(title='required')
                           |  Card Number *
-                        input#hire-email-input.string.email.required.__input(type='text', name='hire-me-email', placeholder='Enter card #', data-bind='value: email')
-                        p.error.email-error(data-bind="visible: emailCheck") Please enter in a valid email.
+                        input#hire-email-input.string.email.required.__input(type='text', name='number', placeholder='Enter card #')
+                        p.error.email-error(data-bind="visible: emailCheck") Please enter a valid credit card number
                     .__input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
                       .input-wrapper
                         label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
                           abbr(title='required')
-                          |  Expiration *
-                        input#hire-phone-input.string.tel.required.__input(type='text', name='hire-me-phone', placeholder='02/17')
-                        p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code.
+                          |  Expiration Month *
+                        input#hire-phone-input.string.tel.required.__input(type='text', name='expire_month', placeholder='02')
+                        p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter a valid month with both digits
+                    .__input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
+                      .input-wrapper
+                        label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+                          abbr(title='required')
+                          |  Expiration Year *
+                        input#hire-phone-input.string.tel.required.__input(type='text', name='expire_year', placeholder='2017')
+                        p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter a valid expiration year with just the last 2 digits
                     .__input-item.last-input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
                       .input-wrapper
                         label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
                           abbr(title='required')
                           |  CVV *
-                        input#hire-phone-input.string.tel.required.__input(type='password', name='hire-me-phone', placeholder='Security code')
+                        input#hire-phone-input.string.tel.required.__input(type='password', name='cvv2', placeholder='Security code')
                         p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code.
-                    .btn.purchase-hunt-button(data-bind="click: purchaseHunt")
+                    .__input-item.last-input-item.col-sm-6.input-item.tel.required.quote_request_phone.__input-item--half.card-type-container(aria-required='true')
+                      .input-wrapper
+                        label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+                          abbr(title='required')
+                          |  Card type *
+                        input#hire-phone-input.string.tel.required.__input(type='text', name='type', placeholder='Visa, Mastercard, American Express, and Discover')
+                        p.error.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code.
+                    button.btn.purchase-hunt-button(type="submit")
                       | PURCHASE
           .register-confirmation-container
             .confirmation-container

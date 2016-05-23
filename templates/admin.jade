@@ -215,4 +215,23 @@ block content
             p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-register-hunts-container
             h3.register-title Registered hunts
             .hunts-registered-container(data-bind="foreach: huntTypes")
-              h3 This is the title
+              .col-sm-3
+                .hunt-animal-container(data-bind="click: $parent.registeredHuntsAnimalClicked")
+                  img.animal-image(data-bind="attr: {src: imgDark}")
+                  h3.hunt-animal-name(data-bind="text: animalType")
+            .containing-registered-animals
+              .hunts-registered-animals-container(data-bind="foreach: registeredAnimalAnimals")
+                .col-sm-6
+                  .hunt-registered-container
+                    h3.registered-animal-type(data-bind="text: animalType")
+                    h3.registered-animal-name(data-bind="text: name")
+                    h3.registered-animal-email(data-bind="text: email")
+                    h3.registered-animal-phone-number(data-bind="text: phoneNumber")
+                    h3.registered-animal-date(data-bind="text: date")
+                    h3.registered-animal-animal-price(data-bind="text: animalPrice")
+                    h3.registered-animal-city(data-bind="text: city")
+                    h3.registered-animal-state(data-bind="text: state")
+                    h3.registered-animal-paid(data-bind="text: paid")
+                    .btn-btn-sm.delete-registered-hunt(data-bind="click: $parent.deleteCurrentRegisteredHunt") DELETE
+              .back-button-animals-container
+                .btn.btn-sm.registered-animals-back-button BACK

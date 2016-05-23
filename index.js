@@ -1,40 +1,98 @@
 'use strict';
 
 var express = require('express');
-
+var routes = require('./routes');
 var bodyParser = require('body-parser');
-
 var nodemailer = require('nodemailer');
-
+var fs = require('fs');
+var cookieParser = require('cookie-parser');
+var paypal = require('paypal-rest-sdk');
+var session = require('express-session');
 var Firebase = require("firebase");
-
 var myFirebaseRef = new Firebase("https://bg-outfitters.firebaseio.com/");
 var myFirebaseUsersRef = new Firebase("https://bg-outfitters.firebaseio.com/helpdata")
-
-var questions = ["third question", "Fourth question", "Fifth question", "Sixth question"];
-var answers = ["third answer", "Fourth answer", "Fifth answer", "Sixth answer"];
-
 var postsRef = myFirebaseRef.child("helpQuestions");
-
-// for(var i = 0; i < 4; i++) {
-// 	postsRef.push().set({
-// 	    question: questions[i],
-// 	    answer: answers[i]
-// 	});
-// }
-
 var app = express();
 var jsonParser = bodyParser.json()
+
+// try {
+//     var configJSON = fs.readFileSync(__dirname + "/config.json");
+//     var config = JSON.parse(configJSON.toString());
+// } catch (e) {
+//     console.error("File config.json not found or is invalid: " + e.message);
+//     process.exit(1);
+// }
+// routes.init(config);
+
+paypal.configure({
+  'mode': 'live', //sandbox or live
+  'client_id': 'AUSgFjXFykMkDNq9eegraV_jccHjfyhIcNiGPoyv4yxYF_b0u3AgVgmRHtxRKNNG7phTdMJDZeTw3_ur',
+  'client_secret': 'EO8xMKpWBjE662I-hlhjiwphjs14mk3d1l_6t6ox4W7OSu7bX5roV7MCJ3Tclmuqc39VyJ5rGDGzhh84'
+});
 
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 app.use('/static' , express.static(__dirname + '/public'));
 app.use(bodyParser());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(cookieParser());
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true
+}));
 app.set('view engine', 'jade');
 app.set('views', __dirname +  '/templates');
 
-app.get('/', function(req,res){
-	res.render('index');
+// app.get('/', function(req,res){
+// 	res.render('index');
+// });
+
+app.get('/', routes.index);
+//app.get('/create', routes.create);
+app.get('/execute', routes.execute);
+app.get('/cancel', routes.cancel);
+
+app.post('/paynow', function(req, res) {
+   // paypal payment configuration.
+  var payment = {
+  "intent": "sale",
+  "payer": {
+    "payment_method": "paypal"
+  },
+  "redirect_urls": {
+    "return_url": app.locals.baseurl+"/success",
+    "cancel_url": app.locals.baseurl+"/cancel"
+  },
+  "transactions": [{
+    "amount": {
+      "total": '250',
+      "currency":  'USD'
+    },
+    "description": 'Here is the description'
+  }]
+};
+
+  paypal.payment.create(payment, function (error, payment) {
+  if (error) {
+    console.log(error);
+  } else {
+    if(payment.payer.payment_method === 'paypal') {
+      req.paymentId = payment.id;
+      var redirectUrl;
+      console.log(payment);
+      for(var i=0; i < payment.links.length; i++) {
+        var link = payment.links[i];
+        if (link.method === 'REDIRECT') {
+          redirectUrl = link.href;
+        }
+      }
+      res.redirect(redirectUrl);
+    }
+  }
+});
 });
 
 

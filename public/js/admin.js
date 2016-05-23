@@ -192,23 +192,47 @@ $(document).ready(function() {
       self.huntTypes([]);
       firebaseFuncs.ref.child("/huntingTypes").once("value", function(snapshot) {
         var huntingTypes = snapshot.val();
-        console.log('Hunt types before');
-        console.log(self.huntTypes());
-        if (isFirstClick) {
-          isFirstClick = false;
-        } else {
-          $.each(huntingTypes, function(index,value) {
-            self.huntTypes.push(value);
-            console.log("This is stupid");
-            console.log(self.huntTypes());
-          });
-        }
-        console.log("The last hunt types");
-        console.log(self.huntTypes());
+        $.each(huntingTypes, function(index,value) {
+          self.huntTypes.push(value);
+        });
       }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
       });
       $('#register-hunts-section').fadeIn();
+      $('html, body').animate({
+        scrollTop: $("#register-hunts-section").offset().top
+      }, 500);
+    };
+
+    self.registeredAnimalAnimals = ko.observableArray("");
+
+    self.registeredHuntsAnimalClicked = function(huntType) {
+      self.registeredAnimalAnimals(huntType.huntersRegistered);
+      console.log(self.registeredAnimalAnimals());
+      $('#register-hunts-section').css('height','auto');
+      $('.hunts-registered-container').fadeOut(250, function() {
+        $('.containing-registered-animals').fadeIn();
+      });
+    };
+
+    self.deleteCurrentRegisteredHunt = function(currentDate) {
+      var indexToDelete = 0;
+      console.log(currentDate);
+      for(var i = 0; i < self.registeredAnimalAnimals().length; i++) {
+        var city = self.registeredAnimalAnimals()[i].city;
+        var date = self.registeredAnimalAnimals()[i].date;
+        var state = self.registeredAnimalAnimals()[i].state;
+        var time = self.registeredAnimalAnimals()[i].time;
+        var name = self.registeredAnimalAnimals()[i].name;
+
+        if (city == currentDate.city && date == currentDate.date && state == currentDate.state && time == currentDate.time && name == currentDate.name) {
+          indexToDelete = i;
+          console.log(indexToDelete);
+        }
+      }
+      self.registeredAnimalAnimals.splice(indexToDelete, 1);
+      //huntingRef.update(self.huntTypes());
+      console.log(self.registeredAnimalAnimals());
     };
 
     self.saveHuntPriceUpdate = function(data) {
@@ -270,7 +294,7 @@ $(document).ready(function() {
           indexToDelete = i;
         }
 
-        self.datesForAnimal.splice(indexToDelete, indexToDelete + 1);
+        self.datesForAnimal.splice(indexToDelete, 1);
         huntingRef.update(self.huntTypes());
       }
 
@@ -508,6 +532,16 @@ $(document).ready(function() {
       location.href = '/login';
     }
   };
+
+  $('.registered-animals-back-button').click(function() {
+    $('.containing-registered-animals').fadeOut(250, function() {
+      $('#register-hunts-section').css('height','100vh');
+      $('.hunts-registered-container').fadeIn();
+      $('html, body').animate({
+        scrollTop: $("#register-hunts-section").offset().top
+      }, 500);
+    });
+  });
 
   $('.close-calendar-popup ').click(function() {
     $('#hunt-calendar-section').fadeOut();

@@ -5,12 +5,15 @@
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.1",
+    "express-session": "^1.13.0",
     "firebase": "^2.4.0",
     "ipaddr.js": "^1.1.0",
     "jade": "^1.11.0",
     "moment": "^2.11.2",
     "nodemailer": "^2.1.0",
-    "nodemon": "^1.9.1"
+    "nodemon": "^1.9.1",
+    "paypal-rest-sdk": "^1.6.8"
   },
   "devDependencies": {},
   "scripts": {

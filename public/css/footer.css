@@ -1,0 +1,141 @@
+#footer {
+  background: #4895D9;
+  padding-top: 100px;
+margin-top: -152px;
+}
+
+#footer .section-heading {
+  color: #FFF;
+}
+
+.social-icons-container {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: auto;
+  max-width: 300px;
+}
+
+.icon-container {
+  width: 20%;
+  float: left;
+  text-align: center;
+}
+
+.icon-container img {
+  width: 40px;
+}
+
+.icon-container img:hover {
+  cursor: pointer;
+}
+
+.passenger-hash {
+  color: #fff;
+  font-family: inherit;
+  margin-top: none !important;
+  margin-bottom: 56px;
+}
+
+.footer-heading {
+  margin-bottom: 24px !important;
+}
+
+#footer .app-store-buttons {
+  text-align: center;
+  margin-top: 72px;
+}
+
+.coming-soon-text {
+  text-align: center;
+  color: #FFF;
+}
+
+#footer .row {
+  text-align: center;
+}
+
+.back-to-top-container {
+  background: #FFF;
+  border-radius: 5px;
+  width: 200px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-top: 54px;
+  padding-right: 15px;
+  box-shadow: 0 5px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top-container p {
+  width: 150px;
+  float: left;
+  margin-bottom: 0px !important;
+  padding-left: 10px;
+  text-align: left;
+  color: #4895D9;
+}
+
+.back-to-top-container img {
+  width: 15px;
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
+}
+
+.copy-right-footer {
+  margin-top: 72px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 16px;
+  margin-bottom:  0px !important;
+}
+
+.copy-right-footer span {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+@media(min-width: 992px) {
+  .app-store-button-container img {
+    width: 155px !important;
+  }
+
+  #footer .container {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .back-to-top-container {
+    float: right;
+    width: 160px;
+    height: 48px;
+    margin-right: 16px;
+    margin-top: 16px;
+  }
+
+  .copy-right-footer {
+    margin-top: 66px !important;
+    text-align: left;
+    width: 100%;
+    vertical-align: middle;
+    margin-left: 16px;
+
+  }
+
+  #footer {
+    padding-bottom: 24px;
+  }
+
+  .back-to-top-container p {
+    font-size: 12px;
+    width: 110px;
+  }
+
+  .back-to-top-container img {
+    width: 10px;
+  }
+
+}

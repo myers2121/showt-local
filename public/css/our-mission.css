@@ -1,0 +1,12 @@
+.our-mission-video {
+  width: 350px;
+  height: 200px;
+  margin-top: 24px;
+}
+
+@media(min-width: 992px) {
+  .our-mission-video {
+    width: 600px;
+    height: 320px;
+  }
+}

@@ -1,0 +1,101 @@
+extends ./supportLayout.jade
+
+block content
+	header#home
+		.header-content
+			.header-content-inner
+				h3.passenger-header Help Center
+	section#contact-support-home
+		.support-top-info
+			h3.support-home-title Contact Support
+			p.support-home-text Weren't able to find the information that you were looking for or want to get in contact with us? Fill out our support form below and we will get back to you within 24 hours.
+		.form-container
+			form#support-contact-form.simple_form.new_quote_request(action='/', method='post')
+				input(name='utf8', type='hidden', value='✓')
+				input(type='hidden', name='authenticity_token', value='A6vVgqnTtNvuksEFI0drl1m8a2HBDucqyzv47+Io/+G+xwBBjEAVKu6lQZBVnjh02Znr9p2KBNqxhBdTE10tqw==')
+				.__input-item.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
+					.input-wrapper
+						label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+							abbr(title='required')
+							|  What's your name?
+						input#support-name-input.text-input.string.required.__input(placeholder='Full name' ,required='required', aria-required='true', type='text', name='full_name', data-bind="textInput: name, event: { keyup: checkName }")
+						p.error-message.name-error(data-bind="visible: nameCheck") Please enter in a valid name.
+				.__input-item.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
+					.input-wrapper
+						label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+							abbr(title='required')
+							|  What's your email?
+						input#support-email-input.text-input.string.email.required.__input(placeholder='Email', required='required', aria-required='true', type='email', name='email', data-bind='textInput: email, event: { keyup: checkEmail }')
+						p.error-message.email-error(data-bind="visible: emailCheck") Please enter in a valid email.
+				.__input-item.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
+					.input-wrapper
+						label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
+							abbr(title='required')
+							|  Phone number to contact you at
+						input#support-phone-input.text-input.string.tel.required.__input(placeholder='Phone number', required='required', aria-required='true', type='tel', name='phone_number', data-bind='textInput: phoneNumber, event: { keyup: checkPhone }')
+						p.error-message.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code and spaces between numbers
+				.__input-item.input-item.text.required.quote_request_company_about(aria-required='true')
+					.input-wrapper
+						label.form-label.text.required.control-label.__label(for='quote_request_company_about', aria-required='true')
+							abbr(title='required')
+							|  Message subject
+						input#support-subject-input.text-input.text.required.__input(placeholder='Subject', required='required', aria-required='true', name='subject', rows='1', style='overflow: hidden; word-wrap: break-word;', data-bind='textInput: subject, event: { keyup: checkSubject }')
+						p.error-message.company-info-error(data-bind="visible: subjectCheck") Make sure to enter in a descriptive subject
+				.__input-item.input-item.text.required.quote_request_project_about(aria-required='true')
+					.input-wrapper
+						label.form-label.text.required.control-label.__label(for='quote_request_project_about', aria-required='true')
+							abbr(title='required')
+							|  What's on your mind?
+						textarea#support-message-input.text-input.message-textarea.text.required.__input(placeholder='Message', required='required', aria-required='true', name='message', rows='1', style='overflow: hidden; word-wrap: break-word;', data-bind='textInput: message, event: { keyup: checkMessage }')
+						p.error-message.project-info-error(data-bind="visible: messageCheck") Please enter the message you would like to send
+				p.why-are-contact Reason for contacting us?
+				.checkbox-container
+					input.support-checkbox(type='checkbox', name='merchant', value='Merchant inquiry')
+					p Merchant inquiry
+				.checkbox-container
+					input.support-checkbox(type='checkbox', name='app', value='Mobile app')
+					p Mobile app
+				.checkbox-container
+					input.support-checkbox(type='checkbox', name='discounts', value='Discounts')
+					p Discounts
+				.checkbox-container
+					input.support-checkbox(type='checkbox', name='other', value='Other')
+					p Other
+				input.btn.__submit.support-contact-submit-button.js-submit(type='submit', value='Submit', data-bind='disable: isFormNotValidated')
+	section#support-download-app
+		.download-app-container
+			h3.support-download-title New to Passenger?
+			p.support-download-text If this is your first time visiting us here at Passenger, we recommend that you download our mobile application to start earning points and getting discounts as soon as possible!
+			.download-button
+				p Download
+	section#support-footer
+		.container
+			.row
+				.col-lg-12.text-center
+					h3.passenger-hash #passengerapp
+				.social-icons-container
+					.icon-container
+						img(src='/static/img/facebook.png', data-bind='click: facebookClick')
+					.icon-container
+						img(src='/static/img/twitter.png', data-bind='click: twitterClick')
+					.icon-container
+						img(src='/static/img/youtube.png', data-bind='click: youtubeClick')
+					.icon-container
+						img(src='/static/img/instagram.png', data-bind='click: instagramClick')
+					.icon-container
+						img(src='/static/img/snapchat.png', data-bind='click: snapchatClick')
+				.navigation-links-container
+					ul.support-footer-nav-list
+						li.nav-link-li
+							a.nav-link(href="/") Home
+						li.nav-link-li
+							a.nav-link(href="/#what-is-it") What is it?
+						li.nav-link-li
+							a.nav-link(href="/#how-it-works") How it works
+						li.nav-link-li
+							a.nav-link(href="/#our-mission") Our mission
+						li.nav-link-li
+							a.nav-link(href="/#contact") Contact
+				h3.passenger-hash.copy-right-footer &copy
+					span.date-span(data-bind="text: currentDate")
+					| Spacebar Technologies, Inc.

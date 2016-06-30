@@ -1,0 +1,86 @@
+#support-contact-form {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 32px;
+}
+
+#support-contact-form label {
+  width: 100%;
+  text-align: left;
+  margin-top: 32px;
+  font-weight: normal;
+}
+
+#support-contact-form input,
+#support-contact-form textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  color: #aaa;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  -webkit-appearance: none;
+  padding-left: 8px;
+  margin-top: 4px;
+}
+
+#support-contact-form .error-message {
+  text-align: left;
+  color: red;
+  margin-top: 8px;
+  font-size: 12px;
+  display: none;
+}
+
+#support-contact-form textarea {
+  height: 150px;
+  padding-left: 8px;
+}
+
+.why-are-contact {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  color: #4A90E2;
+  text-align: center;
+}
+
+.support-checkbox {
+  width: 20px !important;
+  height: 20px;
+  border-radius: 2px !important;
+  float: left;
+  margin-right: 16px !important;
+}
+
+.checkbox-container {
+  text-align: left;
+  margin-bottom: 16px;
+}
+
+.checkbox-container input {
+  margin-top: 0px !important;
+}
+
+input[type=checkbox]:checked {
+    background-color: #4A90E2;
+    border: 1px solid #4A90E2 !important;
+}
+
+.checkbox-container p {
+  margin-bottom: 0px !important;
+}
+
+.support-contact-submit-button {
+  border: 1px solid #4A90E2 !important;
+  color: #4A90E2 !important;
+  font-weight: normal;
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+  margin-top: 32px !important;
+}
+
+#contact-support-home .support-home-title {
+  text-align: center;
+  font-family: inherit;
+}

@@ -1,0 +1,126 @@
+extends ./merchantLayout.jade
+
+block content
+	header#merchant-sign-up
+		.header-content
+			.header-content-inner
+				h3.passenger-header.merchants-header(data-bind="text: merchantSignUpTitle")
+				p.home-text(data-bind="text: merchantSignUpText")
+	section#merchant-form-section
+		.brief-intro-divs(data-bind="foreach: topMerchantSignUpItems")
+			.intro-div-container.col-sm-4(data-bind="css: myClass")
+				.intro-div-inside-container
+					img.merchant-intro-div-img(data-bind="attr: {src: img}")
+					h3.merchant-intro-div(data-bind="text: title")
+					p.merchant-intro-text(data-bind="text: text")
+		.form-container
+			form#support-contact-form.simple_form.new_quote_request(action='/', method='post')
+				input(name='utf8', type='hidden', value='✓')
+				input(type='hidden', name='authenticity_token', value='A6vVgqnTtNvuksEFI0drl1m8a2HBDucqyzv47+Io/+G+xwBBjEAVKu6lQZBVnjh02Znr9p2KBNqxhBdTE10tqw==')
+				.merchants-email-container
+					.__input-item.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
+						.input-wrapper
+							label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+								abbr(title='required')
+								|  Email to reach you at
+							input#support-name-input.text-input.string.required.__input(placeholder='Email' ,required='required', aria-required='true', type='email', name='email', data-bind="textInput: email, event: { keyup: checkEmail }")
+							p.error-message.name-error(data-bind="visible: emailCheck") Please enter in a valid email.
+					.__input-item.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
+						.input-wrapper
+							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+								abbr(title='required')
+								|  Confirm email
+							input#support-email-input.text-input.string.email.required.__input(placeholder='Confirm email', required='required', aria-required='true', type='email', name='confirmed-email', data-bind="textInput: confirmEmail, event: { keyup: checkEmailConfirm }")
+							p.error-message.email-error(data-bind="visible: emailConfirmCheck") The emails do not match
+				.merchants-business-info-container
+					.business-input-container
+						.__input-item.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
+							.input-wrapper
+								label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+									abbr(title='required')
+									|  What type of business is it?
+								input#support-name-input.text-input.string.required.__input(placeholder='Business type' ,required='required', aria-required='true', type='text', name='business-type', data-bind="textInput: businessType, event: { keyup: checkBusinessType }")
+								p.error-message.name-error(data-bind="visible: businessTypeFormCheck") Please enter in a valid business type.
+						.__input-item.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
+							.input-wrapper
+								label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+									abbr(title='required')
+									|  Business Category
+								input#support-email-input.text-input.string.email.required.__input(placeholder='Category', required='required', aria-required='true', type='text', name='business-category', data-bind="textInput: businessCategory, event: { keyup: checkBusinessCategory }")
+								p.error-message.email-error(data-bind="visible: businessCategoryFormCheck") Please enter a valid business category
+					.business-input-container
+						.__input-item.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
+							.input-wrapper
+								label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+									abbr(title='required')
+									|  What is your business name?
+								input#support-name-input.text-input.string.required.__input(placeholder='Business name' ,required='required', aria-required='true', type='text', name='business-name', data-bind="textInput: businessName, event: { keyup: checkBusinessName }")
+								p.error-message.name-error(data-bind="visible: businessNameFormCheck") Please enter in a valid business name.
+						.__input-item.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
+							.input-wrapper
+								label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+									abbr(title='required')
+									|  Number to reach your business at
+								input#support-email-input.text-input.string.email.required.__input(placeholder='Phone number', required='required', aria-required='true', type='text', name='business-phone', data-bind="textInput: businessPhone, event: { keyup: checkBusinessPhone }")
+								p.error-message.email-error(data-bind="visible: businessPhoneFormCheck") Please enter a valid phone number with area code
+				.merchants-personal-info-container
+					.__input-item.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
+						.input-wrapper
+							label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+								abbr(title='required')
+								|  First Name
+							input#support-name-input.text-input.string.required.__input(placeholder='First name' ,required='required', aria-required='true', type='text', name='first-name', data-bind="textInput: firstName")
+							p.error-message.name-error(data-bind="visible: firstNameCheck") Please enter your first name
+						.input-wrapper
+							label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
+								abbr(title='required')
+								|  Last name
+							input#support-name-input.text-input.string.required.__input(placeholder='Last name' ,required='required', aria-required='true', type='text', name='last-name', data-bind="textInput: lastName")
+							p.error-message.name-error(data-bind="visible: lastNameCheck") Please enter your last name
+					.__input-item.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
+						.input-wrapper
+							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+								abbr(title='required')
+								|  Address
+							input#support-email-input.text-input.string.email.required.__input(placeholder='Address', required='required', aria-required='true', type='text', name='address', data-bind="textInput: address")
+							p.error-message.email-error Please enter a valid address
+						.input-wrapper
+							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+								abbr(title='required')
+								|  Zipcode
+							input#support-email-input.text-input.string.email.required.__input(placeholder='Address', required='required', aria-required='true', type='text', name='zipcode', data-bind="textInput: zipcode")
+							p.error-message.email-error Please enter a valid US zipcode
+						.input-wrapper
+							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+								abbr(title='required')
+								|  City
+							input#support-email-input.text-input.string.email.required.__input(placeholder='Address', required='required', aria-required='true', type='text', name='city', data-bind="textInput: city")
+							p.error-message.email-error Please enter a valid city name
+						.input-wrapper
+							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+								abbr(title='required')
+								|  State
+							input#support-email-input.text-input.string.email.required.__input(placeholder='Address', required='required', aria-required='true', type='text', name='state', data-bind="textInput: state")
+							p.error-message.email-error Please enter a valid state in 2 letter format
+						.input-wrapper
+							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+								abbr(title='required')
+								|  Phone
+							input#support-email-input.text-input.string.email.required.__input(placeholder='Address', required='required', aria-required='true', type='text', name='personal-phone', data-bind="textInput: personalPhone")
+							p.error-message.email-error Please enter a valid phone number
+						.input-wrapper
+							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
+								abbr(title='required')
+								|  Position at your business
+							input#support-email-input.text-input.string.email.required.__input(placeholder='Position', required='required', aria-required='true', type='text', name='position', data-bind="textInput: position")
+							p.error-message.email-error Make sure to enter your business
+				.merchant-form-button-container
+					.btn.__submit.merchant-contact-submit-button.js-submit(data-bind="click: continueButtonClicked") Continue
+	.submitting-form-container
+		.inside-submit-container
+			.loading
+			p Sending your info to our amazing sales team.
+		.inside-submit-confirmed-container
+			img(src='/static/img/checked.png')
+			p We have received your submission. We will be in contact with you within 24 hours.
+			.btn Sounds good

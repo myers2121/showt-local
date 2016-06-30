@@ -1,0 +1,80 @@
+extends ./merchantLayout.jade
+
+block content
+	header#merchantsHome
+		.header-content
+			.header-content-inner
+				h3.passenger-header.merchants-header Offer discounts today
+				p.home-text Offer rewards. Drive customer traffic. Grow your business. Get started now!
+	section#get-started-section
+		.container
+			.row
+				.col-lg-12.text-center
+					.get-started-button Get Started
+					p.contact-sales Contact sales
+	section#start-up-section
+		.container
+			.row
+				.col-lg-12.text-center
+					h2.section-heading.merchant-first-heading Start, build, and grow with Passenger
+					p.section-p.start-p Passenger is a premier solution to take your companies advertising campaign directly to potential customers to drive your growth.
+				.start-sections-outside-container(data-bind="foreach: startSections")
+					.start-section(data-bind="css: styleColumn")
+						.start-section-inner
+							.img-container(data-bind="css: myClass")
+							.containing-shit
+								h3.start-section-title(data-bind="text: title")
+								p.start-section-text(data-bind="text: text")
+	section#continue-section
+		.container
+			.row
+				.col-lg-12.text-center
+					h2.section-heading.merchant-first-heading We want to grow your business
+					p.section-p.start-p Besides attacking the problem of distracted driving, our main focus is to help businesses grow. We understand that without our amazing partners we would not be able to tackle the problem of texting and driving. This is why we put such an emphasis on helping our partners grow here at Passenger.
+			.more-merchant-stuff-container
+				.more-merchant-info.col-sm-6
+					.more-merchant-info-inner
+						img.more-merchant-icon(src='/static/img/passenger-logo.png')
+						h3.merchant-more-info-title Here to help you succeed
+						p.merchant-more-info-text This is going to be the really cool text that will talk about how we are going to help them succeed.
+						p.contact-support-more-info-button Contact sales
+				.more-merchant-info.col-sm-6
+					.more-merchant-info-inner
+						img.more-merchant-icon(src='/static/img/passenger-logo.png')
+						h3.merchant-more-info-title Clear pricing, fast implementation
+						p.merchant-more-info-text This is going to be the really cool text that will talk about how easy it is to get started using Passenger.
+			.get-started-button Get Started
+			p.contact-sales Contact sales
+		svg.slant(viewbox='0 0 1 1', preserveaspectratio='none')
+			polygon(points='0,1 1,1 1,0')
+	section#footer
+		.container
+			.row
+				.col-lg-12.text-center
+					h2.section-heading.footer-heading Passenger
+					h3.passenger-hash #passengerapp
+				.social-icons-container
+					.icon-container
+						img(src='/static/img/facebook.png', data-bind='click: facebookClick')
+					.icon-container
+						img(src='/static/img/twitter.png', data-bind='click: twitterClick')
+					.icon-container
+						img(src='/static/img/youtube.png', data-bind='click: youtubeClick')
+					.icon-container
+						img(src='/static/img/instagram.png', data-bind='click: instagramClick')
+					.icon-container
+						img(src='/static/img/snapchat.png', data-bind='click: snapchatClick')
+				.app-store-buttons
+					.col-sm-6.store-button-container
+						.app-store-button-container
+							img(src='/static/img/app-store-button.png')
+					.col-sm-6.store-button-container
+						.app-store-button-container
+							img(src='/static/img/google-play-badge.png')
+				p.coming-soon-text Coming soon
+				.back-to-top-container.btn.btn-sm.page-scroll(data-bind="click: backToTopFooter")
+					p Back to top
+					img(src='/static/img/nav-right.png')
+				h3.passenger-hash.copy-right-footer &copy
+					span(data-bind="text: currentDate")
+					| Spacebar Technologies, Inc.

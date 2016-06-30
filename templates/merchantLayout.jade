@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+	include ./partials/_merchantHead.jade
+	body#page-top.merchant-layout
+		include ./partials/_merchantsNav.jade
+		block content
+
+		script(src="https://cdn.firebase.com/js/client/2.4.0/firebase.js")
+		script(src='/static/js/jquery.js')
+		script(src='/static/js/knockout.js')
+		script(src='/static/js/moment.js')
+		// Bootstrap Core JavaScript
+		script(src='/static/js/bootstrap.min.js')
+		// Plugins JavaScript
+		script(src='/static/js/jquery.easing.min.js')
+		script(src='/static/js/jquery.fittext.js')
+		script(src='/static/js/wow.min.js')
+		// Custom Theme JavaScript
+		script(src='/static/js/passenger-site.js')
+		script(src='/static/js/firebaseFuncs.js')
+		script(src='/static/js/site.js')
+		script(src='/static/js/merchants.js')
+		script(src='/static/js/merchantSignUp.js')

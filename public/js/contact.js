@@ -15,6 +15,7 @@
     self.nameCheck = ko.observable(false);
     self.nameIsVerified = ko.observable(false)
     self.checkName = function(namer) {
+      console.log('This is being called');
       if(self.name().length == 0) {
         self.nameCheck(false);
       } else if (self.name().length < 2) {
@@ -136,11 +137,11 @@ $('.form-label').click(function() {
 
   $('.text-input').removeClass('input-method-animation');
 
-  $(this).css('color','#9A998C');
+  $(this).css('color','#4895D9');
   $(this).css('font-size', '14px');
   $(this).next().focus();
 
-  $(this).next().css('border-bottom','1px solid #9A998C');
+  $(this).next().css('border-bottom','1px solid #4895D9');
   $(this).next().addClass('input-method-animation');
 
   if ($(this).text() == currentSelectedSection) {
@@ -151,7 +152,6 @@ $('.form-label').click(function() {
       previousInput = $(this).next();
     } else {
         if (previousInput.val().length < 1 && previousInput != $(this)) {
-          console.log("This is less than zero");
           previousInput.animate({
             height: "0px"
           }, 250, function() {
@@ -174,9 +174,17 @@ $('.form-label').click(function() {
       // Animation complete.
     });
     $(this).prev().css('color','#e3e3e3');
-    $(this).next().css('border-bottom','1px solid #9A998C');
+    $(this).next().css('border-bottom','1px solid #4895D9');
   }
 });
+
+$('.contact-submit-button').hover(
+  function() {
+    $('.contact-submit-button').addClass( 'contact-submit-hover',10000);
+  }, function() {
+    $('.contact-submit-button').removeClass( 'contact-submit-hover',1000);
+  }
+);
 
 $('.faq-selector').click(function() {
   location.href = '/faq';

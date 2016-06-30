@@ -1,122 +1,68 @@
 extends ./layout.jade
 
 block content
+        .pre-screen-section
+          .quote-container
+            p.quote(data-bind="text: currentQuote")
+            p.author(data-bind="text: currentAuthor")
         header#home
           .header-content
             .header-content-inner
-              img(src='/static/img/bglogowhite.png')
-              p B&G Outfitters takes you on a once in a lifetime guided tour hunt in the majestic mountains of Northern California and Oregon
-          p.learn-more-button-p Learn More
-          a.page-scroll.learn-more-scroller(href='#about')
-            img.learn-more-arrow(src='/static/img/arrow-down.png')
-        section#about
-          .about-people-expanded.about-people-expanded-billy
-            .about-expanded-people-container
-              img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/billy.jpg', alt='')
-              h3.expanded-person-name Billy Bowles
-              p.fa.fa-times.exit-person-expanded.exit-person-expanded-billy.exit-popup
-              p.person-description-expanded
-                | B&G Outfitters is a hunting company based out of Northern California that provides a variety of hunting services. The core of what we do is take you
-                | on a guided tour hunt that is the experience of a lifetime. With over 40 years of experience of hunting in the Northern California and Oregon mountains,
-                | you can be sure that you are in goods hands while on your hunt. We look forward to hunting with you!
-              .gun-container
-                img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/rifle-green.png', alt='')
-                p.favorite-gun-text 12 Guage Shotgun
-              .animal-container
-                img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/duck-green.png', alt='')
-                p.favorite-gun-text Canadian Geese
-          .about-people-expanded.about-people-expanded-janell
-            .about-expanded-people-container
-              img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/janell.jpg', alt='')
-              h3.expanded-person-name Janell Geringer
-              p.fa.fa-times.exit-person-expanded.exit-person-expanded-janell.exit-popup
-              p.person-description-expanded
-                | B&G Outfitters is a hunting company based out of Northern California that provides a variety of hunting services. The core of what we do is take you
-                | on a guided tour hunt that is the experience of a lifetime. With over 40 years of experience of hunting in the Northern California and Oregon mountains,
-                | you can be sure that you are in goods hands while on your hunt. We look forward to hunting with you!
-              .gun-container
-                img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/arrow-green.png', alt='')
-                p.favorite-gun-text Compound Bow
-              .animal-container
-                img.img-responsive.person-picture-div.expanded-person-picture(src='/static/img/deer-green.png', alt='')
-                p.favorite-gun-text Elk
+              h3.passenger-header Passenger
+              p.home-text Don't text and drive. Earn points. Get rewards. Download the app now!
+              .app-store-buttons
+                .col-sm-6.store-button-container
+                  .app-store-button-container
+                    img(src='/static/img/app-store-button.png')
+                .col-sm-6.store-button-container
+                  .app-store-button-container
+                    img(src='/static/img/google-play-badge.png')
+              p Coming soon
+          a.page-scroll.learn-more-scroller(href='#what-is-it')
+            img.learn-more-arrow(src='/static/img/expand-arrow.png')
+        section#what-is-it
           .container
             .row
               .col-lg-12.text-center
-                h2.section-heading ABOUT
-                p.text-faded
-                  | B&G Outfitters is a hunting company based out of Northern California that provides a variety of hunting services. The core of what we do is take you
-                  | on a guided tour hunt that is the experience of a lifetime. With over 40 years of experience of hunting in the Northern California and Oregon mountains,
-                  | you can be sure that you are in goods hands while on your hunt. We look forward to hunting with you!
-              .people-container
-                .col-sm-6.person-div.text-center
-                  a.portfolio-box.text-center
-                    img.img-responsive.person-picture-div.billy-picture(src='/static/img/billy.jpg', alt='')
-                  h3.about-hunt-title Billy
-                  h3.about-hunt-time Co-Founder
-                .col-sm-6.person-div.text-center
-                  a.portfolio-box.text-center
-                    img.img-responsive.person-picture-div.janell-picture(src='/static/img/janell.jpg', alt='')
-                  h3.about-hunt-title Janell
-                  h3.about-hunt-time Co-Founder
-        section#hunting
-          .hunt-location-popup
-            .frame-container
-              h3.hunt-animal-type(data-bind="text: animalNameAndDateForLocation")
-              p.fa.fa-times.exit-person-expanded.exit-location-expanded-frame.exit-popup
-              iframe(data-bind='attr: {src: locationFrameSRC}', width='600', height='450', frameborder='0', style='border:0', allowfullscreen='')
-            .hunt-location-expanded-container
-              h3.hunt-animal-type(data-bind="text: hunt_type")
-              p.fa.fa-times.exit-person-expanded.exit-location-expanded-hunt.exit-popup
-              .animal-date-location-container(data-bind="foreach: locationsAnimals")
-                .animal-date-container.col-sm-3(data-bind="click: $parent.specificAnimalClicked")
-                  .animal-inside-date-container
-                    h3.hunt-animal-type(data-bind='text: animalName')
-                    h3.hunt-animal-price(data-bind="text: price")
-            .hunt-location-dates-container
-              h3.hunt-animal-type(data-bind="text: animalSelectedSpecific")
-              p.fa.fa-times.exit-person-expanded.exit-location-expanded-dates.exit-popup
-              .animal-date-location-container(data-bind="foreach: animalSelectedSpecificDates")
-                .animal-date-container.col-sm-3(data-bind="click: $parent.openGoogleMaps")
-                  .animal-inside-date-container
-                    h3.hunt-animal-type.price-div(data-bind='text: date')
-                    h3.hunt-animal-price.price-div(data-bind="text: city")
-                    h3.hunt-animal-price.price-div(data-bind="text: state")
-          .hunt-type-popup
-            .hunt-type-expanded-container
-              h3.hunt-animal-type(data-bind='text: hunt_type')
-              p.hunt-animal-type-text(data-bind='text: hunt_description')
-              p.fa.fa-times.exit-person-expanded.exit-person-expanded-hunt.exit-popup
-              .types-of-animals-in-hunt(data-bind= "foreach: animalSelected")
-                .hunt-clicked-animal-container.col-sm-3(data-bind="click: $parent.showSelectedAnimalDetails")
-                  h3.hunt-animal-name(data-bind="text: animalName")
-            .hunt-animal-selected-expanded-container
-              p.fa.fa-times.exit-person-expanded.exit-person-expanded-hunt-final.exit-popup
-              h3.animal-name(data-bind="text: finalAnimalSelectedName")
-              h3.animal-price(data-bind="text: finalAnimalSelectedPrice")
-              p.animal-description(data-bind="text: finalAnimalSelectedDescription")
+                h2.section-heading What is it?
+                p.section-p
+                  | Stay off your phone while driving, earn points, and get discounts at your favorite local spots.
+                img.passenger-picture-what(src='/static/img/passenger-homescreen.png')
+                p.section-p.what-is-it-text Passenger is a mobile phone application that is coming soon to iOS and Android that rewards you for staying off of your cell phone while driving. We all know that texting and driving is a major problem in the society that we live in today. So, stay off your phone, earn some points, get discounts at your favorite local businesses, tell your friends to do the same, and most importantly, save some lives.
+        section#how-it-works
           .container
             .row
             .col-lg-12.text-center
-              h2.section-heading.hunting-heading HUNTING
-              p.text-faded.hunting-text
-                | We at B&G have been hunting in the Northern California & Oregon mountains for over 30 years. This has allowed us to gain the experience of the four animals that
-                | we need to successfully take you on an amazing guided hunt that you won't forget. We offer wild pig, blacktail and mule deer, wild turkey, varmint, upland game and waterfowl hunts. All hunts are 100% fair chase
-                | and fit anyone's hunting style. Below is the list of animals that we hunt and the time of year that we do guided tour hunts.
-                | To get more information click on the animal, visit our FAQ page, or contact us!
-            .hunt-explained-dialog
-              h3.hunt-title Deer
-              p.hunt-explained-text This is going to be the text of the animal that we are going to be portraying to the user so they can get a better idea of what it is.
-              .row.buttons-row
-                button.register-button-dialog REGISTER
-                button.ok-button-dialog OK
-            .row.hunting-type-container(data-bind='foreach: huntTypes')
-              .col-sm-3.text-center
-                .image-container
-                  img.animal-image(data-bind='attr: {src: img}, click: $parent.huntItemClicked')
-                h3.about-hunt-title(data-bind='text: animalType') DEER
-                h3.about-hunt-time(data-bind='text: timeOfYear') SPRING
-                h3.about-hunt-time.locations-text(data-bind='click: function(data,event) {$parent.locationClicked(data)}') Dates &amp; Locations
+              h2.section-heading How it works
+            .how-it-works-container-desktop(data-bind="foreach: howItWorksArray")
+              .phone-container.col-sm-3
+                img.how-image(data-bind="attr: {src: imgSrc}")
+                h3.how-title-text(data-bind="text: title")
+                p.how-text(data-bind="text: text")
+            .how-it-works-container
+              .previous-section-clicker
+                img.next-previous-clickers(src='/static/img/nav-left.png', data-bind="click: prevHowItem")
+              .current-section-container
+                img.how-image(data-bind="attr: {src: currentImage}")
+                h3.how-title-text(data-bind="text: currentTitle")
+                p.how-text(data-bind="text: currentText")
+              .next-section-clicker
+                img.next-previous-clickers(src='/static/img/nav-right.png', data-bind="click: nextHowItem")
+        section#our-mission
+          .container
+            .row
+              .col-lg-12.text-center
+                h2.section-heading Our Mission
+                .mission-video-container
+                  iframe.our-mission-video(width='560', height='315', src='https://www.youtube.com/embed/eYjWLvhE3yY', frameborder='0', allowfullscreen='')
+                p.section-p.what-is-it-text We all know that texting and driving is awful but we all continue to do it, resulting in hundreds of thousands of crashes and many deaths per year. Those of us on the Passenger team decided that there had to be a solution to the problem that it taking the lives of so many loved ones. This is why we came up with the solution of the Passenger app. We believe that Passenger will be your passenger as your travel the dangerous roads of life helping you be less distracted. So, please make sure to stay of your phone, earn yourself some points, and save the lives of those around you!
+        section#locations
+          .container
+            .row
+              .col-lg-12.text-center
+                h2.section-heading Rewards
+                p.text-faded
+                  | Since Passenger is still in its infancy, we currently are not displaying any of the businesses that we have partnered with just yet. So, stay tuned and keep coming back to the website for an update on the release date of the app and for a list of the current discounts that we offer.
         section#contact
           .container
             .row
@@ -164,34 +110,69 @@ block content
                     input.btn.__submit.contact-submit-button.js-submit(type='submit', value='Submit', data-bind='disable: isFormNotValidated')
             .row.contact-extra-types-container
               .extra-contact-types
-                p Have any further questions or want to register for one of our exciting guided tour hunts? Give us a call using the number below we would love to hear from you!
+                p.contact-form-text Have any further questions or want to just come and hang out at the office with us? Come visit us at the address below!
                 .phone-contact-div
-                  img.img-responsive.person-picture-div(src='/static/img/phone-icon.png', alt='')
-                  h3.extra-contact-title Call us
-                  p.phone-number (541) 604-1261
+                  img.img-responsive.person-picture-div(src='/static/img/map-icon.png', alt='')
+                  h3.extra-contact-title Visit us
+                  p.phone-number.second-p 700 Van Ness Ave.
+                  p.phone-number.second-p Fresno, Ca
+                  p.phone_number.second-p 93721
+                  p.phone_number.second-p Suite #116A
+        section#help
+          .help-desktop
+            .container
+              .row
+                h2.section-heading.help-title Help
+                .col-lg-4.text-center
+                  .question-type-container(data-bind="foreach: helpObjects")
+                    h3.question-type-header(data-bind="text: questionType, click: $parent.questionClickedDesktop")
+                .col-lg-8
+                  .desktop-question-container(data-bind="foreach: currentQuestionsAndAnswers")
+                    p.question(data-bind="text: question")
+                    p.answer(data-bind="text: answer")
+          .help-mobile-phone
+            .container
+              .row
+                .col-lg-12.text-center
+                  h2.section-heading.help-title Help
+                  .question-type-container(data-bind="foreach: helpObjects")
+                    h3.question-type-header(data-bind="text: questionType, click: $parent.questionClicked")
+          svg.slant(viewbox='0 0 1 1', preserveaspectratio='none')
+            polygon(points='0,1 1,1 1,0')
+            .help-expanded-container
+              h3.question-type-expanded(data-bind="text: currentQuestion")
+              img.exit-help(src='/static/img/exit-grey.png')
+              .expanded-question-container(data-bind="foreach: currentQuestionsAndAnswers")
+                p.question(data-bind="text: question")
+                p.answer(data-bind="text: answer")
         section#footer
           .container
-            .row.register-container
-              h3.footer-top-text Want to go on a guided tour hunt?
-              h1.footer-register-button CALL US TODAY!
-            .row.bottom-footer-row
-              .col-sm-3.social-links-container
-                .social-links
-                  .col-sm-4.link-container
-                    p.fa.fa-facebook-official.facebook
-                  .col-sm-4.link-container
-                    p.fa.fa-instagram.instagram
-                  .col-sm-4.link-container
-                    p.fa.fa-twitter.twitter
-              .col-sm-6.footer-links-container
-                .links-container
-                  .col-sm-3.link-container
-                    a.page-scroll(href='#home') HOME
-                  .col-sm-3.link-container
-                    a.page-scroll(href='#about') ABOUT US
-                  .col-sm-3.link-container
-                    a.page-scroll(href='#hunting') HUNTING
-                  .col-sm-3.link-container
-                    a.page-scroll(href='#contact') CONTACT
-              .col-sm-3.copyright-container
-                p &copy; 2016 B&G Outfitters Inc.
+            .row
+              .col-lg-12.text-center
+                h2.section-heading.footer-heading Passenger
+                h3.passenger-hash #passengerapp
+              .social-icons-container
+                .icon-container
+                  img(src='/static/img/facebook.png', data-bind='click: facebookClick')
+                .icon-container
+                  img(src='/static/img/twitter.png', data-bind='click: twitterClick')
+                .icon-container
+                  img(src='/static/img/youtube.png', data-bind='click: youtubeClick')
+                .icon-container
+                  img(src='/static/img/instagram.png', data-bind='click: instagramClick')
+                .icon-container
+                  img(src='/static/img/snapchat.png', data-bind='click: snapchatClick')
+              .app-store-buttons
+                .col-sm-6.store-button-container
+                  .app-store-button-container
+                    img(src='/static/img/app-store-button.png')
+                .col-sm-6.store-button-container
+                  .app-store-button-container
+                    img(src='/static/img/google-play-badge.png')
+              p.coming-soon-text Coming soon
+              .back-to-top-container.btn.btn-sm.page-scroll(data-bind="click: backToTopFooter")
+                p Back to top
+                img(src='/static/img/nav-right.png')
+              h3.passenger-hash.copy-right-footer &copy
+               span(data-bind="text: currentDate")
+               | Spacebar Technologies, Inc.

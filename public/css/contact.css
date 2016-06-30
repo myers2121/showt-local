@@ -1,7 +1,5 @@
 #contact {
   background-color: #FFF;
-  margin-bottom: 479px;
-  box-shadow: 0 5px 6px 0px rgba(0, 0, 0, 0.2);
 }
 
 #contact .container {
@@ -12,7 +10,7 @@
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 #contact-form .__input-item {
@@ -23,7 +21,7 @@
   display: block;
   text-align: left;
   color: #e3e3e3;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 @keyframes inputAnimateRight {
@@ -56,6 +54,7 @@
   margin-top: -2px;
   padding: 0px;
   margin-bottom: 0px;
+  color: #7a7a7a;
 }
 
 .input-wrapper {
@@ -104,17 +103,24 @@
 
 .contact-submit-button {
   height: 65px !important;
-  border: none !important;
-  width: 250px !important;
-  margin-top: 40px !important;
-  border-radius: 5px;
-  background-color: #9A998C;
-  color: #FFF;
-  box-shadow: 0px 1px 2px 2px rgba(0,0,0,0.16),0px 2px 3px 2px rgba(0,0,0,0.23);
+  width: 200px !important;
+  margin-top: 50px !important;
+  border-radius: 3px;
+  border: 1px solid #4895D9 !important;
+  background: none;
+  color: #4895D9 !important;
+  -webkit-transition: all 0.5s ease;
+-moz-transition: all 0.5s ease;
+-o-transition: all 0.5s ease;
+transition: all 0.5s ease;
 }
 
-.contact-submit-button:hover {
-  color: #FFF;
+.contact-submit-hover {
+  height: 80px !important;
+  border: none !important;
+  background: #4895D9;
+  cursor: pointer;
+  color: #FFF !important;
 }
 
 .contact-extra-types-container {
@@ -127,6 +133,7 @@
 
 .extra-contact-types div {
   text-align: center;
+  margin-top: 56px;
 }
 
 .extra-contact-types div img {
@@ -152,4 +159,15 @@
 .extra-contact-types p {
   text-align: center;
   margin-bottom: 48px;
+}
+
+.contact-form-text {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  color: #a5a5a5;
+}
+
+.second-p {
+  margin-bottom: 0px !important;
 }

@@ -62,58 +62,59 @@ block content
 									abbr(title='required')
 									|  Number to reach your business at
 								input#support-email-input.text-input.string.email.required.__input(placeholder='Phone number', required='required', aria-required='true', type='text', name='business-phone', data-bind="textInput: businessPhone, event: { keyup: checkBusinessPhone }")
-								p.error-message.email-error(data-bind="visible: businessPhoneFormCheck") Please enter a valid phone number with area code
+								p.error-message.email-error(data-bind="visible: businessPhoneFormCheck") Please enter a valid phone number with area code and no spaces or dashes
 				.merchants-personal-info-container
 					.__input-item.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
 						.input-wrapper
 							label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
 								abbr(title='required')
 								|  First Name
-							input#support-name-input.text-input.string.required.__input(placeholder='First name' ,required='required', aria-required='true', type='text', name='first-name', data-bind="textInput: firstName")
-							p.error-message.name-error(data-bind="visible: firstNameCheck") Please enter your first name
+							input#support-name-input.text-input.string.required.__input(placeholder='First name' ,required='required', aria-required='true', type='text', name='first-name', data-bind="textInput: firstName, event: { keyup: checkFirstName }")
+							p.error-message.name-error(data-bind="visible: showFirstNameErrorLabel") Please enter your first name
 						.input-wrapper
 							label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
 								abbr(title='required')
 								|  Last name
-							input#support-name-input.text-input.string.required.__input(placeholder='Last name' ,required='required', aria-required='true', type='text', name='last-name', data-bind="textInput: lastName")
-							p.error-message.name-error(data-bind="visible: lastNameCheck") Please enter your last name
+							input#support-name-input.text-input.string.required.__input(placeholder='Last name' ,required='required', aria-required='true', type='text', name='last-name', data-bind="textInput: lastName, event: { keyup: checkLastName }")
+							p.error-message.name-error(data-bind="visible: showLastNameErrorLabel") Please enter your last name
 					.__input-item.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
 						.input-wrapper
 							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
 								abbr(title='required')
 								|  Address
 							input#support-email-input.text-input.string.email.required.__input(placeholder='Address', required='required', aria-required='true', type='text', name='address', data-bind="textInput: address")
-							p.error-message.email-error Please enter a valid address
 						.input-wrapper
 							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
 								abbr(title='required')
 								|  Zipcode
-							input#support-email-input.text-input.string.email.required.__input(placeholder='Address', required='required', aria-required='true', type='text', name='zipcode', data-bind="textInput: zipcode")
-							p.error-message.email-error Please enter a valid US zipcode
+							input#support-email-input.text-input.string.email.required.__input(placeholder='Zipcode', required='required', aria-required='true', type='text', name='zipcode', data-bind="textInput: zipcode, event: { keyup: checkZipcode }")
+							p.error-message.email-error(data-bind="visible: showZipcodeErrorLabel") Please enter a valid 3, 5, or 9 digit US zipcode
+					.__input-item.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
 						.input-wrapper
 							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
 								abbr(title='required')
 								|  City
-							input#support-email-input.text-input.string.email.required.__input(placeholder='Address', required='required', aria-required='true', type='text', name='city', data-bind="textInput: city")
-							p.error-message.email-error Please enter a valid city name
+							input#support-email-input.text-input.string.email.required.__input(placeholder='City', required='required', aria-required='true', type='text', name='city', data-bind="textInput: city, event: { keyup: checkCity }")
+							p.error-message.email-error(data-bind="visible: showCityErrorLabel") Please enter a valid city name
 						.input-wrapper
 							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
 								abbr(title='required')
 								|  State
-							input#support-email-input.text-input.string.email.required.__input(placeholder='Address', required='required', aria-required='true', type='text', name='state', data-bind="textInput: state")
-							p.error-message.email-error Please enter a valid state in 2 letter format
+							input#support-email-input.text-input.string.email.required.__input(placeholder='State', required='required', aria-required='true', type='text', name='state', data-bind="textInput: state, event: { keyup: checkState }")
+							p.error-message.email-error(data-bind="visible: showStateErrorLabel") Please enter a valid state in 2 letter format
+					.__input-item.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
 						.input-wrapper
 							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
 								abbr(title='required')
 								|  Phone
-							input#support-email-input.text-input.string.email.required.__input(placeholder='Address', required='required', aria-required='true', type='text', name='personal-phone', data-bind="textInput: personalPhone")
-							p.error-message.email-error Please enter a valid phone number
+							input#support-email-input.text-input.string.email.required.__input(placeholder='Personal phone', required='required', aria-required='true', type='text', name='personal-phone', data-bind="textInput: personalPhone, event: { keyup: checkPersonalPhone }")
+							p.error-message.email-error(data-bind="visible: showPersonalPhoneErrorLabel") Please enter a valid phone number
 						.input-wrapper
 							label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
 								abbr(title='required')
 								|  Position at your business
-							input#support-email-input.text-input.string.email.required.__input(placeholder='Position', required='required', aria-required='true', type='text', name='position', data-bind="textInput: position")
-							p.error-message.email-error Make sure to enter your business
+							input#support-email-input.text-input.string.email.required.__input(placeholder='Position', required='required', aria-required='true', type='text', name='position', data-bind="textInput: position, event: { keyup: checkPosition }")
+							p.error-message.email-error(data-bind="visible: showPositionErrorLabel") Make sure to enter your business
 				.merchant-form-button-container
 					.btn.__submit.merchant-contact-submit-button.js-submit(data-bind="click: continueButtonClicked") Continue
 	.submitting-form-container
@@ -123,4 +124,4 @@ block content
 		.inside-submit-confirmed-container
 			img(src='/static/img/checked.png')
 			p We have received your submission. We will be in contact with you within 24 hours.
-			.btn Sounds good
+			.btn(data-bind="click: sendMerchantSignUpEmail") Sounds good

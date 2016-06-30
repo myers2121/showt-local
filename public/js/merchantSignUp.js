@@ -4,6 +4,9 @@
 
     var self = this;
 
+    var ref = new Firebase("https://passenger-app.firebaseio.com");
+    var merchantsSignUpRef = ref.child('merchantSignUpSubmit');
+
     self.merchantSignUpTitle = ko.observable("");
     self.merchantSignUpText = ko.observable("");
     self.email = ko.observable("");
@@ -150,7 +153,8 @@
     self.businessPhoneCheck = ko.observable(false);
     self.businessPhoneFormCheck = ko.observable(false);
     self.checkBusinessPhone = function() {
-      if (self.businessPhone().length == 10) {
+      var isnum = /^\d+$/.test(self.businessPhone());
+      if (self.businessPhone().length == 10 && isnum) {
         self.businessPhoneCheck(true);
         self.businessPhoneFormCheck(false);
       } else {
@@ -170,77 +174,102 @@
     self.firstNameCheck = ko.observable(false);
     self.showFirstNameErrorLabel = ko.observable(false);
     self.checkFirstName = function() {
-      if ( self.firstName().length == 0 ) {
-        self.firstNameCheck(false);
+      if ( self.firstName().length > 1 ) {
+        self.firstNameCheck(true);
         self.showFirstNameErrorLabel(false);
+      } else {
+        self.firstNameCheck(false);
+        self.showFirstNameErrorLabel(true);
       }
     };
 
     self.lastNameCheck = ko.observable(false);
     self.showLastNameErrorLabel = ko.observable(false);
     self.checkLastName = function() {
-      if ( self.lastName().length == 0 ) {
-        self.lastNameCheck(false);
+      if ( self.lastName().length > 1 ) {
+        self.lastNameCheck(true);
         self.showLastNameErrorLabel(false);
+      } else {
+        self.lastNameCheck(false);
+        self.showLastNameErrorLabel(true);
       }
     };
 
     self.addressCheck = ko.observable(false);
     self.showAddressErrorLabel = ko.observable(false);
     self.checkAddress = function() {
-      if ( self.address().length == 0 ) {
-        self.addressCheck(false);
+      if (self.address() > 5) {
+        self.addressCheck(true);
         self.showAddressErrorLabel(false);
+      } else {
+        self.addressCheck(false);
+        self.showAddressErrorLabel(true);
       }
     };
 
     self.zipcodeCheck = ko.observable(false);
     self.showZipcodeErrorLabel = ko.observable(false);
     self.checkZipcode = function() {
-      if ( self.zipcode().length == 0 ) {
-        self.zipcodeCheck(false);
+      if (self.zipcode().length > 2 && self.zipcode().length < 10) {
+        self.zipcodeCheck(true);
         self.showZipcodeErrorLabel(false);
+      } else {
+        self.zipcodeCheck(false);
+        self.showZipcodeErrorLabel(true);
       }
     };
 
     self.cityCheck = ko.observable(false);
     self.showCityErrorLabel = ko.observable(false);
     self.checkCity = function() {
-      if ( self.city().length == 0 ) {
-        self.cityCheck(false);
+      if (self.city().length > 1) {
+        self.cityCheck(true);
         self.showCityErrorLabel(false);
+      } else {
+        self.cityCheck(false);
+        self.showCityErrorLabel(true);
       }
     };
 
     self.stateCheck = ko.observable(false);
     self.showStateErrorLabel = ko.observable(false);
     self.checkState = function() {
-      if ( self.state().length == 0 ) {
-        self.stateCheck(false);
+      if ( self.state().length == 2 ) {
+        self.stateCheck(true);
         self.showStateErrorLabel(false);
+      } else {
+        self.stateCheck(false);
+        self.showStateErrorLabel(true);
       }
     };
 
     self.personalPhoneCheck = ko.observable(false);
     self.showPersonalPhoneErrorLabel = ko.observable(false);
     self.checkPersonalPhone = function() {
-      if ( self.personalPhone().length == 0 ) {
-        self.personalPhoneCheck(false);
+      var isnum = /^\d+$/.test(self.personalPhone());
+      if (self.personalPhone().length == 10 && isnum) {
+        self.personalPhoneCheck(true);
         self.showPersonalPhoneErrorLabel(false);
+      } else {
+        self.personalPhoneCheck(false);
+        self.showPersonalPhoneErrorLabel(true);
       }
     };
 
     self.positionCheck = ko.observable(false);
     self.showPositionErrorLabel = ko.observable(false);
     self.checkPosition = function() {
-      if ( self.position().length == 0 ) {
-        self.personalPhoneCheck(false);
-        self.showPersonalPhoneErrorLabel(false);
+      if ( self.position().length > 2 ) {
+        self.positionCheck(true);
+        self.showPositionErrorLabel(false);
+      } else {
+        self.positionCheck(false);
+        self.showPositionErrorLabel(true);
       }
     };
 
     self.checkPersonalInfo = function() {
-      if (self.firstNameCheck() && self.lastNameCheck() && self.address() && self.zipcode() && self.city() && self.state() && self.personalPhoneCheck() && self.positionCheck()) {
+      if (self.firstNameCheck() && self.lastNameCheck() && self.zipcodeCheck() && self.cityCheck() && self.stateCheck() && self.personalPhoneCheck() && self.positionCheck()) {
         return true;
       } else {
         return false;
@@ -274,6 +303,50 @@
         window.scrollTo(0, 0);
         $('body').css('overflow','hidden');
         $('.submitting-form-container').fadeIn();
+
+        var merchantToSignUp = {
+          "email": self.confirmEmail(),
+          "businessType": self.businessType(),
+          "businessCategory": self.businessCategory(),
+          "businessName": self.businessName(),
+          "businessPhone": self.businessPhone(),
+          "firstName": self.firstName(),
+          "lastName": self.lastName(),
+          "address": self.address(),
+          "zipcode": self.zipcode(),
+          "city": self.city(),
+          "state": self.state(),
+          "personalPhone": self.personalPhone(),
+          "position": self.position()
+        };
+
+        merchantsSignUpRef.push(merchantToSignUp);
+
+        var emailData = {};
+        emailData.businessName = self.businessName();
+        emailData.name = self.firstName() + " " + self.lastName();
+        emailData.businessPhone = self.businessPhone();
+        emailData.personalPhone = self.personalPhone();
+        emailData.message = self.businessName() + " has submitted the form to get more information about becoming a merchant on Passenger. Get in contact with them in the next 24 hours to respond to their request.";
+
+        $.ajax({
+          type: 'POST',
+          data: JSON.stringify(emailData),
+          contentType: 'application/json',
+          url: '/merchants/submit',
+          success: function (data) {
+                Success = true;//doesnt goes here
+                // The email was successfully sent to Spacebar to get in contact with tem
+                $('.inside-submit-container').fadeOut(function() {
+                  $('.inside-submit-confirmed-container').fadeIn();
+                });
+            },
+            error: function (textStatus, errorThrown) {
+                Success = false;//doesnt goes here
+                console.log(errorThrown);
+            }
+        });
+
       }
 
     };
@@ -289,14 +362,16 @@
       $('.grow-div').fadeIn();
     }, 1000);
 
+    self.sendMerchantSignUpEmail = function() {
+      console.log("Working");
+      window.location = '/';
+    };
+
   };
 
   var merchantObjectVm = new MerchantSignUpViewModel();
   ko.applyBindings(merchantObjectVm,$("#merchant-sign-up")[0]);
   ko.applyBindings(merchantObjectVm,$("#merchant-form-section")[0]);
-
-  $('.inside-submit-confirmed-container .btn').click(function() {
-    location.href = '/';
-  });
+  ko.applyBindings(merchantObjectVm,$(".submitting-form-container")[0]);
 
 })(jQuery); // End of use strict

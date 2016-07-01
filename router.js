@@ -17,11 +17,11 @@ router.get('/support', function(req, res) {
 });
 
 router.get('/support/using-passenger', function(req,res) {
-	res.render('usingPassenger');
+	res.render('faq');
 });
 
 router.get('/support/account-info', function(req,res) {
-	res.render('accountInfo');
+	res.render('faq');
 });
 
 router.get('/support/contact-support', function(req,res) {

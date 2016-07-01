@@ -4,6 +4,12 @@
   margin-top: 24px;
 }
 
+@media(max-width: 380px) {
+  .our-mission-video {
+    width: 280px;
+  }
+}
+
 @media(min-width: 992px) {
   .our-mission-video {
     width: 600px;

@@ -1,18 +1,22 @@
 [
   {
     "question": "Why should I use Passenger?",
-    "answer"  : "why not?"
+    "answer"  : "Passenger will give you discounts and coupons to many of your favorite businesses simply for driving safely and not using your phone. If you text and drive, this will help you quit, and if you don't, this will give you free rewards to just keep doing what you're doing!"
   },
   {
     "question": "How does Passenger work?",
-    "answer"  : "why not?"
+    "answer"  : "Simple. You drive, and you don't text. For every minute that you are moving and not opening your phone, you accumulate points which can be redeemed at a later time for discounts at online stores or local locations. So drive safe, keep your eyes on the road, and enjoy the rewards!"
   },
   {
     "question": "How do I redeem points?",
-    "answer"  : "why not?"
+    "answer"  : "Simply go to the rewards section, choose the award you want and press the redeem button. From there you will be prompted on how to use your new coupon or discount!"
   },
   {
     "question": "Is there a limit on how many points I can get?",
-    "answer"  : "why not?"
+    "answer"  : "There is no limit on the amount of points you can get. As long as you keep driving safe, you'll keep getting rewarded."
+  },
+  {
+    "question": "What happens if a notification lights up my phone?",
+    "answer"  : "As long as you don't actually unlock your phone, you will not lost any points for receiving a notification on your phone."
   }
 ]

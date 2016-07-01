@@ -9,12 +9,15 @@ block content
 		.support-top-info
 			h3.support-home-title Using Passenger
 			p.support-home-text This is going to be the text that is going to say something information and cool about the support system that we have here at Passenger!
-		.question-answer-container
-			#questions-container(data-bind="foreach: questions")
-				.question-container
-					h3.question(data-bind="text: question")
-					img.expand(src="/static/img/expand-question.svg")
-			#answer-container
+	#question-answer-container
+		#questions-container(data-bind="foreach: questions")
+			.question-container(data-bind="click: $parent.askQuestion")
+				h3.question(data-bind="text: question")
+				img.expand(src="/static/img/expand-question.svg")
+		#answers-container
+			.answer-container
+				h3.question(data-bind="text: currentQuestion")
+				h3.answer(data-bind="text: currentAnswer")
 	section#support-download-app
 		.download-app-container
 			h3.support-download-title New to Passenger?
@@ -26,17 +29,9 @@ block content
 			.row
 				.col-lg-12.text-center
 					h3.passenger-hash #passengerapp
-				.social-icons-container
-					.icon-container
-						img(src='/static/img/facebook.png', data-bind='click: facebookClick')
-					.icon-container
-						img(src='/static/img/twitter.png', data-bind='click: twitterClick')
-					.icon-container
-						img(src='/static/img/youtube.png', data-bind='click: youtubeClick')
-					.icon-container
-						img(src='/static/img/instagram.png', data-bind='click: instagramClick')
-					.icon-container
-						img(src='/static/img/snapchat.png', data-bind='click: snapchatClick')
+				.social-icons-container(data-bind="foreach: socialMedias")
+					.icon-container.social-media
+						img(data-bind='attr: {src: src}, click: $parent.socialMediaClick')
 				.navigation-links-container
 					ul.support-footer-nav-list
 						li.nav-link-li

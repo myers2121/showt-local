@@ -7,6 +7,7 @@
     success: function(d) { return d },
     async: false
   }
+
   var questions = $.ajax(ajaxOptions).responseJSON;
 
   function SupportViewModel() {
@@ -40,31 +41,58 @@
       location.href = "/support/" + page;
     }
 
-    self.questions = questions;
-
   };
 
+  function questionsViewModel() {
+
+    var self = this;
+
+    self.askQuestion = function( d, e ) {
+      self.currentQuestion(d.question);
+      self.currentAnswer(d.answer);
+    }
+
+    self.currentQuestion = ko.observable('');
+    self.currentAnswer = ko.observable('')
+
+    self.questions = questions;
+
+  }
+
   function SupportFooterViewModel() {
+    var self = this;
 
-    self.facebookClick = function() {
-      location.href = 'https://www.facebook.com/Passenger-Mobile-867565216683366/';
-    };
+    self.socialMedias = [
+      {
+        'socialMedia': 'facebook',
+        'link'       : 'https://www.facebook.com/Passenger-Mobile-867565216683366/',
+        'src'        : '/static/img/facebook.png'
+      },
+      {
+        'socialMedia': 'instagram',
+        'link'       : 'https://www.instagram.com/passengermobile/',
+        'src'        : '/static/img/instagram.png'
+      },
+      {
+        'socialMedia':'youtube',
+        'link'       : 'http://www.youtube.com',
+        'src'        : '/static/img/youtube.png'
+      },
+      {
+        'socialMedia': 'twitter',
+        'link'       : 'https://twitter.com/passengermobile',
+        'src'        : '/static/img/twitter.png'
+      },
+      {
+        'socialMedia': 'snapchat',
+        'link'       : 'https://www.snapchat.com/add/passengermobile',
+        'src'        : '/static/img/snapchat.png'
+      }
+    ];
 
-    self.instagramClick = function() {
-      location.href = 'https://www.instagram.com/passengermobile/';
-    };
-
-    self.youtubeClick = function() {
-      location.href = 'http://www.youtube.com';
-    };
-
-    self.twitterClick = function() {
-      location.href = 'https://twitter.com/passengermobile';
-    };
-
-    self.snapchatClick = function() {
-      location.href = 'https://www.snapchat.com/add/passengermobile';
-    };
+    self.socialMediaClick = function( d ) {
+      location.href = d.link;
+    }
 
     var date = new Date();
     var year = date.getFullYear();
@@ -76,9 +104,11 @@
 
   var supportObjectVm = new SupportViewModel();
   var supportFooterVm = new SupportFooterViewModel();
+  var supportQandAVm  = new questionsViewModel();
 
   ko.applyBindings(supportObjectVm,$("#support-home")[0]);
-  //ko.applyBindings(supportFooterVm,$("#support-footer")[0]);
+  ko.applyBindings(supportQandAVm ,$("#question-answer-container")[0]);
+  ko.applyBindings(supportFooterVm,$("#support-footer")[0]);
 
   var exitMenu = function() {
     $('#support-nav').animate({'left':'-100vw'},250, function() {
@@ -89,7 +119,7 @@
     });
 
     //will cast false value to var menuOpen;
-    return false;;
+    return false;
   }
 
   var openMenu = function() {
@@ -101,6 +131,11 @@
     //will cast true value to var menuOpen;
     return true;
   }
+
+  $(".question-container").on("click", function() {
+    $(".question-container.active").removeClass("active");
+    $(this).addClass("active");
+  })
 
   var menuOpen = false;
 

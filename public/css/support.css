@@ -222,6 +222,10 @@
   width: 45px;
 }
 
+#support-footer .icon-container img:hover {
+  cursor: pointer;
+}
+
 #support-footer .copy-right-footer {
   text-align: center;
   width: 90%;

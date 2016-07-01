@@ -15,7 +15,7 @@
       };
 
       self.youtubeClick = function() {
-        location.href = 'http://www.youtube.com';
+        location.href = 'https://www.youtube.com/channel/UCeF6PanOUEmKjTaFqnGeLow';
       };
 
       self.twitterClick = function() {

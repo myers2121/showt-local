@@ -28,6 +28,36 @@ router.get('/support/contact-support', function(req,res) {
 	res.render('contactSupport');
 });
 
+router.post('/support/contact-support', function(req,res) {
+	var d = req.body;
+	var successMessage = "Your inquiry has been sent!";
+	var captchaErrorMessage = "Are you sure you're human?";
+
+	var transporter = nodemailer.createTransport({
+	    service: 'Gmail',
+	    auth: {
+	        user: 'timalanfarrow@gmail.com',
+	        pass: 'umayfovtsekroorb'
+	    }
+	});
+
+	var mailOptions = {
+		from: d.name + " " + d.email,
+		to: 'connor.myers21@gmail.com',
+		subject: 'Support contact form submission: ' + d.subject,
+		text: d.message,
+		html: "<p>" + d.name + "</p><br/>Name of person who submitted: " + d.name + "</h3><br>Number to contact them at: " + d.phone + "</pType of inquiry they are wanting: >" + d.inquiry + "</p><p>" + d.message + "</p>"
+	}
+
+	transporter.sendMail(mailOptions, function(error, info){
+	    if(error){
+	        return console.log(error);
+	    }
+	    console.log('Message sent: ' + info.response);
+			res.json({"success": "true"});
+	});
+});
+
 router.get('/merchants/signup', function(req,res) {
 	res.render('merchantSignUp');
 });

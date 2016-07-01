@@ -1,15 +1,13 @@
 doctype html
 html(lang="en")
-		include ./partials/_supportHead.jade
-		body#page-top
-			include ./partials/_supportNav.jade
-			block content
-
+	include ./partials/_supportHead.jade
+	body#page-top
+		include ./partials/_supportNav.jade
+		block content
 			script(src="https://cdn.firebase.com/js/client/2.4.0/firebase.js")
 			script(src='/static/js/jquery.js')
 			script(src='/static/js/knockout.js')
 			script(src='/static/js/moment.js')
-			// script(src='/static/js/fullcalendar.min.js')
 			// Bootstrap Core JavaScript
 			script(src='/static/js/bootstrap.min.js')
 			// Plugins JavaScript
@@ -21,4 +19,6 @@ html(lang="en")
 			script(src='/static/js/firebaseFuncs.js')
 			script(src='/static/js/site.js')
 			script(src='/static/js/support.js')
+			script(src='/static/js/formValidation.js')
 			script(src='/static/js/contactSupport.js')
+			script(src='/static/js/helpNav.js')

@@ -56,7 +56,6 @@
     self.currentAnswer = ko.observable('')
 
     self.questions = questions;
-
   }
 
   function SupportFooterViewModel() {

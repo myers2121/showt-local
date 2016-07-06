@@ -1,4 +1,6 @@
 (function($) {
+  var mobile = $(window).width() > 768 ? false : true;
+
   var questionListName = location.href.split("/").pop() + "-questions";
 
   var ajaxOptions = {
@@ -57,7 +59,6 @@
 
     self.questions = questions;
 
-    console.log("hi");
   }
 
   function SupportFooterViewModel() {
@@ -133,9 +134,35 @@
     return true;
   }
 
-  $(".question-container").on("click", function() {
+  var displayAnswer = function( clicked ) {
+    $(".question-container.active").removeClass("active");  
+    $("#answers-container").addClass("open");
+    $("#questions-container").addClass("open");
+    $(".question-container").not(clicked).addClass("not-displayed");
+    $(clicked).addClass("active");
+    if ( mobile ) {
+      $(clicked).find(".expand").addClass("exit").attr("src","/static/img/close-question.svg");
+
+    }
+  }
+
+  var hideAnswer = function( clicked ) {
     $(".question-container.active").removeClass("active");
-    $(this).addClass("active");
+    $("#questions-container").removeClass("open");
+    $("#answers-container").removeClass("open");
+    $(".question-container").removeClass("not-displayed");
+    $(clicked).removeClass("exit").attr("src", "/static/img/expand-question.svg");
+  }
+
+  var clickHandlerExists = false;
+
+  $(".question-container").on("click", function() {
+    if ( $(this).hasClass("active") ){
+      if ( mobile )
+        hideAnswer($(this).find(".expand"));
+    }
+    else
+      displayAnswer( this );
   })
 
   var menuOpen = false;

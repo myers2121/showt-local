@@ -18,5 +18,9 @@
   {
     "question": "What happens if a notification lights up my phone?",
     "answer"  : "As long as you don't actually unlock your phone, you will not lost any points for receiving a notification on your phone."
+  },
+  {
+    "question": "Does the app cost money?",
+    "answer"  : "No. The app is free for our users, forever. We believe that helping you live a less distracted life should not cost you a dime."
   }
 ]

@@ -82,7 +82,7 @@ app.post('/', jsonParser ,function(req,res) {
 });
 
 app.get('*', function(req, res){
-  res.send('what???', 404);
+  res.render('404');
 });
 
 app.listen(process.env.PORT || 3000, function() {

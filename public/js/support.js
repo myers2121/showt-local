@@ -107,10 +107,12 @@
   var supportObjectVm = new SupportViewModel();
   var supportFooterVm = new SupportFooterViewModel();
   var supportQandAVm  = new questionsViewModel();
-
-  ko.applyBindings(supportObjectVm,$("#support-home")[0]);
-  ko.applyBindings(supportQandAVm ,$("#question-answer-container")[0]);
-  ko.applyBindings(supportFooterVm,$("#support-footer")[0]);
+  if( $("#support-home").length ) 
+    ko.applyBindings(supportObjectVm,$("#support-home")[0]);
+  if( $("#question-answer-container").length )
+    ko.applyBindings(supportQandAVm ,$("#question-answer-container")[0]);
+  if( $("#support-footer").length )
+    ko.applyBindings(supportFooterVm,$("#support-footer")[0]);
 
   var exitMenu = function() {
     $('#support-nav').animate({'left':'-100vw'},250, function() {

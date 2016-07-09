@@ -30,17 +30,9 @@ block content
 			.row
 				.col-lg-12.text-center
 					h3.passenger-hash #passengerapp
-				.social-icons-container
+				.social-icons-container(data-bind="foreach: socialMedias")
 					.icon-container
-						img(src='/static/img/facebook.png', data-bind='click: facebookClick')
-					.icon-container
-						img(src='/static/img/twitter.png', data-bind='click: twitterClick')
-					.icon-container
-						img(src='/static/img/youtube.png', data-bind='click: youtubeClick')
-					.icon-container
-						img(src='/static/img/instagram.png', data-bind='click: instagramClick')
-					.icon-container
-						img(src='/static/img/snapchat.png', data-bind='click: snapchatClick')
+						img(data-bind="attr: { src: src }, click: $parent.socialMediaClick")
 				.navigation-links-container
 					ul.support-footer-nav-list
 						li.nav-link-li

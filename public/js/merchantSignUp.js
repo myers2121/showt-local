@@ -370,8 +370,8 @@
   };
 
   var merchantObjectVm = new MerchantSignUpViewModel();
-  ko.applyBindings(merchantObjectVm,$("#merchant-sign-up")[0]);
-  ko.applyBindings(merchantObjectVm,$("#merchant-form-section")[0]);
-  ko.applyBindings(merchantObjectVm,$(".submitting-form-container")[0]);
+  //ko.applyBindings(merchantObjectVm,$("#merchant-sign-up")[0]);
+  //ko.applyBindings(merchantObjectVm,$("#merchant-form-section")[0]);
+  //ko.applyBindings(merchantObjectVm,$(".submitting-form-container")[0]);
 
 })(jQuery); // End of use strict

@@ -34,7 +34,6 @@
   };
 
   var merchantsObjectVm = new MerchantsViewModel();
-  ko.cleanNode($("#start-up-section")[0]);
   ko.applyBindings(merchantsObjectVm,$("#start-up-section")[0]);
 
   $('.get-started-button').click(function() {

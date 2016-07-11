@@ -59,7 +59,7 @@
      $('.container-fluid').css('background','#fff');
      $('.exit-mobile-nav').css('display','block');
      $('body').css('overflow','hidden');
-      // $('.navbar-collapse').css('display','block');
+     $('.navbar-collapse').css('overflow','hidden');
     });
 
     // Initialize WOW.js Scrolling Animations

@@ -29,7 +29,14 @@
         "text": "Passenger is an excellent opportunity to reach out to and engage your customers while supporting a good cause at the same time.",
         "styleColumn": "right-column"
       }
-    ]
+    ];
+
+
+    var date = new Date();
+    var year = date.getFullYear();
+
+    self.currentDate = ko.observable("");
+    self.currentDate(year);
 
   };
 

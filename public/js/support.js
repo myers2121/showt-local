@@ -64,6 +64,38 @@
   function SupportFooterViewModel() {
     var self = this;
 
+    self.socialMedias = [
+      {
+        'socialMedia': 'facebook',
+        'link'       : 'https://www.facebook.com/Passenger-Mobile-867565216683366/',
+        'src'        : '/static/img/facebook.png'
+      },
+      {
+        'socialMedia': 'instagram',
+        'link'       : 'https://www.instagram.com/passengermobile/',
+        'src'        : '/static/img/instagram.png'
+      },
+      {
+        'socialMedia':'youtube',
+        'link'       : 'http://www.youtube.com',
+        'src'        : '/static/img/youtube.png'
+      },
+      {
+        'socialMedia': 'twitter',
+        'link'       : 'https://twitter.com/passengermobile',
+        'src'        : '/static/img/twitter.png'
+      },
+      {
+        'socialMedia': 'snapchat',
+        'link'       : 'https://www.snapchat.com/add/passengermobile',
+        'src'        : '/static/img/snapchat.png'
+      }
+    ];
+
+    self.socialMediaClick = function( d ) {
+      location.href = d.link;
+    }
+
     var date = new Date();
     var year = date.getFullYear();
 
@@ -75,7 +107,6 @@
   var supportObjectVm = new SupportViewModel();
   var supportFooterVm = new SupportFooterViewModel();
   var supportQandAVm  = new questionsViewModel();
-
   if( $("#support-home").length )
     ko.applyBindings(supportObjectVm,$("#support-home")[0]);
   if( $("#question-answer-container").length )

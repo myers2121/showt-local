@@ -53,9 +53,17 @@ block content
 				.col-lg-12.text-center
 					h2.section-heading.footer-heading Passenger
 					h3.passenger-hash #passengerapp
-				.social-icons-container(data-bind="foreach: socialMedias")
+				.social-icons-container
 					.icon-container
-						img(data-bind="attr: { src: src }, click: $parent.socialMediaClick")
+						img(src='/static/img/facebook.png', data-bind='click: facebookClick')
+					.icon-container
+						img(src='/static/img/twitter.png', data-bind='click: twitterClick')
+					.icon-container
+						img(src='/static/img/youtube.png', data-bind='click: youtubeClick')
+					.icon-container
+						img(src='/static/img/instagram.png', data-bind='click: instagramClick')
+					.icon-container
+						img(src='/static/img/snapchat.png', data-bind='click: snapchatClick')
 				.app-store-buttons
 					.col-sm-6.store-button-container
 						.app-store-button-container

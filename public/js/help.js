@@ -88,4 +88,12 @@
     $('.help-expanded-container').fadeOut();
   });
 
+  $('.contact-support-button').click(function() {
+    location.href = '/support/contact-support';
+  });
+
+  $('.get-support-button').click(function() {
+    location.href = '/support';
+  });
+
 })(jQuery); // End of use strict

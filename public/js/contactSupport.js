@@ -134,11 +134,18 @@
 
     };
 
+    var date = new Date();
+    var year = date.getFullYear();
+
+    self.currentDate = ko.observable("");
+    self.currentDate(year);
+
   };
 
   var contactObjectVm = new ContactSupportViewModel();
-  if( $("#contact-support-home").length )
+  if( $("#contact-support-home").length ) {
     ko.applyBindings(contactObjectVm,$("#contact-support-home")[0]);
+  }
 
   $('.inside-submit-confirmed-container .btn').click(function() {
     location.href = '/';

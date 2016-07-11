@@ -10,17 +10,17 @@
 }
 
 #bg .navigation {
-	position: absolute;
 	width: 100%;
 	text-align: center;
-	top: 20px;
+  position: relative;
+  top: 48px;
 }
 
 #bg li.link {
 	display: inline-block;
 	list-style-type: none;
-	margin-left: 10px;
-	margin-right: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 li.link a {
@@ -38,7 +38,7 @@ li.link a {
 
 #bg .message .logo {
 	width: 50px;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
 }
 
 #bg .message .header {
@@ -54,16 +54,19 @@ li.link a {
 }
 
 #bg .message .app-store-buttons .coming-soon {
-	font-size: 32px;
+	font-size: 16px;
 	margin-bottom: 20px;
 }
 
 #bg .message .app-store-buttons .app-store-button {
-	width: calc(40% - 10px);
+  width: 100px;
+  margin-right: 16px;
+  margin-left: 16px;
+  margin-bottom: 24px;
 }
 
-.app-store-button:not(:nth-child(2)) {
-	margin-left: 20px !important;
+#bg .message .app-store-buttons .app-store-button:hover {
+  cursor: pointer;
 }
 
 #bg .social-icons-container {
@@ -72,26 +75,24 @@ li.link a {
 	transform: translateX(-50%);
 	width: 60%;
 	margin-top: 50px;
+  overflow: auto;
 }
 
-#bg img {
-	display:inline-block;
+#bg .social-icons-container .social-icon-container {
+  width: 20%;
+  float: left;
 }
 
-#bg .social-media {
-	width: calc((100%/5) - 16px);
+.social-icon-container img {
+  width: 40px;
 }
 
-#bg .social-media:not(:nth-child(1)) {
-	margin-left: 20px;
-}
-
-#bg .copy-right {
+/*#bg .copy-right {
 	position: absolute;
 	bottom: 10px;
 	left: 50%;
 	transform: translateX(-50%);
-}
+}*/
 
 #bg .copy-right .copy-right-footer {
 	font-size: 16px;

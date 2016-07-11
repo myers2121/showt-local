@@ -2,20 +2,17 @@ extends ./404layout.jade
 
 block content
 		#bg
-			.navigation(data-bind="foreach: links")
-				li.link
-					a(data-bind="attr: {href: href}, text: title")
 			.message
 				img.logo(src="/static/img/passenger-logo.png")
 				.header 404
-				.body We're sorry. We can't find the requested page.
+				.body We're sorry. We can't find the page you are looking for.
 				.app-store-buttons
-					.coming-soon Coming Soon
 					img.apple-button.app-store-button(src="/static/img/app-store-button.png")
 					img.google-button.app-store-button(src="/static/img/google-play-badge.png")
+					.coming-soon Coming Soon
 				.social-icons-container(data-bind="foreach: socialMedias")
-					img.social-media(data-bind="attr: { src: src }, click: socialMediaClick")
-			.copy-right
-				h3.passenger-hash.copy-right-footer &copy
-					span(data-bind="text: currentDate")
-					| Spacebar Technologies, Inc.
+					.social-icon-container
+						img.social-media(data-bind="attr: { src: src }, click: socialMediaClick")
+				.navigation(data-bind="foreach: links")
+					li.link
+						a(data-bind="attr: {href: href}, text: title")

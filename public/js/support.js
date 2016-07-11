@@ -107,7 +107,7 @@
   var supportObjectVm = new SupportViewModel();
   var supportFooterVm = new SupportFooterViewModel();
   var supportQandAVm  = new questionsViewModel();
-  if( $("#support-home").length ) 
+  if( $("#support-home").length )
     ko.applyBindings(supportObjectVm,$("#support-home")[0]);
   if( $("#question-answer-container").length )
     ko.applyBindings(supportQandAVm ,$("#question-answer-container")[0]);
@@ -137,7 +137,7 @@
   }
 
   var displayAnswer = function( clicked ) {
-    $(".question-container.active").removeClass("active");  
+    $(".question-container.active").removeClass("active");
     $("#answers-container").addClass("open");
     $("#questions-container").addClass("open");
     $(".question-container").not(clicked).addClass("not-displayed");
@@ -173,7 +173,7 @@
 
     menuOpen = openMenu();
   });
-  
+
   //exits menu on click outside of pmenu
   $(document).mouseup(function (e) {
     if(menuOpen) { // make sure menu is open.

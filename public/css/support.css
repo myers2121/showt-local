@@ -172,17 +172,23 @@
 }
 
 .download-button  {
-  width: 200px;
-    margin-left: auto;
-    margin-right: auto;
-    background: #FFF;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    margin-top: 48px;
-    margin-bottom: 24px;
-    color: #4A90E2;
-    border-radius: 3px;
-    box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.2);
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #FFF;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-top: 48px;
+  margin-bottom: 24px;
+  color: #4A90E2;
+  border-radius: 3px;
+  box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.2);
+  font-size: 12px;
+}
+
+.download-button:hover {
+  cursor: pointer;
+  background: #e3e3e3;
 }
 
 .download-button:active {
@@ -191,6 +197,11 @@
 
 .download-button p {
   margin-bottom: 0px !important;
+}
+
+.coming-this-summer-support {
+  color: #fff;
+  font-size: 12px;
 }
 
 #support-footer {
@@ -490,7 +501,7 @@
   width: calc(100% - 35px);
 }
 
-.question-container .expand {    
+.question-container .expand {
   position: absolute;
   right: 10px;
   transform: translateY(-50%);

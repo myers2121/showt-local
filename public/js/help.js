@@ -40,7 +40,7 @@
         "I can't download the app on my iPhone 5"],
         answers: ["As of right now the app is only on iOS but we are currently building the Android version of the app to bring our friends on Android the wonderful experience of Passenger."
         , "No. The app is free for our users, forever. We believe that helping you live a less distracted life should not cost you a dime.",
-        "Due to the needs of the Passenger app, the iPhone 5 is not capable of running the app. We want to make sure that all of our users have a delighted experience on the app and did't want to compromise anything."]
+        "Due to the needs of the Passenger app, the iPhone 5 is not capable of running the app. We want to make sure that all of our users have a delighted experience on the app and didn't want to compromise anything."]
       }
     ]);
 

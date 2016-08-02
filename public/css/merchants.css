@@ -75,7 +75,7 @@
 }
 
 .start-for-free {
-    background:linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/start-free.jpg);
+    background:linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/start-free.png);
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -87,7 +87,7 @@
 }
 
 .give-discounts {
-    background:linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/discounts-img.jpg);
+    background:linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/discounts-img.png);
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -99,7 +99,7 @@
 }
 
 .we-bring-customers {
-    background:linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/when-paid.jpeg);
+    background:linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/when-paid.png);
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -111,7 +111,7 @@
 }
 
 .grow-your-business {
-    background:linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/grow-business.jpg);
+    background:linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/grow-business.png);
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;

@@ -22,6 +22,10 @@
     $('.learn-more-arrow').click(function() {
     });
 
+    $('.business-owner-button').click(function() {
+      location.href = '/merchants';
+    });
+
     $('.header-content-inner img').click(function() {
       timesHeaderWasClicked++;
       if (timesHeaderWasClicked == 5) {

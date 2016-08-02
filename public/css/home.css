@@ -20,6 +20,65 @@ header .header-content .header-content-inner {
   color: #a5a5a5;
 }
 
+.own-a-business-button {
+  background: #5699e6;
+  border-radius: 4px;
+  color: #fff;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 175px;
+  font-size: 12px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.own-a-business-button:hover {
+  cursor: pointer;
+  color: #5699e6;
+  background: #fff;
+}
+
+#business-owner {
+  width: 100vw;
+  height: 30vh;
+  background: #1f2022;
+  color: #FFF;
+  text-align: center;
+  opacity: 0.9;
+}
+
+#business-owner h3 {
+  margin-top: 0px !important;
+  font-family: inherit;
+}
+
+#business-owner p {
+  font-family: inherit;
+  color: #e3e3e3;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+#business-owner .btn {
+  font-family: inherit;
+  background: #5699e6;
+  border-radius: 4px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 12px;
+}
+
+.inner-business-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#business-owner .btn:hover {
+  background: #FFF;
+  color: #5699e6;
+}
+
 @media(min-width: 768px) {
   #mainNav {
     position: absolute;

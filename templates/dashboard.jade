@@ -1,0 +1,14 @@
+extends ./dashboardLayout.jade
+
+block customCSS
+	link(rel='stylesheet', href='/static/css/dashboard.css', type='text/css')
+
+block content
+	#page(for='Home')
+		h1 This is the home page
+	#page(for='Rewards')
+		h1 This is the rewards page
+	#page(for='Pay')
+		h1 This is the pay page
+	#page(for='Support')
+		h1 This is the support page

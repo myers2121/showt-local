@@ -93,4 +93,8 @@ router.post('/merchants/submit', function(req, res) {
 
 });
 
+router.get('/merchants/dashboard', function(req,res){
+	res.render('dashboard');
+});
+
 module.exports = router;

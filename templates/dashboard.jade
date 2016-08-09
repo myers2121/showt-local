@@ -5,7 +5,24 @@ block customCSS
 
 block content
 	#page(for='Home')
-		h1 This is the home page
+		section#home-section
+			.div#home-information-container
+				.inner-home-container
+					.inner-phone-container.col-sm-4
+						.phone-container
+							img(src='/static/img/discounts-in-iphone.png')
+					.inner-information-container.col-sm-8
+						.information-container
+							h3.merchant-name Joe's Steakhouse
+							p.merchant-description Joe's Steakhouse is a rustic and modern resturant based out of Downtown Fresno. We offer amazing steaks, food, and alcoholic beverages at affordable prices. Redeem a discount today to come see what the Joe's experience is all about!
+							.stats-table
+								.stats-container(data-bind="foreach: currentMerchantStats")
+									.merchant-stat-container.col-sm-4
+										.merchant-stat-inner-container
+											img(data-bind="attr: { src: imgSrc }")
+											h3.stat(data-bind="text: stat")
+											h3.stat-text(data-bind="text: statText")
+					img.edit-home-information-image(src='/static/img/pencil.png')
 	#page(for='Rewards')
 		h1 This is the rewards page
 	#page(for='Pay')

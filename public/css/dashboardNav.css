@@ -13,11 +13,14 @@ ul.nav li {
 
 ul.nav li.active {
   border-bottom: 3px solid #3589d9;
+  color: #000;
 }
 
 ul.nav > li > a {
   transition: all .1s ease;
   cursor: default;
+  font-family: 'Roboto', sans-serif;
+  color: #777777;
 }
 
 ul.nav > li.active > a {
@@ -36,6 +39,50 @@ ul.nav li.active a:focus {
   height: 100%;
 }
 
+.navbar-header {
+  position: absolute;
+  margin-left: 8px;
+}
+
+.navbar-brand {
+  float: left;
+}
+
+.dashboard-brand-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 48px;
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  text-transform: none !important;
+  color: #777777;
+}
+
 .navbar {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
+  z-index: 2;
+}
+
+.navbar-logged-in-user {
+  width: 40px;
+  position: absolute;
+  right: 8px;
+  height: 100%;
+}
+
+.logged-in-user-container {
+  height: 40px;
+  width: 40px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #aaa;
+  border-radius: 20px;
+}
+
+.logged-in-user-container:hover {
+  cursor: pointer;
 }

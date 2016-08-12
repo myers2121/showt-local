@@ -1,0 +1,18 @@
+extends ./loginLayout.jade
+
+block content
+	section#login-section
+		.top-left-info-container
+			img(src='/static/img/passenger-logo.png')
+			h3.passenger-top-header Passenger Merchant Dashboard
+		.login-container
+			h3.login-header Login
+			.login-form-container
+				.login-input-container
+					input(type='email', name='email',placeholder='Email', data-bind="textInput: email")
+				.login-input-container
+					input(type='password', name='password',placeholder='Password', data-bind="textInput: password")
+				.login-input-container
+					.login-button(data-bind="click: loginButtonClicked") LOG IN
+				.forgot-password-container
+					p.forgot-password(data-bind="click: forgotPasswordButtonClicked") Forgot Password?

@@ -27,13 +27,13 @@ ul.nav > li.active > a {
   padding: 15px 15px 12px 15px;
 }
 
-ul.nav li:not(.active):hover a {
+/*ul.nav li:not(.active):hover a {
   background-color: white !important;
 }
 
 ul.nav li.active a:focus {
   background-color: white !important;
-}
+}*/
 
 .navbar-header > .navbar-brand > img {
   height: 100%;

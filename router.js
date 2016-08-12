@@ -97,4 +97,8 @@ router.get('/merchants/dashboard', function(req,res){
 	res.render('dashboard');
 });
 
+router.get('/merchants/login', function(req,res) {
+	res.render('login');
+});
+
 module.exports = router;

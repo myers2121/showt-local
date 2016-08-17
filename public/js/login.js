@@ -17,7 +17,11 @@ $(document).ready(function(){
     };
 
     self.forgotPasswordButtonClicked = function() {
+      $('#forgot-password-section').fadeIn();
+    };
 
+    self.resetPasswordButtonClicked = function() {
+      $('#reset-password-section').fadeIn();
     };
 
     function authHandler(error, authData) {
@@ -28,6 +32,14 @@ $(document).ready(function(){
         location.href = '/merchants/dashboard';
       }
     };
+
+    $('.cancel-button').click(function() {
+      $('#forgot-password-section').fadeOut();
+    });
+
+    $('.cancel-change-password-button').click(function() {
+      $('#reset-password-section').fadeOut();
+    });
 
   };
 

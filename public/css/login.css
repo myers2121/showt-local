@@ -111,3 +111,80 @@
 .login-button:active {
   background: #4B86C9;
 }
+
+#forgot-password-section,
+#reset-password-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(50, 50, 50, .54);
+  display: none;
+}
+
+.forgot-password-container-pop-up {
+  width: 400px;
+  background: #FFF;
+  border-radius: 3px;
+  position: absolute;
+  padding: 8px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.forgot-password-header {
+  text-align: center;
+  font-family: 'Roboto',sans-serif;
+  margin-top: 12px;
+  color: #5699e6;
+}
+
+.forgot-password-container-pop-up input {
+  margin-top: 12px;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 3px;
+  outline: none;
+  color: #aaa;
+  font-family: 'Roboto',sans-serif;
+  width: 100%;
+  padding: 8px 12px;
+}
+
+.cancel-button,
+.send-button {
+  width: 100px;
+  float: left;
+  font-size: 12px;
+  font-family: 'Roboto',sans-serif;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 3px;
+}
+
+.cancel-button:hover,
+.send-button:hover {
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+.cancel-button:active,
+.send-button:active {
+  background: #e3e3e3;
+}
+
+.send-button {
+  color: #7ED321;
+}
+
+.forgot-password-submit {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  overflow: auto;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

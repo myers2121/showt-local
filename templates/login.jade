@@ -16,3 +16,27 @@ block content
 					.login-button(data-bind="click: loginButtonClicked") LOG IN
 				.forgot-password-container
 					p.forgot-password(data-bind="click: forgotPasswordButtonClicked") Forgot Password?
+				.forgot-password-container
+					p.forgot-password(data-bind="click: resetPasswordButtonClicked") Change Password?
+	section#forgot-password-section
+		.forgot-password-container-pop-up
+			h3.forgot-password-header Forgot Password
+			.forgot-password-info-container
+				.forgot-password-input-container
+					input(type='email', name='companyName', placeholder='Enter your email')
+				.forgot-password-submit
+					.cancel-button CANCEL
+					.send-button SEND
+	section#reset-password-section
+		.forgot-password-container-pop-up
+			h3.forgot-password-header Reset Password
+			.forgot-password-info-container
+				.forgot-password-input-container
+					input(type='password', name='companyName', placeholder='Enter your old or temporary password')
+				.forgot-password-input-container
+					input(type='password', name='companyName', placeholder='Enter new password')
+				.forgot-password-input-container
+					input(type='password', name='companyName', placeholder='Confirm new password')
+				.forgot-password-submit
+					.cancel-button.cancel-change-password-button CANCEL
+					.send-button.send-change-password-button SEND

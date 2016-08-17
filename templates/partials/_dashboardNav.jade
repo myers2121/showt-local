@@ -1,17 +1,25 @@
 .navbar
-  .collapse.navbar-collapse#top-bar
-    .navbar-header
-      a.navbar-brand(href='/dashboard')
-        img(src='/static/img/passenger-logo.png')
-      h3.dashboard-brand-text Passenger
-    ul.nav.navbar-nav
-      li.home-link.active.dashboard-link
-        a Home
-      li.rewards-link.dashboard-link
-        a Rewards
-      li.pay-link.dashboard-link
-        a Pay
-      li.support-link.dashboard-link
-        a Support
-    .navbar-logged-in-user
-      .logged-in-user-container
+	.collapse.navbar-collapse#top-bar.dashboard-nav
+		.navbar-header
+			a.navbar-brand(href='/dashboard')
+				img(src='/static/img/passenger-logo.png')
+			h3.dashboard-brand-text Passenger
+		ul.nav.navbar-nav
+			li.home-link.active.dashboard-link
+				a Home
+			li.rewards-link.dashboard-link
+				a Rewards
+			li.pay-link.dashboard-link
+				a Pay
+			li.support-link.dashboard-link
+				a Support
+		.navbar-logged-in-user
+			.logged-in-user-container
+				h3.nav-merchant-name(data-bind="text: currentMerchantName")
+				img(src='/static/img/sort-down.png')
+	section#sign-out-section
+		h3.merchant-sign-out-name Xcape Room Fresno
+		.feedback-button
+			h3 FEEDBACK
+		.sign-out-button(data-bind="click: logoutCurrentMerchant")
+			h3 SIGN OUT

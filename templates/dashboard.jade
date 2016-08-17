@@ -4,129 +4,212 @@ block customCSS
 	link(rel='stylesheet', href='/static/css/dashboard.css', type='text/css')
 
 block content
-	section#loading-section
-		.loading-inner-section
-			h3.loading-data-text Loading your data...
-			svg.loading(height="50" width="50")
-				circle(cx="25" cy="25" r="20" stroke="white" stroke-width="2" fill="transparent")
-	section#home-section
-		.div#home-information-container
-			.inner-home-container
-				.inner-phone-container.col-sm-4
-					.phone-container
-						img(src='/static/img/discounts-in-iphone.png')
-				.inner-information-container.col-sm-8
-					.information-container
-						h3.merchant-name(data-bind="text: currentMerchantName")
-						h3.merchant-cross-streets(data-bind="text: currentMerchantCrossStreets")
-						p.merchant-description Joe's Steakhouse is a rustic and modern resturant based out of Downtown Fresno. We offer amazing steaks, food, and alcoholic beverages at affordable prices. Redeem a discount today to come see what the Joe's experience is all about!
-						.stats-table
-							.stats-container(data-bind="foreach: currentMerchantStats")
-								.merchant-stat-container.col-sm-4
-									.merchant-stat-inner-container
-										img(data-bind="attr: { src: imgSrc }")
-										h3.stat(data-bind="text: stat")
-										h3.stat-text(data-bind="text: statText")
-						.edit-button-container
-							.edit-information-button EDIT DETAILS
-	section#rewards-section
-		#rewards-information-container
-			.inner-home-container
-				.home-top-container
-					h3.merchant-reward-title(data-bind="text: currentMerchantName")
-					h3.merchant-reward-bottom-text Rewards
-				.rewards-container
-					.rewards-inner-container(data-bind="foreach: currentMerchantRewardOfferings")
-						.points-and-image-container.col-sm-3
-							.inner-reward-container
-								.top-reward-container(data-bind="style: { backgroundImage: 'url(' + imgSrc + ')' }")
-									.reward-info-container
-										.points-text-container
-											h3.point-cost(data-bind="text: pointCost")
-											p.points-text points
-										.reward-type-container
-											h3.reward-name(data-bind="text: rewardsName")
-											h3.reward-description(data-bind="text: rewardDescription")
-							.edit-container
-								.edit-reward-button(data-bind="click: $parent.editRewardButtonClicked") EDIT
-					.floating-add-reward-button
-						.add-reward-button-container
-							img(src='/static/img/plus.png')
-	section#edit-reward-container
-		.feedback-section
-			.top-title-container
-				h3.edit-info-header Create reward
-			.middle-edit-container
-				.name-input-container
-					input(type='text', name='companyName', placeholder='Reward item name ("Banana Walnut Bread")', data-bind="textInput: editRewardName")
-				.name-input-container
-					input(type='text', name='companyName', placeholder='Reward offering ("10% off")', data-bind="textInput: editRewardDescription")
-				.name-input-container
-					input(type='text', name='companyName', placeholder='Reward price ("$2.95")', data-bind="textInput: editRewardPrice")
-				.name-input-container.choose-image-button-container
-					.select-image-button(data-bind="click: chooseImageButtonClicked") Choose reward image
-			.bottom-buttons-container
-				.button-container
-					.cancel-reward-button(data-bind="click: cancelRewardButtonClicked") CANCEL
-					.save-reward-button(data-bind="click: saveRewardButtonClicked") SAVE
-	section#create-reward-container
-		.feedback-section
-			.top-title-container
-				h3.edit-info-header Create reward
-			.middle-edit-container
-				.name-input-container
-					input(type='text', name='companyName', placeholder='Reward item name ("Banana Walnut Bread")', data-bind="textInput: rewardName")
-				.name-input-container
-					input(type='text', name='companyName', placeholder='Reward offering ("10% off")', data-bind="textInput: rewardDescription")
-				.name-input-container
-					input(type='text', name='companyName', placeholder='Reward price ("$2.95")', data-bind="textInput: rewardPrice")
-				.name-input-container.choose-image-button-container
-					.select-image-button(data-bind="click: chooseImageButtonClicked") Choose reward image
-			.bottom-buttons-container
-				.button-container
-					.cancel-reward-button(data-bind="click: cancelRewardButtonClicked") CANCEL
-					.save-reward-button(data-bind="click: saveRewardButtonClicked") SAVE
-	section#pay-section
-		#pay-information-container
-			.inner-home-container
-				.merchant-image-container
-					img.merchant-image(data-bind="attr: { src: currentMerchantImage }")
-				.merchant-costs-incurred-container
-					.average-cost-container
-						h3.average-cost-text $0.24
-						p Average redeem cost
+	.dashboard-site-container
+		section#loading-section
+			.loading-inner-section
+				h3.loading-data-text Loading your data...
+				svg.loading(height="50" width="50")
+					circle(cx="25" cy="25" r="20" stroke="white" stroke-width="2" fill="transparent")
+		section#home-section
+			.div#home-information-container
+				.inner-home-container
+					.inner-phone-container.col-sm-4
+						.phone-container
+							img(src='/static/img/discounts-in-iphone.png')
+					.inner-information-container.col-sm-8
+						.information-container
+							h3.merchant-name(data-bind="text: currentMerchantName")
+							h3.merchant-cross-streets(data-bind="text: currentMerchantCrossStreets")
+							p.merchant-description Joe's Steakhouse is a rustic and modern resturant based out of Downtown Fresno. We offer amazing steaks, food, and alcoholic beverages at affordable prices. Redeem a discount today to come see what the Joe's experience is all about!
+							.stats-table
+								.stats-container
+									.merchant-stat-container.col-sm-4
+										.merchant-stat-inner-container
+											img(src="/static/img/medal.png")
+											h3.stat(data-bind="text: rewardsRedeemed")
+											h3.stat-text Rewards Redeemed
+									.merchant-stat-container.col-sm-4
+										.merchant-stat-inner-container
+											img(src="/static/img/eye.png")
+											h3.stat 2009
+											h3.stat-text Rewards Viewed
+									.merchant-stat-container.col-sm-4
+										.merchant-stat-inner-container
+											img(src="/static/img/user.png")
+											h3.stat 51
+											h3.stat-text New Customers
+							.edit-button-container
+								.edit-information-button EDIT DETAILS
+		section#rewards-section
+			#rewards-information-container
+				.inner-home-container
+					.home-top-container
+						h3.merchant-reward-title(data-bind="text: currentMerchantName")
+						h3.merchant-reward-bottom-text Rewards
+					.rewards-container
+						.rewards-inner-container(data-bind="foreach: currentMerchantRewardOfferings")
+							.points-and-image-container.col-sm-3
+								.inner-reward-container
+									.top-reward-container(data-bind="style: { backgroundImage: 'url(' + imgSrc + ')' }")
+										.reward-info-container
+											.points-text-container
+												h3.point-cost(data-bind="text: pointCost")
+												p.points-text points
+											.reward-type-container
+												h3.reward-name(data-bind="text: rewardsName")
+												h3.reward-description(data-bind="text: rewardDescription")
+								.edit-container
+									.edit-reward-button(data-bind="click: $parent.editRewardButtonClicked") EDIT
+						.floating-add-reward-button
+							.add-reward-button-container
+								img(src='/static/img/plus.png')
+		section#edit-reward-container
+			.feedback-section
+				.top-title-container
+					h3.edit-info-header Edit reward
+				.middle-edit-container
+					.name-input-container
+						input(type='text', name='companyName', placeholder='Reward item name ("Banana Walnut Bread")', data-bind="textInput: editRewardName")
+					.name-input-container
+						input(type='text', name='companyName', placeholder='Reward offering ("10% off")', data-bind="textInput: editRewardDescription")
+					.name-input-container
+						input(type='text', name='companyName', placeholder='Reward price ("$2.95")', data-bind="textInput: editRewardPrice")
+					.name-input-container.choose-image-button-container
+						.select-image-button(data-bind="click: chooseImageButtonClicked") Choose reward image
+				.bottom-buttons-container
+					.button-container
+						.cancel-reward-button(data-bind="click: cancelEditRewardButtonClicked") CANCEL
+						.save-reward-button.delete-reward-button DELETE
+						.save-reward-button(data-bind="click: saveEditRewardButtonClicked") SAVE
+		section#create-reward-container
+			.feedback-section
+				.top-title-container
+					h3.edit-info-header Create reward
+				.middle-edit-container
+					.name-input-container
+						input(type='text', name='companyName', placeholder='Reward item name ("Banana Walnut Bread")', data-bind="textInput: rewardName")
+					.name-input-container
+						input(type='text', name='companyName', placeholder='Reward offering ("10% off")', data-bind="textInput: rewardDescription")
+					.name-input-container
+						input(type='text', name='companyName', placeholder='Reward price ("$2.95")', data-bind="textInput: rewardPrice")
+					.name-input-container.choose-image-button-container
+						.select-image-button(data-bind="click: chooseImageButtonClicked") Choose reward image
+				.bottom-buttons-container
+					.button-container
+						.cancel-reward-button(data-bind="click: cancelRewardButtonClicked") CANCEL
+						.save-reward-button(data-bind="click: saveRewardButtonClicked") SAVE
+		section#pay-section
+			#pay-information-container
+				.inner-home-container
+					.merchant-image-container
+						img.merchant-image(data-bind="attr: { src: currentMerchantImage }")
+					.merchant-costs-incurred-container
+						.average-cost-container
+							h3.average-cost-text(data-bind="text: averageRedeemCost")
+							p Average redeem cost
+						.total-cost-container
+							h3.total-cost-text(data-bind="text: totalAmountOwed")
+							p Total amount due
+							p.current-date-text(data-bind="text: currentDate")
+					.bottom-pay-action-button-container
+						.inner-pay-buttons-container
+							.pay-button PAY NOW
+							.transactions-button VIEW TRANSACTIONS
+		section#pay-now-section
+			.feedback-section
+				.top-title-container
+					h3.edit-info-header Pay now
+				.middle-edit-container
 					.total-cost-container
-						h3.total-cost-text $220.48
+						h3.total-cost-text(data-bind="text: totalAmountOwed")
 						p Total amount due
-						p.current-date-text 10-12-16
-				.bottom-pay-action-button-container
-					.inner-pay-buttons-container
-						.pay-button PAY NOW
-						.transactions-button VIEW TRANSACTIONS
-	section#support-section
-		#support-information-container
-			.inner-home-container
-				h3 Support section
-	section#home-feedback-section
-		.feedback-section
-			.top-title-container
-				h3.edit-info-header Edit Info
-			.middle-edit-container
-				.name-input-container
-					input(type='text', name='companyName', placeholder='Enter your company\'s name')
-				.description-input-container
-					textarea(rows='4', cols='50', placeholder='Enter your company\'s description')
-						| At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.
-			.bottom-buttons-container
-				.button-container
-					.cancel-button CANCEL
-					.save-button SAVE
-	section#dashboard-footer
-		.footer-left-container
-			p Terms
-			.divider
-			p Privacy
-		.footer-right-container
-			.translate-button
-				p ENGLISH
-				img(src='/static/img/sort-down.png')
+						p.current-date-text(data-bind="text: currentDate")
+					.credit-card-info-container
+						.top-credit-container
+							.credit-input-container
+								input(type='text', name='companyName', placeholder='Credit card #')
+						.bottom-credit-container
+							.credit-input-container.col-sm-8
+								input(type='text', name='companyName', placeholder='02/17')
+							.credit-input-container.col-sm-4
+								input(type='text', name='companyName', placeholder='CVV *')
+				.bottom-buttons-container
+					.button-container
+						.cancel-reward-button.cancel-pay-button CANCEL
+						.cancel-reward-button.save-button-pay PAY
+		section#view-transactions-section
+			#transactions-container
+				.top-title-container
+					h3.edit-info-header Transactions
+					img.exit-transactions(src='/static/img/exit-support-nav.png')
+				.transactions-inner-container
+					.top-table-container
+						.col-sm-4.name-table-header.transactions-header
+							h3 Email
+						.col-sm-4.reward-table-header.transactions-header
+							h3 Reward
+						.col-sm-2.date-table-header.transactions-header
+							h3 Date
+						.col-sm-2.cost-table-header.transactions-header
+							h3 Cost
+					.bottom-transaction-container(data-bind="foreach: currentMerchantMonthlyTransactions")
+						.transaction
+							.col-sm-4.transactions-info.user-email
+								h3(data-bind="text: userEmail")
+							.col-sm-4.transactions-info.reward-text
+								h3(data-bind="text: rewardText")
+							.col-sm-2.transactions-info.date-recorded
+								h3(data-bind="text: dateRecorded")
+							.col-sm-2.transactions-info.reward-price-text
+								h3(data-bind="text: rewardPriceText")
+					.total-transaction-container.col-sm-2
+						h3.total-amount-owed(data-bind="text: totalAmountOwed") $210.96
+						h3.total-amount-text Total
+		section#support-section
+			#support-total-container
+				.support-questions-container.col-sm-3
+					.support-question-section(data-bind="foreach: helpArray")
+						h3.section-title(data-bind="text: title")
+						.question-container(data-bind="foreach: questionsAndAnswers")
+							h3.question(data-bind="text: question, click: $root.helpQuestionClicked")
+				.support-answers-container.col-sm-9
+					.answer-inner-container
+						h3.answer-header Support & FAQ Guides
+						.answer-to-question-container
+							h3.question-title(data-bind="text: currentQuestion")
+							p.answer-p(data-bind="text: currentAnswer")
+		section#home-feedback-section
+			.feedback-section
+				.top-title-container
+					h3.edit-info-header Edit details
+				.middle-edit-container
+					.name-input-container
+						input(type='text', placeholder='Enter your business\' name', data-bind="textInput: currentMerchantNameEdited")
+					.name-input-container
+						input(type='text', placeholder='Enter the cross streets of your business', data-bind="textInput: currentMerchantCrossStreetsEdited")
+					.description-input-container
+						textarea(rows='4', cols='50', placeholder='Enter your company\'s description')
+				.bottom-buttons-container
+					.button-container
+						.cancel-button CANCEL
+						.save-button SAVE
+		section#give-feedback-section
+			.feedback-section
+				.top-title-container
+					h3.edit-info-header Send Feedback
+				.middle-edit-container
+					.description-input-container
+						textarea(rows='4', cols='50', placeholder='What is on your mind...')
+				.bottom-buttons-container
+					.button-container
+						.cancel-button-feedback.cancel-button CANCEL
+						.save-button-feedback.save-button SAVE
+		section#dashboard-footer
+			.footer-left-container
+				p Terms
+				.divider
+				p Privacy
+			.footer-right-container
+				.translate-button
+					p ENGLISH
+					img(src='/static/img/sort-down.png')

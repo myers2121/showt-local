@@ -67,7 +67,7 @@ ul.nav li.active a:focus {
 }
 
 .navbar-logged-in-user {
-  width: 40px;
+  width: auto;
   position: absolute;
   right: 8px;
   height: 100%;
@@ -75,14 +75,36 @@ ul.nav li.active a:focus {
 
 .logged-in-user-container {
   height: 40px;
-  width: 40px;
+  width: auto;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  background: #aaa;
   border-radius: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 3px;
+}
+
+.logged-in-user-container h3 {
+  float: left;
+  margin: 0px !important;
+  font-size: 12px;
+  font-family: 'Roboto',sans-serif;
+  text-transform: none;
+  padding-top: 13px;
+  padding-right: 8px;
 }
 
 .logged-in-user-container:hover {
   cursor: pointer;
+  background: #f0f0f0;
+}
+
+.logged-in-user-container:active {
+  background: #e3e3e3;
+}
+
+.logged-in-user-container img {
+  width: 30px;
+  padding-top: 4px;
 }

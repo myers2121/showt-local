@@ -5,13 +5,11 @@
 				img(src='/static/img/passenger-logo.png')
 			h3.dashboard-brand-text Passenger
 		ul.nav.navbar-nav
-			li.home-link.active.dashboard-link
+			li.home-link.active.dashboard-link(for='home-section')
 				a Home
-			li.rewards-link.dashboard-link
+			li.rewards-link.dashboard-link(for='rewards-section')
 				a Rewards
-			li.pay-link.dashboard-link
-				a Pay
-			li.support-link.dashboard-link
+			li.support-link.dashboard-link(for='support-section')
 				a Support
 		.navbar-logged-in-user
 			.logged-in-user-container

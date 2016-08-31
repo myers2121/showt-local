@@ -236,7 +236,7 @@ h3, h4, h5, h6 {
 
 #pay-information-container {
 	background: #f7f7f7;
-	width: 400px;
+	width: 100%;
 	height: auto;
 	margin-left: auto;
 	margin-right: auto;
@@ -253,8 +253,8 @@ h3, h4, h5, h6 {
 #support-information-container {
 	background: #f7f7f7;
 	width: 60%;
-	height: 0;
-	padding-bottom: 40%;
+	height: auto;
+	padding-bottom: 0px;
 	overflow: visible;
 	margin-left: auto;
 	margin-right: auto;
@@ -277,7 +277,7 @@ h3, h4, h5, h6 {
 
 .inner-home-container {
 	width: 100%;
-	height: 100%;
+	height: auto !important;
 	padding: 10px;
 }
 
@@ -667,6 +667,10 @@ h3, h4, h5, h6 {
 	overflow: auto;
 }
 
+.points-and-image-container {
+	margin-top: 12px;
+}
+
 .rewards-inner-container {
 	overflow: auto;
 }
@@ -875,6 +879,10 @@ padding-top: 20%;
 	margin-top: 48px;
 }
 
+.average-cost-container {
+	margin-top: 0px !important;
+}
+
 .average-cost-container h3,
 .total-cost-container h3 {
 	color: #4BC96F;
@@ -952,6 +960,10 @@ padding-top: 20%;
 
 /* Create reward styles */
 
+.reward-image-file {
+	display: none !important;
+}
+
 #create-reward-container,
 #edit-reward-container {
 	position: fixed;
@@ -1020,7 +1032,8 @@ padding-top: 20%;
 	border-bottom: 1px solid #eee;
 }
 
-.select-image-button {
+.select-image-button,
+.select-image-button-edit {
 	font-family: 'Roboto', sans-serif;
 	font-size: 12px;
 	color: #5699e6;
@@ -1034,12 +1047,14 @@ padding-top: 20%;
 	margin-right: auto;
 }
 
-.select-image-button:hover {
+.select-image-button:hover,
+.select-image-button-edit:hover {
 	background: #eee;
 	cursor: pointer;
 }
 
-.select-image-button:active {
+.select-image-button:active,
+.select-image-button-edit:active  {
 	background: #aaa;
 	color: #fff;
 }

@@ -4,21 +4,31 @@ var express = require('express');
 //var routes = require('./routes');
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
+var firebase = require('firebase');
 var fs = require('fs');
 var cookieParser = require('cookie-parser');
 var paypal = require('paypal-rest-sdk');
 var session = require('express-session');
-var Firebase = require("firebase");
 var router = require('./router');
-var myFirebaseRef = new Firebase("https://bg-outfitters.firebaseio.com/");
-var myFirebaseUsersRef = new Firebase("https://bg-outfitters.firebaseio.com/helpdata")
-var postsRef = myFirebaseRef.child("helpQuestions");
 var app = express();
 var jsonParser = bodyParser.json()
 
 
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
+
+firebase.initializeApp({
+  databaseURL: "https://passenger-app.firebaseio.com/",
+  serviceAccount: "./Passenger-App-ee341e1e32f3.json"
+});
+
+var db = firebase.database();
+var ref = db.ref("users");
+console.log(firebase.auth());
+ref.once("value", function(snapshot) {
+  //console.log(snapshot.val());
+});
+
 app.use('/static' , express.static(__dirname + '/public'));
 app.use(bodyParser());
 app.use(bodyParser.urlencoded({

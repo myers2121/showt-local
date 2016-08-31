@@ -20,7 +20,7 @@ block content
 						.information-container
 							h3.merchant-name(data-bind="text: currentMerchantName")
 							h3.merchant-cross-streets(data-bind="text: currentMerchantCrossStreets")
-							p.merchant-description Joe's Steakhouse is a rustic and modern resturant based out of Downtown Fresno. We offer amazing steaks, food, and alcoholic beverages at affordable prices. Redeem a discount today to come see what the Joe's experience is all about!
+							p.merchant-description(data-bind="text: currentCompanyDescription")
 							.stats-table
 								.stats-container
 									.merchant-stat-container.col-sm-4
@@ -40,6 +40,20 @@ block content
 											h3.stat-text New Customers
 							.edit-button-container
 								.edit-information-button EDIT DETAILS
+				#pay-information-container
+					.inner-home-container
+						.merchant-costs-incurred-container
+							.average-cost-container
+								h3.average-cost-text(data-bind="text: averageRedeemCost")
+								p Average redeem cost
+							.total-cost-container
+								h3.total-cost-text(data-bind="text: totalAmountOwed")
+								p Total amount due
+								p.current-date-text(data-bind="text: currentDate")
+						.bottom-pay-action-button-container
+							.inner-pay-buttons-container
+								.pay-button PAY NOW
+								.transactions-button VIEW TRANSACTIONS
 		section#rewards-section
 			#rewards-information-container
 				.inner-home-container
@@ -50,7 +64,7 @@ block content
 						.rewards-inner-container(data-bind="foreach: currentMerchantRewardOfferings")
 							.points-and-image-container.col-sm-3
 								.inner-reward-container
-									.top-reward-container(data-bind="style: { backgroundImage: 'url(' + imgSrc + ')' }")
+									.top-reward-container(data-bind="style: { backgroundImage: 'url(' + rewardImage + ')' }")
 										.reward-info-container
 											.points-text-container
 												h3.point-cost(data-bind="text: pointCost")
@@ -59,7 +73,7 @@ block content
 												h3.reward-name(data-bind="text: rewardsName")
 												h3.reward-description(data-bind="text: rewardDescription")
 								.edit-container
-									.edit-reward-button(data-bind="click: $parent.editRewardButtonClicked") EDIT
+									.edit-reward-button(data-bind="click: $parent.editRewardButtonClicked.bind($data, $index())") EDIT
 						.floating-add-reward-button
 							.add-reward-button-container
 								img(src='/static/img/plus.png')
@@ -69,17 +83,20 @@ block content
 					h3.edit-info-header Edit reward
 				.middle-edit-container
 					.name-input-container
-						input(type='text', name='companyName', placeholder='Reward item name ("Banana Walnut Bread")', data-bind="textInput: editRewardName")
+						input(type='text', name='companyName', placeholder='Reward item name ("Banana Walnut Bread")', data-bind="textInput: editRewardDescription")
 					.name-input-container
-						input(type='text', name='companyName', placeholder='Reward offering ("10% off")', data-bind="textInput: editRewardDescription")
+						input(type='text', name='companyName', placeholder='Reward offering ("10% off")', data-bind="textInput: editRewardName")
 					.name-input-container
 						input(type='text', name='companyName', placeholder='Reward price ("$2.95")', data-bind="textInput: editRewardPrice")
+					.name-input-container
+						input(type='text', name='companyName', placeholder='Amount saved ("$2.95 * 10% off = $0.30")', data-bind="textInput: editRewardAmountSaved")
 					.name-input-container.choose-image-button-container
-						.select-image-button(data-bind="click: chooseImageButtonClicked") Choose reward image
+						.select-image-button-edit(data-bind="click: chooseImageButtonClickedEdit") Choose reward image
+						input#edit-reward-image-file.reward-image-file(type="file", name="rewardImageFile")
 				.bottom-buttons-container
 					.button-container
 						.cancel-reward-button(data-bind="click: cancelEditRewardButtonClicked") CANCEL
-						.save-reward-button.delete-reward-button DELETE
+						.save-reward-button.delete-reward-button(data-bind="click: deleteRewardButtonClicked") DELETE
 						.save-reward-button(data-bind="click: saveEditRewardButtonClicked") SAVE
 		section#create-reward-container
 			.feedback-section
@@ -92,29 +109,15 @@ block content
 						input(type='text', name='companyName', placeholder='Reward offering ("10% off")', data-bind="textInput: rewardDescription")
 					.name-input-container
 						input(type='text', name='companyName', placeholder='Reward price ("$2.95")', data-bind="textInput: rewardPrice")
+					.name-input-container
+						input(type='text', name='companyName', placeholder='Amount saved ("$2.95 * 10% off = $0.30")', data-bind="textInput: rewardAmountSaved")
 					.name-input-container.choose-image-button-container
 						.select-image-button(data-bind="click: chooseImageButtonClicked") Choose reward image
+						input#reward-image-file.reward-image-file(type="file", name="rewardImageFile")
 				.bottom-buttons-container
 					.button-container
 						.cancel-reward-button(data-bind="click: cancelRewardButtonClicked") CANCEL
-						.save-reward-button(data-bind="click: saveRewardButtonClicked") SAVE
-		section#pay-section
-			#pay-information-container
-				.inner-home-container
-					.merchant-image-container
-						img.merchant-image(data-bind="attr: { src: currentMerchantImage }")
-					.merchant-costs-incurred-container
-						.average-cost-container
-							h3.average-cost-text(data-bind="text: averageRedeemCost")
-							p Average redeem cost
-						.total-cost-container
-							h3.total-cost-text(data-bind="text: totalAmountOwed")
-							p Total amount due
-							p.current-date-text(data-bind="text: currentDate")
-					.bottom-pay-action-button-container
-						.inner-pay-buttons-container
-							.pay-button PAY NOW
-							.transactions-button VIEW TRANSACTIONS
+						.save-reward-button(data-bind="click: createRewardButtonClicked") SAVE
 		section#pay-now-section
 			.feedback-section
 				.top-title-container
@@ -188,11 +191,11 @@ block content
 					.name-input-container
 						input(type='text', placeholder='Enter the cross streets of your business', data-bind="textInput: currentMerchantCrossStreetsEdited")
 					.description-input-container
-						textarea(rows='4', cols='50', placeholder='Enter your company\'s description')
+						textarea(rows='4', cols='50', placeholder='Briefly describe your company', data-bind="textInput: currentCompanyDescriptionEdited")
 				.bottom-buttons-container
 					.button-container
 						.cancel-button CANCEL
-						.save-button SAVE
+						.save-button(data-bind="click: saveMerchantDetails") SAVE
 		section#give-feedback-section
 			.feedback-section
 				.top-title-container
@@ -203,7 +206,7 @@ block content
 				.bottom-buttons-container
 					.button-container
 						.cancel-button-feedback.cancel-button CANCEL
-						.save-button-feedback.save-button SAVE
+						.save-button-feedback.save-button SEND
 		section#dashboard-footer
 			.footer-left-container
 				p Terms

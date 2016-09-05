@@ -101,4 +101,8 @@ router.get('/merchants/login', function(req,res) {
 	res.render('login');
 });
 
+router.get('/merchants/create-account', function(req,res) {
+	res.render('create');
+});
+
 module.exports = router;

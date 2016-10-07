@@ -105,4 +105,8 @@ router.get('/merchants/create-account', function(req,res) {
 	res.render('create');
 });
 
+router.get('/admin/login', function(req,res) {
+	res.render('adminLogin');
+});
+
 module.exports = router;

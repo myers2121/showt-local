@@ -6,6 +6,9 @@ $(document).ready(function(){
   var currentMerchantRef;
   var currentMerchantRewardsRef;
 
+  const merchantImageRatio = 1.6578947368;
+  const rewardImageRatio = 1;
+
   if (authData == null) {
     location.href = '/merchants/login';
   }

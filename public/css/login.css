@@ -1,4 +1,5 @@
-#login-section {
+#login-section,
+#login-section-admin {
   height: 100vh;
   width: 100vw;
   background:linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/homepage-background.png);
@@ -187,4 +188,12 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+.error-container .error-string {
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 16px;
+  font-size: 10px;
+  color: red;
 }

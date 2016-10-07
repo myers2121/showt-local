@@ -3,6 +3,10 @@
 
     var timesHeaderWasClicked = 0;
 
+    $('.apple-store-button-container').click(function() {
+      location.href = 'https://itunes.apple.com/us/app/passenger-mobile/id1154585703?ls=1&mt=8';
+    });
+
     $('.back-button').click(function() {
       location.href = '/';
     });

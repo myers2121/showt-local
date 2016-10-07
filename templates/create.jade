@@ -1,0 +1,88 @@
+extends ./createLayout.jade
+
+block customCSS
+	link(rel='stylesheet', href='/static/css/dashboard.css', type='text/css')
+
+block content
+	.create-account-navigation#create-account-navigation
+		.navigation-passenger-icon
+			img(src='/static/img/passenger-logo.png')
+		.nav-middle-progress-icon-container
+			.nav-progress-box
+				.inner-progress-container
+					img.progress-icon.enter-code-image(src='/static/img/enter-code.png', data-bind='click: progressIconClicked')
+			.nav-progress-box
+				.inner-progress-container
+					img.progress-icon.agreement-image(src='/static/img/agreement.png', data-bind='click: progressIconClicked')
+			.nav-progress-box
+				.inner-progress-container
+					img.progress-icon.enter-info-image(src='/static/img/enter-info.png', data-bind='click: progressIconClicked')
+			.nav-progress-box
+				.inner-progress-container
+					img.progress-icon.rewards-image(src='/static/img/enter-rewards.png', data-bind='click: progressIconClicked')
+	.create-account-container#create-account-container
+		section.create-account-middle-container
+			.create-container.enter-code-container.active-create-container.enter-code-image-section
+				h3.enter-code-header Enter business code
+				.input-container.enter-code-input-container
+					input.enter-code-input(type='text', name='companyCode', placeholder='Business code', data-bind="textInput: businessCode")
+				.submit-enter-code-button(data-bind="click: businessCodeSubmitted") SUBMIT
+			.terms-container.agreement-image-section
+				h3.create-account-section-header Terms & Agreements
+				.middle-section-container
+					p.terms-and-agreements-information Lorem ipsum dolor sit amet, ea ius esse nostrud. Percipit gloriatur pro cu. Probo prodesset duo at, mea quaeque appareat sadipscing an. Legimus nonumes abhorreant nec id.Ut natum instructior interpretaris has. Tation adipiscing ius ei, mea ad doming blandit tacimates, fuisset verterem vituperata nam ut. Maiestatis expetendis eloquentiam vel ne, te his ubique postulant consulatu, id quo tale minim. Aperiam eloquentiam ex nam, usu qualisque accusamus iracundia in. Cibo tation dolore est ei, epicurei voluptaria nam eu. Brute partem detracto at eum, mel everti menandri no.Ne error appellantur sit. Amet graece mea ea. Ancillae appetere conclusionemque sea ex, facilis atomorum prodesset te pri. Veritus dolorem lobortis eu vix, erat mundi semper ut est.Laboramus reprehendunt ea mei, vero option prodesset nec ne. Vide iuvaret oporteat no eam. Sea eu nostrum lucilius, eos ad sale numquam, et qui erat utamur dignissim. Eu mei alii percipit, quo commune corrumpit moderatius in.Cibo verterem temporibus vix eu, mel no legimus pertinax suavitate, mundi perfecto consetetur his et. Duo ad unum eleifend interesset. Eos graeci aperiam facilisi ex. Id amet natum accusata qui, nam id erant percipit, duo meliore adipisci te. Esse mundi id eum, case audire dissentiunt pri no. Has ex everti singulis, eu mea modo sonet, et pro nostrud nusquam incorrupte. Ut gubergren democritum voluptatibus qui, alii ridens albucius ne vix. Lorem ipsum dolor sit amet, ea ius esse nostrud. Percipit gloriatur pro cu. Probo prodesset duo at, mea quaeque appareat sadipscing an. Legimus nonumes abhorreant nec id.Ut natum instructior interpretaris has. Tation adipiscing ius ei, mea ad doming blandit tacimates, fuisset verterem vituperata nam ut. Maiestatis expetendis eloquentiam vel ne, te his ubique postulant consulatu, id quo tale minim. Aperiam eloquentiam ex nam, usu qualisque accusamus iracundia in. Cibo tation dolore est ei, epicurei voluptaria nam eu. Brute partem detracto at eum, mel everti menandri no.Ne error appellantur sit. Amet graece mea ea. Ancillae appetere conclusionemque sea ex, facilis atomorum prodesset te pri. Veritus dolorem lobortis eu vix, erat mundi semper ut est.Laboramus reprehendunt ea mei, vero option prodesset nec ne. Vide iuvaret oporteat no eam. Sea eu nostrum lucilius, eos ad sale numquam, et qui erat utamur dignissim. Eu mei alii percipit, quo commune corrumpit moderatius in.Cibo verterem temporibus vix eu, mel no legimus pertinax suavitate, mundi perfecto consetetur his et. Duo ad unum eleifend interesset. Eos graeci aperiam facilisi ex. Id amet natum accusata qui, nam id erant percipit, duo meliore adipisci te. Esse mundi id eum, case audire dissentiunt pri no. Has ex everti singulis, eu mea modo sonet, et pro nostrud nusquam incorrupte. Ut gubergren democritum voluptatibus qui, alii ridens albucius ne vix.
+				.bottom-section-container
+					.left-bottom-terms
+						.check-box-container(data-bind="click: checkBoxContainerClicked")
+						p I agree to the terms & agreements
+					.right-bottom-terms
+						.terms-next-button(data-bind="click: termsNextButtonClicked") NEXT
+			.create-information-container.enter-info-image-section
+				h3.create-account-section-header Enter business information
+				.create-info-middle-container
+					.input-container.enter-code-input-container
+						input.enter-code-input.business-info-input(type='text', name='companyName', placeholder='Business name', data-bind="textInput: businessName")
+					.input-container.enter-code-input-container
+						input.enter-code-input.business-info-input(type='text', name='companyCrossStreets', placeholder='Cross streets', data-bind="textInput: businessCrossStreets")
+					.input-container.enter-code-input-container
+						input.enter-code-input.business-info-input(type='text', name='companyAddress', placeholder='Address', data-bind="textInput: businessAddress")		
+					.input-container.enter-code-input-container
+						textarea.enter-code-input.business-info-input.business-info-text-area(type='text', name='companyCode', placeholder='Description of your business', data-bind="textInput: businessDescription")
+					.submit-enter-code-button(data-bind="click: businessInformationEntered") NEXT
+			.rewards-container.rewards-image-section
+				h3.create-account-section-header Create a reward
+				.create-rewards-middle-container 
+					.input-container.enter-code-input-container
+						input.enter-code-input.business-info-input(type='text', name='companyCode', placeholder='Reward item name', data-bind="textInput: businessCode")
+					.input-container.enter-code-input-container
+						input.enter-code-input.business-info-input(type='text', name='companyCode', placeholder='Cost of this item', data-bind="textInput: businessCode")
+					.input-container.enter-code-input-container
+						input.enter-code-input.business-info-input(type='text', name='companyCode', placeholder='What are you offering?', data-bind="textInput: businessCode")
+					.input-container.enter-code-input-container
+						input.enter-code-input.business-info-input(type='text', name='companyCode', placeholder='How much $ is the user going to save?', data-bind="textInput: businessCode")
+					.name-input-container.choose-image-button-container
+						.select-image-button-edit(data-bind="click: chooseImageButtonClickedCreate") Choose an image
+						input#edit-reward-image-file.reward-image-file(type="file", name="rewardImageFile")
+					.submit-enter-code-button(data-bind="click: createARewardNextButtonClicked") NEXT
+			.finish-container
+				h3.create-account-section-header Get started
+				p.finish-account-p Thank you for taking the process of creating a merchant account with us at Passenger. Please review the information that you have provided us to make sure that everything is correct. If it is, then click the create account button below to get your campaign with Passenger started!
+				.finish-middle-container
+					h3.finish-title-header.business-info-header Business information
+					.picture-container
+						.new-merchant-info-container
+							h3.business-name Joe's Steakhouse 
+							h3.business-cross-streets Shaw & Maple
+					p.business-description This is going to be the interesting description of what the business is going to be about, who they are, and why it is that people should come to their place of business to buy crap. 
+					h3.finish-title-header Reward created
+					.reward-picture-container
+						.top-reward-container-create-account
+							.create-account-reward-top
+								h3.new-reward-point-cost 125
+								p.points-text Point Cost
+						.bottom-reward-container-create-account
+							.create-account-reward-bottom
+								p.reward-offering 10% off
+								p.reward-item-name Banana Walnut Bread
+				.finish-bottom-container
+					.submit-enter-code-button(data-bind="click: finishCreatingAccount") LET'S GO

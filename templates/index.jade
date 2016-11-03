@@ -64,8 +64,21 @@ block content
             .row
               .col-lg-12.text-center
                 h2.section-heading Rewards
-                p.text-faded
-                  | Since Passenger is still in its infancy, we currently are not displaying any of the businesses that we have partnered with just yet. So, stay tuned and keep coming back to the website for an update on the release date of the app and for a list of the current discounts that we offer.
+                .city-location-container(data-bind="foreach: citiesArray")
+                  .col-sm-3
+                    .inner-city-location-container.fresno(data-bind="click: $parent.locationClicked")
+                      img(data-bind="attr: {src: image}")
+                      p(data-bind="text: city + ', ' + state")
+        section#locations-popup
+          .locations-popup-container
+            img.exit-locations-popup(src="/static/img/exit-grey.png",data-bind="click: exitLocationPopup")
+            h3.locations-header Locations
+            h3.locations-city-state(data-bind="text: currentCity")
+            .merchant-locations(data-bind="foreach: locationsInCity")
+              .col-sm-3.inner-city-column
+                .inner-city-location
+                  h3.cityMerchantName(data-bind="text: companyName")
+                  h3.cityMerchantCrossStreets(data-bind="text: crossStreets")
         section#contact
           .container
             .row

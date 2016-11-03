@@ -2,10 +2,61 @@
 
   function HelpViewModel() {
 
+    var database = firebase.database();
+
+    var cityRef = firebase.database().ref('citiesAvailable');
+    var merchantRef = firebase.database().ref('merchants');
+
     var self = this;
 
     self.currentQuestion = ko.observable("");
     self.currentQuestionsAndAnswers = ko.observableArray("");
+    self.citiesArray = ko.observableArray([]);
+    self.locationsInCity = ko.observableArray([]);
+    self.currentCity = ko.observable("");
+
+    var storage = firebase.storage();
+
+    cityRef.on('value', function(snapshot) {
+      for (var i = 0; i < snapshot.val().length; i++) {
+        var currentCity = self.citiesArray()[i];
+        self.addCity(snapshot.val()[i]);
+      }
+    });
+
+    self.addCity = function(snapshotAtIndex) {
+      var gsReference = storage.refFromURL(snapshotAtIndex.cityImageLocation);
+      gsReference.getDownloadURL().then(function(url) {
+        // Get the download URL for 'images/stars.jpg'
+        // This can be inserted into an <img> tag
+        // This can also be downloaded directly
+        var city = {city:snapshotAtIndex.city, state:snapshotAtIndex.state, image:url};
+        self.citiesArray().push(city);
+        self.citiesArray.valueHasMutated();
+      }).catch(function(error) {
+        // Handle any errors
+      });
+    }
+
+    self.locationClicked = function(index,data) {
+      self.locationsInCity([]);
+      $('body').css('overflow-y','hidden');
+        $('#locations-popup').fadeIn();
+        self.currentCity(index.city + ", " + index.state);
+        var merchants = merchantRef.orderByChild("city").equalTo(((index.city).toLowerCase()).replace(/\s/g, ''));
+        merchants.on('child_added', function(snapshot) {
+          var key = snapshot.key;
+          self.locationsInCity().push(snapshot.val());
+          self.locationsInCity.valueHasMutated();
+          console.log(self.locationsInCity());
+          // load the song by its key
+        });
+    };
+
+    self.exitLocationPopup = function() {
+      $('#locations-popup').fadeOut();
+      $('body').css('overflow-y','scroll');
+    };
 
     self.helpObjects = ko.observableArray([
       {
@@ -81,6 +132,8 @@
 
   var helpObjectVm = new HelpViewModel();
   ko.applyBindings(helpObjectVm,$("#help")[0]);
+  ko.applyBindings(helpObjectVm,$("#locations")[0]);
+  ko.applyBindings(helpObjectVm,$("#locations-popup")[0]);
 
   $('.exit-help').click(function() {
     $('.help-expanded-container').fadeOut();

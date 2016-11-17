@@ -137,4 +137,11 @@ margin-top: -152px;
     width: 10px;
   }
 
+
+}
+
+@media(max-width: 992px) {
+  .app-store-button-container img {
+    width: 155px !important;
+  }
 }

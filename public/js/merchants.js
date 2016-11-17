@@ -3,35 +3,6 @@
   function MerchantsViewModel() {
 
     var self = this;
-
-    self.startSections = [
-      {
-        "myClass": "start-for-free",
-        "title": "Start for free",
-        "text": "Passenger is free for businesses to get started up with. There are no upfront costs.",
-        "styleColumn": "left-column"
-      },
-      {
-        "myClass": "give-discounts",
-        "title": "Give discounts",
-        "text": "Lure customers to your store by offering great discounts that are designed by our team.",
-        "styleColumn": "right-column"
-      },
-      {
-        "myClass": "we-bring-customers",
-        "title": "Only pay for customers we bring you",
-        "text": "The beauty of Passenger is that you only pay for a paying customer that we bring you.",
-        "styleColumn": "left-column"
-      },
-      {
-        "myClass": "grow-your-business",
-        "title": "Grow your business",
-        "text": "Passenger is an excellent opportunity to reach out to and engage your customers while supporting a good cause at the same time.",
-        "styleColumn": "right-column"
-      }
-    ];
-
-
     var date = new Date();
     var year = date.getFullYear();
 
@@ -41,15 +12,74 @@
   };
 
   var merchantsObjectVm = new MerchantsViewModel();
-  ko.cleanNode($("#start-up-section")[0]);
-  ko.applyBindings(merchantsObjectVm,$("#start-up-section")[0]);
+  // ko.cleanNode($("#start-up-section")[0]);
+  // ko.applyBindings(merchantsObjectVm,$("#start-up-section")[0]);
 
-  $('.get-started-button').click(function() {
+  $('.get-started-button-nav').click(function() {
+    window.location.href = '/merchants/signup';
+  });
+
+  $('.get-started-button-merchant-1').click(function() {
+    window.location.href = '/merchants/signup';
+  });
+
+  $('.home-nav-link').click(function() {
+    location.href = '/';
+  });
+
+  $('.what-is-it-nav-link').click(function() {
+    var offset = -30; //Offset of 20px
+    $('html, body').animate({
+        scrollTop: $("#merchant-2").offset().top + offset
+    }, 500);
+
+  });
+
+  $('.what-is-it-nav-link-mobile').click(function() {
+    var offset = -130; //Offset of 20px
+    $('html, body').animate({
+        scrollTop: $("#merchant-2").offset().top + offset
+    }, 500);
+
+  });
+
+  $('.benefits-link-mobile').click(function() {
+    var offset = 0; //Offset of 20px
+    $('html, body').animate({
+        scrollTop: $("#merchant-3").offset().top + offset
+    }, 500);
+  });
+
+  $('.benefits-link').click(function() {
+    var offset = -30; //Offset of 20px
+    $('html, body').animate({
+        scrollTop: $("#merchant-3").offset().top + offset
+    }, 500);
+  });
+
+  $('.sign-up-today-button').click(function() {
     location.href = '/merchants/signup';
   });
 
   $('.contact-sales').click(function() {
     location.href = '/support/contact-support';
+  });
+
+  var mobileNavIndex = 0;
+
+  $('.mobile-menu-item').click(function() {
+    if (mobileNavIndex % 2 == 0) {
+      $('.merchant-slide-down-container').slideDown();
+      mobileNavIndex = mobileNavIndex + 1;
+    } else {
+      $('.merchant-slide-down-container').slideUp();
+      mobileNavIndex = mobileNavIndex + 1;
+    }
+
+  });
+
+  $('	.get-started-button-merchant').click(function() {
+    location.href = ''
   });
 
 })(jQuery); // End of use strict

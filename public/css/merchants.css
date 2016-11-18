@@ -387,11 +387,11 @@ body {
 
 .merchant-3-section {
   width: 65%;
-  height: 100vh;
+  height: 50vh;
 }
 
 .merchant-3-section-right {
-  height: 100vh;
+  height: 50vh;
   width: 65%;
 }
 
@@ -418,10 +418,6 @@ body {
   margin-bottom: 24px;
   height: 3px;
   background: #4895D9;
-}
-
-.merchant-section-info-1 {
-  margin-top: -100px;
 }
 
 #merchant-4 {

@@ -49,4 +49,49 @@
       location.href = 'https://twitter.com/bg_outfitters';
     });
 
+    $('.what-is-it-nav-link').click(function() {
+      $('.merchant-slide-down-container').slideUp();
+      $('html, body').animate({
+          scrollTop: $("#how-it-works").offset().top
+      }, 500);
+
+    });
+
+    $('.our-mission-nav-link').click(function() {
+      $('.merchant-slide-down-container').slideUp();
+      var offset = -130; //Offset of 20px
+      $('html, body').animate({
+          scrollTop: $("#our-mission").offset().top
+      }, 500);
+
+    });
+
+    $('.locations-nav-link').click(function() {
+      var offset = 0; //Offset of 20px
+      $('.merchant-slide-down-container').slideUp();
+      $('html, body').animate({
+          scrollTop: $("#locations").offset().top
+      }, 500);
+    });
+
+    $('.merchants-nav-link').click(function() {
+      location.href = '/merchants';
+    });
+
+    $('.contact-nav-link').click(function() {
+      $('.merchant-slide-down-container').slideUp();
+      var offset = -30; //Offset of 20px
+      $('html, body').animate({
+          scrollTop: $("#contact").offset().top
+      }, 500);
+    });
+
+    $('.help-nav-link').click(function() {
+      $('.merchant-slide-down-container').slideUp();
+      var offset = -30; //Offset of 20px
+      $('html, body').animate({
+          scrollTop: $("#help").offset().top
+      }, 500);
+    });
+
 })(jQuery); // End of use strict

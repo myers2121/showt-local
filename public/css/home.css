@@ -8,12 +8,42 @@
 
 .home-text {
   font-size: 12px !important;
+  text-align: left;
+  max-width: 850px;
+  width: 95%;
+  margin-top: 32px !important;
+  margin-bottom: 32px !important;
+}
+
+.android-text {
+  text-align: left;
+  margin-top: 32px !important;
+}
+
+#home .store-button-container {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+#home .app-store-button-container {
+  float: left !important;
 }
 
 header .header-content .header-content-inner {
-  position: relative;
+  /*position: relative;
   top: 50%;
-  transform: translateY(-55%);
+  transform: translateY(-55%);*/
+}
+
+.passenger-header {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 36px;
+  font-family: inherit;
+  letter-spacing: 1px;
+  text-align: left;
+  max-width: 500px;
+  width: 95%;
 }
 
 .section-p {
@@ -39,9 +69,8 @@ header .header-content .header-content-inner {
 }
 
 #business-owner {
-  width: 100vw;
   height: 30vh;
-  background: #1f2022;
+  background: #fff;
   color: #FFF;
   text-align: center;
   opacity: 0.9;
@@ -50,11 +79,12 @@ header .header-content .header-content-inner {
 #business-owner h3 {
   margin-top: 0px !important;
   font-family: inherit;
+  color: #555;
 }
 
 #business-owner p {
   font-family: inherit;
-  color: #e3e3e3;
+  color: #aaa;
   font-size: 12px;
   margin-top: 20px;
 }
@@ -75,13 +105,24 @@ header .header-content .header-content-inner {
 }
 
 #business-owner .btn:hover {
-  background: #FFF;
-  color: #5699e6;
+  background: #3772A6;
+  color: #FFF;
 }
 
 @media(min-width: 768px) {
   #mainNav {
     position: absolute;
+  }
+}
+
+@media(max-width: 968px) {
+  .passenger-header {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-family: inherit;
+    letter-spacing: 1px;
+    text-align: left;
   }
 }
 
@@ -111,23 +152,22 @@ header .header-content .header-content-inner {
     font-size: 10px !important;
   }
 
-  .passenger-header {
-    font-family: inherit;
-    font-size: 40px;
-  }
-
   .home-text {
     font-size: 14px !important;
-    max-width: 700px !important;
-    margin-left: auto;
-    margin-right: auto;
+
   }
 
-  .app-store-buttons {
+  #home .app-store-buttons {
     overflow: auto;
     max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+  }
+
+  #home .app-store-button-container {
+    width: 125px !important;
+  }
+
+  #home .store-button-container {
+    padding-left: 0px !important;
   }
 
   #what-is-it .section-heading {
@@ -146,4 +186,16 @@ header .header-content .header-content-inner {
     height: 20px;
   }
 
+}
+
+/* Home nav link styles */
+
+.merchant-nav-container,
+#merchant-nav-mobile-container {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: #FFF;
+  width: 100%;
 }

@@ -32,6 +32,8 @@
         });
       };
 
+      var test = "This is a test";
+
       var date = new Date();
       var year = date.getFullYear();
 

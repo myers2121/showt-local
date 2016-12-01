@@ -39,11 +39,16 @@ margin-top: -152px;
 
 .footer-heading {
   margin-bottom: 24px !important;
+
 }
 
 #footer .app-store-buttons {
   text-align: center;
   margin-top: 72px;
+  max-width: 450px;
+  overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .coming-soon-text {

@@ -97,6 +97,7 @@ p {
 
 #home {
   display: block;
+      margin-top: 78px;
 }
 
 #mainNav {
@@ -105,6 +106,10 @@ p {
 
 section {
     padding: 48px 0;
+}
+
+#help {
+  padding-bottom: 0px !important;
 }
 
 aside {
@@ -274,7 +279,7 @@ header {
     position: relative;
     width: 100%;
 
-    min-height: auto;
+    min-height: 450px;
     text-align: center;
     color: #fff;
     background:linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/homepage-background.png);
@@ -286,11 +291,15 @@ header {
 }
 
 header .header-content {
-    position: relative;
+    position: absolute;
     width: 100%;
-    padding: 100px 15px;
+    padding: 50px 15px;
     text-align: center;
-    height: 100vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
 }
 
 header .header-content .header-content-inner h1 {
@@ -314,16 +323,11 @@ header .header-content .header-content-inner p {
 
 @media(min-width:768px) {
     header {
-        min-height: 70vh;
+        min-height: 450px;
     }
 
     header .header-content {
-        position: absolute;
-        top: 50%;
         padding: 0 50px;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
     }
 
     header .header-content .header-content-inner {
@@ -333,10 +337,8 @@ header .header-content .header-content-inner p {
     }
 
     header .header-content .header-content-inner p {
-        margin-right: auto;
-        margin-left: auto;
-        max-width: 80%;
-        margin-top: 30px;
+
+
     }
 }
 

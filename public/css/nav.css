@@ -1,3 +1,15 @@
 .navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
   max-height: 400px !important;
 }
+
+.merchant-bottom-nav-container {
+  padding-top: 24px !important;
+}
+
+.merchant-nav-link {
+  font-size: 10px !important;
+}
+
+.link-one {
+  margin-right: 16px !important;
+}

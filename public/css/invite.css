@@ -1,0 +1,135 @@
+#invite-section {
+  padding-top: 0px !important;
+  background: #fff;
+}
+
+.invite-nav-container {
+  width: 100%;
+  background: linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/homepage-background.png);
+}
+
+.invite-nav-logo-wrapper {
+  text-align: center;
+}
+
+.invite-nav-logo-wrapper img {
+  width: 30px;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+.invite-nav-logo-wrapper p {
+  color: #fff;
+  padding-bottom: 24px !important;
+}
+
+.invite-form-container {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.invite-form-top-wrapper {
+  margin-top: 72px;
+}
+
+.invite-form-top-wrapper h3 {
+  font-size: 32px;
+  color: #5699e6;
+  font-weight: bold;
+}
+
+.invite-form-top-wrapper p {
+  margin-top: 32px;
+  margin-bottom: 8px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.bottom-form-top-text {
+  margin-top: 0px !important;
+  color: #4a4a4a !important;
+}
+
+.invite-form-container-bottom {
+  margin-top: 48px;
+}
+
+.invite-form-input-label {
+  color: #aaa;
+  font-size: 12px;
+  margin-bottom: 12px;
+  margin-top: 24px;
+  text-transform: uppercase;
+}
+
+input {
+  width: 100%;
+  background: none;
+  border: 1px solid #e3e3e3;
+  border-radius: 3px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+input:focus {
+  border: 1px solid #5699e6;
+  outline: 0;
+}
+
+.profile-input-container {
+  margin-top: 48px;
+}
+
+.promo-code-input-container {
+  margin-top: 48px;
+}
+
+#submit-invite-form {
+  width: 100%;
+  background: rgba(83,153,230,0.7);
+  margin-top: 48px;
+  border-radius: 4px;
+  color: #fff;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+#submit-invite-form:hover {
+  background: #3772A6;
+}
+
+.submission-error-message {
+  color: red;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 12px;
+  display: none;
+}
+
+.email-in-use-p {
+  font-size: 12px;
+  color: red;
+  margin-top: 12px;
+  display: none;
+}
+
+#profileTemp,
+#myCanvas {
+  display: none;
+}
+
+.app-store-buttons {
+  overflow: auto;
+  margin-top: 48px;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}

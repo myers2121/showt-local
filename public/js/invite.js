@@ -87,7 +87,7 @@
       var img = document.getElementById('profileTemp');
       var res = getBase64Image(img);
       finalProfileImage64 = res.replace('data:image/png;base64,', '');
-      console.log(finalProfileImage64);
+      
       $('.submitting-form-container').fadeIn();
       firebase.auth().createUserWithEmailAndPassword(self.email(), self.password()).catch(function(error) {
         // Handle Errors here.

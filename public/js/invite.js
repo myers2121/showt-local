@@ -19,13 +19,6 @@
       return canvas.toDataURL("image/png");
     }
 
-    var finalProfileImage64 = "";
-    var img = document.getElementById('profileTemp');
-    img.onload = function() {
-      var res = getBase64Image(img);
-      finalProfileImage64 = res.replace('data:image/png;base64,', '');
-    };
-
     var self = this;
 
     self.email = ko.observable("")
@@ -90,6 +83,11 @@
     };
 
     self.createUser = function() {
+      var finalProfileImage64 = "";
+      var img = document.getElementById('profileTemp');
+      var res = getBase64Image(img);
+      finalProfileImage64 = res.replace('data:image/png;base64,', '');
+      console.log(finalProfileImage64);
       $('.submitting-form-container').fadeIn();
       firebase.auth().createUserWithEmailAndPassword(self.email(), self.password()).catch(function(error) {
         // Handle Errors here.

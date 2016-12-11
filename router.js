@@ -28,6 +28,14 @@ router.get('/support/contact-support', function(req,res) {
 	res.render('contactSupport');
 });
 
+// Route controller for the invite page
+
+router.get('/invite/:inviteCode',function(req,res) {
+	console.log(req.params.inviteCode);
+	var someData = { inviteCode: req.params.inviteCode };
+	res.render('invite', { data: JSON.stringify(someData) });
+});
+
 router.post('/support/contact-support', function(req,res) {
 	var d = req.body;
 	var successMessage = "Your inquiry has been sent!";

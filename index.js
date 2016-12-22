@@ -17,18 +17,6 @@ var jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 
-firebase.initializeApp({
-  databaseURL: "https://passenger-app.firebaseio.com/",
-  serviceAccount: "./Passenger-App-ee341e1e32f3.json"
-});
-
-var db = firebase.database();
-var ref = db.ref("users");
-console.log(firebase.auth());
-ref.once("value", function(snapshot) {
-  //console.log(snapshot.val());
-});
-
 app.use('/static' , express.static(__dirname + '/public'));
 app.use(bodyParser());
 app.use(bodyParser.urlencoded({

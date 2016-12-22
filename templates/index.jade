@@ -1,222 +1,129 @@
 extends ./layout.jade
 
 block content
-	section.merchant-nav-container
-		.merchant-bottom-nav-inner-container
-			.merchant-bottom-nav-container
-				.bottom-left-merchant-nav-container
-					.passenger-logo-container
-						img(src="/static/img/passenger-logo.png")
-					p.passenger-name-text Passenger Mobile
-				.bottom-right-merchant-nav-container
-					.merchant-nav-link-container
-						.merchant-link-container
-							p.merchant-nav-link.link-one.what-is-it-nav-link WHAT IS IT?
-							p.merchant-nav-link.link-one.our-mission-nav-link OUR MISSION
-							p.merchant-nav-link.link-one.locations-nav-link LOCATIONS
-							p.merchant-nav-link.link-one.benefits-link.merchants-nav-link MERCHANTS
-							p.merchant-nav-link.link-one.contact-nav-link CONTACT
-							p.merchant-nav-link.help-nav-link HELP
-	section#merchant-nav-mobile-container
-		.merchant-bottom-nav-container-mobile
-			.bottom-left-merchant-nav-container
-				.passenger-logo-container
-					img(src="/static/img/passenger-logo.png")
-				p.passenger-name-text Passenger Mobile
-			.bottom-right-merchant-nav-container
-				.merchant-nav-link-container
-					.merchant-link-container
-						img.mobile-menu-item(src="/static/img/menu.png")
-		.merchant-slide-down-container
-			.merchant-mobile-nav-link-container
-				.merchant-mobile-link-container
-					p.merchant-mobile-nav-link.what-is-it-nav-link WHAT IS IT?
-					p.merchant-mobile-nav-link.our-mission-nav-link OUR MISSION
-					p.merchant-mobile-nav-link.locations-nav-link LOCATIONS
-					p.merchant-mobile-nav-link.merchants-nav-link MERCHANTS
-					p.merchant-mobile-nav-link.contact-nav-link CONTACT
-					p.merchant-mobile-nav-link.help-nav-link HELP
-	.pre-screen-section
-		.quote-container
-			p.quote(data-bind="text: currentQuote")
-			p.author(data-bind="text: currentAuthor")
-	header#home
-		.header-content
-			.header-content-inner
-				.left-home-information.col-sm-6
-					h3.passenger-header Save money at your favorite businesses for not texting and driving.
-					.app-store-buttons.col-sm-6
-						.col-sm-6.store-button-container
-							.app-store-button-container.apple-store-button-container
-								.btn.download-app-button GET THE APP - IT'S FREE
-	section#business-owner
-		.inner-business-container
-			h3 Are you a business owner?
-			p Become a Passenger merchant to grow your business and help save lives!
-			.btn.business-owner-button LEARN MORE
-	section#how-it-works
-		.merchant-2-inner-container
-			.passenger-logo-merchant-2-container
-				img(src="/static/img/app_icon_large.png")
-			h3.merchant-section-2-title What is Passenger Mobile?
-			p.merchant-section-2-text Passenger Mobile is a mobile phone application that rewards people for driving safe. As our users drive around town they earn points. With these points we are partnering with businesses to offer discounts that our users can redeem their points for.
-		.how-it-works-container-desktop
-			.phone-container.col-sm-3
-				img.how-image(src="/static/img/passenger-homescreen.png")
-				h3.how-title-text Open the app
-				p.how-text When you get into your car, open the Passenger app to begin monitoring your driving.
-			.phone-container.col-sm-3
-				img.how-image(src="/static/img/passenger-screen-locked.png")
-				h3.how-title-text Lock your phone
-				p.how-text Before your leave for your drive, lock your phone.
-			.phone-container.col-sm-3
-				img.how-image(src="/static/img/passenger-profile.png")
-				h3.how-title-text Earn points
-				p.how-text As you drive down the road you are going to earn points for every minute that you drive without using your phone.
-			.phone-container.col-sm-3
-				img.how-image(src="/static/img/passenger-rewards.png")
-				h3.how-title-text Get rewards
-				p.how-text Use these points to get discounts at your favorite spots in your area!
-	section#our-mission
-		.container
-			.row
-				.col-lg-12.text-center
-					h2.section-heading Our Mission
-					.mission-video-container
-						iframe.our-mission-video(width='560', height='315', src='https://www.youtube.com/embed/eYjWLvhE3yY', frameborder='0', allowfullscreen='')
-					p.section-p.what-is-it-text We all know that texting and driving is awful but we all continue to do it, resulting in hundreds of thousands of crashes and many deaths per year. Those of us on the Passenger team decided that there had to be a solution to the problem that it taking the lives of so many loved ones. This is why we came up with the solution of the Passenger app. We believe that Passenger will be your passenger as your travel the dangerous roads of life helping you be less distracted. So, please make sure to stay off your phone, earn yourself some points, and save the lives of those around you!
-	section#locations
-		.container
-			.row
-				.col-lg-12.text-center
-					h2.section-heading Rewards
-					.city-location-container(data-bind="foreach: citiesArray")
-						.col-sm-3
-							.inner-city-location-container.fresno(data-bind="click: $parent.locationClicked")
-								img(data-bind="attr: {src: image}")
-								p(data-bind="text: city + ', ' + state")
-	section#locations-popup
-		.locations-popup-container
-			img.exit-locations-popup(src="/static/img/exit-grey.png",data-bind="click: exitLocationPopup")
-			h3.locations-header Locations
-			h3.locations-city-state(data-bind="text: currentCity")
-			.merchant-locations(data-bind="foreach: locationsInCity")
-				.col-sm-3.inner-city-column
-					.inner-city-location
-						h3.cityMerchantName(data-bind="text: companyName")
-						h3.cityMerchantCrossStreets(data-bind="text: crossStreets")
-	section#contact
-		.container
-			.row
-				.col-lg-8.col-lg-offset-2.text-center
-					h2.section-heading CONTACT
-					.form-container
-						form#contact-form.simple_form.new_quote_request(action='/', method='post')
-							input(name='utf8', type='hidden', value='✓')
-							input(type='hidden', name='authenticity_token', value='A6vVgqnTtNvuksEFI0drl1m8a2HBDucqyzv47+Io/+G+xwBBjEAVKu6lQZBVnjh02Znr9p2KBNqxhBdTE10tqw==')
-							.__input-item.input-item.string.required.quote_request_full_name.input-item--first(aria-required='true')
-								.input-wrapper
-									label.form-label.string.required.control-label.__label(for='quote_request_full_name', aria-required='true')
-										abbr(title='required')
-										|  Name
-									input#hire-name-input.text-input.string.required.__input(required='required', aria-required='true', type='text', name='full_name', data-bind="textInput: name, event: { keyup: checkName }")
-									p.error-message.name-error(data-bind="visible: nameCheck") Please enter in a valid name.
-							.__input-item.input-item.email.required.quote_request_email.__input-item--half(aria-required='true')
-								.input-wrapper
-									label.form-label.email.required.control-label.__label(for='quote_request_email', aria-required='true')
-										abbr(title='required')
-										|  Email address
-									input#hire-email-input.text-input.string.email.required.__input(required='required', aria-required='true', type='email', name='email', data-bind='textInput: email, event: { keyup: checkEmail }')
-									p.error-message.email-error(data-bind="visible: emailCheck") Please enter in a valid email.
-							.__input-item.input-item.tel.required.quote_request_phone.__input-item--half(aria-required='true')
-								.input-wrapper
-									label.form-label.tel.required.control-label.__label(for='quote_request_phone', aria-required='true')
-										abbr(title='required')
-										|  Phone number
-									input#hire-phone-input.text-input.string.tel.required.__input(required='required', aria-required='true', type='tel', name='phone_number', data-bind='textInput: phoneNumber, event: { keyup: checkPhone }')
-									p.error-message.phone-number-error(data-bind="visible: phoneCheck") Please enter in a valid phone number starting with an area code and spaces between numbers
-							.__input-item.input-item.text.required.quote_request_company_about(aria-required='true')
-								.input-wrapper
-									label.form-label.text.required.control-label.__label(for='quote_request_company_about', aria-required='true')
-										abbr(title='required')
-										|  Subject
-									textarea#hire-company-info-input.text-input.text.required.__input(required='required', aria-required='true', name='subject', rows='1', style='overflow: hidden; word-wrap: break-word;', data-bind='textInput: subject, event: { keyup: checkSubject }')
-									p.error-message.company-info-error(data-bind="visible: subjectCheck") Make sure to enter in a descriptive subject
-							.__input-item.input-item.text.required.quote_request_project_about(aria-required='true')
-								.input-wrapper
-									label.form-label.text.required.control-label.__label(for='quote_request_project_about', aria-required='true')
-										abbr(title='required')
-										|  Message
-									textarea#hire-project-info-input.text-input.message-textarea.text.required.__input(required='required', aria-required='true', name='message', rows='1', style='overflow: hidden; word-wrap: break-word;', data-bind='textInput: message, event: { keyup: checkMessage }')
-									p.error-message.project-info-error(data-bind="visible: messageCheck") Please enter the message you would like to send
-							input.btn.__submit.contact-submit-button.js-submit(type='submit', value='Submit', data-bind='disable: isFormNotValidated')
-			.row.contact-extra-types-container
-				.extra-contact-types
-					p.contact-form-text Have any further questions or want to just come and hang out at the office with us? Come visit us at the address below!
-					.phone-contact-div
-						img.img-responsive.person-picture-div(src='/static/img/map-icon.png', alt='')
-						h3.extra-contact-title Visit us
-						p.phone-number.second-p 700 Van Ness Ave.
-						p.phone-number.second-p Fresno, Ca
-						p.phone_number.second-p 93721
-						p.phone_number.second-p Suite #116A
-	section#help
-		.help-desktop
-			.container
-				.row
-					h2.section-heading.help-title Help
-					.col-lg-4.text-center
-						.question-type-container(data-bind="foreach: helpObjects")
-							h3.question-type-header(data-bind="text: questionType, click: $parent.questionClickedDesktop")
-					.col-lg-8
-						.desktop-question-container(data-bind="foreach: currentQuestionsAndAnswers")
-							p.question(data-bind="text: question")
-							p.answer(data-bind="text: answer")
-				.get-more-support-container
-					p Weren't able to find what you were looking for in our help section? Head to our support system for further questions and answers or get in direct contact with our support team. We will get back to you within 24 hours.
-					.get-support-button Get Support
-					.contact-support-button Contact support
-		.help-mobile-phone
-			.container
-				.row
-					.col-lg-12.text-center
-						h2.section-heading.help-title Help
-						.question-type-container(data-bind="foreach: helpObjects")
-							h3.question-type-header(data-bind="text: questionType, click: $parent.questionClicked")
-			.help-expanded-container
-				h3.question-type-expanded(data-bind="text: currentQuestion")
-				img.exit-help(src='/static/img/exit-grey.png')
-				.expanded-question-container(data-bind="foreach: currentQuestionsAndAnswers")
-					p.question(data-bind="text: question")
-					p.answer(data-bind="text: answer")
-	section#footer
-		.container
-			.row
-				.col-lg-12.text-center
-					h2.section-heading.footer-heading Passenger
-					h3.passenger-hash #passengerapp
-				.social-icons-container
-					.icon-container
-						img(src='/static/img/facebook.png', data-bind='click: facebookClick')
-					.icon-container
-						img(src='/static/img/twitter.png', data-bind='click: twitterClick')
-					.icon-container
-						img(src='/static/img/youtube.png', data-bind='click: youtubeClick')
-					.icon-container
-						img(src='/static/img/instagram.png', data-bind='click: instagramClick')
-					.icon-container
-						img(src='/static/img/snapchat.png', data-bind='click: snapchatClick')
-				.app-store-buttons
-					.col-sm-6.store-button-container
-						.app-store-button-container
-							img.ios-app-store-button(src='/static/img/app-store-button.png')
-					.col-sm-6.store-button-container
-						.app-store-button-container
-							img(src='/static/img/google-play-badge.png')
-				p.coming-soon-text Android coming later this year
-				.back-to-top-container.btn.btn-sm.page-scroll(data-bind="click: backToTopFooter")
-					p Back to top
-					img(src='/static/img/nav-right.png')
-				h3.passenger-hash.copy-right-footer &copy
-					span(data-bind="text: currentDate")
-					| Spacebar Technologies, Inc.
+	section#forgot-password-business-section
+		.forgot-password-business-container
+			.sign-up-business-wrapper
+				img.exit-forgot-password-business-container(src='/static/img/exit.png')
+				h3.sign-up-business-text Enter your email to reset your password
+				.below-title-text-container
+					p.below-title-text Don't have a business account?
+					p.below-title-text.download-the-app-button.sign-up-today-button Sign up today!
+				.business-sign-up-container
+					.input
+						.input-container
+							p.input-label Enter your email
+							input#home-email-input(type='text')
+					.log-in-button Send Email
+	section#log-in-business-section
+		.log-in-business-container
+			.sign-up-business-wrapper
+				img.exit-log-in-business-container(src='/static/img/exit.png')
+				h3.sign-up-business-text Sign in to grow your business
+				.below-title-text-container
+					p.below-title-text Don't have a business account?
+					p.below-title-text.download-the-app-button.sign-up-today-button Sign up today!
+				.business-sign-up-container
+					.input
+						.input-container
+							p.input-label Enter your email
+							input#home-email-input(type='text')
+					.input
+						.input-container
+							p.input-label Enter your password
+							input#home-email-input(type='password')
+					.log-in-button Log In
+					.below-title-text-container
+						p.below-title-text Forgot your password?
+						p.below-title-text.download-the-app-button Reset it!
+	section#sign-up-business-section
+		.sign-up-business-container
+			.sign-up-business-wrapper
+				img.exit-sign-up-business-container(src='/static/img/exit.png')
+				h3.sign-up-business-text Sign your business up in under 5 minutes
+				.below-title-text-container
+					p.below-title-text Not trying to sign up a business?
+					p.below-title-text.download-the-app-button Download the app!
+				.business-sign-up-container
+					.input
+						.input-container
+							p.input-label Name of the business
+							input#home-email-input(type='text')
+					.double-input-container
+						.input.first-name-input
+							.input-container
+								p.input-label First name
+								input#home-email-input(type='text')
+						.input.last-name-input
+							.input-container
+								p.input-label Last name
+								input#home-email-input(type='text')
+					.input
+						.input-container
+							p.input-label Enter your email
+							input#home-email-input(type='text')
+					.input
+						.input-container
+							p.input-label Phone number to contact you at
+							input#home-email-input(type='text')
+					.continue-button Continue
+	section#how-it-works-section
+		.how-it-works-container
+			.how-it-works-wrapper
+				img.exit-how-it-works-container(src='/static/img/exit.png')
+				h3.how-it-works-text Make money in 5 simple steps
+				.5-steps-container
+					.5-steps-wrapper
+						.how-it-works-step.col-sm-2
+							img(src="/static/img/app-store.png") 
+							h3 Download the app
+							p Download the Showt Local mobile app on the play store.
+						.how-it-works-step.col-sm-2
+							img(src="/static/img/job.png") 
+							h3 Find a gig
+							p Find a gig that you would like to promote and apply for it.
+						.how-it-works-step.col-sm-2
+							img(src="/static/img/thumbs-up.png") 
+							h3 Get approved
+							p If the business likes you and your account then they will approve you.
+						.how-it-works-step.col-sm-2
+							img(src="/static/img/create-post.png") 
+							h3 Submit the post
+							p Once you have been approved, submit your post to your social media account.
+						.how-it-works-step.col-sm-2
+							img(src="/static/img/get-paid.png") 
+							h3 Get paid
+							p As soon as you submit the post you will get paid the agreed upon amount.
+	section#home
+		.home-nav
+			.home-nav-container
+				.home-nav-wrapper
+					.left-nav-container.col-sm-6
+						.grow-your-business-button
+							.grow-business-button-info-container
+								p.business-button-icon.fa.fa-building-o
+								p.grow-business-button-text Are you a business?
+					.last-nav-container.col-sm-6
+						ul.right-home-nav-link-container
+							li
+								a.how-it-works-link.first-nav-link How Showt Local Works
+							li
+								a.sign-up-link.first-nav-link Sign Up
+							li
+								a.log-in-link Log In
+		.home-container
+			.home-middle-info-container
+				.home-middle-container-wrapper
+					img(src='/static/img/showt-local-logo.png')
+					h3.showt-local-title Showt Local
+					p.middle-container-middle-text Make money on social media
+					p.center-container-text-overall Promote the businesses you already love to earn some extra money. Enter your email below to get started.
+					form
+						.input
+							.input-container
+								p.input-label Enter your email
+								input#home-email-input(type='text')
+					.submit-email-button Get started
+					p.have-an-account-text Already have an account?
+					p.download-the-app-button Download the app!
+	include ./partials/_footer.jade

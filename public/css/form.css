@@ -1,0 +1,59 @@
+textarea {
+  resize: none;
+  height: 1.5em;
+  overflow: hidden;
+}
+
+.input {
+  flex: 1 0 auto;
+}
+
+.input:not(:nth-of-type(1)) {
+
+}
+
+.input input, textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #aaa;
+  outline: 0;
+}
+
+.input input:hover {
+  cursor: pointer;
+}
+
+.input input:focus, textarea:focus {
+  border-bottom: 1px solid #FF9F00;
+}
+
+.input-label {
+  position: relative;
+  margin: 0 0 -1em;
+  text-transform: uppercase;;
+  font-weight: 600;
+  font-size: 12px;
+  padding: 0;
+  color: #4a4a4a;
+  transition: all .2s ease;
+}
+
+.input-label:hover {
+  cursor: pointer;
+}
+
+.input-label {
+  font-size: 10px;
+  color: #aaa;
+}
+
+.input-label.active {
+  margin: 0;
+  font-size: 10px;
+  color: #FF9F00;
+}
+
+.warning {
+ color: #ff5858 ;
+ font-size: 12px;
+}

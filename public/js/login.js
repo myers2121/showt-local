@@ -1,49 +1,27 @@
-$(document).ready(function(){
+(function($) {
 
-  function LoginViewModel() {
+  function LogInViewModel() {
 
-    var ref = new Firebase("https://passenger-app.firebaseio.com/");
+      var self = this;
 
-    var self = this;
+      const $signUpTodayButton = $('.sign-up-today-button');
+      const $signUpBusinessSection = $('#sign-up-business-section');
+      const $signUpBusinessContainer = $('.sign-up-business-container');
+      const $logInBusinessSection = $('#log-in-business-section');
+      const $logInBusinessContainer = $('.log-in-business-container');
 
-    self.email = ko.observable("");
-    self.password = ko.observable("");
-
-    self.loginButtonClicked = function() {
-      ref.authWithPassword({
-        email    : self.email(),
-        password : self.password()
-      }, authHandler);
-    };
-
-    self.forgotPasswordButtonClicked = function() {
-      $('#forgot-password-section').fadeIn();
-    };
-
-    self.resetPasswordButtonClicked = function() {
-      $('#reset-password-section').fadeIn();
-    };
-
-    function authHandler(error, authData) {
-      if (error) {
-        console.log("Login Failed!", error);
-      } else {
-        console.log("Authenticated successfully with payload:", authData);
-        location.href = '/merchants/dashboard';
-      }
-    };
-
-    $('.cancel-button').click(function() {
-      $('#forgot-password-section').fadeOut();
-    });
-
-    $('.cancel-change-password-button').click(function() {
-      $('#reset-password-section').fadeOut();
-    });
+      $signUpTodayButton.click(function() {
+        $logInBusinessContainer.slideUp(function() {
+          $logInBusinessSection.css('display','none');
+          $signUpBusinessSection.css('display','block');
+          $signUpBusinessContainer.slideDown();
+        });
+      });
 
   };
 
-  var loginObjectVM = new LoginViewModel();
-  ko.applyBindings(loginObjectVM,$("#login-section")[0]);
 
-});
+  var logInObjectVm = new LogInViewModel();
+  ko.applyBindings(logInObjectVm,$("#log-in-business-section")[0]);
+
+})(jQuery); // End of use strict

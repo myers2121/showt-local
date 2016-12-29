@@ -1,0 +1,40 @@
+section#sign-up-business-section
+  .sign-up-business-container
+    .sign-up-business-wrapper
+      img.exit-sign-up-business-container(src='/static/img/exit.png')
+      h3.sign-up-business-text Sign your business up in under 5 minutes
+      .below-title-text-container
+        p.below-title-text Not trying to sign up a business?
+        p.below-title-text.download-the-app-button Download the app!
+      .business-sign-up-container
+        .input
+          .input-container
+            p.input-label Name of the business
+            input#home-email-input(type='text', data-bind="textInput: businessName, event: { keyup: businessNameInputTyping }")
+            p.form-error-message(data-bind="visible: businessNameNotValidated") Please enter a name for your business
+        .double-input-container
+          .input.first-name-input
+            .input-container
+              p.input-label First name
+              input#home-email-input(type='text', data-bind="textInput: firstName, event: { keyup: firstLastNameInputTyping }")
+          .input.last-name-input
+            .input-container
+              p.input-label Last name
+              input#home-email-input(type='text', data-bind="textInput: lastName, event: { keyup: firstLastNameInputTyping }")
+          p.form-error-message(data-bind="visible: firstLastNameNotValidated") Please enter your first and last names
+        .input
+          .input-container
+            p.input-label Enter your email
+            input#home-email-input(type='text', data-bind="textInput: signUpBusinessEmail, event: { keyup: signUpEmailInputTyping }")
+            p.form-error-message(data-bind="visible: signUpBusinessEmailNotValidated") Please enter a valid email
+        .input
+          .input-container
+            p.input-label Enter a password
+            input#home-email-input(type='password', data-bind="textInput: password, event: { keyup: passwordInputTyping }")
+            p.form-error-message(data-bind="visible: passwordNotValidated") Please enter a valid password. (At least 6 characters)
+        .input
+          .input-container
+            p.input-label Phone number to contact you at
+            input#home-email-input(type='text', data-bind="textInput: phoneNumber, event: { keyup: phoneNumberTyping }")
+            p.form-error-message(data-bind="visible: phoneNumberNotValidated") Please enter a valid phone number
+        .continue-button Continue

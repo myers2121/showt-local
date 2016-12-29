@@ -1,0 +1,63 @@
+extends ./layouts/_businessDashboardLayout.jade
+
+block content
+  section#business-dashboard-home-section
+    .business-dashboard-nav-container
+      .business-dashboard-nav-wrapper
+        .navigation-left-side-container.col-sm-6
+          .navigation-left-side-wrapper
+            .showt-out-icon-container
+              img(src='/static/img/showt-local-logo.png')
+        .navigation-right-side-container.col-sm-6
+          .navigation-right-side-wrapper
+            ul.right-link-container
+              li
+                p.business-dash-link Home
+              li
+                p.business-dash-link Help
+              li
+                p.business-dash-link Create
+              li.business-right-container
+                p Nutrishop
+                .business-picture-container
+                  img(src='/static/img/showt-local-logo.png')
+    .business-dashbaord-home-container
+      .current-campaigns-container.campaigns-container
+        .overall-campaigns-wrapper
+          h3 Active campaigns
+          .campaigns-wrapper(data-bind="foreach: currentCampaigns")
+            .campaign-container.col-sm-4
+              .campaign-wrapper
+                .campaign-image-container
+                  img(src='/static/img/business-background.jpg')
+                .row.business-campaign-info-row
+                  .influencer-count-container.col-sm-6
+                    .influencer-count-icon-container
+                      img(src='/static/img/person.png')
+                    p 5
+                    span influencers
+                  .amount-spent-container.col-sm-6
+                    .amount-spent-wrapper
+                      p $213
+                      span spent
+                p.campaign-text This is going to be the description text that is going to explain the brief text of what this campaigns is and what it does. 
+      .previous-campaigns-container.campaigns-container
+        .overall-campaigns-wrapper
+          h3 Finished campaigns
+          .campaigns-wrapper(data-bind="foreach: previousCampaigns")
+            .campaign-container.col-sm-4
+              .campaign-wrapper
+                .campaign-image-container
+                  img(src='/static/img/business-background.jpg')
+                .row.business-campaign-info-row
+                  .influencer-count-container.col-sm-6
+                    .influencer-count-icon-container
+                      img(src='/static/img/person.png')
+                    p 5
+                    span influencers
+                  .amount-spent-container.col-sm-6
+                    .amount-spent-wrapper
+                      p $213
+                      span spent
+                p.campaign-text This is going to be the description text that is going to explain the brief text of what th
+  include ./partials/_footer.jade

@@ -1,0 +1,113 @@
+/* Business nav styles */
+
+.showt-local-icon-container img {
+  width: 20px;
+  margin-left: 12px;
+}
+
+.showt-local-icon-container img:hover {
+  cursor: pointer;
+}
+
+/* Business section styles */
+
+.benefits-top-section {
+  height: 70%;
+  height: 80vh;
+  background: linear-gradient(rgba(0, 0 ,0 , .5), rgba(0, 0 ,0 , .3)), url(../img/business-background.jpg);
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.benefits-top-section-center-container {
+  max-width: 1100px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.benefits-top-section-center-container h3 {
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  max-width: 600px;
+  margin-top: 0px !important;
+}
+
+.benefits-top-section-center-container p {
+  color: rgba(255,255,255,0.7);
+  margin-top: 24px;
+  max-width: 600px;
+}
+
+.benefits-section-wrapper {
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 64px;
+  padding-bottom: 32px;
+  overflow: auto;
+}
+
+.second-to-last-section {
+  padding-bottom: 64px !important;
+}
+
+.last-wrapper {
+  max-width: 950px !important;
+  border-top: 1px solid #e3e3e3;
+}
+
+.benefits-info-container h3 {
+  color: #484848;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 44px !important;
+  letter-spacing: -0.6px !important;
+}
+
+.benefits-info-container p {
+  color: #939291;
+  margin-top: 24px;
+}
+
+.seperator-div {
+  width: 70px;
+  height: 2px;
+  background: #FF9F00;
+  margin-top: 32px;
+}
+
+.bullet-list {
+  padding-left: 16px !important;
+}
+
+.love-item-container {
+  padding: 0px !important;
+  margin-top: 24px;
+}
+
+.love-item-wrapper {
+  width: 95%;
+}
+
+.love-item-wrapper h3 {
+  font-weight: 700;
+  color: #484848;
+  font-size: 22px;
+  line-height: 28px !important;
+  letter-spacing: -0.2px !important;
+}
+
+.love-item-wrapper p {
+  font-weight: 300;
+}
+
+.last-benefits-section {
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 48px;
+}

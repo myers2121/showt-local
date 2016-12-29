@@ -5,3 +5,9 @@ body {
 .col-sm-2 {
   width: 20%;
 }
+
+.form-error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 12px;
+}

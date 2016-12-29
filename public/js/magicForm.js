@@ -56,7 +56,6 @@ const magicForm = (function(){
     $formInput.on("focus blur", ( e ) => {
       const $input = $( e.target );
       const $label = $input.prev(".input-label");
-      console.log("Working");
       if( $input.val() != "" )
         return;
 
@@ -71,7 +70,6 @@ const magicForm = (function(){
 
       $inputSibling.focus();
       $label.addClass("active");
-      console.log("Working");
     })
   }
 

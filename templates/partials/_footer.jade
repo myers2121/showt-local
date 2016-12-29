@@ -9,14 +9,12 @@ section#footer-section
             p.bottom-link.fresno-link Fresno, Ca
           .footer-link-section-container.col-sm-3
             p.top-link Showt Local
-            p.bottom-link About
-            p.bottom-link Careers
-            p.bottom-link Help
+            p.bottom-link(data-bind="click: footerEmailClicked") About
+            p.bottom-link(data-bind="click: footerEmailClicked") Help
           .footer-link-section-container.col-sm-3
             p.top-link Grow your business
-            p.bottom-link Benefits
-            p.bottom-link Why use Showt Local
-            p.bottom-link Get started
+            p.bottom-link(data-bind="click: footerEmailClicked") Benefits
+            p.bottom-link(data-bind="click: footerEmailClicked") Get started
       .footer-copyright-container
         .footer-copyright-wrapper
           .footer-left-container.col-sm-6

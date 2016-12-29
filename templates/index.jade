@@ -1,72 +1,141 @@
 extends ./layout.jade
 
 block content
-	section#forgot-password-business-section
-		.forgot-password-business-container
+	section#influencer-sign-up-section
+		.influencer-sign-up-container
+			.influencer-sign-up-wrapper
+				.influencer-account-form-container
+					.influencer-account-form-wrapper
+						h3 Create your account
+						p.account-text Start earning money from your social media accounts. Fill out the information below to get started. It's free!
+						.influencer-information-form-container
+							.influencer-input-container
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/email.png')
+									input(type='email',placeholder='Email address')
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/user.png')
+									input(type='text',placeholder='First name')
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/user.png')
+									input(type='text',placeholder='Last name')
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/lock-grey.png')
+									input(type='password',placeholder='Password')
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/phone.png')
+									input(type='text',placeholder='Phone number')
+							.birthday-select-container
+								strong Birthday
+								.select-container
+									.col-sm-5.select-col
+										.select
+											select
+												option(value="") Month
+												option(value="1") January
+												option(value="2") February
+												option(value="3") March
+												option(value="4") April
+												option(value="5") May
+												option(value="6") June
+												option(value="7") July
+												option(value="8") August
+												option(value="9") September
+												option(value="10") October
+												option(value="11") November
+												option(value="12") December
+									.col-sm-3.select-col
+										.select
+											select
+												option(value="") Day
+												option(value="1") January
+												option(value="2") February
+												option(value="3") March
+												option(value="4") April
+												option(value="5") May
+												option(value="6") June
+												option(value="7") July
+												option(value="8") August
+												option(value="9") September
+												option(value="10") October
+												option(value="11") November
+												option(value="12") December
+									.col-sm-4.select-col
+										.select
+											select
+												option(value="") Year
+												option(value="1") January
+												option(value="2") February
+												option(value="3") March
+												option(value="4") April
+												option(value="5") May
+												option(value="6") June
+												option(value="7") July
+												option(value="8") August
+												option(value="9") September
+												option(value="10") October
+												option(value="11") November
+												option(value="12") December
+							.sign-up-button-container-influencer
+								.sign-up-button-influencer(data-bind="click: signUpUserButtonClicked") Sign Up
+				.influencer-information-sign-up-form-container
+					.influencer-account-form-wrapper
+						h3 Account information
+						p.account-text Fill out the information below so we can find the best campaigns possible for you!
+							.sign-up-button-container-influencer
+								.birthday-select-container
+									strong Gender
+									.gender-buttons-container
+										.gender-button-container.col-sm-6
+											.gender-button.male-button MALE
+										.gender-button-container.col-sm-6
+											.gender-button.female-button FEMALE
+							.sign-up-button-container-influencer
+								.birthday-select-container
+									strong Interests
+									p.interest-explanation-text Select the types of companies below that you would like to represent the most. Select all that apply.
+									.interests-container(data-bind="foreach: interests")
+										.col-sm-6.interest-container
+											.interest-wrapper(data-bind="style: {backgroundImage: interestImage}", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover; ")
+												.interest-layer
+												h3(data-bind="text: interestTitle")
+												.interest-checked-layer
+													img(src='/static/img/checked-box-white.png')
+							.sign-up-button-container-influencer
+								.birthday-select-container
+									strong Tags
+									p.interest-explanation-text Type in any other interests that you may have. This will allow us to better find the right businesses for you.
+									.tags-container
+										.tags-input-container
+											.tags-input-wrapper
+												.input-container.col-sm-10
+													input(type="text",placeholder="Enter another interest of yours", data-bind='textInput: currentTag')
+												.add-tag-button-container.col-sm-2(data-bind="click: addInfluencerTag")
+													p +
+									.added-tags-container(data-bind="foreach: influencerTagList")
+										.added-tag-container
+											.tag-title-container.col-sm-10
+												p(data-bind="text: interestTitle")
+											.tag-subtract-container.col-sm-2(data-bind="click: $root.deleteTagFromList.bind($data, $index())")
+												p -
+								.sign-up-button-influencer(data-bind="click: saveInformationUserButtonClicked") Finish
+	section#download-app-business-section
+		.download-app-business-container
 			.sign-up-business-wrapper
-				img.exit-forgot-password-business-container(src='/static/img/exit.png')
-				h3.sign-up-business-text Enter your email to reset your password
+				img.exit-download-app-business-container(src='/static/img/exit.png')
+				h3.sign-up-business-text Download the app to get started
 				.below-title-text-container
-					p.below-title-text Don't have a business account?
-					p.below-title-text.download-the-app-button.sign-up-today-button Sign up today!
-				.business-sign-up-container
-					.input
-						.input-container
-							p.input-label Enter your email
-							input#home-email-input(type='text')
-					.log-in-button Send Email
-	section#log-in-business-section
-		.log-in-business-container
-			.sign-up-business-wrapper
-				img.exit-log-in-business-container(src='/static/img/exit.png')
-				h3.sign-up-business-text Sign in to grow your business
-				.below-title-text-container
-					p.below-title-text Don't have a business account?
-					p.below-title-text.download-the-app-button.sign-up-today-button Sign up today!
-				.business-sign-up-container
-					.input
-						.input-container
-							p.input-label Enter your email
-							input#home-email-input(type='text')
-					.input
-						.input-container
-							p.input-label Enter your password
-							input#home-email-input(type='password')
-					.log-in-button Log In
-					.below-title-text-container
-						p.below-title-text Forgot your password?
-						p.below-title-text.download-the-app-button Reset it!
-	section#sign-up-business-section
-		.sign-up-business-container
-			.sign-up-business-wrapper
-				img.exit-sign-up-business-container(src='/static/img/exit.png')
-				h3.sign-up-business-text Sign your business up in under 5 minutes
-				.below-title-text-container
-					p.below-title-text Not trying to sign up a business?
-					p.below-title-text.download-the-app-button Download the app!
-				.business-sign-up-container
-					.input
-						.input-container
-							p.input-label Name of the business
-							input#home-email-input(type='text')
-					.double-input-container
-						.input.first-name-input
-							.input-container
-								p.input-label First name
-								input#home-email-input(type='text')
-						.input.last-name-input
-							.input-container
-								p.input-label Last name
-								input#home-email-input(type='text')
-					.input
-						.input-container
-							p.input-label Enter your email
-							input#home-email-input(type='text')
-					.input
-						.input-container
-							p.input-label Phone number to contact you at
-							input#home-email-input(type='text')
-					.continue-button Continue
+					p.below-title-text Thank you for entering your email.
+				.download-app-store-button-container
+					img.download-app-button-icon(src='/static/img/app-store-button.png')
+	include ./partials/_forgotPasswordSection.jade
+	include ./partials/_logInSection.jade
+	include ./partials/_signUpSection.jade
 	section#how-it-works-section
 		.how-it-works-container
 			.how-it-works-wrapper
@@ -98,32 +167,20 @@ block content
 		.home-nav
 			.home-nav-container
 				.home-nav-wrapper
-					.left-nav-container.col-sm-6
+					.left-nav-container.col-sm-4
 						.grow-your-business-button
 							.grow-business-button-info-container
 								p.business-button-icon.fa.fa-building-o
-								p.grow-business-button-text Are you a business?
-					.last-nav-container.col-sm-6
-						ul.right-home-nav-link-container
-							li
-								a.how-it-works-link.first-nav-link How Showt Local Works
-							li
-								a.sign-up-link.first-nav-link Sign Up
-							li
-								a.log-in-link Log In
+								p.grow-business-button-text Business login
+					.middle-nav-container.col-sm-4
+						.home-middle-nav-container
+							img(src='/static/img/showt-local-logo.png')
+					.last-nav-container.col-sm-4
 		.home-container
 			.home-middle-info-container
 				.home-middle-container-wrapper
-					img(src='/static/img/showt-local-logo.png')
-					h3.showt-local-title Showt Local
-					p.middle-container-middle-text Make money on social media
-					p.center-container-text-overall Promote the businesses you already love to earn some extra money. Enter your email below to get started.
-					form
-						.input
-							.input-container
-								p.input-label Enter your email
-								input#home-email-input(type='text')
-					.submit-email-button Get started
-					p.have-an-account-text Already have an account?
-					p.download-the-app-button Download the app!
+					h3.showt-local-title Become influential.
+					.homepage-button-container
+						.homepage-button.influencer-button EARN EXTRA MONEY
+						.homepage-button.business-button GROW YOUR BUSINESS
 	include ./partials/_footer.jade

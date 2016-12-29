@@ -4,61 +4,25 @@
 
       var self = this;
 
-      const $howItWorksButton = $('.how-it-works-link');
-      const $signUpButton = $('.sign-up-link');
-      const $logInButton = $('.log-in-link');
-      const $growBusinessButton = $('.grow-your-business-button');
-      const $howItWorksSection = $('#how-it-works-section');
-      const $howItWorksContainer = $('.how-it-works-container');
-      const $exitHowItWorksContainer = $('.exit-how-it-works-container');
-      const $signUpBusinessSection = $('#sign-up-business-section');
-      const $signUpBusinessContainer = $('.sign-up-business-container');
-      const $exitSignUpBusinessContainer = $('.exit-sign-up-business-container');
-      const $logInBusinessSection = $('#log-in-business-section');
-      const $logInBusinessContainer = $('.log-in-business-container');
-      const $exitLogInBusinessContainer = $('.exit-log-in-business-container');
-      const $forgotPasswordBusinessSection = $('#forgot-password-business-section');
-      const $forgotPasswordBusinessContainer = $('.forgot-password-business-container');
-      const $exitforgotPasswordBusinessContainer = $('.exit-forgot-password-business-container');
+      const $businessLoginButton = $('.grow-your-business-button');
+      const $influencerButton = $('.influencer-button');
+      const $businessButton = $('.business-button');
 
-      $howItWorksButton.click(function() {
-        // Slide down the how it works section
-        $howItWorksSection.css('display','block');
-        $howItWorksContainer.slideDown();
+      $influencerButton.click(function() {
+        $('#influencer-sign-up-section').fadeIn();
+        $('body').css('overflow-y','hidden');
       });
 
-      $exitHowItWorksContainer.click(function() {
-        $howItWorksContainer.slideUp(function() {
-          $howItWorksSection.css('display','none');
-        });
-      });
-
-      $signUpButton.click(function() {
-        // Show the sign up section
-        $signUpBusinessSection.css('display','block');
-        $signUpBusinessContainer.slideDown();
-      });
-
-      $exitSignUpBusinessContainer.click(function() {
-        $signUpBusinessContainer.slideUp(function() {
-          $signUpBusinessSection.css('display','none');
-        });
-      });
-
-      $logInButton.click(function() {
-        $logInBusinessSection.css('display','block');
-        $logInBusinessContainer.slideDown();
-      });
-
-      $exitLogInBusinessContainer.click(function() {
-        $logInBusinessContainer.slideUp(function() {
-          $logInBusinessSection.css('display','none');
-        });
-      });
-
-      $growBusinessButton.click(function() {
-        // Send them to the business link
+      $businessButton.click(function() {
         location.href = '/business';
+      });
+
+      self.influencerEmail = ko.observable("");
+      self.emailNotValidated = ko.observable(false);
+
+      $businessLoginButton.click(function() {
+        // Send them to the business link
+        location.href = '/business/login';
       });
 
   };

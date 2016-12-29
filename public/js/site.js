@@ -9,6 +9,7 @@
 
   self.validatePhoneNumber = function(phoneNumber) {
     var re = /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/;
+
     return re.test(phoneNumber)
   }
 
@@ -210,10 +211,8 @@
 
 
   var siteObjectVm = new SiteViewModel();
-  ko.applyBindings(siteObjectVm,$("#log-in-business-section")[0]);
-  ko.cleanNode($element[0]);
   ko.applyBindings(siteObjectVm,$("#sign-up-business-section")[0]);
-  ko.cleanNode($element[0]);
+  ko.applyBindings(siteObjectVm,$("#log-in-business-section")[0]);
   ko.applyBindings(siteObjectVm,$("#forgot-password-business-section")[0]);
 
 })(jQuery); // End of use strict

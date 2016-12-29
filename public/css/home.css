@@ -786,3 +786,13 @@ filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.84, M12=0, M21=0, M22=0.4
   color: #ff9f00;
   margin-bottom: 0px;
 }
+
+.error-message {
+  font-size: 12px;
+  margin-top: 6px;
+  color: red;
+}
+
+.influencer-finish-sign-up-form-container {
+  display: none;
+}

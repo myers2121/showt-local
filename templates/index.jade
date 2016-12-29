@@ -13,30 +13,34 @@ block content
 								.influencer-input
 									.influencer-input-icon
 										img(src='/static/img/email.png')
-									input(type='email',placeholder='Email address')
+									input(type='email',placeholder='Email address', data-bind="textInput: influencerEmail, event: { keyup: influencerEmailTyping }")
+								p.error-message(data-bind="visible: registerInfluencerEmailNotValidated") Please enter a valid email
 								.influencer-input
 									.influencer-input-icon
 										img(src='/static/img/user.png')
-									input(type='text',placeholder='First name')
+									input(type='text',placeholder='First name', data-bind="textInput: influencerFirstName, event: { keyup: influencerFirstNameTyping }")
+								p.error-message(data-bind="visible: firstNameNotValidated") Please enter a first name
 								.influencer-input
 									.influencer-input-icon
 										img(src='/static/img/user.png')
-									input(type='text',placeholder='Last name')
+									input(type='text',placeholder='Last name', data-bind="textInput: influencerLastName, event: { keyup: influencerLastNameTyping }")
+								p.error-message(data-bind="visible: lastNameNotValidated") Please enter a last name
 								.influencer-input
 									.influencer-input-icon
 										img(src='/static/img/lock-grey.png')
-									input(type='password',placeholder='Password')
+									input(type='password',placeholder='Password', data-bind="textInput: influencerPassword, event: { keyup: influencerPasswordTyping }")
+								p.error-message(data-bind="visible: passwordNotValidated") Please enter a password with at least 6 characters
 								.influencer-input
 									.influencer-input-icon
 										img(src='/static/img/phone.png')
-									input(type='text',placeholder='Phone number')
+									input(type='text',placeholder='Phone number', data-bind="textInput: influencerPhoneNumber, event: { keyup: influencerPhoneTyping }")
+								p.error-message(data-bind="visible: phoneNumberNotValidated") Please enter a phone number using spaces, hyphens, and parentheses
 							.birthday-select-container
 								strong Birthday
 								.select-container
 									.col-sm-5.select-col
 										.select
-											select
-												option(value="") Month
+											select(data-bind="value: influencerBirthMonth")
 												option(value="1") January
 												option(value="2") February
 												option(value="3") March
@@ -51,43 +55,24 @@ block content
 												option(value="12") December
 									.col-sm-3.select-col
 										.select
-											select
-												option(value="") Day
-												option(value="1") January
-												option(value="2") February
-												option(value="3") March
-												option(value="4") April
-												option(value="5") May
-												option(value="6") June
-												option(value="7") July
-												option(value="8") August
-												option(value="9") September
-												option(value="10") October
-												option(value="11") November
-												option(value="12") December
+											select(data-bind="value: influencerBirthDay, foreach: daysOptionsList")
+												option(data-bind="text: dayNumber, value: dayNumber")
 									.col-sm-4.select-col
 										.select
-											select
-												option(value="") Year
-												option(value="1") January
-												option(value="2") February
-												option(value="3") March
-												option(value="4") April
-												option(value="5") May
-												option(value="6") June
-												option(value="7") July
-												option(value="8") August
-												option(value="9") September
-												option(value="10") October
-												option(value="11") November
-												option(value="12") December
+											select(data-bind="value: influencerBirthYear, foreach: yearOptionsList")
+												option(data-bind="text: yearNumber, value: yearNumber")
+							p.error-message(data-bind="visible: accountCreationFormNotValidated") Make sure to fill out all of the fields on this page.
 							.sign-up-button-container-influencer
 								.sign-up-button-influencer(data-bind="click: signUpUserButtonClicked") Sign Up
 				.influencer-information-sign-up-form-container
 					.influencer-account-form-wrapper
 						h3 Account information
-						p.account-text Fill out the information below so we can find the best campaigns possible for you!
+						p.account-text Fill out the information below so we can find the best campaigns possible for you. We recommend you be as detailed as possible so that you can have the most success.
 							.sign-up-button-container-influencer
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/instagram-grey.png')
+									input(type='text',placeholder='Instagram username', data-bind="textInput: influencerInstagramName")
 								.birthday-select-container
 									strong Gender
 									.gender-buttons-container
@@ -100,7 +85,7 @@ block content
 									strong Interests
 									p.interest-explanation-text Select the types of companies below that you would like to represent the most. Select all that apply.
 									.interests-container(data-bind="foreach: interests")
-										.col-sm-6.interest-container
+										.col-sm-6.interest-container(data-bind="click: $root.addInterestTypeToList.bind($data, $index())")
 											.interest-wrapper(data-bind="style: {backgroundImage: interestImage}", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover; ")
 												.interest-layer
 												h3(data-bind="text: interestTitle")
@@ -123,7 +108,13 @@ block content
 												p(data-bind="text: interestTitle")
 											.tag-subtract-container.col-sm-2(data-bind="click: $root.deleteTagFromList.bind($data, $index())")
 												p -
+								p.error-message(data-bind="visible: accountInfoNotValidated") Please enter your instagram name and gender. We also highly recommend that you add some interests and tags so you can have the most success.
 								.sign-up-button-influencer(data-bind="click: saveInformationUserButtonClicked") Finish
+				.influencer-finish-sign-up-form-container
+					.influencer-account-form-wrapper
+						h3 Account created
+						p.account-text Thank you for creating an account with us at Showtlocal. One of our influencer specialists will be in contact with you within 24 hours to continue your Showtlocal journey to making money on social media.
+						.sign-up-button-influencer.back-to-website-button BACK TO WEBSITE	
 	section#download-app-business-section
 		.download-app-business-container
 			.sign-up-business-wrapper

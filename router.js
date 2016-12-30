@@ -28,4 +28,8 @@ router.get('/business/dashboard/create-campaign',function(req,res) {
 	res.render('createCampaign');
 })
 
+router.get('/help',function(req,res) {
+	res.render('help');
+});
+
 module.exports = router;

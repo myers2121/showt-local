@@ -99,6 +99,7 @@
 
       $backToWebsiteButton.click(function() {
         $('#influencer-sign-up-section').fadeOut();
+        $('body').css('overflow','auto');
       });
 
       self.signUpUserButtonClicked = function() {
@@ -240,6 +241,11 @@
       };
   };
 
+  $('#influencer-sign-up-section').on('click', function(e) {
+    if (e.target == this)
+      $('#influencer-sign-up-section').fadeOut();
+      $('body').css('overflow','auto');
+  });
 
   var influencerSignUpObjectVm = new InfluencerSignUpViewModel();
   ko.applyBindings(influencerSignUpObjectVm,$("#influencer-sign-up-section")[0]);

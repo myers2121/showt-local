@@ -17,6 +17,18 @@
         $createCampaignSection.fadeIn();
         $('body').css('overflow','hidden');
       };
+
+      self.showBusinessDropDown = function() {
+        $('.business-dropdown-container').slideToggle();
+      };
+
+      self.showEditBusinessInformationContainer = function() {
+        console.log("Edit");
+      };
+
+      self.signOutBusinessUser = function() {
+        location.href = '/business/login';
+      };
   };
 
   var businessDashboardObjectVm = new BusinessDashboardViewModel();

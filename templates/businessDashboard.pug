@@ -310,10 +310,20 @@ block content
                 p.business-dash-link.help-page-link Help
               li
                 p.business-dash-link.create-campaign-link(data-bind="click: showCreateCampaignContainer") Create
-              li.business-right-container
+              li.business-right-container(data-bind="click: showBusinessDropDown")
                 p Nutrishop
                 .business-picture-container
                   img(src='/static/img/showt-local-logo.png')
+    .business-dropdown-container
+      .business-dropdown-wrapper
+        .business-action-item-container(data-bind="click: showEditBusinessInformationContainer")
+          .action-item-icon-container
+            img(src='/static/img/edit-orange.png')
+          p Edit info
+        .business-action-item-container(data-bind="click: signOutBusinessUser")
+          .action-item-icon-container
+            img(src='/static/img/user-orange.png')
+          p Sign out
     .business-dashbaord-home-container
       .current-campaigns-container.campaigns-container
         .overall-campaigns-wrapper
@@ -333,7 +343,7 @@ block content
                     .amount-spent-wrapper
                       p $213
                       span spent
-                p.campaign-text This is going to be the description text that is going to explain the brief text of what this campaigns is and what it does. 
+                p.campaign-text This is going to be the description text that is going to explain the brief text of what this campaigns is and what it does.
       .previous-campaigns-container.campaigns-container
         .overall-campaigns-wrapper
           h3 Finished campaigns

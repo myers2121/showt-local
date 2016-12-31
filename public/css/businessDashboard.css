@@ -135,6 +135,62 @@ color: #484848;
   color: #484848;
 }
 
+/* Business button dropdown styles */
+
+.business-dropdown-container {
+  display: none;
+  width: 200px;
+  position: fixed;
+  right: 6px;
+  top: 64px;
+  background: #FFF;
+  z-index: 1;
+  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+}
+
+.business-dropdown-wrapper {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.action-item-icon-container {
+  display: inline-block;
+}
+
+.action-item-icon-container img {
+  width: 25px;
+}
+
+.business-dropdown-wrapper p {
+  display: inline-block;
+  font-size: 12px;
+  margin-bottom: 0px !important;
+  color: #484848;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.business-action-item-container {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 2px;
+}
+
+.business-action-item-container:hover {
+  cursor: pointer;
+  background: #f0f0f0;
+}
+
+.business-action-item-container:active {
+  background: #e3e3e3;
+}
+
 /* Dashboard campaign screen styles */
 
 .business-dashbaord-home-container {

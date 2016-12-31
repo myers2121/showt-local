@@ -6,12 +6,20 @@
 
       self.currentCampaigns = ko.observableArray(["1","1","1"]);
       self.previousCampaigns = ko.observableArray(["1","1","1"]);
+
+      const $homeLink = $('.home-link');
+      const $helpLink = $('.help-page-link');
+      const $createLink = $('.create-campaign-link');
+      const $createCampaignSection = $('#create-campaign-section');
+
+      self.showCreateCampaignContainer = function() {
+        console.log('hello');
+        $createCampaignSection.fadeIn();
+        $('body').css('overflow','hidden');
+      };
   };
 
-
   var businessDashboardObjectVm = new BusinessDashboardViewModel();
-  var element = $('#business-dashboard-home-section')[0]; 
-  ko.cleanNode(element);
   ko.applyBindings(businessDashboardObjectVm,$("#business-dashboard-home-section")[0]);
 
 })(jQuery); // End of use strict

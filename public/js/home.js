@@ -14,7 +14,7 @@
       });
 
       $businessButton.click(function() {
-        location.href = '/business';
+        location.href = '/benefits';
       });
 
       self.influencerEmail = ko.observable("");

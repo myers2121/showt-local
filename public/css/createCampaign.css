@@ -65,15 +65,13 @@
 }
 
 .create-campaign-information-container {
-  height: calc(100% - 60px);
   background: #fff;
-  position: fixed;
-  left: 20%;
-  top: 60px;
-  z-index: 1;
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-  overflow: scroll;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2px;
 }
 
 .create-step-wrapper {
@@ -105,6 +103,30 @@
   width: 100%;
   height: 333px;
   background: #f0f0f0;
+  padding: 12px;
+}
+
+.plus-container {
+  width: 100%;
+  height: 100%;
+}
+
+.plus-container:hover {
+  cursor: pointer;
+  background: #e3e3e3;
+}
+
+.plus-container:active {
+  background: #aaa;
+}
+
+.plus-container p {
+  text-align: center;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  color: #484848;
 }
 
 .sides-container {
@@ -135,12 +157,12 @@ input,
 textarea,
 .content-editable {
   width: 100%;
-  border: 1px solid #FF9F00;
   padding: 12px 8px;
   background: none !important;
   outline: none !important;
   color: #484848;
   border-radius: 1px;
+  border: 1px solid #f99f00;
 }
 
 textarea {
@@ -237,8 +259,8 @@ pre {
   padding: 8px;
 }
 
-.pic-container {
-  height: 100px;
+.company-vibe-pic-6-container .pic-container {
+  height: 100px !important;
   /*border: 1px solid #FF9F00;*/
   text-align: center;
 }
@@ -377,7 +399,6 @@ select:hover {
 
 .location-container:hover {
   cursor: pointer;
-  background: #f0f0f0;
 }
 
 .location-container p {
@@ -473,4 +494,163 @@ select:hover {
 .next-button-tapped {
   background: #FF9F00;
   color: #FFF;
+}
+
+.review-posting-container .business-picture-container img {
+  width: 100%;
+  height: 333px;
+}
+
+.target-region-container {
+  margin-top: 18px;
+  color: #484848;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.create-campaign-information-container .error-message {
+  color: red;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.tags-conatiner {
+  overflow: auto;
+  border: 1px solid #ff9f00;
+}
+
+.tags-conatiner .tags-plus-container {
+  width: 16.6666666666666666667% !important;
+  padding: 0px !important;
+  height: 46px;
+  border-left: 1px solid #ff9f00;
+  text-align: center;
+}
+
+.tags-conatiner input {
+  border: none !important;
+}
+
+.tags-conatiner .tags-plus-container:hover {
+  cursor: pointer;
+  background: rgba(255,156,0,0.3);
+}
+
+.tags-conatiner .tags-plus-container:active {
+  background: rgba(255,156,0,0.5);
+}
+
+.tags-conatiner .tags-plus-container p {
+  margin-bottom: 0px !important;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff9f00;
+}
+
+.tags-added-container {
+  margin-top: 18px;
+  color: #ff9f00;
+  font-size: 12px;
+  margin-bottom: 18px;
+  overflow: auto;
+}
+
+.tags-added-container .tag {
+  padding: 0px !important;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.tags-subtracted-container p {
+  width: 16.666666666666667% !important;
+  padding: 0px !important;
+  text-align: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-bottom: 0px !important;
+}
+
+.tags-subtracted-container p:hover {
+  cursor: pointer;
+  background: rgba(255,156,0,0.3);
+}
+
+.tags-subtracted-container p:active {
+  background: rgba(255,156,0,0.5);
+}
+
+.tags-plus-container {
+  width: 16.6666666666666667% !important;
+}
+
+.target-region-container {
+  overflow: auto;
+  border: 1px solid #ff9f00;
+}
+
+.target-region-container input {
+  border: none !important;
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  padding-left: 12px !important;
+}
+
+.target-region-container .tags-plus-container {
+  padding: 0px !important;
+  height: 43px;
+  border-left: 1px solid #ff9f00;
+}
+
+.target-region-container .tags-plus-container:hover {
+  cursor: pointer;
+  background: rgba(255,156,0,0.3);
+}
+
+.target-region-container .tags-plus-container:active {
+  background: rgba(255,156,0,0.5);
+}
+
+.target-region-container p {
+  text-align: center;
+  margin-bottom: 0px !important;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ff9f00;
+}
+
+.delete-icon-container {
+  text-align: center;
+}
+
+.delete-icon-container:hover {
+  cursor: pointer;
+  background: rgba(255,156,0,0.3);
+}
+
+.delete-icon-container:active {
+  background: rgba(255,156,0,0.5);
+}
+
+.location-container {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.review-influencer-container {
+  width: 50%;
+  display: inline-block;
+}
+
+.review-influencer-container .review-title {
+  color: #ff9f00;
+}
+
+.review-influencer-container .review-p {
+  font-size: 12px;
 }

@@ -24,12 +24,16 @@ router.get('/business/dashboard',function(req,res) {
 	res.render('businessDashboard');
 });
 
-router.get('/business/dashboard/create-campaign',function(req,res) {
-	res.render('createCampaign');
-})
-
 router.get('/help',function(req,res) {
 	res.render('help');
+});
+
+router.get('/business/login',function(req,res) {
+	res.render('businessLogin');
+});
+
+router.get('/business/signup',function(req,res) {
+	res.render('businessSignUp');
 });
 
 module.exports = router;

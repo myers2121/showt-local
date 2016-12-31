@@ -4,33 +4,193 @@
 
       var self = this;
 
+      self.brandName = ko.observable('');
+      self.campaignName = ko.observable('');
+      self.influencerContent = ko.observable('');
+      self.callToAction = ko.observable('');
+      self.lowerAgeRange = ko.observable('');
+      self.upperAgeRange = ko.observable('');
+      self.locations = ko.observableArray([]);
+      self.tagsList = ko.observableArray([]);
+      self.currentTag = ko.observable('');
+      self.locationsList = ko.observableArray([]);
+      self.currentLocation = ko.observable('');
+
+      self.campaignInfoNotValidated = ko.observable(false);
+      self.postInformationNotValidated = ko.observable(true);
+
       self.interestArray = ko.observableArray([
         {
-          backgroundImageHere: "url(/static/img/about-background.jpg)",
-          interestType: "Weightlifting",
-          className: 'weightlifting'
+          backgroundImageHere: "url(/static/img/animals-interest.png)",
+          interestType: "Animals",
+          className: 'animals'
         },
         {
-          backgroundImageHere: "url(/static/img/business-background.jpg)",
-          interestType: "Skateboarding",
-          className: 'skateboarding'
+          backgroundImageHere: "url(/static/img/automotive-interest.png)",
+          interestType: "Automotive",
+          className: 'automotive'
         },
         {
-          backgroundImageHere: "url(/static/img/about-background.jpg)",
-          interestType: "Crossfit",
-          className: 'crossfit'
+          backgroundImageHere: "url(/static/img/beauty-interest.png)",
+          interestType: "Beauty & Personal Care",
+          className: 'beauty-personal-care'
         },
         {
-          backgroundImageHere: "url(/static/img/about-background.jpg)",
-          interestType: "Lazy fuck",
-          className: 'lazy-fuck'
+          backgroundImageHere: "url(/static/img/family-interest.png)",
+          interestType: "Children & Family",
+          className: 'children-family'
         },
         {
-          backgroundImageHere: "url(/static/img/about-background.jpg)",
-          interestType: "Women's fashion",
-          className: 'womens-fashion'
-        }
+          backgroundImageHere: "url(/static/img/books-interest.png)",
+          interestType: "Education & Books",
+          className: 'education-books'
+        },
+        {
+          backgroundImageHere: "url(/static/img/events-interest.png)",
+          interestType: "Entertainment & Events",
+          className: 'entertainment-events'
+        },
+        {
+          backgroundImageHere: "url(/static/img/fashion-interest.png)",
+          interestType: "Fashion",
+          className: 'fashion'
+        },
+        {
+          backgroundImageHere: "url(/static/img/food-interest.png)",
+          interestType: "Food & Drink",
+          className: 'food-drink'
+        },
+        {
+          backgroundImageHere: "url(/static/img/health-interest.png)",
+          interestType: "Health, Fitness & Sport",
+          className: 'health-fitness'
+        },
+        {
+          backgroundImageHere: "url(/static/img/garden-interest.png)",
+          interestType: "Home & Garden",
+          className: 'home-garden'
+        },
+        {
+          backgroundImageHere: "url(/static/img/art-interest.png)",
+          interestType: "Photography, Art & Design",
+          className: 'photo-art-design'
+        },
+        {
+          backgroundImageHere: "url(/static/img/bars-interest.png)",
+          interestType: "Restaurants, Bars & hotels",
+          className: 'bars-hotels'
+        },
+        {
+          backgroundImageHere: "url(/static/img/non-profit-interest.png)",
+          interestType: "Social-Enterprise and Not-For-Profit",
+          className: 'non-profit'
+        },
+        {
+          backgroundImageHere: "url(/static/img/tech-interest.png)",
+          interestType: "Social media, Web & Tech",
+          className: 'social-media'
+        },
+        {
+          backgroundImageHere: "url(/static/img/travel-interest.png)",
+          interestType: "Travel & Destinations",
+          className: 'travel-destinations'
+        },
       ]);
+
+      self.addTagToList = function() {
+        if (self.currentTag().length > 2) {
+          self.tagsList.push({
+            tagName: self.currentTag()
+          });
+          console.log(self.tagsList());
+          self.currentTag('');
+        }
+      };
+
+      self.deleteTagFromTagList = function(index) {
+        self.tagsList.remove(index);
+        console.log(self.tagsList());
+      };
+
+      self.addLocationToList = function() {
+        self.locationsList.push({
+          locationName: self.currentLocation()
+        });
+        self.currentLocation('');
+      };
+
+      self.deleteLocationFromList = function(index) {
+        self.locationsList.remove(index);
+      };
+
+      var currentCampaignCreationIteration = 0;
+
+      self.nextButtonClicked = function() {
+
+        if (currentCampaignCreationIteration == 0) {
+          var campaignDescription = $('.content-editable').text();
+          if (self.brandName().length > 5 && self.campaignName().length > 5 && campaignDescription.length > 10) {
+            self.campaignInfoNotValidated(false);
+            $('.active-create-campaign-container').fadeOut(function() {
+              const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
+              $nextCampaignCreateItem.fadeIn();
+              $('.active-create-campaign-container').removeClass('active-create-campaign-container');
+              $nextCampaignCreateItem.addClass('active-create-campaign-container');
+              console.log('here');
+              $('#create-campaign-section').animate({
+                  scrollTop: $('#create-campaign-section').offset().top
+              }, 'fast');
+            });
+            currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
+          } else {
+            self.campaignInfoNotValidated(true);
+          }
+        } else if (currentCampaignCreationIteration == 1) {
+          $('.active-create-campaign-container').fadeOut(function() {
+            const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
+            $nextCampaignCreateItem.fadeIn();
+            $('.active-create-campaign-container').removeClass('active-create-campaign-container');
+            $nextCampaignCreateItem.addClass('active-create-campaign-container');
+            console.log('here');
+            $('#create-campaign-section').animate({
+                scrollTop: $('#create-campaign-section').offset().top
+            }, 'fast');
+          });
+          currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
+        } else if (currentCampaignCreationIteration == 2) {
+          $('.active-create-campaign-container').fadeOut(function() {
+            const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
+            $nextCampaignCreateItem.fadeIn();
+            $('.active-create-campaign-container').removeClass('active-create-campaign-container');
+            $nextCampaignCreateItem.addClass('active-create-campaign-container');
+            console.log('here');
+            $('#create-campaign-section').animate({
+                scrollTop: $('.create-campaign-information-container').offset().top
+            }, 'fast');
+          });
+          currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
+        } else {
+          currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
+        }
+
+      };
+
+      self.backButtonClicked = function() {
+        $('.active-create-campaign-container').fadeOut(function() {
+          const $prevCampaignCreateItem = $('.active-create-campaign-container').prev()
+          $prevCampaignCreateItem.fadeIn();
+          $('.active-create-campaign-container').removeClass('active-create-campaign-container');
+          $prevCampaignCreateItem.addClass('active-create-campaign-container');
+          $('#create-campaign-section').animate({
+              scrollTop: $('.create-campaign-information-container').offset().top
+          }, 'fast');
+        });
+        currentCampaignCreationIteration = currentCampaignCreationIteration - 1;
+      };
+
+      self.finishButtonClicked = function() {
+
+      };
 
   };
 
@@ -48,6 +208,13 @@
     console.log('Hello');
   });
 
+  $('body').on('click', '#create-campaign-section',function(e) {
+    if (e.target == this) {
+      $('#create-campaign-section').fadeOut();
+      $('body').css('overflow','auto');
+    }
+  });
+
   $('body').on('click', '.interest-type-info-container',function() {
     var currentItem = $(this).children()[3];
     $(currentItem).toggleClass('active-interest');
@@ -62,17 +229,13 @@
     var currentItem = $(this).children()[2];
     $(currentItem).css('display','none');
   });
-  // .mouseleave(function() {
-  //   console.log('Hello');
-  // });
 
   var width = $postInformationPicContainer.width();
   $postInformationPicContainer.css({'height':width+'px'});
 
 
   var createCampaignObjectVm = new CreateCampaignViewModel();
-  var element = $('#create-campaign-home-section');
-  ko.cleanNode(element[0]);
-  ko.applyBindings(createCampaignObjectVm,$("#create-campaign-home-section")[0]);
+  ko.cleanNode($('#create-campaign-section')[0]);
+  ko.applyBindings(createCampaignObjectVm,$("#create-campaign-section")[0]);
 
 })(jQuery); // End of use strict

@@ -1,0 +1,27 @@
+#business-sign-up-business-section {
+  width: 100%;
+  height: 100vh;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  overflow: auto;
+  background: #f0f0f0;
+}
+
+#business-sign-up-business-section h3 {
+  margin-top: 0px !important;
+}
+
+.business-sign-up-form-container {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  transform: none;
+  top: 0%;
+  left: 0%;
+}
+
+.interest-checked-layer-show {
+  display: block;
+}

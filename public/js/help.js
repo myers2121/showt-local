@@ -12,10 +12,7 @@
           questionTypeTitle: 'Account & profile'
         },
         {
-          questionTypeTitle: 'Influencers'
-        },
-        {
-          questionTypeTitle: 'Businesses'
+          questionTypeTitle: 'For businesses'
         },
         {
           questionTypeTitle: 'What\'s coming?'
@@ -82,16 +79,52 @@
           ]
         },
         {
-          questions: [{question: "This is going to be a question 1"}],
-          answers: [{answer: "This is goign to be an answer 1 "}]
+          questions: [
+            {
+              question: "How can I edit my business information"
+            },
+            {
+              question: "Can I edit my information as an influencer"
+            }
+          ],
+          answers: [
+            {
+              answer: "Log in to your business dashboard and click on your business name in the navigation bar in the top right hand corner of the page. Then click the link that says edit info. This will show you a pop up with all of your information that you can edit."
+            },
+            {
+              answer: "As of right now there is no way to edit your information unless you contact us at Shout Local. However, we are actively working on building out the Shout Local mobile phone app which is where you are going to be able to edit all of your information so stay tuned, the app is coming soon and you are going to like it!"
+            }
+          ]
         },
         {
-          questions: [{question: "This is going to be a question 2"}],
-          answers: [{answer: "This is goign to be an answer 2 "}]
-        },
-        {
-          questions: [{question: "This is going to be a question 3"}],
-          answers: [{answer: "This is goign to be an answer 3 "}]
+          questions: [
+            {
+              question: "What is influencer marketing"
+            },
+            {
+              question: "Why does my business need influencer marketing"
+            },
+            {
+              question: "How can Shout Local help me"
+            },
+            {
+              question: "How much does it cost"
+            }
+          ],
+          answers: [
+            {
+              answer: "Influencer marketing is a form of marketing in which focus is placed on specific key individuals rather than the target market as a whole. This allows marketeres and advertisers to get more creative and push their products to people in a more effective way."
+            },
+            {
+              answer: "The traditional methods of marketing are no longer profitable. Radio, Television, Google & Facebook ads, and other forms of traditional advertising are no longer as effective as they use to be. So, how can influencer marketing help my business? 90% of people believe in product recommendations from their friends. This is why influencer marketing is so successful. On social media, people follow others that they are close with or follow closely. Also, 70% of people that get a referral on social media are going to make a purchase from this business. Influencer marketing does both of these. It brings people that are on social networks to refer your product using word of mouth to their followers."
+            },
+            {
+              answer: "The main problem with influencer marketing is it is extremely hard for companies and influencers to get in contact with each other. Shout Local solves this problem. We find the influencers for you. We understand that you need to focus on running your business and can't spend time trying to find people to promote your products. We take all of the hastle out of running, managing, and growing your influencer marketing campaigns."
+            },
+            {
+              answer: "The beauty of Shout Local is that you only pay for the amount of reach that you want. If you have a smaller budget then that is okay. It doesn't matter how big your business is, you have the opportunity to participate in Shout Local's influencer marketing platform."
+            }
+          ]
         },
         {
           questions: [

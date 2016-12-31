@@ -1,0 +1,25 @@
+#business-login-section {
+  width: 100%;
+  height: 100vh;
+  background: #f0f0f0;
+}
+
+#business-login-section h3 {
+  margin-top: 0px !important;
+}
+
+.business-login-form-container {
+  width: 400px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.business-login-form-wrapper {
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 24px;
+  padding-bottom: 8px;
+}

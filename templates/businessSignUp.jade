@@ -1,0 +1,88 @@
+extends ./layouts/_businessSignUpLayout.jade
+
+block content
+	section#business-sign-up-business-section
+		.showt-logo-about
+			img(src='/static/img/showt-local-logo.png')
+		.business-login-form-container.business-sign-up-form-container
+			.business-login-form-wrapper
+				.influencer-account-form-wrapper
+					.influencer-account-form-wrapper.business-information-account-creation-container
+						h3 Business Signup
+						p.account-text Create a Shout Local acccount to start growing your business today!
+						.influencer-information-form-container
+							.influencer-input-container
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/email.png')
+									input(type='email',placeholder='Email address', data-bind="textInput: businessSignUpEmail, event: { keyup: businessSignUpEmailTyping }")
+								p.error-message(data-bind="visible: businessSignUpEmailNotValidated") Please enter a valid email
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/user.png')
+									input(type='text',placeholder='First name', data-bind="textInput: businessSignUpFirstName, event: { keyup: businessSignUpFirstNameTyping }")
+								p.error-message(data-bind="visible: businessSignUpNameNotValidated") Please enter a first name
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/user.png')
+									input(type='text',placeholder='Last name', data-bind="textInput: businessSignUpLastName, event: { keyup: businessSignUpLastNameTyping }")
+								p.error-message(data-bind="visible: businessSignUpLastNameNotValidated") Please enter a last name
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/lock-grey.png')
+									input(type='password',placeholder='Password', data-bind="textInput: businessSignUpPassword, event: { keyup: businessSignUpPasswordTyping }")
+								p.error-message(data-bind="visible: businessSignUpPasswordNotValidated") Please enter a password with at least 6 characters
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/business-contact.png')
+									input(type='text',placeholder='Business name', data-bind="textInput: businessSignUpBusinessName, event: { keyup: businessSignUpBusinessNameTyping }")
+								p.error-message(data-bind="visible: businesSignUpBusinessnameNotValidated") Please enter your business' name
+								.influencer-input
+									.influencer-input-icon
+										img(src='/static/img/phone.png')
+									input(type='text',placeholder='Phone number', data-bind="textInput: businessSignUpPhoneNumber, event: { keyup: businessSignUpPhoneTyping }")
+								p.error-message(data-bind="visible: businessSignUpPhoneNumberNotValidated") Please enter a phone number using spaces, hyphens, and parentheses
+							p.error-message(data-bind="visible: businessAccountCreationFormNotValidated") Make sure to fill out all of the fields on this page.
+							.sign-up-button-container-influencer
+								.sign-up-button-influencer(data-bind="click: businessSignUpButtonClicked") Sign Up
+					.influencer-information-sign-up-form-container
+						.influencer-account-form-wrapper
+							h3 Account information
+							p.account-text Fill out the information below so we can find the best campaigns possible for you. We recommend you be as detailed as possible so that you can have the most success.
+								.sign-up-button-container-influencer
+									.influencer-input
+										.influencer-input-icon
+											img(src='/static/img/instagram-grey.png')
+										input(type='text',placeholder='Business instagram username',data-bind="textInput: influencerInstagramName")
+								.sign-up-button-container-influencer
+									.birthday-select-container
+										strong Company type
+										p.interest-explanation-text Select one of the items below that most pertains to your company
+										.interests-container(data-bind="foreach: interests")
+											.col-sm-6.interest-container(data-bind="click: $root.addInterestTypeToList.bind($data, $index())")
+												.interest-wrapper(data-bind="style: {backgroundImage: interestImage}", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover; ")
+													.interest-layer
+													h3(data-bind="text: interestTitle")
+													.interest-checked-layer
+														img(src='/static/img/checked-box-white.png')
+								.sign-up-button-container-influencer
+									.birthday-select-container
+										strong Tags
+										p.interest-explanation-text Add any other words that you think would give us a better understanding of your business to help your experience with Shout Local better.
+										.tags-container
+											.tags-input-container
+												.tags-input-wrapper
+													.input-container.col-sm-10
+														input(type="text",placeholder="Enter another interest of yours", data-bind='textInput: currentTag')
+													.add-tag-button-container.col-sm-2(data-bind="click: addInfluencerTag")
+														p +
+										.added-tags-container(data-bind="foreach: influencerTagList")
+											.added-tag-container
+												.tag-title-container.col-sm-10
+													p(data-bind="text: interestTitle")
+												.tag-subtract-container.col-sm-2(data-bind="click: $root.deleteTagFromList.bind($data, $index())")
+													p -
+									p.error-message(data-bind="visible: accountInfoNotValidated") Please enter your instagram name and gender. We also highly recommend that you add some interests and tags so you can have the most success.
+									.sign-up-button-influencer(data-bind="click: saveInformationUserButtonClicked") Finish
+block customJS
+	script(src='/static/js/businessSignUp.js')

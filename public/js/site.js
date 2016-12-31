@@ -37,66 +37,16 @@
 
   // click events
 
-  self.slideDownSignUp = function() {
-    $signUpBusinessSection.css('display','block');
-    $signUpBusinessContainer.slideDown();
-  };
-
   $signUpButton.click(function() {
-    // Show the sign up section
-    $signUpBusinessSection.css('display','block');
-    $signUpBusinessContainer.slideDown();
-  });
-
-  $exitSignUpBusinessContainer.click(function() {
-    $signUpBusinessContainer.slideUp(function() {
-      $signUpBusinessSection.css('display','none');
-    });
+    location.href = '/business/signup';
   });
 
   $logInButton.click(function() {
-    $logInBusinessSection.css('display','block');
-    $logInBusinessContainer.slideDown();
-  });
-
-  $exitLogInBusinessContainer.click(function() {
-    $logInBusinessContainer.slideUp(function() {
-      $logInBusinessSection.css('display','none');
-    });
-  });
-
-  $signUpTodayButton.click(function() {
-    $logInBusinessContainer.slideUp(function() {
-      $logInBusinessSection.css('display','none');
-      $signUpBusinessSection.css('display','block');
-      $signUpBusinessContainer.slideDown();
-    });
-  });
-
-  $forgotPasswordButton.click(function() {
-    $logInBusinessContainer.slideUp(function() {
-      $logInBusinessSection.css('display','none');
-      $forgotPasswordBusinessSection.css('display','block');
-      $forgotPasswordBusinessContainer.slideDown();
-    });
+    location.href = '/business/login';
   });
 
   $showtLocalIcon.click(function() {
     location.href = '/';
-  });
-
-  $exitforgotPasswordBusinessContainer.click(function() {
-    $forgotPasswordBusinessContainer.slideUp(function() {
-      $forgotPasswordBusinessSection.css('display','none');
-    });
-  });
-
-  $signUpTodayButtonForgotPassword.click(function() {
-    $forgotPasswordBusinessContainer.slideUp(function() {
-      $forgotPasswordBusinessSection.css('display','none');
-      $signUpBusinessSection.css('display','block');
-      $signUpBusinessContainer.slideDown();
-    });
   });
 
   $readyToGrowIcon.click(function() {

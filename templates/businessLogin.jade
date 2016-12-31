@@ -1,0 +1,25 @@
+extends ./layouts/_benefitsLayout.jade
+
+block content
+  section#business-login-section
+    .showt-logo-about
+      img(src='/static/img/showt-local-logo.png')
+    .business-login-form-container
+      .business-login-form-wrapper
+        .influencer-account-form-wrapper
+          h3 Business Login
+          p.account-text Log in to your account to start growing your company.
+        .influencer-input
+          .influencer-input-icon
+            img(src='/static/img/email.png')
+          input(type='email',placeholder='Email address', data-bind="textInput: businessLoginEmail, event: { keyup: businessLoginEmailTyping }")
+        p.error-message(data-bind="visible: businessLoginEmailNotValidated") Please enter a valid email
+        .influencer-input
+          .influencer-input-icon
+            img(src='/static/img/lock-grey.png')
+          input(type='password',placeholder='Password', data-bind="textInput: businessLoginPassword, event: { keyup: businessLoginPasswordTyping }")
+        p.error-message(data-bind="visible: businessLoginPasswordNotValidated") Please enter a password with at least 6 characters
+        .sign-up-button-container-influencer
+          .sign-up-button-influencer(data-bind="click: logInBusinessUser") Login
+block customJS
+  script(src='/static/js/businessLogin.js')

@@ -9,21 +9,21 @@ var jsonParser   = bodyParser.json();
 
 var app          = express();
 
-/* APP CONFIG */
+/* -------- APP CONFIG ---------*/
 
 app.use('/static' , express.static(__dirname + '/public')); // serve static requests from public
 
 app.use(bodyParser.json());                                 // allow for json objects as post data
 app.use(bodyParser.urlencoded({ extended: false }));        // don't allow for nested objects
 
-/* ROUTES */
+/* ---------- ROUTES ---------- */
 
 app.set('view engine', 'pug');                              // use pug as the view engine
 app.set('views', __dirname + '/templates');                 // look up views in /templates
 
 app.use('/', router);
 
-/* ERR HANDLING */
+/* ------- ERR HANDLING ------- */
 
 app.get('*', function(req, res){
   res.render('404');

@@ -11,20 +11,15 @@ var app          = express();
 
 /* APP CONFIG */
 
-app.use('/static' , express.static(__dirname + '/public'));
+app.use('/static' , express.static(__dirname + '/public')); // serve static requests from public
 
-app.use(bodyParser());
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-app.use(cookieParser());
+app.use(bodyParser.json());                                 // allow for json objects as post data
+app.use(bodyParser.urlencoded({ extended: false }));        // don't allow for nested objects
 
 /* ROUTES */
 
-app.set('view engine', 'pug');
-app.set('views', __dirname + '/templates');
+app.set('view engine', 'pug');                              // use pug as the view engine
+app.set('views', __dirname + '/templates');                 // look up views in /templates
 
 app.use('/', router);
 
@@ -34,6 +29,8 @@ app.get('*', function(req, res){
   res.render('404');
 });
 
-app.listen(process.env.PORT || 3000, function() {
-	console.log("The frontend server is running on port 3000!");
+var port = process.env.PORT || 3000;
+
+app.listen( port, function() {
+	console.log("The frontend server is running on port " + port + "!");
 });

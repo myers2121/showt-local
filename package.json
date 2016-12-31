@@ -7,13 +7,8 @@
     "body-parser": "^1.14.2",
     "cookie-parser": "^1.4.1",
     "express-session": "^1.13.0",
-    "firebase": "^3.3.0",
-    "ipaddr.js": "^1.1.0",
-    "jade": "^1.11.0",
-    "moment": "^2.11.2",
     "nodemailer": "^2.1.0",
-    "nodemon": "^1.9.1",
-    "paypal-rest-sdk": "^1.6.8"
+    "pug": "^2.0.0-beta6"
   },
   "devDependencies": {},
   "scripts": {

@@ -1,97 +1,91 @@
-var paypal = require('paypal-rest-sdk');
-var config = {};
+var express = require('express');
+var router = express.Router();
+var nodemailer = require('nodemailer');
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json()
 
-// Routes
+/* GET */
 
-exports.index = function (req, res) {
-  res.render('index');
-};
+router.get('/', function(req,res){
+	res.render('index');
+});
 
-exports.create = function (req, res) {
-  console.log("This was called");
-	// var method = req.param('method');
-  // var currency = req.param('currency');
-  // var amount = req.param('amount');
-  // var firstName = req.param('first_name');
-  // var lastName = req.param('last_name');
-  // var cardNumber = req.param('number');
-  // var expirationMonth = req.param('expire_month');
-  // var expirationYear = req.param('expire_year');
-  // var secutiryCode = req.param('cvv2');
-  // var cardType = req.param('type');
+router.get('/benefits', function(req,res) {
+	res.render('benefits');
+});
 
-  //var method = req.param('method');
-  var method = 'credit_card';
-	var payment = {
-		"intent": "sale",
-		"payer": {
-		},
-		"transactions": [{
-			"amount": {
-				"currency": 'usd',
-				"total": '500'
-			},
-			"description": 'This is the description'
-		}]
+router.get('/get-started',function(req,res) {
+	res.render('getStarted');
+});
+
+router.get('/about',function(req,res) {
+	res.render('about');
+});
+
+router.get('/business/dashboard',function(req,res) {
+	res.render('businessDashboard');
+});
+
+router.get('/help',function(req,res) {
+	res.render('help');
+});
+
+router.get('/business/login',function(req,res) {
+	res.render('businessLogin');
+});
+
+router.get('/business/signup',function(req,res) {
+	res.render('businessSignUp');
+});
+
+/* POST */
+
+router.post('/', jsonParser ,function(req,res) {
+
+	// This is checking to see if there is a query variable named raw.
+	var fullName = req.body.full_name;
+	var email = req.body.email;
+	var subject = "Website contact form";
+	var phoneNumber = req.body.phone_number;
+	var emailSubject = req.body.subject;
+	var message = req.body.message;
+
+	// create reusable transporter object using SMTP transport
+	var transporter = nodemailer.createTransport({
+	    service: 'Gmail',
+	    auth: {
+	        user: 'connor.myers21@gmail.com',
+	        pass: 'Astral21!'
+	    }
+	});
+
+	// NB! No need to recreate the transporter object. You can use
+	// the same transporter object for all e-mails
+
+	// setup e-mail data with unicode symbols
+	var mailOptions = {
+	    from: fullName + " " + email, // sender address
+			to: "connor.myers21@gmail.com",
+	    subject: subject, // Subject line
+	    text: message, // plaintext body
+	    html: '<p>Name: ' + fullName + '</b><p>Email:' + email + '</b><p>Subject: ' + subject + '</b><p>' + message + '</p>'   // html body
 	};
 
-	if (method === 'paypal') {
-		payment.payer.payment_method = 'paypal';
-		payment.redirect_urls = {
-			"return_url": "http://pprestnode.herokuapp.com/execute",
-			"cancel_url": "http://pprestnode.herokuapp.com/cancel"
-		};
-	} else if (method === 'credit_card') {
-		var funding_instruments = [
-			{
-				"credit_card": {
-					"type": 'visa',
-					"number": '5500005555555559',
-					"expire_month": 12,
-					"expire_year": 2018,
-					"first_name": 'Joe',
-					"last_name": 'Shopper'
-				}
-			}
-		];
-		payment.payer.payment_method = 'credit_card';
-		payment.payer.funding_instruments = funding_instruments;
-	}
-
-	paypal.payment.create(payment, function (error, payment) {
-		if (error) {
-			console.log(error);
-			res.render('error', { 'error': error });
-		} else {
-			req.session.paymentId = payment.id;
-			res.render('create', { 'payment': payment });
-		}
+	// send mail with defined transport object
+	transporter.sendMail(mailOptions, function(error, info){
+	    if(error){
+	        return console.log(error);
+	    }
+	    console.log('Message sent: ' + info.response);
 	});
 
-};
-
-exports.execute = function (req, res) {
-	var paymentId = req.session.paymentId;
-	var payerId = req.param('PayerID');
-
-	var details = { "payer_id": payerId };
-	var payment = paypal.payment.execute(paymentId, details, function (error, payment) {
-		if (error) {
-			console.log(error);
-			res.render('error', { 'error': error });
-		} else {
-			res.render('execute', { 'payment': payment });
-		}
+	var backURL = req.header('Referer') || '/';
+    
+    // do your thang
+	res.render('index',{
+		formSubmission: true
 	});
-};
 
-exports.cancel = function (req, res) {
-  res.render('cancel');
-};
+});
 
-// Configuration
-
-exports.init = function (c) {
-	config = c;
-	paypal.configure(c.api);
-};
+module.exports = router;

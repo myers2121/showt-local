@@ -1,4 +1,4 @@
-extends ./layouts/_benefitsLayout.jade
+extends ./layouts/_benefitsLayout.pug
 
 block content
   section#about-section
@@ -44,6 +44,6 @@ block content
                 .picture-hovered-wrapper
                   p.member-name Tim Farrow
                   p.member-title Co-founder & CTO
-  include ./partials/_footer.jade
+  include ./partials/_footer.pug
 block customJS
   script(src='/static/js/about.js')

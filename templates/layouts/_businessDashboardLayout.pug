@@ -1,8 +1,8 @@
 doctype html
 html(lang="en")
-	include ../partials/_head.jade
+	include ../partials/_businessDashboardHead.pug
 	body#page-top
-		// include ./partials/_nav.jade
+		// include ./partials/_nav.pug
 		block content
 
 		script(src='https://www.gstatic.com/firebasejs/3.5.3/firebase.js')
@@ -15,6 +15,7 @@ html(lang="en")
 		script(src='/static/js/jquery.js')
 		script(src='/static/js/knockout.js')
 		script(src='/static/js/moment.js')
+		script(src='/static/js/fullcalendar.min.js')
 		// Bootstrap Core JavaScript
 		script(src='/static/js/bootstrap.min.js')
 		// Plugins JavaScript
@@ -23,6 +24,6 @@ html(lang="en")
 		script(src='/static/js/wow.min.js')
 		// Custom Theme JavaScript
 		script(src='/static/js/magicForm.js')
-		script(src='/static/js/site.js')
-		
-		block customJS
+		script(src='/static/js/businessDashboard.js')
+		script(src='/static/js/createCampaign.js')
+		script(src='/static/js/footer.js')

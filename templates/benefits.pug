@@ -1,8 +1,8 @@
-extends ./layouts/_benefitsLayout.jade
+extends ./layouts/_benefitsLayout.pug
 
 block content
   section#benefits-section
-    include ./partials/_businessNavigation.jade
+    include ./partials/_businessNavigation.pug
     .benefits-top-section
       .benefits-top-section-center-container
         .benefits-wrapper
@@ -60,6 +60,6 @@ block content
             .love-item-wrapper
               h3 Flexibility
               p You control your entire campaign. You control the feel, the people who promote your product, how much you pay, everything.
-  include ./partials/_footer.jade
+  include ./partials/_footer.pug
 block customJS
   script(src='/static/js/benefits.js')

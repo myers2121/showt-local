@@ -1,8 +1,8 @@
 doctype html
 html(lang="en")
-	include ./partials/_head.jade
+	include ../partials/_head.pug
 	body#page-top
-		// include ./partials/_nav.jade
+		// include ./partials/_nav.pug
 		block content
 
 		script(src='https://www.gstatic.com/firebasejs/3.5.3/firebase.js')
@@ -24,6 +24,5 @@ html(lang="en")
 		// Custom Theme JavaScript
 		script(src='/static/js/magicForm.js')
 		script(src='/static/js/site.js')
-		script(src='/static/js/home.js')
-		script(src='/static/js/influencerSignUp.js')
-		script(src='/static/js/footer.js')
+		
+		block customJS

@@ -8,8 +8,6 @@
       self.previousCampaigns = ko.observableArray(["1","1","1"]);
       self.businessTagList = ko.observableArray([])
 
-      const $homeLink = $('.home-link');
-      const $helpLink = $('.help-page-link');
       const $createLink = $('.create-campaign-link');
       const $createCampaignSection = $('#create-campaign-section');
       const $businessDropdownContainer = $('.business-dropdown-container');
@@ -84,6 +82,14 @@
         console.log('hello');
         $createCampaignSection.fadeIn();
         $('body').css('overflow','hidden');
+      };
+
+      self.sendHome = function() {
+        location.href = '/';
+      };
+
+      self.sendToHelpPage = function() {
+        location.href = '/help';
       };
 
       self.showBusinessDropDown = function() {

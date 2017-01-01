@@ -15,9 +15,13 @@
       self.currentTag = ko.observable('');
       self.locationsList = ko.observableArray([]);
       self.currentLocation = ko.observable('');
+      self.currentHelpText = ko.observable('');
 
       self.campaignInfoNotValidated = ko.observable(false);
       self.postInformationNotValidated = ko.observable(true);
+
+      const $createCampaignSection = $('#create-campaign-section');
+      const $campaignHelpContainer = $('.create-campaign-help-container');
 
       self.interestArray = ko.observableArray([
         {
@@ -97,6 +101,8 @@
         },
       ]);
 
+      self.helpItem = ko.observableArray(["Help text 1", "Help text 2", "Help text 3", "Help text 4", "Help text 5", "Help text 6", "Help text 7", "Help text 8", "Help text 9", "Help text 10", "Help text 11", "Help text 12", "Help text 13", "Help text 14"]);
+
       self.addTagToList = function() {
         if (self.currentTag().length > 2) {
           self.tagsList.push({
@@ -105,6 +111,12 @@
           console.log(self.tagsList());
           self.currentTag('');
         }
+      };
+
+      self.fillCheckBox = function(d,e) {
+        var currentBox = e.currentTarget;
+        $('.filled-check-box').removeClass('filled-check-box');
+        $(currentBox).addClass('filled-check-box');
       };
 
       self.deleteTagFromTagList = function(index) {
@@ -124,6 +136,30 @@
       };
 
       var currentCampaignCreationIteration = 0;
+
+      self.showHelpPopUp = function helpIconHoevered(d,e) {
+        const currentHelpIcon = e.currentTarget;
+        const id = $(currentHelpIcon).attr('id');
+        var lastChar = id.substr(id.length - 2);
+        lastChar = lastChar.replace('-', '');
+        var helpValueNumber = parseInt(lastChar) - 1;
+        self.currentHelpText(self.helpItem()[helpValueNumber]);
+        console.log(self.currentHelpText());
+        const topLocation = $(currentHelpIcon).offset().top - $campaignHelpContainer.height() - 40;
+        const leftLocation = $(currentHelpIcon).offset().left - ($campaignHelpContainer.width() / 2) - 2;
+
+        $campaignHelpContainer.css({
+            left: leftLocation,
+            top: topLocation
+        });
+
+        $campaignHelpContainer.fadeIn();
+
+      };
+
+      self.hideHelpPopUp = function helpIconMouseLeft() {
+        $campaignHelpContainer.fadeOut();
+      };
 
       self.nextButtonClicked = function() {
 
@@ -189,7 +225,18 @@
       };
 
       self.finishButtonClicked = function() {
-
+        $('#create-campaign-section').animate({
+            scrollTop: $('#create-campaign-section').offset().top
+        }, 'fast', function() {
+          $createCampaignSection.fadeOut(function() {
+            $('body').css('overflow','scroll');
+            const $currentActiveCreateContainer = $('.active-create-campaign-container');
+            $currentActiveCreateContainer.css('display','none');
+            const $FirstCreateContainer = $currentActiveCreateContainer.prev().prev().prev();
+            $currentActiveCreateContainer.removeClass("active-create-campaign-container");
+            $FirstCreateContainer.addClass('active-create-campaign-container');
+          });
+        });
       };
 
   };

@@ -139,12 +139,14 @@
 
       self.showHelpPopUp = function helpIconHoevered(d,e) {
         const currentHelpIcon = e.currentTarget;
+        console.log(currentHelpIcon);
         const id = $(currentHelpIcon).attr('id');
         var lastChar = id.substr(id.length - 2);
         lastChar = lastChar.replace('-', '');
         var helpValueNumber = parseInt(lastChar) - 1;
         self.currentHelpText(self.helpItem()[helpValueNumber]);
-        console.log(self.currentHelpText());
+        //console.log(self.currentHelpText());
+        //console.log($(currentHelpIcon).offset().top);
         const topLocation = $(currentHelpIcon).offset().top - $campaignHelpContainer.height() - 40;
         const leftLocation = $(currentHelpIcon).offset().left - ($campaignHelpContainer.width() / 2) - 2;
 

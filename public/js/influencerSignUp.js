@@ -2,20 +2,30 @@
 
   function InfluencerSignUpViewModel() {
 
-      var self = this;
-      self.influencerEmail = ko.observable('');
-      self.influencerFirstName = ko.observable('');
-      self.influencerLastName = ko.observable('');
-      self.influencerPassword = ko.observable('');
-      self.influencerPhoneNumber = ko.observable('');
-      self.influencerBirthMonth = ko.observable('');
-      self.influencerBirthDay = ko.observable('');
-      self.influencerBirthYear = ko.observable('');
-      self.influencerInstagramName = ko.observable('');
-      self.influencerTagList = ko.observableArray([]);
-      self.influencerInterestList = ko.observableArray([]);
-      self.currentTag = ko.observable('');
-      self.gender = ko.observable('');
+      const self = this;
+
+      let _DB          = firebase.database().ref();
+      let _INFLUENCERS = _DB.child('influencers');
+
+    /* DECLARATIONS */
+
+      self.influencerEmail         = ko.observable('timalanfarrow@gmail.com');
+      self.influencerFirstName     = ko.observable('Tim');
+      self.influencerLastName      = ko.observable('Farrow');
+      self.influencerPassword      = ko.observable('password');
+      self.influencerPhoneNumber   = ko.observable('(559)274-8657');
+      self.influencerBirthMonth    = ko.observable('April');
+      self.influencerBirthDay      = ko.observable('9');
+      self.influencerBirthYear     = ko.observable('1997');
+      self.influencerInstagramName = ko.observable('farrowtim');
+      self.influencerTagList       = ko.observableArray([]);
+      self.influencerInterestList  = ko.observableArray([]);
+      self.influencerGender        = ko.observable('');
+      self.currentTag              = ko.observable('');
+
+      self.USER                    = ko.observable();
+
+    /* INITIALIZATION */
 
       self.daysOptionsList = ko.observableArray([]);
       self.yearOptionsList = ko.observableArray([]);
@@ -91,72 +101,133 @@
         }
       ]);
 
-      const $createAccountForm = $('.influencer-account-form-container');
+      const $createAccountForm         = $('.influencer-account-form-container');
       const $influencerInformationForm = $('.influencer-information-sign-up-form-container');
-      const $maleButton = $('.male-button');
-      const $femaleButton = $('.female-button');
-      const $backToWebsiteButton = $('.back-to-website-button');
+      const $maleButton                = $('.male-button');
+      const $femaleButton              = $('.female-button');
+      const $backToWebsiteButton       = $('.back-to-website-button');
 
       $backToWebsiteButton.click(function() {
         $('#influencer-sign-up-section').fadeOut();
         $('body').css('overflow','auto');
       });
 
-      self.signUpUserButtonClicked = function() {
-        if (self.checkUserEntries()) {
-          $createAccountForm.fadeOut(function() {
-            $influencerInformationForm.fadeIn();
+    /* ECO SYSTEM */
+
+      firebase.auth().onAuthStateChanged(( user ) => {
+
+        self.USER( user );
+
+      })
+
+      self.influencerGender.subscribe(( d ) => {
+
+        console.log( d );
+
+      })
+
+      self.influencerInterestList.subscribe(( d ) => {
+
+        console.log( d );
+
+      })
+
+    /* VIEW ACTIONS */
+
+      self.signUpUser = function userSignUpButtonClicked( d, e ) {
+
+        let data = getFormData('#account-form');
+
+        firebase.auth().createUserWithEmailAndPassword( data.email, data.password ).then(( user ) => {
+
+          delete data.password;
+
+          let userData = {
+            name     : data.firstName + ' ' + data.lastName,
+            birthday : data.birthMonth + ' ' + data.birthDay + ', ' + data.birthYear,
+            phone    : data.phone,
+            email    : data.email
+          };
+
+          _INFLUENCERS.child( user.uid ).update( userData ).then(() => {
+
+            // NEXT!
+            $('.influencer-account-form-container').hide();
+            $('.influencer-information-sign-up-form-container').show();
+
           });
+
+        }).catch(( error ) => {
+
+          return console.error( error );
+
+        });
+
+      };
+
+      self.setGender = function accountGenderSelected( d, e ) {
+
+        let $target = $( e.target );
+
+        if ( !$target.hasClass('gender-button') )
+          $target = $target.closest('gender-button');
+
+        let gender = $target[0].dataset.gender;
+
+        self.influencerGender( gender );
+        $('.gender-button.active').removeClass('active');
+        $target.addClass('active');
+
+      }
+
+      self.selectInterest = function interestClickedOn( d, e ) {
+
+        let $target = $( e.target );
+
+        $target.toggleClass('interest-checked-layer-show');
+
+        let inArray = !$target.hasClass('interest-checked-layer-show');
+
+        if ( !inArray )
+          self.influencerInterestList.push( d.interestTitle );
+
+        if ( inArray ) {
+
+          self.influencerInterestList.remove(( interest ) => {
+            return interest == d.interestTitle;
+          })
+
         }
+
+      }
+
+      self.addInfluencerTag = function addTagToInfluencerList( d, e ) {
+        
+        let tag = $("#tag-input").val();
+
+        if ( tag == null || tag == '' )
+          return;
+
+        self.influencerTagList.push( tag );
+        $('#tag-input').val('');
+
       };
 
-      $maleButton.click(function() {
-        $(this).addClass('gender-button-clicked');
-        $femaleButton.removeClass('gender-button-clicked');
-        self.gender('Male');
-      });
+      self.removeInfluencerTag = function deleteTagFromInfluencerList( d, e ) {
 
-      $femaleButton.click(function() {
-        $(this).addClass('gender-button-clicked');
-        $maleButton.removeClass('gender-button-clicked');
-        self.gender('Female');
-      });
+        self.influencerTagList.remove(( tag ) => {
+          return tag == d;
+        });
 
-      $('body').on('click', '.interest-wrapper',function() {
-        var currentItem = $(this).children()[2];
-        $(currentItem).toggleClass('interest-checked-layer-show');
-      });
-
-      self.addInfluencerTag = function addTagToInfluencerList() {
-        self.influencerTagList.push({interestTitle: self.currentTag()});
-        self.currentTag('');
       };
 
-      self.deleteTagFromList = function deleteTagFromInfluencerList(index) {
-        self.influencerTagList.remove(self.influencerTagList()[index]);
-      };
-
-      self.addInterestTypeToList = function addInterestToInfluencerList(index) {
-        var indexToRemove = 0;
-        if (self.influencerInterestList().length > 0) {
-          // self.influencerInterestList.push({interestTitle: self.interests()[index].interestTitle});
-          for (var i = 0; i < self.influencerInterestList().length; i++) {
-            if (self.influencerInterestList()[i].interestTitle == self.interests()[index].interestTitle) {
-              var indexToRemove = i;
-            }
-          }
-          if (indexToRemove > 0) {
-            self.influencerInterestList.remove(self.influencerInterestList()[indexToRemove]);
-          } else {
-            self.influencerInterestList.push({interestTitle: self.interests()[index].interestTitle});
-          }
-        } else {
-          self.influencerInterestList.push({interestTitle: self.interests()[index].interestTitle});
-        }
-      };
+      self.exitSignUpPopUp = function clickReturnToMainPageButton( d, e ) {
+        $("#influencer-sign-up-section").fadeOut();
+      }
 
       self.registerInfluencerEmailNotValidated = ko.observable(false);
-      self.influencerEmailValidated = ko.observable(false);
+      self.influencerEmailValidated            = ko.observable(false);
+
       self.influencerEmailTyping = function() {
         if (self.influencerEmail().length > 0) {
           if (validateEmail(self.influencerEmail())) {
@@ -169,7 +240,8 @@
       };
 
       self.firstNameNotValidated = ko.observable(false);
-      self.firstNameValidated = ko.observable(false);
+      self.firstNameValidated    = ko.observable(false);
+
       self.influencerFirstNameTyping = function() {
         if (self.influencerFirstName().length > 1) {
           self.firstNameNotValidated(false);
@@ -180,7 +252,8 @@
       };
 
       self.lastNameNotValidated = ko.observable(false);
-      self.lastNameValidated = ko.observable(false);
+      self.lastNameValidated    = ko.observable(false);
+
       self.influencerLastNameTyping = function() {
         if (self.influencerLastName().length > 1) {
           self.lastNameNotValidated(false);
@@ -191,7 +264,8 @@
       };
 
       self.passwordNotValidated = ko.observable(false);
-      self.passwordValidated = ko.observable(false);
+      self.passwordValidated    = ko.observable(false);
+
       self.influencerPasswordTyping = function() {
         if (self.influencerPassword().length > 5) {
           self.passwordNotValidated(false);
@@ -202,7 +276,8 @@
       };
 
       self.phoneNumberNotValidated = ko.observable(false);
-      self.phoneNumberValidated = ko.observable(false);
+      self.phoneNumberValidated    = ko.observable(false);
+
       self.influencerPhoneTyping = function() {
         if (self.influencerPhoneNumber().length > 0) {
           if (validatePhoneNumber(self.influencerPhoneNumber())) {
@@ -229,15 +304,37 @@
       }
 
       self.accountInfoNotValidated = ko.observable(false);
-      self.saveInformationUserButtonClicked = function() {
-        if (self.gender() != '' && self.influencerInstagramName() != '') {
-          $('.influencer-information-sign-up-form-container').fadeOut(function() {
-            $('.influencer-finish-sign-up-form-container').fadeIn();
-          });
-          self.accountInfoNotValidated(false);
+      self.finishCreatingAccount = function saveInformationUserButtonClicked( d, e ) {
+
+        // reference
+        let gender        = self.influencerGender();
+        let instagramName = self.influencerInstagramName();
+        let interests     = self.influencerInterestList();
+        let tags          = self.influencerTagList();
+
+        if ( gender != '' && instagramName != '') {
+
+          let user = self.USER();
+
+          _INFLUENCERS.child( user.uid ).update({
+            gender    : gender,
+            instagram : instagramName,
+            interests : interests,
+            tags      : tags
+          }).then(() => {
+
+            $('.influencer-information-sign-up-form-container').fadeOut(function() {
+              $('.influencer-finish-sign-up-form-container').fadeIn();
+            });
+            
+          })
+
         } else {
+
           self.accountInfoNotValidated(true);
+
         }
+
       };
 
 

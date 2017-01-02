@@ -620,10 +620,15 @@ filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.84, M12=0, M21=0, M22=0.4
   padding-bottom: 12px;
 }
 
+.gender-button.active,
 .gender-button:hover {
   background: #f99f00;
   color: #FFF;
   cursor: pointer;
+}
+
+.gender-button:active {
+  background: #f69d00;
 }
 
 .gender-button-clicked {
@@ -731,11 +736,12 @@ filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.84, M12=0, M21=0, M22=0.4
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.65);
-  display: none;
+  opacity: 0;
+  transition: all 0.2s ease;
 }
 
 .interest-checked-layer-show {
-  display: block;
+  opacity: 1;
 }
 
 .interest-checked-layer img {

@@ -242,15 +242,6 @@ color: #484848;
   border-bottom-right-radius: 2px;
 }
 
-.campaign-wrapper:hover {
-  cursor: pointer;
-  background: #f0f0f0;
-}
-
-.campaign-wrapper:active {
-  background: #e3e3e3;
-}
-
 .previous-campaigns-container {
   overflow: auto;
   width: 100%;
@@ -280,7 +271,7 @@ transform: translateY(-50%);
 .influencer-count-container span {
   position: absolute;
   top: 50%;
-  left: 40px;
+  left: 46px;
   transform: translateY(-50%);
   color: #aaa;
   font-size: 12px;
@@ -294,28 +285,65 @@ transform: translateY(-50%);
 }
 
 .row .influencer-count-container {
-  padding-left: 0px !important;
-  padding-right: 0px !important;
+  padding-left: 6px !important;
+  padding-right: 6px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 2px;
+}
+
+.row .influencer-count-container:hover {
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+.row .influencer-count-container:active {
+  background: #e3e3e3;
 }
 
 .amount-spent-container {
   text-align: right;
+  padding-right: 0px !important;
 }
 
 .amount-spent-wrapper {
   display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 2px;
+}
+
+.amount-spent-wrapper:hover {
+  cursor: pointer;
+  background: #f0f0f0;
+}
+
+.amount-spent-wrapper:active {
+  background: #e3e3e3;
 }
 
 .amount-spent-wrapper p {
   display: inline-block;
   color: #FF9F00;
   margin-right: 4px;
+  margin-bottom: 0px !important;
   font-weight: 500;
 }
 
 .amount-spent-wrapper span {
   color: #aaa;
   font-size: 12px;
+}
+
+.campaign-title {
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 10px;
+  margin-bottom: 0px !important;
+  font-size: 13px;
+  color: #484848;
 }
 
 .campaign-text {
@@ -417,4 +445,155 @@ transform: translateY(-50%);
 
 .business-edit-input-icon img {
   width: 20px;
+}
+
+/* Influencers campaign pop up */
+
+.business-campaign-influencers-container,
+.business-campaign-money-spent-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.75);
+  display: none;
+}
+
+.business-campaign-influencers-wrapper {
+  width: 400px;
+  background: #fff;
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 6px;
+  padding-bottom: 24px;
+}
+
+.business-campaign-influencers-wrapper .brand-name {
+  color: #ff9f00;
+  text-align: center;
+  margin-top: 0px;
+}
+
+.business-campaign-influencers-wrapper .campaign-name {
+  margin-bottom: 2px !important;
+  color: #484848;
+  font-size: 16px;
+  text-align: center;
+}
+
+.business-campaign-influencers-wrapper .influencers {
+  margin-top: 6px;
+  color: #aaa;
+  text-align: center;
+}
+
+.business-campaign-influencers-wrapper .seperator-div {
+  width: 100%;
+  height: 1px;
+  background: #e3e3e3;
+}
+
+.influencers-container {
+  margin-top: 24px;
+}
+
+.influencers-image-container {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+}
+
+.influencers-image-container img {
+  width: 100%;
+  border-radius: 25px;
+}
+
+.influencers-info-container {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 16px;
+}
+
+.influencers-info-container .influencers-name {
+  margin-bottom: 0px !important;
+}
+
+.influencers-info-container .influencers-instagram-tag {
+  margin-bottom: 0px !important;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.exit-influencer-container {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: 0px;
+  right: -351px;
+  padding: 6px;
+  border-radius: 2px;
+}
+
+.exit-influencer-container:hover {
+  background: #f0f0f0;
+  cursor: pointer;
+}
+
+.exit-influencer-container:active {
+  background: #e3e3e3;
+}
+
+.exit-influencer-container img {
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+/* MOney spent container styles */
+
+.business-campaign-money-spent-container .col-sm-2 {
+  width: 16.6666666666666666666666666666667% !important;
+  padding: 0px !important;
+}
+
+.business-campaign-money-spent-container .influencers-image-container {
+  float: left;
+}
+
+.business-campaign-money-spent-container .money-spent-container {
+  text-align: right;
+  color: #ff9f00;
+}
+
+.business-campaign-money-spent-container .influencers-image-container img {
+    border-radius: 50px;
+}
+
+.business-campaign-money-spent-container .col-sm-8 {
+  margin-left: 0px !important;
+}
+
+.business-campaign-money-spent-container .influencers-container {
+  overflow: auto;
+}
+
+.business-campaign-money-spent-container .brand-name {
+  color: #484848;
+}
+
+.business-campaign-money-spent-container .campaign-name {
+  color: #aaa;
+}
+
+.business-campaign-money-spent-container .money-spent {
+  color: #ff9f00;
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 16px;
 }

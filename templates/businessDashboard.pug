@@ -83,12 +83,16 @@ block content
 									p.error-message Please enter your instagram name and gender. We also highly recommend that you add some interests and tags so you can have the most success.
 									.sign-up-button-influencer(data-bind="click: saveBusinessInformation") Save
 	section#create-campaign-section
+		.create-campaign-help-container
+			.create-campaign-help-wrapper
+				p(data-bind="text: currentHelpText")
+				.hero
 		.create-campaign-information-container.active-create-campaign-container
 			.campaign-creation-step-container.campaign-info-container
 				.create-step-wrapper
 					.step-title-container
 						h3 Campaign information
-						p This is going to be some descriptive text that is going to let the business know why it is that we are in need of thius information from their business to make their campaign info corrext.
+						p Enter in the basic information for the campaign that you are wanting to create. This will be shown to the influencer. The more descriptive and the better images you upload the more influencers are going to want to apply to your campaign.
 						.seperator-div
 					.sides-container
 						.row
@@ -96,6 +100,7 @@ block content
 								.creation-side-wrapper
 									.campaign-image-container
 										h4.section-header CAMPAIGN PHOTO
+										img.help-icon#help-icon-1(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.campaign-image-wrapper
 											.plus-container
 												p +
@@ -103,12 +108,15 @@ block content
 								.creation-side-wrapper.right-wrapper
 									.create-input-wrapper
 										h4.section-header BRAND NAME
+										img.help-icon#help-icon-2(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										input(type="text", placeholder="Enter the name of the brand or company", data-bind="textInput: brandName")
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header CAMPAIGN NAME
+										img.help-icon#help-icon-3(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										input(type="text", placeholder="Enter the name of the campaign", data-bind="textInput: campaignName")
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header CAMPAIGN DESCRIPTION
+										img.help-icon#help-icon-4(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.content-editable(contenteditable="true",placeholder="Enter a brief description of your campaign")
 						.bottom-action-buttons
 							.next-button(data-bind="click: nextButtonClicked") NEXT
@@ -118,7 +126,7 @@ block content
 				.create-step-wrapper
 					.step-title-container
 						h3 Post information
-						p This is going to be some descriptive text that is going to let the business know why it is that we are in need of thius information from their business to make their campaign info corrext.
+						p The information below will allow influencers to get a better understanding on what it is that you are wanting them to post on their social media. The more descriptive you are, the more successful you will be.
 						.seperator-div
 					.sides-container
 						.row
@@ -126,12 +134,15 @@ block content
 								.creation-side-wrapper
 									.create-input-wrapper
 										h4.section-header CONTENT FROM INFLUENCER
+										img.help-icon#help-icon-5(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.content-editable(contenteditable="true",placeholder="Give a brief description of the content that you want from the influencer", data-bind="textInput: influencerContent")
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header CALL TO ACTION
+										img.help-icon#help-icon-6(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										input(type="text", placeholder="What do you want viewers of the post to do? (Visit shop, view website, etc.)", data-bind="textInput: callToAction")
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header TAGS
+										img.help-icon#help-icon-7(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.tags-conatiner
 											input.col-sm-10(type="text", placeholder="What tags would you link to be include in the post",data-bind="textInput: currentTag")
 											.tags-plus-container.col-sm-2(data-bind="click: addTagToList")
@@ -142,6 +153,7 @@ block content
 												p.col-sm-2 -
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header COMPANY VIBE
+										img.help-icon#help-icon-8(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.company-vibe-pic-6-container
 											.row
 												.col-sm-4.pic-container
@@ -165,14 +177,15 @@ block content
 											img(src='/static/img/instagram-grey.png')
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header POSTING REQUIREMENTS
+										img.help-icon#help-icon-9(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.posting-requirements-div
-											.check-box
+											.check-box(data-bind="click: fillCheckBox")
 											p In store posting
 										.posting-requirements-div
-											.check-box
+											.check-box(data-bind="click: fillCheckBox")
 											p Product delivery
 										.posting-requirements-div
-											.check-box
+											.check-box(data-bind="click: fillCheckBox")
 											p Stock promo pic
 						.bottom-action-buttons
 							.next-button.back-button(data-bind="click: backButtonClicked") BACK
@@ -182,7 +195,7 @@ block content
 				.create-step-wrapper
 					.step-title-container
 						h3 Influencer information
-						p This is going to be some descriptive text that is going to let the business know why it is that we are in need of thius information from their business to make their campaign info corrext.
+						p To run a successful campaign you must have the perfect match when it comes to influencers who are representing your company. Fill out the information below as descriptive as possible to make sure you get the best people for your job.
 						.seperator-div
 					.sides-container
 						.row
@@ -190,6 +203,7 @@ block content
 								.creation-side-wrapper
 									.create-input-wrapper
 										h4.section-header AGE RANGE
+										img.help-icon#help-icon-10(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.age-select-container
 											.age-select-wrapper.col-sm-5
 												.select-age
@@ -270,6 +284,7 @@ block content
 														option(value="") 50+
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header TARGET REGION
+										img.help-icon#help-icon-11(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.target-region-container
 											input.col-sm-10(type="text",placeholder="Where do you want influencers to be from?",data-bind="textInput: currentLocation")
 											.tags-plus-container.col-sm-2(data-bind="click: addLocationToList")
@@ -286,15 +301,17 @@ block content
 								.creation-side-wrapper.right-wrapper
 									.create-input-wrapper
 										h4.section-header GENDER
-										.gender-buttons-container
-											.gender-buttons-wrapper
-												.gender-button-container.col-sm-6
+										img.help-icon#help-icon-12(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										.gender-buttons-create-container
+											.gender-buttons-create-wrapper
+												.gender-button-create-container.col-sm-6
 													.gender-button.male-button MALE
-												.gender-button-container.col-sm-6
+												.gender-button-create-container.col-sm-6
 													.gender-button.female-button FEMALE
 						.influencer-interest-container.create-input-wrapper-bottom
 							.influencer-interest-wrapper
 								h4.section-header INTERESTED IN
+								img.help-icon#help-icon-13(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 								.influencer-interest-type-container(data-bind="foreach: interestArray")
 									.col-sm-3.interest-type-info-container
 										.influencer-interest-picture-container(data-bind="style: {backgroundImage: backgroundImageHere}", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover; ")
@@ -310,7 +327,7 @@ block content
 				.create-step-wrapper
 					.step-title-container
 						h3 Review information
-						p This is going to be some descriptive text that is going to let the business know why it is that we are in need of thius information from their business to make their campaign info corrext.
+						p Review the information that you have submitted. On the left is what influencers are going to see and on the right is what only you yourself can see.
 						.seperator-div
 					.sides-container
 						.row
@@ -325,23 +342,20 @@ block content
 									.create-input-wrapper
 										h4.section-header BUSINESS NAME
 										.business-information-container
-											p(data-bind="text: brandNane")
+											p Nutrishop Fresno
 									.create-input-wrapper
 										h4.section-header POSTING TITLE
 										.business-information-container
-											p(data-bind="text: campaignName")
+											p Earn money promoting Nutrishop in Fresno,CA
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header CAMPAIGN DESCRIPTION
-										p.review-p(data-bind="text: campaignDescription")
-									.create-input-wrapper.create-input-wrapper-bottom
-										h4.section-header POSTING VIBE
-										p.review-p(data-bind="text: influencerContent")
+										p.review-p This is going to be the description for the campaign. It is going to give a brief description of what the campaign is, how much the person is going to make and many more other things.
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header CALL TO ACTION
-										p.review-p(data-bind="text: callToAction")
+										p.review-p Check out the Nutrishop at Campus Pointe.
 									.create-input-wrapper.create-input-wrapper-bottom
-										h4.section-header POSTING MOOD
-										p.review-p soifnsaudfh sadhfuias dif sdfh dsaiuhf isdahf uiadhsf iuahsfiu dsf sadif adhfiu ashdfiu sadhfiu sgfsbhvdfbdsfiu dhsufi sdnfu sbudaf ubsdiuf.
+										h4.section-header POSTING VIBE
+										p Below this there is going to be the same pictures on the previous page to
 									.create-insput-wrapper.create-input-wrapper-bottom
 										h4.section-header PLATFORMS
 										.platform-image-container
@@ -356,22 +370,27 @@ block content
 							.right-side-creation-container.col-sm-6
 								.creation-side-wrapper.right-wrapper
 									.create-input-wrapper
-										h4.section-header CAMPAIGN IMAGE
-										.campaign-image-wrapper
-									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header INFLUENCER INFORMATION
-										.review-influencer-container
-											p.review-title Age
-											p.review-p 16-24
-										.review-influencer-container
-											p.review-title Gender
-											p.review-p Male
+										.influencer-side-by-side-container
+											.review-influencer-container
+												p.review-title Age
+												p.review-p 16-24
+											.review-influencer-container
+												p.review-title Gender
+												p.review-p Male
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header TARGET REGION
-											.target-region-container
-												p.review-p Fresno, Ca
-												p.review-p Clovis, Ca
-												p.review-p New York, NY
+										.target-region-container-review
+											p.review-p Fresno, Ca
+											p.review-p Clovis, Ca
+											p.review-p New York, NY
+									.create-input-wrapper.create-input-wrapper-bottom
+										h4.section-header INTERESTS
+										.influencer-interests-container.influencer-interests-container-review
+											.interest-container-review.col-sm-6.food-container
+												h3 Food &amp; Drink
+											.interest-container.col-sm-6.automotive-container
+												h3 Automotive
 						.bottom-action-buttons
 							.next-button.back-button(data-bind="click: backButtonClicked") BACK
 							.next-button(data-bind="click: finishButtonClicked") FINISH
@@ -381,14 +400,14 @@ block content
 				.navigation-left-side-container.col-sm-6
 					.navigation-left-side-wrapper
 						.showt-out-icon-container
-							img(src='/static/img/showt-local-logo.png')
+							img(src='/static/img/showt-logo.png')
 				.navigation-right-side-container.col-sm-6
 					.navigation-right-side-wrapper
 						ul.right-link-container
 							li
-								p.business-dash-link.home-link Home
+								p.business-dash-link.home-link(data-bind="click: sendHome") Home
 							li
-								p.business-dash-link.help-page-link Help
+								p.business-dash-link.help-page-link(data-bind="click: sendToHelpPage") Help
 							li
 								p.business-dash-link.create-campaign-link(data-bind="click: showCreateCampaignContainer") Create
 							li.business-right-container(data-bind="click: showBusinessDropDown")
@@ -415,15 +434,16 @@ block content
 								.campaign-image-container
 									img(src='/static/img/business-background.jpg')
 								.row.business-campaign-info-row
-									.influencer-count-container.col-sm-6
+									.influencer-count-container.col-sm-6(data-bind="click: $root.showInfluencerCountContainer")
 										.influencer-count-icon-container
 											img(src='/static/img/person.png')
 										p 5
 										span influencers
 									.amount-spent-container.col-sm-6
-										.amount-spent-wrapper
+										.amount-spent-wrapper(data-bind="click: $root.showAmountSpentContainer")
 											p $213
 											span spent
+								p.campaign-title This is the campaign title
 								p.campaign-text This is going to be the description text that is going to explain the brief text of what this campaigns is and what it does.
 			.previous-campaigns-container.campaigns-container
 				.overall-campaigns-wrapper
@@ -434,14 +454,79 @@ block content
 								.campaign-image-container
 									img(src='/static/img/business-background.jpg')
 								.row.business-campaign-info-row
-									.influencer-count-container.col-sm-6
+									.influencer-count-container.col-sm-6(data-bind="click: $root.showInfluencerCountContainer")
 										.influencer-count-icon-container
 											img(src='/static/img/person.png')
 										p 5
 										span influencers
 									.amount-spent-container.col-sm-6
-										.amount-spent-wrapper
+										.amount-spent-wrapper(data-bind="click: $root.showAmountSpentContainer")
 											p $213
 											span spent
+								p.campaign-title This is the campaign title
 								p.campaign-text This is going to be the description text that is going to explain the brief text of what th
+		.business-campaign-influencers-container
+			.business-campaign-influencers-wrapper
+				.exit-influencer-container(data-bind="click: exitInfluencersPopUp")
+					img(src='/static/img/exit.png')
+				h3.brand-name Nutrishop
+				p.campaign-name Brand recognition
+				p.influencers Influencers
+				.seperator-div
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+		.business-campaign-money-spent-container
+			.business-campaign-influencers-wrapper
+				.exit-influencer-container(data-bind="click: exitCampaignSpentPopUp")
+					img(src='/static/img/exit.png')
+				h3.brand-name Nutrishop
+				p.campaign-name Brand recognition
+				p.influencers.money-spent $213
+				.seperator-div
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container.col-sm-8
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+						.money-spent-container.col-sm-2
+							p $75
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container.col-sm-8
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+						.money-spent-container.col-sm-2
+							p $75
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container.col-sm-8
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+						.money-spent-container.col-sm-2
+							p $75
 	include ./partials/_footer.pug

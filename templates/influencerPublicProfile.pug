@@ -1,0 +1,92 @@
+extends ./layout.pug
+
+block content
+	section#influencer-public-profile-section
+		.influencer-profile-top-background-container
+		.influencer-profile-bottom-container
+			.influencer-profile-container
+				.influencer-profile-wrapper
+					.influencer-top-profile-information-container
+						.influencer-top-profile-information-wrapper
+							.influencer-profile-image-container.col-sm-3
+								img(src='/static/img/connor.jpg')
+							.influencer-profile-information-container.col-sm-9
+								h3.influencer-name Connor Myers
+								p.influencer-one-liner Helping you grow your business one post at a time.
+								.influencer-location-container
+									img(src='/static/img/instagram-grey.png')
+									p.influencer-location connormyers21
+								.influencer-location-container
+									img(src='/static/img/location.png')
+									p.influencer-location Fresno, Ca
+								.influencer-ratings-container
+									.influencer-data-container.col-sm-4
+										p.influencer-reach 3,000
+										p.text Overall reach
+									.influencer-data-container.col-sm-4
+										p.influencer-reach 10%
+										p.text Engagement rate
+									.influencer-data-container.col-sm-4
+										p.influencer-reach 8.4
+										p.text Showt influencer score
+								.influencer-hire-button-container
+									.influencer-hire-button(data-bind="click: hireMeButtonClicked") Work with me
+						.influencer-about-work-buttons-container
+							.about-button-container.col-sm-6
+								.about-button.active-profile-link(data-bind="click: aboutButtonClicked") About
+							.work-button-container.col-sm-6
+								.work-button.inactive-profile-link(data-bind="click: workButtonClicked") Work
+			.influencer-bottom-information-container
+				.influencer-about-information-container
+					.influencer-about-information-wrapper
+						.about-me-container
+							p.influencer-profile-section-heading About me
+							p.about-me-text Hi, my name is Connor Myers and I am an entrepreneur from Fresno, CA. I have quite a large following and a very high engagement rate on all of my social media outets. This means that I am better able to reach my community since the people that are following me and engaging with my content are close friends of mine. This can dramatically help you grow your business. Click the button above to work with me to help grow your business and your brand name today!
+						.interests-container
+							p.influencer-profile-section-heading I'm interested in
+							.interest-images-container
+								.interest-container.col-sm-3.interest-1
+									p.interest-type-text Food &amp; Drink
+								.interest-container.col-sm-3.interest-2
+									p.interest-type-text Automotive
+								.interest-container.col-sm-3.interest-3
+									p.interest-type-text Animals &amp; Pets
+								.interest-container.col-sm-3.interest-4
+									p.interest-type-text Resturants, Bars &amp; Pubs
+						.further-interests-container
+							p.influencer-profile-section-heading I'm also interested in
+							.interest-tags-container
+								p.tag-text.col-sm-3 Skateboarding
+								p.tag-text.col-sm-3 Education &amp; Books
+								p.tag-text.col-sm-3 Volleyball
+								p.tag-text.col-sm-3 Basketball
+								p.tag-text.col-sm-3 Entrepreneurship
+								p.tag-text.col-sm-3 Inspiration
+						.hire-me-container
+							p.hire-me-text Interested in working with Connor?
+							.hire-me-button(data-bind="click: hireMeButtonClicked") Hire me
+				.influencer-work-information-container
+					.influencer-work-information-wrapper
+						.previous-work-container
+							.previous-work-wrapper
+								.previous-work-inner-container.col-sm-6
+									.previous-work-image-container.col-sm-3
+										img(src='/static/img/connor.jpg')
+									.previous-work-text-container.col-sm-9
+										.row
+											p.gig-name.col-sm-9 Nutrishop Protein Powder Push
+											p.gig-cost.col-sm-3 $175
+										p.gig-description Take a picture in the Nutrishop store at Campus Pointe by Fresno State to help promote the protein that we make and sell here.
+								.previous-work-inner-container.col-sm-6
+									.previous-work-image-container.col-sm-3
+										img(src='/static/img/connor.jpg')
+									.previous-work-text-container.col-sm-9
+										.row
+											p.gig-name.col-sm-9 Brand Recognition
+											p.gig-cost.col-sm-3 $175
+										p.gig-description Thuidfuashfnu sadf suaidhfn adsufhduinf asdfiun asf isafh asndfiu sadfn uasfin sdfju sandf isadufn sadf iasufn saidfu sadiufn isaguasgnisa dginuas dgfiu.
+						.hire-me-container
+							p.hire-me-text Interested in working with Connor?
+							.hire-me-button(data-bind="click: hireMeButtonClicked") Hire me
+block customJS
+	script(src='/static/js/influencerPublicProfile.js')

@@ -242,6 +242,14 @@ pre {
   vertical-align: middle;
 }
 
+.check-box:hover {
+  cursor: pointer;
+}
+
+.filled-check-box {
+  background: #ff9f00;
+}
+
 .posting-requirements-div {
   margin-top: 16px;
 }
@@ -349,15 +357,20 @@ select:hover {
   width: 16.66666666666666666667% !important;
 }
 
-.gender-button-container {
+.gender-buttons-create-container {
+  margin-left: -6px;
+  margin-right: -6px;
+}
+
+.gender-button-create-container {
   padding-left: 6px !important;
   padding-right: 6px !important;
   text-align: center;
 }
 
 .gender-buttons-wrapper {
-  margin-left: -6px;
-  margin-right: -6px;
+  /*margin-left: -6px;
+  margin-right: -6px;*/
 }
 
 .gender-button {
@@ -390,6 +403,7 @@ select:hover {
   border: 1px solid #FF9F00;
   margin-top: 12px;
   overflow: auto;
+  display: none;
 }
 
 .location-container {
@@ -493,7 +507,7 @@ select:hover {
 
 .next-button-tapped {
   background: #FF9F00;
-  color: #FFF;
+  color: #FFF !important;
 }
 
 .review-posting-container .business-picture-container img {
@@ -588,9 +602,52 @@ select:hover {
   width: 16.6666666666666667% !important;
 }
 
+.target-region-container-review {
+  overflow: auto;
+}
+
+.target-region-container-review  p {
+  text-align: left;
+  margin-top: 18px;
+  color: #ff9f00;
+}
+
 .target-region-container {
   overflow: auto;
   border: 1px solid #ff9f00;
+}
+
+.food-container {
+  height: 75px;
+  background: url(/static/img/food-interest.png);
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.automotive-container {
+  height: 75px;
+  background: url(/static/img/automotive-interest.png);
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.influencer-interests-container-review {
+  margin-top: 16px;
+}
+
+.influencer-interests-container-review h3 {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  position: absolute;
+  left: 12px;
+  bottom: 6px;
 }
 
 .target-region-container input {
@@ -653,4 +710,52 @@ select:hover {
 
 .review-influencer-container .review-p {
   font-size: 12px;
+}
+
+.sides-container .section-header {
+  display: inline-block;
+}
+
+.help-icon {
+  display: inline-block;
+  width: 18px !important;
+  margin-left: 8px;
+}
+
+.help-icon:hover {
+  cursor: pointer;
+}
+
+.influencer-side-by-side-container {
+  overflow: auto;
+  width: 100%;
+}
+
+.create-campaign-help-container {
+  position: fixed;
+  left: 10px;
+  top: 10px;
+  z-index: 12;
+  background: #FFF;
+  border-radius: 3px;
+  width: 275px;
+  padding: 12px;
+  font-size: 12px;
+  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  display: none;
+}
+
+.hero:after {
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-top: solid 10px #ff9f00;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
 }

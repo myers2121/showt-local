@@ -8,14 +8,14 @@
       self.previousCampaigns = ko.observableArray(["1","1","1"]);
       self.businessTagList = ko.observableArray([])
 
-      const $homeLink = $('.home-link');
-      const $helpLink = $('.help-page-link');
       const $createLink = $('.create-campaign-link');
       const $createCampaignSection = $('#create-campaign-section');
       const $businessDropdownContainer = $('.business-dropdown-container');
       const $editBusinessInformationSection = $('#edit-business-info-section');
       const $businessAccountInformationContainer = $('.business-edit-account-info');
       const $businessFurtherInformationContainer = $('.business-edit-business-information');
+      const $businessInfluencerInfoContainer = $('.business-campaign-influencers-container');
+      const $businessCampaignMoneySpentContainer = $('.business-campaign-money-spent-container');
 
       self.interests = ko.observableArray([
         {
@@ -86,6 +86,14 @@
         $('body').css('overflow','hidden');
       };
 
+      self.sendHome = function() {
+        location.href = '/';
+      };
+
+      self.sendToHelpPage = function() {
+        location.href = '/help';
+      };
+
       self.showBusinessDropDown = function() {
         $('.business-dropdown-container').slideToggle();
       };
@@ -121,7 +129,7 @@
         const currentTarget = e.currentTarget;
         const currentItem = currentTarget.children[2];
         $(currentItem).toggleClass('interest-checked-layer-show');
-      }
+      };
 
       self.addInterestTypeToList = function interestTypeClicked() {
 
@@ -133,6 +141,28 @@
 
       self.saveBusinessInformation = function saveButtonClicked() {
 
+      };
+
+      self.showInfluencerCountContainer = function() {
+        $businessInfluencerInfoContainer.fadeIn();
+        $('body').css('overflow','hidden');
+      };
+
+      self.showAmountSpentContainer = function() {
+        $businessCampaignMoneySpentContainer.fadeIn();
+        $('body').css('overflow','hidden');
+      };
+
+      self.exitInfluencersPopUp = function exitInfluencersPopUpButtonClicked() {
+        $businessInfluencerInfoContainer.fadeOut(function() {
+          $('body').css('overflow','scroll');
+        });
+      };
+
+      self.exitCampaignSpentPopUp = function() {
+        $businessCampaignMoneySpentContainer.fadeOut(function() {
+          $('body').css('overflow','scroll');
+        });
       };
   };
 

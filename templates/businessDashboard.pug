@@ -173,12 +173,11 @@ block content
 								.creation-side-wrapper.right-wrapper
 									.create-input-wrapper
 										h4.section-header PLATFORMS
-										img.help-icon#help-icon-9(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.platform-image-container
 											img(src='/static/img/instagram-grey.png')
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header POSTING REQUIREMENTS
-										img.help-icon#help-icon-10(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										img.help-icon#help-icon-9(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.posting-requirements-div
 											.check-box(data-bind="click: fillCheckBox")
 											p In store posting
@@ -204,7 +203,7 @@ block content
 								.creation-side-wrapper
 									.create-input-wrapper
 										h4.section-header AGE RANGE
-										img.help-icon#help-icon-11(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										img.help-icon#help-icon-10(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.age-select-container
 											.age-select-wrapper.col-sm-5
 												.select-age
@@ -285,7 +284,7 @@ block content
 														option(value="") 50+
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header TARGET REGION
-										img.help-icon#help-icon-12(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										img.help-icon#help-icon-11(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.target-region-container
 											input.col-sm-10(type="text",placeholder="Where do you want influencers to be from?",data-bind="textInput: currentLocation")
 											.tags-plus-container.col-sm-2(data-bind="click: addLocationToList")
@@ -302,7 +301,7 @@ block content
 								.creation-side-wrapper.right-wrapper
 									.create-input-wrapper
 										h4.section-header GENDER
-										img.help-icon#help-icon-13(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										img.help-icon#help-icon-12(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.gender-buttons-create-container
 											.gender-buttons-create-wrapper
 												.gender-button-create-container.col-sm-6
@@ -312,7 +311,7 @@ block content
 						.influencer-interest-container.create-input-wrapper-bottom
 							.influencer-interest-wrapper
 								h4.section-header INTERESTED IN
-								img.help-icon#help-icon-14(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+								img.help-icon#help-icon-13(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 								.influencer-interest-type-container(data-bind="foreach: interestArray")
 									.col-sm-3.interest-type-info-container
 										.influencer-interest-picture-container(data-bind="style: {backgroundImage: backgroundImageHere}", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover; ")
@@ -401,7 +400,7 @@ block content
 				.navigation-left-side-container.col-sm-6
 					.navigation-left-side-wrapper
 						.showt-out-icon-container
-							img(src='/static/img/showt-local-logo.png')
+							img(src='/static/img/showt-logo.png')
 				.navigation-right-side-container.col-sm-6
 					.navigation-right-side-wrapper
 						ul.right-link-container
@@ -435,15 +434,16 @@ block content
 								.campaign-image-container
 									img(src='/static/img/business-background.jpg')
 								.row.business-campaign-info-row
-									.influencer-count-container.col-sm-6
+									.influencer-count-container.col-sm-6(data-bind="click: $root.showInfluencerCountContainer")
 										.influencer-count-icon-container
 											img(src='/static/img/person.png')
 										p 5
 										span influencers
 									.amount-spent-container.col-sm-6
-										.amount-spent-wrapper
+										.amount-spent-wrapper(data-bind="click: $root.showAmountSpentContainer")
 											p $213
 											span spent
+								p.campaign-title This is the campaign title
 								p.campaign-text This is going to be the description text that is going to explain the brief text of what this campaigns is and what it does.
 			.previous-campaigns-container.campaigns-container
 				.overall-campaigns-wrapper
@@ -454,14 +454,79 @@ block content
 								.campaign-image-container
 									img(src='/static/img/business-background.jpg')
 								.row.business-campaign-info-row
-									.influencer-count-container.col-sm-6
+									.influencer-count-container.col-sm-6(data-bind="click: $root.showInfluencerCountContainer")
 										.influencer-count-icon-container
 											img(src='/static/img/person.png')
 										p 5
 										span influencers
 									.amount-spent-container.col-sm-6
-										.amount-spent-wrapper
+										.amount-spent-wrapper(data-bind="click: $root.showAmountSpentContainer")
 											p $213
 											span spent
+								p.campaign-title This is the campaign title
 								p.campaign-text This is going to be the description text that is going to explain the brief text of what th
+		.business-campaign-influencers-container
+			.business-campaign-influencers-wrapper
+				.exit-influencer-container(data-bind="click: exitInfluencersPopUp")
+					img(src='/static/img/exit.png')
+				h3.brand-name Nutrishop
+				p.campaign-name Brand recognition
+				p.influencers Influencers
+				.seperator-div
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+		.business-campaign-money-spent-container
+			.business-campaign-influencers-wrapper
+				.exit-influencer-container(data-bind="click: exitCampaignSpentPopUp")
+					img(src='/static/img/exit.png')
+				h3.brand-name Nutrishop
+				p.campaign-name Brand recognition
+				p.influencers.money-spent $213
+				.seperator-div
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container.col-sm-8
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+						.money-spent-container.col-sm-2
+							p $75
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container.col-sm-8
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+						.money-spent-container.col-sm-2
+							p $75
+				.influencers-container
+					.influencers-wrapper
+						.influencers-image-container
+							img(src='/static/img/connor.jpg')
+						.influencers-info-container.col-sm-8
+							p.influencers-name Connor Myers
+							p.influencers-instagram-tag connormyers21
+						.money-spent-container.col-sm-2
+							p $75
 	include ./partials/_footer.pug

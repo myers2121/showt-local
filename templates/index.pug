@@ -116,7 +116,7 @@ block content
 					.influencer-account-form-wrapper
 						h3 Account created
 						p.account-text Thank you for creating an account with us at Showtlocal. One of our influencer specialists will be in contact with you within 24 hours to continue your Showtlocal journey to making money on social media.
-						.sign-up-button-influencer.back-to-website-button(data-bind='click: exitSignUpPopUp') BACK TO WEBSITE	
+						.sign-up-button-influencer.back-to-website-button(data-bind='click: exitSignUpPopUp') BACK TO WEBSITE
 	section#home
 		.home-nav
 			.home-nav-container
@@ -128,7 +128,7 @@ block content
 								p.grow-business-button-text Business login
 					.middle-nav-container.col-sm-4
 						.home-middle-nav-container
-							img(src='/static/img/showt-local-logo.png')
+							img(src='/static/img/showt-local-favicon.png')
 					.last-nav-container.col-sm-4
 		.home-container
 			.home-middle-info-container
@@ -138,3 +138,7 @@ block content
 						.homepage-button.influencer-button EARN EXTRA MONEY
 						.homepage-button.business-button GROW YOUR BUSINESS
 	include ./partials/_footer.pug
+block customJS
+	script(src='/static/js/influencerSignUp.js')
+	script(src='/static/js/home.js')
+	script(src='/static/js/footer.js')

@@ -101,7 +101,20 @@
         },
       ]);
 
-      self.helpItem = ko.observableArray(["Help text 1", "Help text 2", "Help text 3", "Help text 4", "Help text 5", "Help text 6", "Help text 7", "Help text 8", "Help text 9", "Help text 10", "Help text 11", "Help text 12", "Help text 13", "Help text 14"]);
+      self.helpItem = ko.observableArray([
+        "Enter a photo that helps represent your campaign the best. This could be the logo of your company or something else. This helps the influencer get a good feel for what the campaign will be like. The better your campaign photo the more influencers will apply.",
+        "Enter the name of the brand or business that you are wanting to promote.",
+        'Enter the name of the campaign that you are trying to run. For example, "Nutrishop Brand Awareness". The name of your campaign should represent the goal you have for the campaign.',
+        "Describe what you are wanting from this campaign. What type of influencers, what kind of vibe does this campaign need, what is the goal for your company creating this campaign. Basically, explain what it is that you are trying to do and the people you want to do it with.",
+        "This is a description of what exactly it is that you need from influencers. The more descriptive you are the better. This description will be shown to all of the influencers who are interested in your campaign.",
+        "The call to action is what you want influencers to tell their followers to do. If you want people to come to your website then say that. If you want them to come in to your store then say this as well.",
+        "Tags are things that you want the influencers to include in the post. Tags are usually hashtags, links to your own instagram account, and links to your website. Add them below by typing in the box and clicking the plus button.",
+        "Influencers are going to be posting about your business. Give them a better understanding of the vibe that you have at your company by uploading a few images the represent waht your company is all about.",
+        "In some campaigns there are going to be requirements other than simply posting a picture for the business. You may want them to make the posting in your store, deliver product to them, or simply have them post a stock promotion pic. Select the option that pertains to you below.",
+        "Select the age range of the influencers that you are wanting to hire.",
+        "What region(s) of the country are you looking to promote your brand in? These helps us find the best influencers in the area you are interested in.",
+        "What gender are you wanting to promote your brand? You can pick one or both.",
+        "Select from the region below the kind of influencers that you are looking to find. By choosing the interests below it will be much better when finding influencers to help your campaign.", "Help text 14"]);
 
       self.addTagToList = function() {
         if (self.currentTag().length > 2) {

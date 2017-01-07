@@ -14,6 +14,8 @@
       const $editBusinessInformationSection = $('#edit-business-info-section');
       const $businessAccountInformationContainer = $('.business-edit-account-info');
       const $businessFurtherInformationContainer = $('.business-edit-business-information');
+      const $businessInfluencerInfoContainer = $('.business-campaign-influencers-container');
+      const $businessCampaignMoneySpentContainer = $('.business-campaign-money-spent-container');
 
       self.interests = ko.observableArray([
         {
@@ -127,7 +129,7 @@
         const currentTarget = e.currentTarget;
         const currentItem = currentTarget.children[2];
         $(currentItem).toggleClass('interest-checked-layer-show');
-      }
+      };
 
       self.addInterestTypeToList = function interestTypeClicked() {
 
@@ -139,6 +141,28 @@
 
       self.saveBusinessInformation = function saveButtonClicked() {
 
+      };
+
+      self.showInfluencerCountContainer = function() {
+        $businessInfluencerInfoContainer.fadeIn();
+        $('body').css('overflow','hidden');
+      };
+
+      self.showAmountSpentContainer = function() {
+        $businessCampaignMoneySpentContainer.fadeIn();
+        $('body').css('overflow','hidden');
+      };
+
+      self.exitInfluencersPopUp = function exitInfluencersPopUpButtonClicked() {
+        $businessInfluencerInfoContainer.fadeOut(function() {
+          $('body').css('overflow','scroll');
+        });
+      };
+
+      self.exitCampaignSpentPopUp = function() {
+        $businessCampaignMoneySpentContainer.fadeOut(function() {
+          $('body').css('overflow','scroll');
+        });
       };
   };
 

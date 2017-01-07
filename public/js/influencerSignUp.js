@@ -202,7 +202,7 @@
       }
 
       self.addInfluencerTag = function addTagToInfluencerList( d, e ) {
-        
+
         let tag = $("#tag-input").val();
 
         if ( tag == null || tag == '' )
@@ -326,7 +326,7 @@
             $('.influencer-information-sign-up-form-container').fadeOut(function() {
               $('.influencer-finish-sign-up-form-container').fadeIn();
             });
-            
+
           })
 
         } else {
@@ -345,9 +345,10 @@
   ko.applyBindings(influencerSignUpObjectVm,document.getElementById("influencer-sign-up-section"));
 
   $('#influencer-sign-up-section').on('click', function(e) {
-    if (e.target == this)
+    if (e.target == this) {
       $('#influencer-sign-up-section').fadeOut();
       $('body').css('overflow','auto');
+    }
   });
 
 })(jQuery); // End of use strict

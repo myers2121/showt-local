@@ -38,6 +38,18 @@ var jsonParser = bodyParser.json();
 		res.render('businessSignUp');
 	});
 
+	// Takes the influencer to their own profile after they have logged in
+
+	router.get('/users/:userId',function(req,res) {
+		res.render('influencerPrivateProfile');
+	});
+
+	// Takes the website user to the public profile for the influencer
+
+	router.get('/:userId', function(req,res) {
+		res.render('influencerPublicProfile');
+	});
+
 /* POST */
 
 	router.post('/', jsonParser ,function(req,res) {
@@ -80,7 +92,7 @@ var jsonParser = bodyParser.json();
 		});
 
 		var backURL = req.header('Referer') || '/';
-	    
+
 	    // do your thang
 		res.render('index',{
 			formSubmission: true

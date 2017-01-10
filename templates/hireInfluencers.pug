@@ -2,41 +2,58 @@ extends ./layout.pug
 
 block content
 	section#create-campaign-section
+		.business-sign-up-login-container
+			.business-login-container
+				.business-login-wrapper
+					.influencer-account-form-wrapper
+						h3 Business Login
+						p.account-text Log in to your account to start growing your company.
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/email.png')
+						input(type='email',placeholder='Email address', data-bind="textInput: businessLoginEmail, event: { blur: businessLoginEmailTyping }")
+					p.error-message(data-bind="visible: showBusinessEmailErrorMessage") Please enter a valid email
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/lock-grey.png')
+						input(type='password',placeholder='Password', data-bind="textInput: businessLoginPassword, event: { blur: businessLoginPasswordTyping }")
+					p.error-message(data-bind="visible: showPasswordErrorMessage") Please enter a password with at least 6 characters
+					.sign-up-button-container-influencer
+						.sign-up-button-influencer(data-bind="click: logInBusinessFromCampaign") Login
+					p.no-account-text Don't yet have Showt account?
+					p.sign-up-login-text(data-bind="click: signUpBusiness") Sign up today!
 		.view-influencer-container
 			.view-influencer-wrapper
 				img.exit-influencer-pop-up(src='/static/img/exit.png', data-bind="click: closeInfluencerPopUp")
 				.personal-information-container
 					.influencer-picture.col-sm-4
-						img.influencer-selceted-image(src='/static/img/megan.jpg')
+						img.influencer-selceted-image(data-bind="attr: {src: selectedInfluencerImage}")
 					.influencer-text-information-container.col-sm-8
-						p.influencer-selected-name Megan Sullivan
+						p.influencer-selected-name(data-bind="text: selectedInfluencerName")
 						.platform-container
 							img.instagram-grey-icon(src='/static/img/instagram-grey.png')
-							p.platform-username Meggoooozz
+							p.platform-username(data-bind="text: selectedInfluencerInstagram")
 						.location-container
 							img.location-icon(src='/static/img/location.png')
-							p.influencer-selected-location Fresno, Ca
+							p.influencer-selected-location(data-bind="text: selectedInfluencerLocation")
 				.influencer-selected-data-container
 					.data-container.col-sm-4
-						p.influencer-selected-data-text 3,000
+						p.influencer-selected-data-text(data-bind="text: selectedInfluencerFollowers")
 						p.data-static-text Followers
 					.data-container.col-sm-4
-						p.influencer-selected-data-text 10%
+						p.influencer-selected-data-text(data-bind="text: selectedInfluencerEngagementRate")
 						p.data-static-text Engagement rate
 					.data-container.col-sm-4
-						p.influencer-selected-data-text 8.4
+						p.influencer-selected-data-text(data-bind="text: selectedInfluencerShowtScore")
 						p.data-static-text Showt score
 				.further-info-container
 					.bottom-selected-contianer
 						h3.bottom-selected-container-title.first-info-title About me
-						p.about-me-text JGFuiosahf hsufih sdiuf snfu siudfbisadbf siadufbadsifndfiudsfnsf sadfuiasdnfsdaufisfuiabsaduif absiudfb sadiubf sdiuafb aisudbf ausidfb iusdbf iasbf siudfb asidufba isu.
+						p.about-me-text(data-bind="text: selectedInfluencerAboutMe")
 					.bottom-selected-contianer
 						h3.bottom-selected-container-title I'm interested in
 					.bottom-selected-contianer
 						h3.bottom-selected-container-title I'm also interested in
-				.work-with-influencer-container
-					p Interested in working with Megan?
-					.hire-me-button(data-bind="click: hireMeAndFadeOutPopUp") Hire me
 		.create-campaign-information-container.active-create-campaign-container
 			.campaign-creation-step-container.campaign-info-container
 				.create-step-wrapper
@@ -52,6 +69,7 @@ block content
 										h4.section-header CAMPAIGN NAME
 										img.help-icon#help-icon-3(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										input(type="text", placeholder="Enter the name of the campaign", data-bind="textInput: campaignName")
+										p.error-message(data-bind="visible: showCampainErrorMessage") Please enter a name for your campaign
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header CAMPAIGN BUDGET
 										input(type="text", placeholder="How much money do you want to spend", data-bind="textInput: campaignBudget")
@@ -78,7 +96,7 @@ block content
 											.location-container(data-bind="foreach: locationsList")
 												.location-container
 													.location-icon-container.col-sm-1
-														img(src='/static/img/person.png')
+														img(src='/static/img/location.png')
 													p.col-sm-10(data-bind="text: locationName")
 													.delete-icon-container.col-sm-1(data-bind="click: $root.deleteLocationFromList.bind($index())")
 														p.subtract-location -
@@ -90,9 +108,10 @@ block content
 										.gender-buttons-create-container
 											.gender-buttons-create-wrapper
 												.gender-button-create-container.col-sm-6
-													.gender-button.male-button MALE
+													.gender-button.male-button(data-bind="click: changeGender") MALE
 												.gender-button-create-container.col-sm-6
-													.gender-button.female-button FEMALE
+													.gender-button.female-button(data-bind="click: changeGender") FEMALE
+										p.error-message(data-bind="visible: showGenderErrorMessage") Please select a gender
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header AGE RANGE
 										img.help-icon#help-icon-10(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
@@ -100,80 +119,80 @@ block content
 											.age-select-wrapper.col-sm-5
 												.select-age
 													select(data-bind="value: lowerAgeRange")
-														option(value="") 16
-														option(value="") 17
-														option(value="") 18
-														option(value="") 19
-														option(value="") 20
-														option(value="") 21
-														option(value="") 22
-														option(value="") 23
-														option(value="") 24
-														option(value="") 25
-														option(value="") 26
-														option(value="") 27
-														option(value="") 28
-														option(value="") 29
-														option(value="") 30
-														option(value="") 31
-														option(value="") 32
-														option(value="") 33
-														option(value="") 34
-														option(value="") 35
-														option(value="") 36
-														option(value="") 37
-														option(value="") 38
-														option(value="") 39
-														option(value="") 40
-														option(value="") 41
-														option(value="") 42
-														option(value="") 43
-														option(value="") 44
-														option(value="") 45
-														option(value="") 46
-														option(value="") 47
-														option(value="") 48
-														option(value="") 49
-														option(value="") 50+
+														option(value="16") 16
+														option(value="17") 17
+														option(value="18") 18
+														option(value="19") 19
+														option(value="20") 20
+														option(value="21") 21
+														option(value="22") 22
+														option(value="23") 23
+														option(value="24") 24
+														option(value="25") 25
+														option(value="26") 26
+														option(value="27") 27
+														option(value="28") 28
+														option(value="29") 29
+														option(value="30") 30
+														option(value="31") 31
+														option(value="32") 32
+														option(value="33") 33
+														option(value="34") 34
+														option(value="35") 35
+														option(value="36") 36
+														option(value="37") 37
+														option(value="38") 38
+														option(value="39") 39
+														option(value="40") 40
+														option(value="41") 41
+														option(value="42") 42
+														option(value="43") 43
+														option(value="44") 44
+														option(value="45") 45
+														option(value="46") 46
+														option(value="47") 47
+														option(value="48") 48
+														option(value="49") 49
+														option(value="50") 50+
 											.dash-container.col-sm-2
 												p -
 											.age-select-wrapper.col-sm-5
 												.select-age
 													select(data-bind="value: upperAgeRange")
-														option(value="") 17
-														option(value="") 18
-														option(value="") 19
-														option(value="") 20
-														option(value="") 21
-														option(value="") 22
-														option(value="") 23
-														option(value="") 24
-														option(value="") 25
-														option(value="") 26
-														option(value="") 27
-														option(value="") 28
-														option(value="") 29
-														option(value="") 30
-														option(value="") 31
-														option(value="") 32
-														option(value="") 33
-														option(value="") 34
-														option(value="") 35
-														option(value="") 36
-														option(value="") 37
-														option(value="") 38
-														option(value="") 39
-														option(value="") 40
-														option(value="") 41
-														option(value="") 42
-														option(value="") 43
-														option(value="") 44
-														option(value="") 45
-														option(value="") 46
-														option(value="") 47
-														option(value="") 48
-														option(value="") 49
-														option(value="") 50+
+														option(value="17") 17
+														option(value="18") 18
+														option(value="19") 19
+														option(value="20") 20
+														option(value="21") 21
+														option(value="22") 22
+														option(value="23") 23
+														option(value="24") 24
+														option(value="25") 25
+														option(value="26") 26
+														option(value="27") 27
+														option(value="28") 28
+														option(value="29") 29
+														option(value="30") 30
+														option(value="31") 31
+														option(value="32") 32
+														option(value="33") 33
+														option(value="34") 34
+														option(value="35") 35
+														option(value="36") 36
+														option(value="37") 37
+														option(value="38") 38
+														option(value="39") 39
+														option(value="40") 40
+														option(value="41") 41
+														option(value="42") 42
+														option(value="43") 43
+														option(value="44") 44
+														option(value="45") 45
+														option(value="46") 46
+														option(value="47") 47
+														option(value="48") 48
+														option(value="49") 49
+														option(value="50") 50+
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header TAGS
 										img.help-icon#help-icon-7(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
@@ -190,7 +209,7 @@ block content
 								h4.section-header INTERESTED IN
 								img.help-icon#help-icon-13(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 								.influencer-interest-type-container(data-bind="foreach: interestArray")
-									.col-sm-3.interest-type-info-container
+									.col-sm-3.interest-type-info-container(data-bind="click: $root.addInterestToList")
 										.influencer-interest-picture-container(data-bind="style: {backgroundImage: backgroundImageHere}", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover; ")
 										h3.interest-type(data-bind="text: interestType")
 										.influencer-hover-container
@@ -228,6 +247,7 @@ block content
 									p.influencer-price(data-bind="text: showtPriceText")
 									p.influencer-rating-text Per post
 								.hire-me-button(data-bind="click: $root.showInfluencerInformation") More info
+					p.error-message.influencer-error-message(data-bind="visible: showInfluencerErrorMessage") Please select an influencer that you would like to work with
 					.bottom-action-buttons
 						.next-button.back-button(data-bind="click: backButtonClicked") BACK
 						.next-button(data-bind="click: nextButtonClicked") CONTINUE
@@ -244,21 +264,21 @@ block content
 							.review-posting-container
 								.create-input-wrapper
 									h4.section-header CAMPAIGN NAME
-									p.review-p This is goign to be the campaign name
+									p.review-p(data-bind="text: campaignName")
 								.create-input-wrapper.create-input-wrapper-bottom
 									h4.section-header CAMPAIGN BUDGET
-									p.review-p $100
+									p.review-p(data-bind="text: campaignBudget")
 								.create-insput-wrapper.create-input-wrapper-bottom
 									h4.section-header PLATFORMS
 									.platform-image-container
 										img(src='/static/img/instagram-grey.png')
 								.create-input-wrapper.create-input-wrapper-bottom
 									h4.section-header TAGS
-									p.review-p Skateboarding
-									p.review-p Urban Living
+									.tags-container(data-bind="foreach: tagsList")
+										p.review-p(data-bind="text: tagName")
 								.create-input-wrapper.create-input-wrapper-bottom
 									h4.section-header POSTING TYPE
-									p.review-p In-store posting
+									p.review-p(data-bind="text: postingType")
 						.right-side-creation-container.col-sm-6
 							.creation-side-wrapper.right-wrapper
 								.create-input-wrapper
@@ -266,23 +286,21 @@ block content
 									.influencer-side-by-side-container
 										.review-influencer-container
 											p.review-title Age
-											p.review-p 16-24
+											p.review-p(data-bind="text: ageRange")
 										.review-influencer-container
 											p.review-title Gender
-											p.review-p Male
+											.gender-type-container(data-bind="foreach: genderList")
+												p.review-p(data-bind="text: $data")
 								.create-input-wrapper.create-input-wrapper-bottom
 									h4.section-header TARGET REGION
-									.target-region-container-review
-										p.review-p Fresno, Ca
-										p.review-p Clovis, Ca
-										p.review-p New York, NY
+									.target-region-container-review(data-bind="foreach: locationsList")
+										p.review-p(data-bind="text: locationName")
 								.create-input-wrapper.create-input-wrapper-bottom
 									h4.section-header INTERESTS
-									.influencer-interests-container.influencer-interests-container-review
-										.interest-container-review.col-sm-6.food-container
-											h3 Food &amp; Drink
-										.interest-container.col-sm-6.automotive-container
-											h3 Automotive
+									.influencer-interests-container.influencer-interests-container-review(data-bind="foreach: interestsAddedList")
+										.interest-container-review.col-sm-6(data-bind="style: {backgroundImage: backgroundImageHere}", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover; ")
+											.interests-review-layer
+											h3(data-bind="text: interestType")
 				.influencers-added-container.create-input-wrapper-bottom
 					h4.section-header INFLUENCERS
 					.influencers-added-wrapper(data-bind="foreach: influencersOrderList")

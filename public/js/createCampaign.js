@@ -6,10 +6,9 @@
 
       self.brandName = ko.observable('');
       self.campaignName = ko.observable('');
-      self.influencerContent = ko.observable('');
-      self.callToAction = ko.observable('');
       self.lowerAgeRange = ko.observable('');
-      self.upperAgeRange = ko.observable('');
+      self.upperAgeRange = ko.observable('17');
+      self.ageRange = ko.observable('');
       self.locations = ko.observableArray([]);
       self.tagsList = ko.observableArray([]);
       self.currentTag = ko.observable('');
@@ -20,6 +19,27 @@
       self.campaignBudget = ko.observable('');
       self.totalPotentialReach = ko.observable(0);
       self.totalCost = ko.observable(0);
+      self.genderList = ko.observableArray([]);
+      self.postingType = ko.observable('');
+      self.interestsAddedList = ko.observableArray([]);
+
+      // Variable for the influencer pop up when the influencer is clicked on the second page of the campaign process
+
+      self.selectedInfluencerName = ko.observable('');
+      self.selectedInfluencerInstagram = ko.observable('');
+      self.selectedInfluencerLocation = ko.observable('');
+      self.selectedInfluencerFollowers = ko.observable('');
+      self.selectedInfluencerEngagementRate = ko.observable('');
+      self.selectedInfluencerShowtScore = ko.observable('');
+      self.selectedInfluencerAboutMe = ko.observable('');
+      self.selectedInfluencerImage = ko.observable('');
+
+      // Variables for business login and sign up for the campaign page
+
+      self.businessLoginEmail = ko.observable('');
+      self.businessLoginPassword = ko.observable('');
+      self.showBusinessEmailErrorMessage = ko.observable(false);
+      self.showPasswordErrorMessage = ko.observable(false);
 
       self.campaignInfoNotValidated = ko.observable(false);
       self.postInformationNotValidated = ko.observable(true);
@@ -37,7 +57,9 @@
           showtPrice: '17',
           showtPriceText: '$17',
           showtScore: '2.3',
-          instagram: 'sdjnfsdigdhg'
+          instagram: 'sdjnfsdigdhg',
+          engagementRate: '10%',
+          aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         },
         {
           image: '/static/img/chris.jpg',
@@ -45,10 +67,12 @@
           location: 'Fresno, Ca',
           instagramFollowers: '95',
           instagramFollowersText: '95',
-          showtPrice: '1.50',
-          showtPriceText: '$1.50',
+          showtPrice: '2',
+          showtPriceText: '$2',
           showtScore: '1.1',
-          instagram: 'sdjnfsdigdhg'
+          instagram: 'sdjnfsdigdhg',
+          engagementRate: '10%',
+          aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         },
         {
           image: '/static/img/megan.jpg',
@@ -59,7 +83,9 @@
           showtPrice: '125',
           showtPriceText: '$125',
           showtScore: '8.4',
-          instagram: 'sdjnfsdigdhg'
+          instagram: 'sdjnfsdigdhg',
+          engagementRate: '10%',
+          aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         },
         {
           image: '/static/img/jared.jpg',
@@ -70,7 +96,9 @@
           showtPrice: '25',
           showtPriceText: '$25',
           showtScore: '6.1',
-          instagram: 'sdjnfsdigdhg'
+          instagram: 'sdjnfsdigdhg',
+          engagementRate: '10%',
+          aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         },
         {
           image: '/static/img/tim.jpg',
@@ -78,10 +106,12 @@
           location: 'Fresno, Ca',
           instagramFollowers: '395',
           instagramFollowersText: '395',
-          showtPrice: '2.50',
-          showtPriceText: '$2.50',
+          showtPrice: '3',
+          showtPriceText: '$3',
           showtScore: '2.3',
-          instagram: 'sdjnfsdigdhg'
+          instagram: 'sdjnfsdigdhg',
+          engagementRate: '10%',
+          aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         }
       ]);
 
@@ -183,20 +213,18 @@
           self.tagsList.push({
             tagName: self.currentTag()
           });
-          console.log(self.tagsList());
           self.currentTag('');
         }
       };
 
       self.fillCheckBox = function(d,e) {
-        var currentBox = e.currentTarget;
         $('.filled-check-box').removeClass('filled-check-box');
-        $(currentBox).addClass('filled-check-box');
+        $(e.currentTarget ).addClass('filled-check-box');
+        self.postingType($(e.currentTarget).next().text());
       };
 
       self.deleteTagFromTagList = function(index) {
         self.tagsList.remove(index);
-        console.log(self.tagsList());
       };
 
       self.addLocationToList = function() {
@@ -220,8 +248,6 @@
         lastChar = lastChar.replace('-', '');
         var helpValueNumber = parseInt(lastChar) - 1;
         self.currentHelpText(self.helpItem()[helpValueNumber]);
-        //console.log(self.currentHelpText());
-        //console.log($(currentHelpIcon).offset().top);
         const topLocation = $(currentHelpIcon).offset().top - $campaignHelpContainer.height() - 40;
         const leftLocation = $(currentHelpIcon).offset().left - ($campaignHelpContainer.width() / 2) - 2;
 
@@ -238,67 +264,96 @@
         $campaignHelpContainer.fadeOut();
       };
 
+      // Gender button clicked change function
+      self.changeGender = function genderButtonClicked(d,e) {
+        const currentGender = $(e.currentTarget).text();
+        if (self.genderList().indexOf(currentGender) > -1) {
+          self.genderList.remove(currentGender);
+        } else {
+          self.genderList.push(currentGender);
+        }
+        $(e.currentTarget).toggleClass('next-button-tapped');
+      };
+
+      self.addInterestToList = function interestItemClicked(d,e) {
+        if (self.interestsAddedList().indexOf(d) > -1) {
+          self.interestsAddedList.remove(d);
+        } else {
+          self.interestsAddedList.push(d);
+        }
+      };
+
       self.nextButtonClicked = function() {
 
-        // if (currentCampaignCreationIteration == 0) {
-        //   var campaignDescription = $('.content-editable').text();
-          // if (self.brandName().length > 5 && self.campaignName().length > 5 && campaignDescription.length > 10) {
-          //   self.campaignInfoNotValidated(false);
-          //   $('.active-create-campaign-container').fadeOut(function() {
-          //     const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
-          //     $nextCampaignCreateItem.fadeIn();
-          //     $('.active-create-campaign-container').removeClass('active-create-campaign-container');
-          //     $nextCampaignCreateItem.addClass('active-create-campaign-container');
-          //     console.log('here');
-          //     $('#create-campaign-section').animate({
-          //         scrollTop: $('#create-campaign-section').offset().top
-          //     }, 'fast');
-          //   });
-          //   currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
-          // } else {
-          //   self.campaignInfoNotValidated(true);
-          // }
+        if (currentCampaignCreationIteration == 0) {
+          if (self.campaignCheck() && self.genderCheck()) {
+            $('.active-create-campaign-container').fadeOut(function() {
+              const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
+              $nextCampaignCreateItem.fadeIn();
+              $('.active-create-campaign-container').removeClass('active-create-campaign-container');
+              $nextCampaignCreateItem.addClass('active-create-campaign-container');
+              $('#create-campaign-section').animate({
+                  scrollTop: $('#create-campaign-section').offset().top
+              }, 'fast');
+            });
+            currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
+            self.ageRange(self.lowerAgeRange() + ' - ' + self.upperAgeRange());
+          } else {
+            $('#create-campaign-section').animate({
+                scrollTop: $('#create-campaign-section').offset().top
+            }, 'fast');
+          }
 
-        // } else if (currentCampaignCreationIteration == 1) {
-        //   $('.active-create-campaign-container').fadeOut(function() {
-        //     const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
-        //     $nextCampaignCreateItem.fadeIn();
-        //     $('.active-create-campaign-container').removeClass('active-create-campaign-container');
-        //     $nextCampaignCreateItem.addClass('active-create-campaign-container');
-        //     console.log('here');
-        //     $('#create-campaign-section').animate({
-        //         scrollTop: $('#create-campaign-section').offset().top
-        //     }, 'fast');
-        //   });
-        //   currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
-        // } else if (currentCampaignCreationIteration == 2) {
-        //   $('.active-create-campaign-container').fadeOut(function() {
-        //     const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
-        //     $nextCampaignCreateItem.fadeIn();
-        //     $('.active-create-campaign-container').removeClass('active-create-campaign-container');
-        //     $nextCampaignCreateItem.addClass('active-create-campaign-container');
-        //     console.log('here');
-        //     $('#create-campaign-section').animate({
-        //         scrollTop: $('.create-campaign-information-container').offset().top
-        //     }, 'fast');
-        //   });
-        //   currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
-        // } else {
-        //   currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
-        // }
+        } else if (currentCampaignCreationIteration == 1) {
+          if (self.influencerCheck()) {
+            $('.active-create-campaign-container').fadeOut(function() {
+              const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
+              $nextCampaignCreateItem.fadeIn();
+              $('.active-create-campaign-container').removeClass('active-create-campaign-container');
+              $nextCampaignCreateItem.addClass('active-create-campaign-container');
+              $('#create-campaign-section').animate({
+                  scrollTop: $('#create-campaign-section').offset().top
+              }, 'fast');
+            });
+            currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
+          }
+        }
 
-        $('.active-create-campaign-container').fadeOut(function() {
-          const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
-          $nextCampaignCreateItem.fadeIn();
-          $('.active-create-campaign-container').removeClass('active-create-campaign-container');
-          $nextCampaignCreateItem.addClass('active-create-campaign-container');
-          console.log('here');
-          $('#create-campaign-section').animate({
-              scrollTop: $('#create-campaign-section').offset().top
-          }, 'fast');
-        });
-        currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
 
+
+      };
+
+      self.showCampainErrorMessage = ko.observable(false);
+      self.campaignCheck = function() {
+        if (self.campaignName().length < 6) {
+          self.showCampainErrorMessage(true);
+          return false;
+        } else {
+          self.showCampainErrorMessage(false);
+          return true;
+        }
+      };
+
+      self.showGenderErrorMessage = ko.observable(false);
+      self.genderCheck = function() {
+        if (self.genderList().length < 1) {
+          self.showGenderErrorMessage(true);
+          return false;
+        } else {
+          self.showGenderErrorMessage(false);
+          return true;
+        }
+      };
+
+      self.showInfluencerErrorMessage = ko.observable(false);
+      self.influencerCheck = function() {
+        if (self.influencersOrderList().length < 1) {
+          self.showInfluencerErrorMessage(true);
+          return false;
+        } else {
+          self.showInfluencerErrorMessage(false);
+          return true;
+        }
       };
 
       self.backButtonClicked = function() {
@@ -315,6 +370,14 @@
       };
 
       self.showInfluencerInformation = function influecnerFoundContainerClicked(influencerClicked) {
+        self.selectedInfluencerName(influencerClicked.name);
+        self.selectedInfluencerAboutMe(influencerClicked.aboutText);
+        self.selectedInfluencerLocation(influencerClicked.location);
+        self.selectedInfluencerFollowers(influencerClicked.instagramFollowersText);
+        self.selectedInfluencerInstagram(influencerClicked.instagram);
+        self.selectedInfluencerShowtScore(influencerClicked.showtScore);
+        self.selectedInfluencerImage(influencerClicked.image);
+        self.selectedInfluencerEngagementRate(influencerClicked.engagementRate);
         $('.view-influencer-container').fadeIn();
         $('body').css('overflow','hidden');
       };
@@ -350,43 +413,50 @@
         return currentNumber.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
       };
 
+      // Finish the campaign creation process and place the order if they are signed in.
+
       self.placeOrderButtonClicked = function() {
-        $('#create-campaign-section').animate({
-            scrollTop: $('#create-campaign-section').offset().top
-        }, 'fast', function() {
-          $createCampaignSection.fadeOut(function() {
-            $('body').css('overflow','scroll');
-            const $currentActiveCreateContainer = $('.active-create-campaign-container');
-            $currentActiveCreateContainer.css('display','none');
-            const $FirstCreateContainer = $currentActiveCreateContainer.prev().prev().prev();
-            $currentActiveCreateContainer.removeClass("active-create-campaign-container");
-            $FirstCreateContainer.addClass('active-create-campaign-container');
-          });
-        });
+        // Check if they are signed in or not
+
+          // If not signed in then they need to either log in or sign up
+
+          // If they are signed in place the order from their credit card informtaion
       };
 
+
+      // Validating both the log in and sign up forms
+
+      self.businessLoginEmailTyping = function() {
+        if (self.businessLoginEmail().length > 0) {
+          if (validateEmail(self.businessLoginEmail())) {
+            self.showBusinessEmailErrorMessage(false);
+          } else {
+            self.showBusinessEmailErrorMessage(true);
+          }
+        }
+      };
+
+      self.businessLoginPasswordTyping = function() {
+        if (self.businessLoginPassword().length > 5) {
+          self.showPasswordErrorMessage(true);
+        } else {
+          self.showPasswordErrorMessage(true);
+        }
+      };
+
+      self.logInBusinessFromCampaign = function businessLoginButtonClicked() {
+        console.log('Log the business in');
+      };
+
+      self.signUpBusiness = function businessSignUpButtonClicked() {
+        console.log('This is where we should sign the business up');
+      };
   };
 
   const $postInformationPicContainer = $('.pic-container');
   const $interestInPicture = $('.influencer-interest-picture-container img');
   const $interestTypeInfoContainer = $('.interest-type-info-container');
   const $genderButton = $('.gender-button');
-
-  $('body').on('click', '.gender-button',function() {
-    console.log('This');
-    $(this).toggleClass('next-button-tapped');
-  });
-
-  $interestTypeInfoContainer.click(function() {
-    console.log('Hello');
-  });
-
-  $('body').on('click', '#create-campaign-section',function(e) {
-    if (e.target == this) {
-      $('#create-campaign-section').fadeOut();
-      $('body').css('overflow','auto');
-    }
-  });
 
   $('body').on('click', '.view-influencer-container',function(e) {
     if (e.target == this) {

@@ -30,6 +30,12 @@ var jsonParser = bodyParser.json();
 		res.render('help');
 	});
 
+	// Route for businesses to create their own campaigns
+
+	router.get('/hire-influencers',function(req,res) {
+		res.render('hireInfluencers');
+	});
+
 	router.get('/business/login',function(req,res) {
 		res.render('businessLogin');
 	});

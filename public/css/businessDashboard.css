@@ -360,20 +360,6 @@ transform: translateY(-50%);
   margin-top: 64px;
 }
 
-/* Styling for the create a campaign pop up */
-
-#create-campaign-section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0,0,0,0.75);
-  z-index: 11;
-  overflow: auto;
-  display: none;
-}
-
 /* Edit business info popup styles */
 
 #edit-business-info-section {

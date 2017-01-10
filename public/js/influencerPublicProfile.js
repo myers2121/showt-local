@@ -1,4 +1,4 @@
-(function($) {
+I(function($) {
 
   function influencerPublicProfileViewModel() {
 

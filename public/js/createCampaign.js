@@ -14,14 +14,64 @@
       self.tagsList = ko.observableArray([]);
       self.currentTag = ko.observable('');
       self.locationsList = ko.observableArray([]);
+      self.influencersOrderList = ko.observableArray([]);
       self.currentLocation = ko.observable('');
       self.currentHelpText = ko.observable('');
+      self.campaignBudget = ko.observable('');
 
       self.campaignInfoNotValidated = ko.observable(false);
       self.postInformationNotValidated = ko.observable(true);
 
       const $createCampaignSection = $('#create-campaign-section');
       const $campaignHelpContainer = $('.create-campaign-help-container');
+
+      self.sampleInfluencerList = ko.observableArray([
+        {
+          image: '/static/img/connor.jpg',
+          name: 'Connor Myers',
+          location: 'Clovis, Ca',
+          instagramFollowers: '684',
+          showtPrice: '$17',
+          showtScore: '2.3',
+          instagram: 'sdjnfsdigdhg'
+        },
+        {
+          image: '/static/img/chris.jpg',
+          name: 'Chris Garduno',
+          location: 'Fresno, Ca',
+          instagramFollowers: '95',
+          showtPrice: '$1.50',
+          showtScore: '1.1',
+          instagram: 'sdjnfsdigdhg'
+        },
+        {
+          image: '/static/img/megan.jpg',
+          name: 'Megan Sullivan',
+          location: 'Fresno, Ca',
+          instagramFollowers: '30.9K',
+          showtPrice: '$125',
+          showtScore: '8.4',
+          instagram: 'sdjnfsdigdhg'
+        },
+        {
+          image: '/static/img/jared.jpg',
+          name: 'Jared Halphin',
+          location: 'Fresno, Ca',
+          instagramFollowers: '2.9K',
+          showtPrice: '$25',
+          showtScore: '6.1',
+          instagram: 'sdjnfsdigdhg'
+        },
+        {
+          image: '/static/img/tim.jpg',
+          name: 'Tim Farrow',
+          location: 'Fresno, Ca',
+          instagramFollowers: '395',
+          showtPrice: '$2.50',
+          showtScore: '2.3',
+          instagram: 'sdjnfsdigdhg'
+        }
+      ]);
 
       self.interestArray = ko.observableArray([
         {
@@ -178,51 +228,64 @@
 
       self.nextButtonClicked = function() {
 
-        if (currentCampaignCreationIteration == 0) {
-          var campaignDescription = $('.content-editable').text();
-          if (self.brandName().length > 5 && self.campaignName().length > 5 && campaignDescription.length > 10) {
-            self.campaignInfoNotValidated(false);
-            $('.active-create-campaign-container').fadeOut(function() {
-              const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
-              $nextCampaignCreateItem.fadeIn();
-              $('.active-create-campaign-container').removeClass('active-create-campaign-container');
-              $nextCampaignCreateItem.addClass('active-create-campaign-container');
-              console.log('here');
-              $('#create-campaign-section').animate({
-                  scrollTop: $('#create-campaign-section').offset().top
-              }, 'fast');
-            });
-            currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
-          } else {
-            self.campaignInfoNotValidated(true);
-          }
-        } else if (currentCampaignCreationIteration == 1) {
-          $('.active-create-campaign-container').fadeOut(function() {
-            const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
-            $nextCampaignCreateItem.fadeIn();
-            $('.active-create-campaign-container').removeClass('active-create-campaign-container');
-            $nextCampaignCreateItem.addClass('active-create-campaign-container');
-            console.log('here');
-            $('#create-campaign-section').animate({
-                scrollTop: $('#create-campaign-section').offset().top
-            }, 'fast');
-          });
-          currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
-        } else if (currentCampaignCreationIteration == 2) {
-          $('.active-create-campaign-container').fadeOut(function() {
-            const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
-            $nextCampaignCreateItem.fadeIn();
-            $('.active-create-campaign-container').removeClass('active-create-campaign-container');
-            $nextCampaignCreateItem.addClass('active-create-campaign-container');
-            console.log('here');
-            $('#create-campaign-section').animate({
-                scrollTop: $('.create-campaign-information-container').offset().top
-            }, 'fast');
-          });
-          currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
-        } else {
-          currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
-        }
+        // if (currentCampaignCreationIteration == 0) {
+        //   var campaignDescription = $('.content-editable').text();
+          // if (self.brandName().length > 5 && self.campaignName().length > 5 && campaignDescription.length > 10) {
+          //   self.campaignInfoNotValidated(false);
+          //   $('.active-create-campaign-container').fadeOut(function() {
+          //     const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
+          //     $nextCampaignCreateItem.fadeIn();
+          //     $('.active-create-campaign-container').removeClass('active-create-campaign-container');
+          //     $nextCampaignCreateItem.addClass('active-create-campaign-container');
+          //     console.log('here');
+          //     $('#create-campaign-section').animate({
+          //         scrollTop: $('#create-campaign-section').offset().top
+          //     }, 'fast');
+          //   });
+          //   currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
+          // } else {
+          //   self.campaignInfoNotValidated(true);
+          // }
+
+        // } else if (currentCampaignCreationIteration == 1) {
+        //   $('.active-create-campaign-container').fadeOut(function() {
+        //     const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
+        //     $nextCampaignCreateItem.fadeIn();
+        //     $('.active-create-campaign-container').removeClass('active-create-campaign-container');
+        //     $nextCampaignCreateItem.addClass('active-create-campaign-container');
+        //     console.log('here');
+        //     $('#create-campaign-section').animate({
+        //         scrollTop: $('#create-campaign-section').offset().top
+        //     }, 'fast');
+        //   });
+        //   currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
+        // } else if (currentCampaignCreationIteration == 2) {
+        //   $('.active-create-campaign-container').fadeOut(function() {
+        //     const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
+        //     $nextCampaignCreateItem.fadeIn();
+        //     $('.active-create-campaign-container').removeClass('active-create-campaign-container');
+        //     $nextCampaignCreateItem.addClass('active-create-campaign-container');
+        //     console.log('here');
+        //     $('#create-campaign-section').animate({
+        //         scrollTop: $('.create-campaign-information-container').offset().top
+        //     }, 'fast');
+        //   });
+        //   currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
+        // } else {
+        //   currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
+        // }
+
+        $('.active-create-campaign-container').fadeOut(function() {
+          const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
+          $nextCampaignCreateItem.fadeIn();
+          $('.active-create-campaign-container').removeClass('active-create-campaign-container');
+          $nextCampaignCreateItem.addClass('active-create-campaign-container');
+          console.log('here');
+          $('#create-campaign-section').animate({
+              scrollTop: $('#create-campaign-section').offset().top
+          }, 'fast');
+        });
+        currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
 
       };
 
@@ -239,7 +302,32 @@
         currentCampaignCreationIteration = currentCampaignCreationIteration - 1;
       };
 
-      self.finishButtonClicked = function() {
+      self.showInfluencerInformation = function influecnerFoundContainerClicked(influencerClicked) {
+        $('.view-influencer-container').fadeIn();
+        $('body').css('overflow','hidden');
+      };
+
+      self.closeInfluencerPopUp = function influencerPopUpExitClicked() {
+        $('.view-influencer-container').fadeOut();
+        $('body').css('overflow','auto');
+      };
+
+      self.hireMeAndFadeOutPopUp = function hireMePopUpButtonClicked() {
+        $('.view-influencer-container').fadeOut();
+        $('body').css('overflow','auto');
+      };
+
+      self.addInfluencerToOrderList = function influencerClicked(d,e) {
+        if (self.influencersOrderList.indexOf(d) > -1) {
+          self.influencersOrderList.remove(d);
+        } else {
+          self.influencersOrderList.push(d);
+        }
+        console.log(self.influencersOrderList());
+        $(e.currentTarget).toggleClass('influencer-added');
+      };
+
+      self.placeOrderButtonClicked = function() {
         $('#create-campaign-section').animate({
             scrollTop: $('#create-campaign-section').offset().top
         }, 'fast', function() {
@@ -273,6 +361,13 @@
   $('body').on('click', '#create-campaign-section',function(e) {
     if (e.target == this) {
       $('#create-campaign-section').fadeOut();
+      $('body').css('overflow','auto');
+    }
+  });
+
+  $('body').on('click', '.view-influencer-container',function(e) {
+    if (e.target == this) {
+      $('.view-influencer-container').fadeOut();
       $('body').css('overflow','auto');
     }
   });

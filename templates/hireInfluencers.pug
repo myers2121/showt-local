@@ -1,0 +1,314 @@
+extends ./layout.pug
+
+block content
+	section#create-campaign-section
+		.view-influencer-container
+			.view-influencer-wrapper
+				img.exit-influencer-pop-up(src='/static/img/exit.png', data-bind="click: closeInfluencerPopUp")
+				.personal-information-container
+					.influencer-picture.col-sm-4
+						img.influencer-selceted-image(src='/static/img/megan.jpg')
+					.influencer-text-information-container.col-sm-8
+						p.influencer-selected-name Megan Sullivan
+						.platform-container
+							img.instagram-grey-icon(src='/static/img/instagram-grey.png')
+							p.platform-username Meggoooozz
+						.location-container
+							img.location-icon(src='/static/img/location.png')
+							p.influencer-selected-location Fresno, Ca
+				.influencer-selected-data-container
+					.data-container.col-sm-4
+						p.influencer-selected-data-text 3,000
+						p.data-static-text Followers
+					.data-container.col-sm-4
+						p.influencer-selected-data-text 10%
+						p.data-static-text Engagement rate
+					.data-container.col-sm-4
+						p.influencer-selected-data-text 8.4
+						p.data-static-text Showt score
+				.further-info-container
+					.bottom-selected-contianer
+						h3.bottom-selected-container-title.first-info-title About me
+						p.about-me-text JGFuiosahf hsufih sdiuf snfu siudfbisadbf siadufbadsifndfiudsfnsf sadfuiasdnfsdaufisfuiabsaduif absiudfb sadiubf sdiuafb aisudbf ausidfb iusdbf iasbf siudfb asidufba isu.
+					.bottom-selected-contianer
+						h3.bottom-selected-container-title I'm interested in
+					.bottom-selected-contianer
+						h3.bottom-selected-container-title I'm also interested in
+				.work-with-influencer-container
+					p Interested in working with Megan?
+					.hire-me-button(data-bind="click: hireMeAndFadeOutPopUp") Hire me
+		.create-campaign-information-container.active-create-campaign-container
+			.campaign-creation-step-container.campaign-info-container
+				.create-step-wrapper
+					.step-title-container
+						h3 Create campaign
+						p To run a successful campaign you must have the perfect match when it comes to influencers who are representing your company. Fill out the information below and we will give you a list of the best influencers for you and your company.
+						.seperator-div
+					.sides-container
+						.row
+							.left-side-creation-container.col-sm-6
+								.creation-side-wrapper
+									.create-input-wrapper
+										h4.section-header CAMPAIGN NAME
+										img.help-icon#help-icon-3(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										input(type="text", placeholder="Enter the name of the campaign", data-bind="textInput: campaignName")
+									.create-input-wrapper.create-input-wrapper-bottom
+										h4.section-header CAMPAIGN BUDGET
+										input(type="text", placeholder="How much money do you want to spend", data-bind="textInput: campaignBudget")
+									.create-input-wrapper.create-input-wrapper-bottom
+										h4.section-header POSTING REQUIREMENTS
+										img.help-icon#help-icon-9(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										.posting-requirements-div
+											.check-box(data-bind="click: fillCheckBox")
+											p In store posting
+										.posting-requirements-div
+											.check-box(data-bind="click: fillCheckBox")
+											p Product delivery
+										.posting-requirements-div
+											.check-box(data-bind="click: fillCheckBox")
+											p Stock promo pic
+									.create-input-wrapper.create-input-wrapper-bottom
+										h4.section-header TARGET REGION
+										img.help-icon#help-icon-11(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										.target-region-container
+											input.col-sm-10(type="text",placeholder="Where do you want ito market your business?",data-bind="textInput: currentLocation")
+											.tags-plus-container.col-sm-2(data-bind="click: addLocationToList")
+												p +
+										.added-locations-container
+											.location-container(data-bind="foreach: locationsList")
+												.location-container
+													.location-icon-container.col-sm-1
+														img(src='/static/img/person.png')
+													p.col-sm-10(data-bind="text: locationName")
+													.delete-icon-container.col-sm-1(data-bind="click: $root.deleteLocationFromList.bind($index())")
+														p.subtract-location -
+							.right-side-creation-container.col-sm-6
+								.creation-side-wrapper.right-wrapper
+									.create-input-wrapper
+										h4.section-header GENDER
+										img.help-icon#help-icon-12(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										.gender-buttons-create-container
+											.gender-buttons-create-wrapper
+												.gender-button-create-container.col-sm-6
+													.gender-button.male-button MALE
+												.gender-button-create-container.col-sm-6
+													.gender-button.female-button FEMALE
+									.create-input-wrapper.create-input-wrapper-bottom
+										h4.section-header AGE RANGE
+										img.help-icon#help-icon-10(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										.age-select-container
+											.age-select-wrapper.col-sm-5
+												.select-age
+													select(data-bind="value: lowerAgeRange")
+														option(value="") 16
+														option(value="") 17
+														option(value="") 18
+														option(value="") 19
+														option(value="") 20
+														option(value="") 21
+														option(value="") 22
+														option(value="") 23
+														option(value="") 24
+														option(value="") 25
+														option(value="") 26
+														option(value="") 27
+														option(value="") 28
+														option(value="") 29
+														option(value="") 30
+														option(value="") 31
+														option(value="") 32
+														option(value="") 33
+														option(value="") 34
+														option(value="") 35
+														option(value="") 36
+														option(value="") 37
+														option(value="") 38
+														option(value="") 39
+														option(value="") 40
+														option(value="") 41
+														option(value="") 42
+														option(value="") 43
+														option(value="") 44
+														option(value="") 45
+														option(value="") 46
+														option(value="") 47
+														option(value="") 48
+														option(value="") 49
+														option(value="") 50+
+											.dash-container.col-sm-2
+												p -
+											.age-select-wrapper.col-sm-5
+												.select-age
+													select(data-bind="value: upperAgeRange")
+														option(value="") 17
+														option(value="") 18
+														option(value="") 19
+														option(value="") 20
+														option(value="") 21
+														option(value="") 22
+														option(value="") 23
+														option(value="") 24
+														option(value="") 25
+														option(value="") 26
+														option(value="") 27
+														option(value="") 28
+														option(value="") 29
+														option(value="") 30
+														option(value="") 31
+														option(value="") 32
+														option(value="") 33
+														option(value="") 34
+														option(value="") 35
+														option(value="") 36
+														option(value="") 37
+														option(value="") 38
+														option(value="") 39
+														option(value="") 40
+														option(value="") 41
+														option(value="") 42
+														option(value="") 43
+														option(value="") 44
+														option(value="") 45
+														option(value="") 46
+														option(value="") 47
+														option(value="") 48
+														option(value="") 49
+														option(value="") 50+
+									.create-input-wrapper.create-input-wrapper-bottom
+										h4.section-header TAGS
+										img.help-icon#help-icon-7(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										.tags-conatiner
+											input.col-sm-10(type="text", placeholder="What tags would you link to be include in the post",data-bind="textInput: currentTag")
+											.tags-plus-container.col-sm-2(data-bind="click: addTagToList")
+												p +
+										.tags-added-container(data-bind="foreach: tagsList")
+											p.tag.col-sm-10(data-bind="text: tagName")
+											.tags-subtracted-container(data-bind="click: $root.deleteTagFromTagList.bind($index())")
+												p.col-sm-2 -
+						.influencer-interest-container.create-input-wrapper-bottom
+							.influencer-interest-wrapper
+								h4.section-header INTERESTED IN
+								img.help-icon#help-icon-13(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+								.influencer-interest-type-container(data-bind="foreach: interestArray")
+									.col-sm-3.interest-type-info-container
+										.influencer-interest-picture-container(data-bind="style: {backgroundImage: backgroundImageHere}", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover; ")
+										h3.interest-type(data-bind="text: interestType")
+										.influencer-hover-container
+										.influencer-clicked-container
+											img.check-mark-box(src='/static/img/checked-box-white.png')
+						.bottom-action-buttons
+							.next-button(data-bind="click: nextButtonClicked") FIND INFLUENCERS
+		.create-campaign-information-container
+			.campaign-creation-step-container.campaign-info-container
+				.create-step-wrapper
+					.step-title-container
+						h3 Select influencers
+						p We believe the influencers below will give you the most success. Click hire me to add them to your campaign or click on them to get further information
+						.seperator-div
+					.influencers-found-container
+						.influencer-found-wrapper(data-bind="foreach: sampleInfluencerList")
+							.influencer-found.col-sm-3
+								.influencer-found-inner-container(data-bind="click: $root.addInfluencerToOrderList")
+									.influencer-image-container
+										img.influencer-found-image(data-bind="attr: {src: image}")
+									.influencer-information-container
+										p.influencer-found-name(data-bind="text: name")
+										.influencer-found-location-container
+											img.influencer-found-location-image(src='/static/img/location.png')
+											p.influencer-found-location(data-bind="text: location")
+									.showt-rating-container.col-sm-6
+										.platform-followers-container
+											img.instagram-orange(src='/static/img/instagram-orange.png')
+											p.influencer-found-rating(data-bind="text: instagramFollowers")
+										p.influencer-rating-text Followers
+									.showt-rating-container.col-sm-6
+										.platform-followers-container
+											p.influencer-found-rating.showt-score-text(data-bind="text: showtScore")
+										p.influencer-rating-text Showt score
+									p.influencer-price(data-bind="text: showtPrice")
+									p.influencer-rating-text Per post
+								.hire-me-button(data-bind="click: $root.showInfluencerInformation") More info
+					.bottom-action-buttons
+						.next-button.back-button(data-bind="click: backButtonClicked") BACK
+						.next-button(data-bind="click: nextButtonClicked") CONTINUE
+		.create-campaign-information-container
+			.create-step-wrapper
+				.step-title-container
+					h3 Review information
+					p Review the information that you have submitted. On the left is what influencers are going to see and on the right is what only you yourself can see.
+					.seperator-div
+				.sides-container
+					.row
+						.left-side-creation-container.col-sm-6
+							.creation-side-wrapper
+							.review-posting-container
+								.create-input-wrapper
+									h4.section-header CAMPAIGN NAME
+									p.review-p This is goign to be the campaign name
+								.create-input-wrapper.create-input-wrapper-bottom
+									h4.section-header CAMPAIGN BUDGET
+									p.review-p $100
+								.create-insput-wrapper.create-input-wrapper-bottom
+									h4.section-header PLATFORMS
+									.platform-image-container
+										img(src='/static/img/instagram-grey.png')
+								.create-input-wrapper.create-input-wrapper-bottom
+									h4.section-header TAGS
+									p.review-p Skateboarding
+									p.review-p Urban Living
+								.create-input-wrapper.create-input-wrapper-bottom
+									h4.section-header POSTING TYPE
+									p.review-p In-store posting
+						.right-side-creation-container.col-sm-6
+							.creation-side-wrapper.right-wrapper
+								.create-input-wrapper
+									h4.section-header INFLUENCER INFORMATION
+									.influencer-side-by-side-container
+										.review-influencer-container
+											p.review-title Age
+											p.review-p 16-24
+										.review-influencer-container
+											p.review-title Gender
+											p.review-p Male
+								.create-input-wrapper.create-input-wrapper-bottom
+									h4.section-header TARGET REGION
+									.target-region-container-review
+										p.review-p Fresno, Ca
+										p.review-p Clovis, Ca
+										p.review-p New York, NY
+								.create-input-wrapper.create-input-wrapper-bottom
+									h4.section-header INTERESTS
+									.influencer-interests-container.influencer-interests-container-review
+										.interest-container-review.col-sm-6.food-container
+											h3 Food &amp; Drink
+										.interest-container.col-sm-6.automotive-container
+											h3 Automotive
+				.influencers-added-container.create-input-wrapper-bottom
+					h4.section-header INFLUENCERS
+					.influencers-added-wrapper(data-bind="foreach: influencersOrderList")
+						.added-influencer.col-sm-4
+							.added-influencer-image-container.col-sm-4
+								img(data-bind="attr: {src: image}")
+							.added-influencer-info.col-sm-8
+								p.added-influencer-name(data-bind="text: name")
+								p.added-influencer-instagram(data-bind="text: instagram")
+								p.added-influencer-price(data-bind="text: showtPrice")
+				.sides-container
+					.row
+						.left-side-creation-container.col-sm-6
+							.creation-side-wrapper
+							.review-posting-container
+								.create-input-wrapper
+									h4.section-header POTENTIAL REACH
+									p.potential-reach-text 3,686
+									p.potential-reach-p People on Instagram
+						.right-side-creation-container.col-sm-6
+							.creation-side-wrapper.right-wrapper
+								.create-input-wrapper
+									h4.section-header TOTAL COST
+									p.total-cost-text $130
+				.bottom-action-buttons
+					.next-button(data-bind="click: backButtonClicked") BACK
+					.next-button(data-bind="click: placeOrderButtonClicked") PLACE ORDER
+block customJS
+	script(src='/static/js/createCampaign.js')

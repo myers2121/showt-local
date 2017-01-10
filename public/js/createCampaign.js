@@ -18,6 +18,8 @@
       self.currentLocation = ko.observable('');
       self.currentHelpText = ko.observable('');
       self.campaignBudget = ko.observable('');
+      self.totalPotentialReach = ko.observable(0);
+      self.totalCost = ko.observable(0);
 
       self.campaignInfoNotValidated = ko.observable(false);
       self.postInformationNotValidated = ko.observable(true);
@@ -31,7 +33,9 @@
           name: 'Connor Myers',
           location: 'Clovis, Ca',
           instagramFollowers: '684',
-          showtPrice: '$17',
+          instagramFollowersText: '684',
+          showtPrice: '17',
+          showtPriceText: '$17',
           showtScore: '2.3',
           instagram: 'sdjnfsdigdhg'
         },
@@ -40,7 +44,9 @@
           name: 'Chris Garduno',
           location: 'Fresno, Ca',
           instagramFollowers: '95',
-          showtPrice: '$1.50',
+          instagramFollowersText: '95',
+          showtPrice: '1.50',
+          showtPriceText: '$1.50',
           showtScore: '1.1',
           instagram: 'sdjnfsdigdhg'
         },
@@ -48,8 +54,10 @@
           image: '/static/img/megan.jpg',
           name: 'Megan Sullivan',
           location: 'Fresno, Ca',
-          instagramFollowers: '30.9K',
-          showtPrice: '$125',
+          instagramFollowers: '30900',
+          instagramFollowersText: '30.9K',
+          showtPrice: '125',
+          showtPriceText: '$125',
           showtScore: '8.4',
           instagram: 'sdjnfsdigdhg'
         },
@@ -57,8 +65,10 @@
           image: '/static/img/jared.jpg',
           name: 'Jared Halphin',
           location: 'Fresno, Ca',
-          instagramFollowers: '2.9K',
-          showtPrice: '$25',
+          instagramFollowers: '2900',
+          instagramFollowersText: '2.9K',
+          showtPrice: '25',
+          showtPriceText: '$25',
           showtScore: '6.1',
           instagram: 'sdjnfsdigdhg'
         },
@@ -67,7 +77,9 @@
           name: 'Tim Farrow',
           location: 'Fresno, Ca',
           instagramFollowers: '395',
-          showtPrice: '$2.50',
+          instagramFollowersText: '395',
+          showtPrice: '2.50',
+          showtPriceText: '$2.50',
           showtScore: '2.3',
           instagram: 'sdjnfsdigdhg'
         }
@@ -317,14 +329,25 @@
         $('body').css('overflow','auto');
       };
 
+      // Function for selecting influencers in the campaign creation process
+
       self.addInfluencerToOrderList = function influencerClicked(d,e) {
+        self.totalPotentialReach(self.totalPotentialReach().toString().replace(/,/g, ""));
         if (self.influencersOrderList.indexOf(d) > -1) {
           self.influencersOrderList.remove(d);
+          self.totalPotentialReach(parseInt(self.totalPotentialReach()) - parseInt(d.instagramFollowers));
+          self.totalCost(self.totalCost() - parseInt(d.showtPrice));
         } else {
           self.influencersOrderList.push(d);
+          self.totalPotentialReach(parseInt(self.totalPotentialReach()) + parseInt(d.instagramFollowers));
+          self.totalCost(self.totalCost() + parseInt(d.showtPrice));
         }
-        console.log(self.influencersOrderList());
+        self.totalPotentialReach(self.addCommasInNumber(self.totalPotentialReach().toString()));
         $(e.currentTarget).toggleClass('influencer-added');
+      };
+
+      self.addCommasInNumber = function addCommasInNumber(currentNumber) {
+        return currentNumber.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
       };
 
       self.placeOrderButtonClicked = function() {

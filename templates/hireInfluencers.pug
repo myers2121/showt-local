@@ -219,13 +219,13 @@ block content
 									.showt-rating-container.col-sm-6
 										.platform-followers-container
 											img.instagram-orange(src='/static/img/instagram-orange.png')
-											p.influencer-found-rating(data-bind="text: instagramFollowers")
+											p.influencer-found-rating(data-bind="text: instagramFollowersText")
 										p.influencer-rating-text Followers
 									.showt-rating-container.col-sm-6
 										.platform-followers-container
 											p.influencer-found-rating.showt-score-text(data-bind="text: showtScore")
 										p.influencer-rating-text Showt score
-									p.influencer-price(data-bind="text: showtPrice")
+									p.influencer-price(data-bind="text: showtPriceText")
 									p.influencer-rating-text Per post
 								.hire-me-button(data-bind="click: $root.showInfluencerInformation") More info
 					.bottom-action-buttons
@@ -292,7 +292,7 @@ block content
 							.added-influencer-info.col-sm-8
 								p.added-influencer-name(data-bind="text: name")
 								p.added-influencer-instagram(data-bind="text: instagram")
-								p.added-influencer-price(data-bind="text: showtPrice")
+								p.added-influencer-price(data-bind="text: showtPriceText")
 				.sides-container
 					.row
 						.left-side-creation-container.col-sm-6
@@ -300,13 +300,13 @@ block content
 							.review-posting-container
 								.create-input-wrapper
 									h4.section-header POTENTIAL REACH
-									p.potential-reach-text 3,686
+									p.potential-reach-text(data-bind="text: totalPotentialReach")
 									p.potential-reach-p People on Instagram
 						.right-side-creation-container.col-sm-6
 							.creation-side-wrapper.right-wrapper
 								.create-input-wrapper
 									h4.section-header TOTAL COST
-									p.total-cost-text $130
+									p.total-cost-text(data-bind="text: '$' + totalCost()")
 				.bottom-action-buttons
 					.next-button(data-bind="click: backButtonClicked") BACK
 					.next-button(data-bind="click: placeOrderButtonClicked") PLACE ORDER

@@ -1,0 +1,629 @@
+body {
+  background: #f0f0f0;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+}
+
+/* These are some changes */
+
+.influencer-profile-top-background-container {
+  width: 100%;
+  height: 40vh;
+  background: linear-gradient(rgba(0, 0 ,0 , .6), rgba(0, 0 ,0 , .6)), url(../img/home-background.png);
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.influencer-name {
+  color: #ff9f00;
+}
+
+.influencer-one-liner {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.about-button-container:hover,
+.work-button-container:hover {
+  cursor: pointer;
+  background: #eee;
+}
+
+.about-button-container:active,
+.work-button-container:active {
+  cursor: pointer;
+  background: #e3e3e3;
+}
+
+.about-button,
+.work-button {
+  padding-bottom: 12px;
+  padding-top: 12px !important;
+}
+
+.active-profile-link {
+  border-bottom: 2px solid #ff9f00;
+}
+
+.inactive-profile-link {
+  border-bottom: 2px solid rgba(0,0,0,0.0);
+}
+
+.influencer-profile-bottom-container {
+
+}
+
+.influencer-profile-container,
+.about-me-container,
+.interests-container,
+.further-interests-container,
+.hire-me-container,
+.new-job-offerings-container,
+.current-accepted-jobs-container,
+.previous-work-container {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #FFF;
+  margin-top: 15vh;
+  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  z-index: 11;
+  border-radius: 2px;
+}
+
+.influencer-profile-image-container {
+    padding: 24px;
+}
+
+.influencer-profile-image-container img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.influencer-location-container {
+  margin-top: 16px;
+
+}
+
+.influencer-location-container img {
+  display: inline-block;
+  width: 20px;
+}
+
+.influencer-location-container .influencer-location {
+  display: inline-block;
+}
+
+.influencer-location {
+  margin-left: 12px;
+  margin-bottom: 0px !important;
+  font-size: 12px;
+}
+
+.influencer-ratings-container {
+  overflow: auto;
+  margin-top: 32px;
+
+}
+
+.influencer-data-container {
+  padding: 0px !important;
+}
+
+.influencer-reach {
+  font-size: 20px;
+  color: #ff9f00;
+  font-weight: 500;
+  margin-bottom: 4px !important;
+}
+
+.influencer-data-container .text {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.influencer-hire-button {
+  width: 150px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  text-align: center;
+  border: 1px solid #ff9f00;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 3px;
+  color: #ff9f00;
+}
+
+.influencer-hire-button:hover {
+  background: #ff9f00;
+  cursor: pointer;
+  color: #FFF;
+}
+
+.influencer-top-profile-information-wrapper {
+  overflow: auto;
+}
+
+.influencer-about-work-buttons-container {
+  overflow: auto;
+  text-align: center;
+  margin-top: 12px;
+  margin-left: 12px;
+  margin-right: 12px;
+  border-top: 1px solid #e3e3e3;
+}
+
+.active-profile-link {
+  color: #ff9f00;
+}
+
+.link-border-bottom {
+  height: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -2px;
+  background: #ff9f00;
+}
+
+.influencer-about-work-buttons-container .col-sm-6 {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.about-me-container,
+.interests-container,
+.further-interests-container,
+.hire-me-container,
+.previous-work-container,
+.new-job-offerings-container,
+.current-accepted-jobs-container {
+  margin-top: 12px !important;
+  padding: 24px;
+}
+
+.influencer-profile-section-heading {
+  color: #ff9f00;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.about-me-text {
+  font-size: 13px;
+  color: #484848;
+}
+
+.interest-container {
+  height: 75px;
+  background: #f0f0f0;
+}
+
+.interest-container p {
+  margin-bottom: 0px !important;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: #fff;
+  font-size: 15px;
+}
+
+.interest-1 {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/food-interest.png);
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.interest-2 {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)),url(/static/img/automotive-interest.png);
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.interest-3 {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)),url(/static/img/animals-interest.png);
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.interest-4 {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/bars-interest.png);
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.interest-images-container {
+  margin-top: 32px;
+}
+
+.tag-text {
+  padding: 0px !important;
+  margin-bottom: 18px;
+}
+
+.interest-tags-container {
+  overflow: auto;
+  margin-top: 32px;
+}
+
+.hire-me-text {
+  text-align: center;
+  font-size: 18px;
+  color: #ff9f00;
+  margin-top: 12px;
+}
+
+.hire-me-button {
+  background: #ff9f00;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-radius: 2px;
+  margin-top: 32px;
+  color: #fff;
+  margin-bottom: 18px;
+}
+
+.hire-me-button:hover {
+  cursor: pointer;
+}
+
+.influencer-work-information-container {
+  display: none;
+}
+
+.hire-me-container {
+  margin-bottom: 32px;
+}
+
+.previous-work-image-container img {
+  width: 100%;
+}
+
+.previous-work-container {
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #FFF;
+  margin-top: 12px;
+  margin-bottom: 12px !important;
+  border-radius: 2px;
+  overflow: auto;
+  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+
+.previous-work-inner-container {
+  padding-left: 6px !important;
+  padding-top: 10px !important;
+}
+
+.gig-name {
+  color: #484848;
+  font-size: 16px;
+  font-weight: 500;
+  padding-left: 0px !important;
+}
+
+.gig-description {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 18x;
+}
+
+.gig-cost {
+  text-align: right;
+  font-size: 14px;
+  margin-bottom: 0px;
+  color: green;
+  padding-right: 0px !important;
+}
+
+.previous-work-inner-container {
+  padding: 0px !important;
+}
+
+.previous-work-image-container {
+  padding-left: 0px !important;
+}
+
+.influencer-profile-section-heading {
+  margin-bottom: 24px;
+}
+
+.new-job-offerings-container {
+  overflow: auto;
+}
+
+.view-gig-button {
+  width: 100px;
+  text-align: center;
+  font-size: 12px;
+  border: 1px solid #FF9F00;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 3px;
+  color: #ff9f00;
+  margin-top: 22px;
+}
+
+.view-gig-button:hover {
+  cursor: pointer;
+  background: #ff9f00;
+  color: #fff;
+}
+
+.current-accepted-jobs-container {
+  overflow: auto;
+}
+
+.gig-offering-row {
+  margin-top: 32px;
+}
+
+.influencer-profile-not-finished-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.75);
+  z-index: 11;
+}
+
+.influencer-profile-not-finished-wrapper {
+  width: 400px;
+  text-align: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 18px;
+  padding-top: 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #fff;
+  border-radius: 2px;
+}
+
+.influencer-profile-not-finished-wrapper h3 {
+  color: #ff9f00;
+}
+
+.influencer-profile-not-finished-wrapper p {
+  font-size: 12px;
+  margin-top: 18px;
+}
+
+.complete-profile-button {
+  width: 150px;
+  color: #ff9f00;
+  border: 1px solid #ff9f00;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 3px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 32px;
+}
+
+.complete-profile-button:hover {
+  cursor: pointer;
+  background: #ff9f00;
+  color: #fff;
+}
+
+.influencer-profile-explanation-text {
+  margin-top: -12px;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.influencer-profile-image-private:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+
+.influencer-profile-image-private:active {
+  box-shadow: none;
+}
+
+.profile-image-file-input {
+  display: none !important;
+}
+
+/* Private Profile Styling */
+
+#influencer-edit-profile-section {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,0.75);
+  overflow: scroll;
+  z-index: 11;
+}
+
+.further-interests-container-private {
+  margin-bottom: 12px;
+}
+
+.interests-container-edit-profile {
+  padding: 0px !important;
+  box-shadow: none !important;
+  border-radius: 0px !important;
+}
+
+#influencer-edit-profile-section textarea {
+  border: none;
+  font-size: 12px;
+  height: 100px !important;
+}
+
+/*  Current open order styles  */
+
+.influencer-profile-orders-container {
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  overflow: scroll;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 11;
+}
+
+.influencer-profile-orders-wrapper {
+  max-width: 400px;
+  background: #fff;
+  border-radius: 2px;
+  padding: 18px 24px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.current-open-order-information-top {
+  text-align: center;
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 12px;
+}
+
+.current-brand-logo-container {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.current-brand-logo-container img {
+  width: 125px;
+  height: 125px;
+  border-radius: 67.5px;
+}
+
+.current-brand-name {
+  color: #ff9f00;
+  margin-top: 24px;
+  font-size: 32px;
+}
+
+.current-campaign-name {
+  color: #484848;
+  margin-bottom: 4px !important;
+}
+
+.current-campaign-description {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.current-campaign-price {
+  color: green;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.open-order-info-container{
+  margin-top: 32px;
+}
+
+.order-info-header {
+  font-size: 12px;
+  color: #aaa;
+  font-weight: 300;
+}
+
+.platform-image {
+  width: 35px;
+  margin-left: -4px;
+}
+
+.accept-deny-buttons-container {
+  overflow: auto;
+  margin-top: 32px;
+}
+
+.accept-deny-buttons-container .col-sm-6 {
+  padding: 0px !important;
+}
+
+.accept-button {
+  margin-left: 8px;
+  text-align: center;
+  border: 1px solid green;
+  border-radius: 2px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  color: green;
+  font-size: 13px;
+}
+
+.accept-button:hover {
+  cursor: pointer;
+  color: #fff;
+  background: green;
+}
+
+.deny-button {
+  margin-right: 8px;
+  text-align: center;
+  border: 1px solid red;
+  border-radius: 2px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  color: red;
+  font-size: 13px;
+}
+
+.deny-button:hover {
+  cursor: pointer;
+  background: red;
+  color: #FFF;
+}
+
+.close-button {
+  width: 150px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  color: #ff9f00;
+  border: 1px solid #ff9f00;
+  border-radius: 2px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+
+.close-button:hover {
+  background: #ff9f00;
+  color: #fff;
+  cursor: pointer;
+}

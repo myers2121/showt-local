@@ -29,6 +29,8 @@ app.get('*', function(req, res){
   res.render('404');
 });
 
-app.listen( process.env.PORT || 3000, function() {
+var port = process.env.PORT || 3000;
+
+app.listen( port, function() {
 	console.log("The frontend server is running on port " + port + "!");
 });

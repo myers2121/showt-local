@@ -81,9 +81,7 @@
       ]);
 
       self.showCreateCampaignContainer = function() {
-        console.log('hello');
-        $createCampaignSection.fadeIn();
-        $('body').css('overflow','hidden');
+        location.href = '/hire-influencers';
       };
 
       self.sendHome = function() {

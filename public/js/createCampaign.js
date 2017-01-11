@@ -10,6 +10,7 @@
       self.upperAgeRange = ko.observable('17');
       self.ageRange = ko.observable('');
       self.locations = ko.observableArray([]);
+      self.targetLocation = ko.observable('');
       self.tagsList = ko.observableArray([]);
       self.currentTag = ko.observable('');
       self.locationsList = ko.observableArray([]);
@@ -40,6 +41,14 @@
       self.businessLoginPassword = ko.observable('');
       self.showBusinessEmailErrorMessage = ko.observable(false);
       self.showPasswordErrorMessage = ko.observable(false);
+      self.businessCardNumber = ko.observable('');
+      self.businessCardExpirationDate = ko.observable('');
+      self.businessCardSecurityCode = ko.observable('');
+      self.businessSignUpEmail = ko.observable('');
+      self.businessSignUpName = ko.observable('');
+      self.businessSignUpPassword = ko.observable('');
+      self.businessSignUpPhoneNumber = ko.observable('');
+      self.businessSignUpInstagram = ko.observable('');
 
       self.campaignInfoNotValidated = ko.observable(false);
       self.postInformationNotValidated = ko.observable(true);
@@ -49,29 +58,29 @@
 
       self.sampleInfluencerList = ko.observableArray([
         {
-          image: '/static/img/connor.jpg',
-          name: 'Connor Myers',
+          image: '/static/img/justeen.png',
+          name: 'Justeen Bell',
           location: 'Clovis, Ca',
-          instagramFollowers: '684',
-          instagramFollowersText: '684',
-          showtPrice: '17',
-          showtPriceText: '$17',
-          showtScore: '2.3',
-          instagram: 'sdjnfsdigdhg',
-          engagementRate: '10%',
+          instagramFollowers: '4373',
+          instagramFollowersText: '4.3K',
+          showtPrice: '75',
+          showtPriceText: '$75',
+          showtScore: '6.4',
+          instagram: 'justeenybell',
+          engagementRate: '9%',
           aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         },
         {
-          image: '/static/img/chris.jpg',
-          name: 'Chris Garduno',
+          image: '/static/img/ashtyn.png',
+          name: 'Ashtyn',
           location: 'Fresno, Ca',
-          instagramFollowers: '95',
-          instagramFollowersText: '95',
-          showtPrice: '2',
-          showtPriceText: '$2',
-          showtScore: '1.1',
-          instagram: 'sdjnfsdigdhg',
-          engagementRate: '10%',
+          instagramFollowers: '10200',
+          instagramFollowersText: '10.2K',
+          showtPrice: '100',
+          showtPriceText: '$100',
+          showtScore: '7.1',
+          instagram: 'ashtyyn',
+          engagementRate: '5%',
           aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         },
         {
@@ -83,7 +92,7 @@
           showtPrice: '125',
           showtPriceText: '$125',
           showtScore: '8.4',
-          instagram: 'sdjnfsdigdhg',
+          instagram: 'megooozzz',
           engagementRate: '10%',
           aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         },
@@ -96,21 +105,21 @@
           showtPrice: '25',
           showtPriceText: '$25',
           showtScore: '6.1',
-          instagram: 'sdjnfsdigdhg',
+          instagram: 'jaredlumbard',
           engagementRate: '10%',
           aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         },
         {
-          image: '/static/img/tim.jpg',
-          name: 'Tim Farrow',
+          image: '/static/img/lexhammer.png',
+          name: 'Alexa Hammerschmidt',
           location: 'Fresno, Ca',
-          instagramFollowers: '395',
-          instagramFollowersText: '395',
-          showtPrice: '3',
-          showtPriceText: '$3',
-          showtScore: '2.3',
-          instagram: 'sdjnfsdigdhg',
-          engagementRate: '10%',
+          instagramFollowers: '2902',
+          instagramFollowersText: '2.9K',
+          showtPrice: '75',
+          showtPriceText: '$75',
+          showtScore: '6.2',
+          instagram: 'lexaahammer',
+          engagementRate: '20%',
           aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         }
       ]);
@@ -204,7 +213,7 @@
         "Influencers are going to be posting about your business. Give them a better understanding of the vibe that you have at your company by uploading a few images the represent waht your company is all about.",
         "In some campaigns there are going to be requirements other than simply posting a picture for the business. You may want them to make the posting in your store, deliver product to them, or simply have them post a stock promotion pic. Select the option that pertains to you below.",
         "Select the age range of the influencers that you are wanting to hire.",
-        "What region(s) of the country are you looking to promote your brand in? These helps us find the best influencers in the area you are interested in.",
+        "As of right now we are only available in Fresno, Ca for in store posting. However, we are expanding to new cities very quickly so please get in contact with us to let us know where you are located!",
         "What gender are you wanting to promote your brand? You can pick one or both.",
         "Select from the region below the kind of influencers that you are looking to find. By choosing the interests below it will be much better when finding influencers to help your campaign.", "Help text 14"]);
 
@@ -221,6 +230,13 @@
         $('.filled-check-box').removeClass('filled-check-box');
         $(e.currentTarget ).addClass('filled-check-box');
         self.postingType($(e.currentTarget).next().text());
+        if (self.postingType() == "In store posting") {
+          $('.target-region-input-container').slideDown();
+          self.targetLocation('Fresno, Ca');
+        } else {
+          $('.target-region-input-container').css('display','none');
+          self.targetLocation('');
+        }
       };
 
       self.deleteTagFromTagList = function(index) {
@@ -283,10 +299,16 @@
         }
       };
 
+      self.isInfluencerLoggedInOrSignedUp = ko.observable(false);
       self.nextButtonClicked = function() {
 
         if (currentCampaignCreationIteration == 0) {
           if (self.campaignCheck() && self.genderCheck()) {
+            if (self.isInfluencerLoggedInOrSignedUp() == false) {
+              $('.business-sign-up-login-container').fadeIn(function() {
+                $('body').css('overflow','hidden');
+              });
+            }
             $('.active-create-campaign-container').fadeOut(function() {
               const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
               $nextCampaignCreateItem.fadeIn();
@@ -416,13 +438,14 @@
       // Finish the campaign creation process and place the order if they are signed in.
 
       self.placeOrderButtonClicked = function() {
-        // Check if they are signed in or not
-
-          // If not signed in then they need to either log in or sign up
-
-          // If they are signed in place the order from their credit card informtaion
+        // Show this if we don't already have the customers information
+        $('.business-login-information-container').css('display','none');
+        $('.business-signup-container-campaign').css('display','none');
+        $('.business-credit-card-info-container').css('display','block');
+        $('.business-sign-up-login-container').fadeIn(function() {
+          $('body').css('overflow','hidden');
+        });
       };
-
 
       // Validating both the log in and sign up forms
 
@@ -445,11 +468,37 @@
       };
 
       self.logInBusinessFromCampaign = function businessLoginButtonClicked() {
-        console.log('Log the business in');
+        $('.business-sign-up-login-container').fadeOut(function() {
+          self.isInfluencerLoggedInOrSignedUp(true);
+          $('.select-influencer-step-container').removeClass('select-influencer-step-container');
+        });
       };
 
       self.signUpBusiness = function businessSignUpButtonClicked() {
-        console.log('This is where we should sign the business up');
+        $('.business-login-information-container').fadeOut(function() {
+          $('.business-signup-container-campaign').fadeIn();
+        });
+      };
+
+      self.signUpBusinessCampaign = function signUpBusinessButtonClicked() {
+        $('.business-sign-up-login-container').fadeOut(function() {
+          self.isInfluencerLoggedInOrSignedUp(true);
+          $('.select-influencer-step-container').removeClass('select-influencer-step-container');
+        });
+      };
+
+      self.showLoginSectionFromSignUp = function signUpButtonOnSignUpClicked() {
+        $('.business-signup-container-campaign').fadeOut(function() {
+          $('.business-login-information-container').fadeIn();
+        });
+      };
+
+      self.placeOrder = function finalPlaceOrderButtonClicked() {
+        location.href = '/business/dashboard';
+      };
+
+      self.showCreditCardHelpText = function creditCardHelpTextClicked() {
+        $('.card-help-text').slideToggle();
       };
   };
 

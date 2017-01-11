@@ -678,6 +678,15 @@ select:hover {
   background: rgba(0,0,0,0.3);
 }
 
+.target-region-input-container {
+  display: none;
+  border: none !important;
+}
+
+.target-region-container {
+  border: none !important;
+}
+
 .target-region-container input {
   border: none !important;
   padding-top: 12px !important;
@@ -688,7 +697,6 @@ select:hover {
 .target-region-container .tags-plus-container {
   padding: 0px !important;
   height: 43px;
-  border-left: 1px solid #ff9f00;
 }
 
 .target-region-container .tags-plus-container:hover {
@@ -707,6 +715,24 @@ select:hover {
   top: 50%;
   transform: translateY(-50%);
   color: #ff9f00;
+}
+
+.fresno-region {
+  background: linear-gradient(rgba(0, 0 ,0 , .2), rgba(0, 0 ,0 , .2)), url(../img/fresno.png);
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  height: 75px;
+}
+
+.target-region h3 {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 4px !important;
+  position: absolute;
+  bottom: 10px;
 }
 
 .delete-icon-container {
@@ -792,6 +818,14 @@ select:hover {
 
 .influencer-found-container {
   overflow: auto;
+}
+
+.select-influencer-step-container {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
 }
 
 .influencer-found-image {
@@ -1137,6 +1171,8 @@ Influencer pop up container styles
   left: 0;
   top: 0;
   z-index: 11;
+  display: none;
+  overflow: auto;
 }
 
 .business-login-container {
@@ -1147,6 +1183,20 @@ Influencer pop up container styles
   top: 50%;
   transform: translate(-50%,-50%);
   border-radius: 2px;
+  display: none;
+}
+
+.business-signup-container-campaign {
+  width: 450px;
+  background: #fff;
+  position: absolute;
+  left: 50%;
+  top: 0px !important;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  display: block;
 }
 
 .business-login-wrapper {
@@ -1181,4 +1231,76 @@ Influencer pop up container styles
 
 .sign-up-login-text:hover {
   cursor: pointer;
+}
+
+.business-credit-card-info-container {
+  display: none;
+}
+
+.credit-card-input-container {
+  overflow: auto;
+}
+
+.credit-card-input-container .col-sm-8 {
+  padding: 0px !important;
+  border: none !important;
+}
+
+.influencer-account-form-wrapper {
+  overflow: auto;
+}
+
+.influencer-account-form-wrapper .col-sm-7 {
+  padding-left: 0px !important;
+  margin-top: 10px !important;
+}
+
+.expiration-input-icon {
+  width: 18% !important;
+}
+
+.expiration-input {
+  width: 82% !important;
+}
+
+.influencer-account-form-wrapper .col-sm-5 {
+  padding-right: 0px !important;
+  margin-top: 10px !important;
+}
+
+.cvc-input-icon {
+  width: 26% !important;
+}
+
+.cvc-input {
+  width: 74% !important;
+}
+
+.card-info-title {
+  font-size: 12px;
+  margin-bottom: 0px !important;
+  margin-top: 16px;
+}
+
+.influencer-account-form-wrapper .influencer-input {
+  margin-top: 10px !important;
+}
+
+.credit-card-help-container {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.card-help-title {
+  color: #ff9f00;
+}
+
+.card-help-title:hover {
+  cursor: pointer;
+}
+
+.card-help-text {
+  font-size: 12px;
+  color: #aaa;
+  display: none;
 }

@@ -2,12 +2,43 @@ extends ./layout.pug
 
 block content
 	section#create-campaign-section
+		.create-campaign-help-container
+			.create-campaign-help-wrapper
+				p(data-bind="text: currentHelpText")
+				.hero
 		.business-sign-up-login-container
-			.business-login-container
+			.business-login-container.business-credit-card-info-container
+				.business-login-wrapper
+					.influencer-account-form-wrapper
+						h3 Place order
+						p.account-text Enter your credit card information to place your Showt order. You will not be charged until an influencer accepts the job you asked them for. You can cancel your campaign at any time in your business dashboard.
+						p.card-info-title Card number
+						.influencer-input
+							.influencer-input-icon
+								img(src='/static/img/credit-card-grey.png')
+							input(type='email',placeholder='1111-1111-1111-1111', data-bind="textInput: businessCardNumber")
+						.influencer-input-container.col-sm-7
+							p.card-info-title Expiration date
+							.influencer-input
+								.influencer-input-icon.expiration-input-icon
+									img(src='/static/img/calendar-grey.png')
+								input.expiration-input(type='password',placeholder='MM/YY', data-bind="textInput: businessCardExpirationDate")
+						.influencer-input-container.col-sm-5
+							p.card-info-title Security code
+							.influencer-input
+								.influencer-input-icon.cvc-input-icon
+									img(src='/static/img/lock-grey.png')
+								input.cvc-input(type='password',placeholder='CVC', data-bind="textInput: businessCardSecurityCode")
+					.credit-card-help-container
+						p.card-help-title(data-bind="click: showCreditCardHelpText") Why do we need this information?
+						p.card-help-text SOJDfnsda fasd nbf absdif basdf uiasdf iuasdbfn isadnf sadufn sdanfi sudanfiuas nusdbnf uisdbf sadfuas fsndaf iusdnf isadfi usadnbfi asndf sa.
+					.sign-up-button-container-influencer
+						.sign-up-button-influencer(data-bind="click: placeOrder") PLACE ORDER
+			.business-login-container.business-login-information-container
 				.business-login-wrapper
 					.influencer-account-form-wrapper
 						h3 Business Login
-						p.account-text Log in to your account to start growing your company.
+						p.account-text Log in to your Showt account to run this campaign.
 					.influencer-input
 						.influencer-input-icon
 							img(src='/static/img/email.png')
@@ -22,6 +53,39 @@ block content
 						.sign-up-button-influencer(data-bind="click: logInBusinessFromCampaign") Login
 					p.no-account-text Don't yet have Showt account?
 					p.sign-up-login-text(data-bind="click: signUpBusiness") Sign up today!
+			.business-login-container.business-signup-container-campaign
+				.business-login-wrapper
+					.influencer-account-form-wrapper
+						h3 Business Signup
+						p.account-text You must have a Showt account to view our influencers. Don't worry it doesn't cost you anything to have an account with us!
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/business-contact.png')
+						input(type='email',placeholder='Business name', data-bind="textInput: businessSignUpName, event: { blur: businessLoginEmailTyping }")
+					p.error-message(data-bind="visible: showBusinessEmailErrorMessage") Please enter a valid email
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/email.png')
+						input(type='email',placeholder='Email address', data-bind="textInput: businessSignUpEmail, event: { blur: businessLoginEmailTyping }")
+					p.error-message(data-bind="visible: showBusinessEmailErrorMessage") Please enter a valid email
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/lock-grey.png')
+						input(type='password',placeholder='Password', data-bind="textInput: businessSignUpPassword, event: { blur: businessLoginPasswordTyping }")
+					p.error-message(data-bind="visible: showPasswordErrorMessage") Please enter a password with at least 6 characters
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/phone.png')
+						input(type='email',placeholder='Number to reach you at', data-bind="textInput: businessSignUpPhoneNumber, event: { blur: businessLoginEmailTyping }")
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/instagram-grey.png')
+						input(type='email',placeholder='Business instagram account', data-bind="textInput: businessSignUpInstagram, event: { blur: businessLoginEmailTyping }")
+					p.error-message(data-bind="visible: showBusinessEmailErrorMessage") Please enter a valid email
+					.sign-up-button-container-influencer
+						.sign-up-button-influencer(data-bind="click: signUpBusinessCampaign") Sign up
+					p.no-account-text Already have a Showt account?
+					p.sign-up-login-text(data-bind="click: showLoginSectionFromSignUp") Log in now!
 		.view-influencer-container
 			.view-influencer-wrapper
 				img.exit-influencer-pop-up(src='/static/img/exit.png', data-bind="click: closeInfluencerPopUp")
@@ -85,21 +149,12 @@ block content
 										.posting-requirements-div
 											.check-box(data-bind="click: fillCheckBox")
 											p Stock promo pic
-									.create-input-wrapper.create-input-wrapper-bottom
-										h4.section-header TARGET REGION
+									.create-input-wrapper.create-input-wrapper-bottom.target-region-input-container
+										h4.section-header WHERE ARE YOU LOCATED?
 										img.help-icon#help-icon-11(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 										.target-region-container
-											input.col-sm-10(type="text",placeholder="Where do you want ito market your business?",data-bind="textInput: currentLocation")
-											.tags-plus-container.col-sm-2(data-bind="click: addLocationToList")
-												p +
-										.added-locations-container
-											.location-container(data-bind="foreach: locationsList")
-												.location-container
-													.location-icon-container.col-sm-1
-														img(src='/static/img/location.png')
-													p.col-sm-10(data-bind="text: locationName")
-													.delete-icon-container.col-sm-1(data-bind="click: $root.deleteLocationFromList.bind($index())")
-														p.subtract-location -
+											.target-region.col-sm-6.fresno-region
+												h3 Fresno, Ca
 							.right-side-creation-container.col-sm-6
 								.creation-side-wrapper.right-wrapper
 									.create-input-wrapper
@@ -217,11 +272,11 @@ block content
 											img.check-mark-box(src='/static/img/checked-box-white.png')
 						.bottom-action-buttons
 							.next-button(data-bind="click: nextButtonClicked") FIND INFLUENCERS
-		.create-campaign-information-container
+		.create-campaign-information-container.select-influencer-step-container
 			.campaign-creation-step-container.campaign-info-container
 				.create-step-wrapper
 					.step-title-container
-						h3 Select influencers
+						h3 Our influencers
 						p We believe the influencers below will give you the most success. Click hire me to add them to your campaign or click on them to get further information
 						.seperator-div
 					.influencers-found-container
@@ -293,8 +348,7 @@ block content
 												p.review-p(data-bind="text: $data")
 								.create-input-wrapper.create-input-wrapper-bottom
 									h4.section-header TARGET REGION
-									.target-region-container-review(data-bind="foreach: locationsList")
-										p.review-p(data-bind="text: locationName")
+									p.review-p(data-bind="text: targetLocation")
 								.create-input-wrapper.create-input-wrapper-bottom
 									h4.section-header INTERESTS
 									.influencer-interests-container.influencer-interests-container-review(data-bind="foreach: interestsAddedList")

@@ -7,8 +7,8 @@ block content
 				.influencer-account-form-container
 					form#account-form
 						.influencer-account-form-wrapper
-							h3 Create your account
-							p.account-text Start earning money from your social media accounts. Fill out the information below to get started. It's free!
+							h3 Edit profile
+							p.account-text Edit the information for your Showt profile.
 							.influencer-information-form-container
 								.influencer-input-container
 									.influencer-input
@@ -32,12 +32,17 @@ block content
 										input(type='text', name='phone' placeholder='Phone number', data-bind="textInput: influencerPhoneNumber, event: { blur: influencerPhoneTyping }")
 									p.error-message(data-bind="visible: phoneNumberNotValidated") Please enter a valid US phone number e.g. (559)123-4567
 									.influencer-input
-										textarea(type='text', name='phone' placeholder='Give a brief description of yourself so businesses will get to know you better', data-bind="textInput: influencerDescription, event: { blur: influencerDescriptionTyping }")
+										.influencer-input-icon
+											img(src='/static/img/phone.png')
+										input(type='text', name='location' placeholder='Where are you located?', data-bind="textInput: influencerLocation, event: { blur: influencerLocationBlur }")
+									p.error-message(data-bind="visible: showLocationErrorMessage") Please enter your city and state e.g. Fresno, Ca
+									.influencer-input
+										textarea(type='text', name='description' placeholder='Give a brief description of yourself so businesses will get to know you better', data-bind="textInput: influencerDescription, event: { blur: influencerDescriptionTyping }")
 									p.error-message(data-bind="visible: influencerDescriptionNotValidated") Please enter a more descriptive description of yourself
 								.birthday-select-container
 									strong Birthday
 									.select-container
-										.col-sm-5.select-col
+										.col-sm-5.select-col.birthday-month-select
 											.select
 												select(name='birthMonth', data-bind="value: influencerBirthMonth")
 													option(value="January") January
@@ -52,11 +57,11 @@ block content
 													option(value="October") October
 													option(value="November") November
 													option(value="December") December
-										.col-sm-3.select-col
+										.col-sm-3.select-col.birthday-month-select
 											.select
 												select(name='birthDay' data-bind="value: influencerBirthDay, foreach: daysOptionsList")
 													option(data-bind="text: dayNumber, value: dayNumber")
-										.col-sm-4.select-col
+										.col-sm-4.select-col.birthday-month-select
 											.select
 												select(name='birthYear' data-bind="value: influencerBirthYear, foreach: yearOptionsList")
 													option(data-bind="text: yearNumber, value: yearNumber")
@@ -69,10 +74,6 @@ block content
 						p.account-text Fill out the information below so we can find the best campaigns possible for you. We recommend you be as detailed as possible so that you can have the most success.
 							form#further-info
 								.sign-up-button-container-influencer
-									.influencer-input
-										.influencer-input-icon
-											img(src='/static/img/instagram-grey.png')
-										input(type='text',placeholder='Instagram username', data-bind="textInput: influencerInstagramName")
 									.birthday-select-container
 										strong Gender
 										.gender-buttons-container
@@ -89,7 +90,7 @@ block content
 												.interest-wrapper(data-bind="style: {backgroundImage: interestImage}, click: $root.selectInterest", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover;")
 													.interest-layer
 													h3(data-bind="text: interestTitle")
-													.interest-checked-layer(data-bind="css: classInterestName")
+													.interest-checked-layer(data-bind="attr: { 'class': classInterestName}")
 														img(src='/static/img/checked-box-white.png')
 								.sign-up-button-container-influencer
 									.birthday-select-container
@@ -153,7 +154,7 @@ block content
 								.accept-button(data-bind="click: approveOrder") Accept
 						.close-details-buttons-container(data-bind="visible: detailsOrderActivated")
 							.close-button(data-bind="click: closeCurrentOrder") Close
-		.influencer-profile-not-finished-container
+		.influencer-profile-not-finished-container(data-bind="visible: isProfileFinished")
 			.influencer-profile-not-finished-wrapper
 				h3 Complete your profile
 				p Your Showt influencer profile has not yet been completed. In order to start receiving gigs from companies to start making money you must complete your account. Click the edit profile button after you exit this pop up.
@@ -168,23 +169,22 @@ block content
 								img.influencer-profile-image-private(data-bind="attr: {src: profileImage}, click: showFileInputWindow")
 								input.profile-image-file-input(type='file', data-bind="event: { change: function() { uploadProfileImage($element.files[0]) } }")
 							.influencer-profile-information-container.col-sm-9
-								h3.influencer-name Connor Myers
-								p.influencer-one-liner Helping you grow your business one post at a time.
+								h3.influencer-name(data-bind="text: influencerName")
 								.influencer-location-container
 									img(src='/static/img/instagram-grey.png')
-									p.influencer-location connormyers21
+									p.influencer-location(data-bind="text: influencerInstagramName")
 								.influencer-location-container
 									img(src='/static/img/location.png')
-									p.influencer-location Fresno, Ca
+									p.influencer-location(data-bind="text: influencerLocation")
 								.influencer-ratings-container
 									.influencer-data-container.col-sm-4
-										p.influencer-reach 3,000
+										p.influencer-reach(data-bind="text: influencerShowtReach")
 										p.text Overall reach
 									.influencer-data-container.col-sm-4
-										p.influencer-reach 10%
+										p.influencer-reach(data-bind="text: influencerShowtEngagement")
 										p.text Engagement rate
 									.influencer-data-container.col-sm-4
-										p.influencer-reach 8.4
+										p.influencer-reach(data-bind="text: influencerShowtScore")
 										p.text Showt influencer score
 								.influencer-hire-button-container
 									.influencer-hire-button(data-bind="click: editProfileButtonClicked") Edit Profile
@@ -198,27 +198,16 @@ block content
 					.influencer-about-information-wrapper
 						.about-me-container
 							p.influencer-profile-section-heading About me
-							p.about-me-text Hi, my name is Connor Myers and I am an entrepreneur from Fresno, CA. I have quite a large following and a very high engagement rate on all of my social media outets. This means that I am better able to reach my community since the people that are following me and engaging with my content are close friends of mine. This can dramatically help you grow your business. Click the button above to work with me to help grow your business and your brand name today!
+							p.about-me-text(data-bind="text: influencerDescription")
 						.interests-container
 							p.influencer-profile-section-heading I'm interested in
-							.interest-images-container
-								.interest-container.col-sm-3.interest-1
-									p.interest-type-text Food &amp; Drink
-								.interest-container.col-sm-3.interest-2
-									p.interest-type-text Automotive
-								.interest-container.col-sm-3.interest-3
-									p.interest-type-text Animals &amp; Pets
-								.interest-container.col-sm-3.interest-4
-									p.interest-type-text Resturants, Bars &amp; Pubs
+							.interest-images-container(data-bind="foreach: influencerInterestList")
+								.interest-container.col-sm-3.interest-container-img(data-bind="css: interestClass")
+									p.interest-type-text(data-bind="text: interestText")
 						.further-interests-container.further-interests-container-private
 							p.influencer-profile-section-heading I'm also interested in
-							.interest-tags-container
-								p.tag-text.col-sm-3 Skateboarding
-								p.tag-text.col-sm-3 Education &amp; Books
-								p.tag-text.col-sm-3 Volleyball
-								p.tag-text.col-sm-3 Basketball
-								p.tag-text.col-sm-3 Entrepreneurship
-								p.tag-text.col-sm-3 Inspiration
+							.interest-tags-container(data-bind="foreach: influencerTagList")
+								p.tag-text.col-sm-3(data-bind="text: $data")
 				.influencer-work-information-container
 					.influencer-work-information-wrapper
 						.new-job-offerings-container
@@ -235,7 +224,7 @@ block content
 													p.gig-name.col-sm-9(data-bind="text: orderTitle")
 													p.gig-cost.col-sm-3(data-bind="text: orderPrice")
 												p.gig-description(data-bind="text: orderDescription")
-												.view-gig-button(data-bind="click: $root.openNewOrder") Accept / Deny
+												.view-gig-button(data-bind="click: $root.openNewOrder") Details
 						.current-accepted-jobs-container
 							p.influencer-profile-section-heading Current orders
 							.current-work-loop-container(data-bind="foreach: currentJobs")

@@ -36,7 +36,7 @@ var jsonParser = bodyParser.json();
 		res.render('hireInfluencers');
 	});
 
-	router.get('/business/login',function(req,res) {
+	router.get('/login',function(req,res) {
 		res.render('businessLogin');
 	});
 

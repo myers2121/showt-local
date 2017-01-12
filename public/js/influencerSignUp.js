@@ -9,15 +9,15 @@
 
     /* DECLARATIONS */
 
-      self.influencerEmail         = ko.observable('timalanfarrow@gmail.com');
-      self.influencerFirstName     = ko.observable('Tim');
-      self.influencerLastName      = ko.observable('Farrow');
-      self.influencerPassword      = ko.observable('password');
-      self.influencerPhoneNumber   = ko.observable('(559)274-8657');
-      self.influencerBirthMonth    = ko.observable('April');
-      self.influencerBirthDay      = ko.observable('9');
-      self.influencerBirthYear     = ko.observable('1997');
-      self.influencerInstagramName = ko.observable('farrowtim');
+      self.influencerEmail         = ko.observable('');
+      self.influencerFirstName     = ko.observable('');
+      self.influencerLastName      = ko.observable('');
+      self.influencerPassword      = ko.observable('');
+      self.influencerPhoneNumber   = ko.observable('');
+      self.influencerBirthMonth    = ko.observable('');
+      self.influencerBirthDay      = ko.observable('');
+      self.influencerBirthYear     = ko.observable('');
+      self.influencerInstagramName = ko.observable('');
       self.influencerTagList       = ko.observableArray([]);
       self.influencerInterestList  = ko.observableArray([]);
       self.influencerGender        = ko.observable('');
@@ -158,7 +158,8 @@
           });
 
         }).catch(( error ) => {
-
+          const errorMessage = error.message;
+          alert(errorMessage);
           return console.error( error );
 
         });
@@ -222,7 +223,7 @@
       };
 
       self.exitSignUpPopUp = function clickReturnToMainPageButton( d, e ) {
-        $("#influencer-sign-up-section").fadeOut();
+        $('#influencer-sign-up-section').fadeOut();
       }
 
       self.registerInfluencerEmailNotValidated = ko.observable(false);
@@ -320,7 +321,16 @@
             gender    : gender,
             instagram : instagramName,
             interests : interests,
-            tags      : tags
+            tags      : tags,
+            profileCompleted: false,
+            profileReviewed: false,
+            showtPrice: '0',
+            showtScore: '0',
+            showtReach: '0',
+            showtEngagement: '0',
+            aboutMe: '',
+            location: '',
+            pictureLocation: ''
           }).then(() => {
 
             $('.influencer-information-sign-up-form-container').fadeOut(function() {

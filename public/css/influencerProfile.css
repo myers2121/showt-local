@@ -61,7 +61,7 @@ body {
 
 .influencer-profile-container,
 .about-me-container,
-.interests-container,
+.influencer-bottom-information-container .interests-container,
 .further-interests-container,
 .hire-me-container,
 .new-job-offerings-container,
@@ -180,7 +180,7 @@ body {
 }
 
 .about-me-container,
-.interests-container,
+.influencer-bottom-information-container .interests-container,
 .further-interests-container,
 .hire-me-container,
 .previous-work-container,
@@ -215,6 +215,74 @@ body {
   font-size: 15px;
 }
 
+.interest-container-img {
+  background-position: center !important;
+  -webkit-background-size: cover !important;
+  -moz-background-size: cover !important;
+  background-size: cover !important;
+  -o-background-size: cover !important;
+}
+
+.automotive {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/automotive-interest.png);
+}
+
+.animals {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/animals-interest.png);
+}
+
+.beautypersonalcare {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/beauty-interest.png);
+}
+
+.childrenfamily {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/family-interest.png);
+}
+
+.educationbooks {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/books-interest.png);
+}
+
+.entertainmentevents {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/events-interest.png);
+}
+
+.fashion {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/fashion-interest.png);
+}
+
+.fooddrink {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/food-interest.png);
+}
+
+.healthfitnesssport {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/health-interest.png);
+}
+
+.homegarden {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/garden-interest.png);
+}
+
+.photographyartdesign {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/art-interest.png);
+}
+
+.restaurantsbarshotels {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/bars-interest.png);
+}
+
+.socialenterpriseandnotforprofit {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/non-profit-interest.png);
+}
+
+.socialmediawebtech {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/tech-interest.png);
+}
+
+.traveldestinations {
+  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/travel-interest.png);
+}
+
 .interest-1 {
   background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/food-interest.png);
   background-position: center;
@@ -243,12 +311,8 @@ body {
 }
 
 .interest-4 {
-  background: linear-gradient(rgba(0, 0 ,0 , .3), rgba(0, 0 ,0 , .3)), url(/static/img/bars-interest.png);
-  background-position: center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
+
+
 }
 
 .interest-images-container {

@@ -39,7 +39,7 @@ block content
 								.birthday-select-container
 									strong Birthday
 									.select-container
-										.col-sm-5.select-col
+										.col-sm-5.select-col.birthday-month-select
 											.select
 												select(name='birthMonth', data-bind="value: influencerBirthMonth")
 													option(value="January") January
@@ -54,17 +54,17 @@ block content
 													option(value="October") October
 													option(value="November") November
 													option(value="December") December
-										.col-sm-3.select-col
+										.col-sm-3.select-col.birthday-month-select
 											.select
 												select(name='birthDay' data-bind="value: influencerBirthDay, foreach: daysOptionsList")
 													option(data-bind="text: dayNumber, value: dayNumber")
-										.col-sm-4.select-col
+										.col-sm-4.select-col.birthday-month-select
 											.select
 												select(name='birthYear' data-bind="value: influencerBirthYear, foreach: yearOptionsList")
 													option(data-bind="text: yearNumber, value: yearNumber")
 								p.error-message(data-bind="visible: accountCreationFormNotValidated") Make sure to fill out all of the fields on this page.
 								.sign-up-button-container-influencer
-									.sign-up-button-influencer(data-bind="click: signUpUser") Sign Up
+									.sign-up-button-influencer(data-bind="click: signUpUser") Continue
 				.influencer-information-sign-up-form-container
 					.influencer-account-form-wrapper
 						h3 Account information
@@ -111,32 +111,35 @@ block content
 												.tag-subtract-container.col-sm-2(data-bind="click: $root.removeInfluencerTag")
 													p -
 									p.error-message(data-bind="visible: accountInfoNotValidated") Please enter your instagram name and gender. We also highly recommend that you add some interests and tags so you can have the most success.
-									.sign-up-button-influencer(data-bind="click: finishCreatingAccount") Finish
+									.sign-up-button-influencer(data-bind="click: finishCreatingAccount") Sign up
 				.influencer-finish-sign-up-form-container
 					.influencer-account-form-wrapper
 						h3 Account created
-						p.account-text Thank you for creating an account with us at Showtlocal. One of our influencer specialists will be in contact with you within 24 hours to continue your Showtlocal journey to making money on social media.
+						p.account-text Thank you for creating an account with us at Showtlocal. One of our influencer specialists will review your account within 24 hours to continue your Showt journey to making money on social media.
 						.sign-up-button-influencer.back-to-website-button(data-bind='click: exitSignUpPopUp') BACK TO WEBSITE
 	section#home
 		.home-nav
 			.home-nav-container
 				.home-nav-wrapper
-					.left-nav-container.col-sm-4
-						.grow-your-business-button
-							.grow-business-button-info-container
-								p.business-button-icon.fa.fa-building-o
-								p.grow-business-button-text Business login
-					.middle-nav-container.col-sm-4
-						.home-middle-nav-container
-							img(src='/static/img/showt-local-favicon.png')
-					.last-nav-container.col-sm-4
+					.left-nav-container.col-sm-6
+						img(src='/static/img/showt-local-favicon.png')
+					.last-nav-container.col-sm-6
+						ul.home-navigation-container
+							li.navigation-link
+								a(href='/benefits') Grow your business
+							li.navigation-link
+								a(href='/help') Help
+							li.navigation-link
+								a(href='/business/signup') Sign Up
+							li.navigation-link
+								a(href='/login') Log In
 		.home-container
 			.home-middle-info-container
 				.home-middle-container-wrapper
 					h3.showt-local-title Become influential.
+					p.showt-local-text Showt gives you the opportunity to make money by promoting the brands that you already love.
 					.homepage-button-container
 						.homepage-button.influencer-button EARN EXTRA MONEY
-						.homepage-button.business-button GROW YOUR BUSINESS
 	include ./partials/_footer.pug
 block customJS
 	script(src='/static/js/influencerSignUp.js')

@@ -23,6 +23,15 @@
       self.genderList = ko.observableArray([]);
       self.postingType = ko.observable('');
       self.interestsAddedList = ko.observableArray([]);
+      self.campaignDeadline = ko.observable('');
+      self.deadlineMonth = ko.observable('');
+      self.deadlineDay = ko.observable('');
+      self.deadLineYear = ko.observable('');
+
+      var dateObj = new Date();
+      self.deadlineMonth(dateObj.getUTCMonth() + 1); //months from 1-12
+      self.deadlineDay(dateObj.getUTCDate());
+      self.deadLineYear(dateObj.getUTCFullYear());
 
       // Variable for the influencer pop up when the influencer is clicked on the second page of the campaign process
 
@@ -215,7 +224,10 @@
         "Select the age range of the influencers that you are wanting to hire.",
         "As of right now we are only available in Fresno, Ca for in store posting. However, we are expanding to new cities very quickly so please get in contact with us to let us know where you are located!",
         "What gender are you wanting to promote your brand? You can pick one or both.",
-        "Select from the region below the kind of influencers that you are looking to find. By choosing the interests below it will be much better when finding influencers to help your campaign.", "Help text 14"]);
+        "Select from the region below the kind of influencers that you are looking to find. By choosing the interests below it will be much better when finding influencers to help your campaign.",
+        "The Showt Score is what we at Showt use to rank influecners on how much influence they have in their markets. It is based on a bunch of factors but all you need to know is that the higher the score out of 10 the better.",
+        "The campaign deadline is the exact day that you want the influencer to complete your request. This allows our influencers to plan accordingly to make sure you have the best experience possible."
+      ]);
 
       self.addTagToList = function() {
         if (self.currentTag().length > 2) {
@@ -320,6 +332,7 @@
             });
             currentCampaignCreationIteration = currentCampaignCreationIteration + 1;
             self.ageRange(self.lowerAgeRange() + ' - ' + self.upperAgeRange());
+            self.campaignDeadline(self.deadlineMonth() + '-' + self.deadlineDay() + '-' + self.deadLineYear());
           } else {
             $('#create-campaign-section').animate({
                 scrollTop: $('#create-campaign-section').offset().top
@@ -493,12 +506,77 @@
         });
       };
 
+      self.closeCreditInfoContainer = function cancelOrderButtonClicked() {
+        $('.business-sign-up-login-container').fadeOut();
+        $('body').css('overflow','auto');
+      };
+
       self.placeOrder = function finalPlaceOrderButtonClicked() {
         location.href = '/business/dashboard';
       };
 
       self.showCreditCardHelpText = function creditCardHelpTextClicked() {
         $('.card-help-text').slideToggle();
+      };
+
+      self.saveCardInfoForFuture = function cardInfoRadioButtonClicked(d,e) {
+        $(e.currentTarget).toggleClass('saveForFutureClicked');
+      };
+
+      self.showCardNumberErrorMessage = ko.observable(false);
+      self.cardNumberBlur = function cardNumberDataBindBlur() {
+        if (self.businessCardNumber().length != 16 || isNaN(self.businessCardNumber())) {
+          self.showCardNumberErrorMessage(true);
+        } else {
+          self.showCardNumberErrorMessage(false);
+        }
+      };
+
+      self.cardNumberTyping = function() {
+        if (self.businessCardNumber().length == 16) {
+          self.showCardNumberErrorMessage(false);
+        }
+      };
+
+      self.showExpirationDataErrorMessage = ko.observable(false);
+      self.expirationDateBlur = function expirationDateDataBindBlur() {
+        if (self.businessCardExpirationDate().length != 5) {
+          self.showExpirationDataErrorMessage(true);
+        } else {
+          self.showExpirationDataErrorMessage(false);
+        }
+      };
+
+      var lastExpirationCharacter = '';
+      self.expirationDateTyping = function() {
+
+        if (self.businessCardExpirationDate().length == 2 && lastExpirationCharacter != '/') {
+          self.businessCardExpirationDate( self.businessCardExpirationDate() + '/' );
+        } else if (lastExpirationCharacter == '/' && self.businessCardExpirationDate().length <= 3) {
+          self.businessCardExpirationDate( self.businessCardExpirationDate().slice(0, -1) );
+        }
+
+        lastExpirationCharacter = self.businessCardExpirationDate().slice(-1);
+        console.log(lastExpirationCharacter);
+
+        if (self.businessCardExpirationDate().length == 5) {
+          self.showExpirationDataErrorMessage(false);
+        }
+      };
+
+      self.showSecurityCodeErrorMessage = ko.observable(false);
+      self.securityCodeBlur = function securityCodeDataBindBlur() {
+        if (self.businessCardSecurityCode().length != 3) {
+          self.showSecurityCodeErrorMessage(true);
+        } else {
+          self.showSecurityCodeErrorMessage(false);
+        }
+      };
+
+      self.securityCodeTyping = function() {
+        if (self.businessCardSecurityCode().length == 3) {
+          self.showSecurityCodeErrorMessage(false);
+        }
       };
   };
 

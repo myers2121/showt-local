@@ -23,3 +23,11 @@
   padding-top: 24px;
   padding-bottom: 8px;
 }
+
+.business-login-form-wrapper .influencer-input-icon {
+  width: 10% !important;
+}
+
+.business-login-form-wrapper input {
+  width: 90% !important;
+}

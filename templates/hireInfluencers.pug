@@ -2,6 +2,16 @@ extends ./layout.pug
 
 block content
 	section#create-campaign-section
+		.create-campaign-navigation-container
+			.create-campaign-nav-left-container.col-sm-6
+				.showt-logo-container
+					img(src='/static/img/showt-local-favicon.png')
+			.create-campaign-nav-right-container.col-sm-6
+				ul.campaign-nav-links-container
+					li.campaign-link
+						a(href='/') Home
+					li.campaign-link
+						a(href='/how-it-works') How it works
 		.create-campaign-help-container
 			.create-campaign-help-wrapper
 				p(data-bind="text: currentHelpText")
@@ -16,24 +26,31 @@ block content
 						.influencer-input
 							.influencer-input-icon
 								img(src='/static/img/credit-card-grey.png')
-							input(type='email',placeholder='1111-1111-1111-1111', data-bind="textInput: businessCardNumber")
+							input(type='text',placeholder='1111-1111-1111-1111', data-bind="textInput: businessCardNumber, event: { blur: cardNumberBlur, keyup: cardNumberTyping }")
+						p.error-message(data-bind="visible: showCardNumberErrorMessage") Enter a valid card number
 						.influencer-input-container.col-sm-7
 							p.card-info-title Expiration date
 							.influencer-input
 								.influencer-input-icon.expiration-input-icon
 									img(src='/static/img/calendar-grey.png')
-								input.expiration-input(type='password',placeholder='MM/YY', data-bind="textInput: businessCardExpirationDate")
+								input.expiration-input(type='text',placeholder='MM/YY', data-bind="textInput: businessCardExpirationDate, event: { blur: expirationDateBlur, keyup: expirationDateTyping }")
+							p.error-message(data-bind="visible: showExpirationDataErrorMessage") Enter a valid expiration date
 						.influencer-input-container.col-sm-5
 							p.card-info-title Security code
 							.influencer-input
 								.influencer-input-icon.cvc-input-icon
 									img(src='/static/img/lock-grey.png')
-								input.cvc-input(type='password',placeholder='CVC', data-bind="textInput: businessCardSecurityCode")
+								input.cvc-input(type='password',placeholder='CVC', data-bind="textInput: businessCardSecurityCode, event: { blur: securityCodeBlur, keyup: securityCodeTyping }")
+							p.error-message(data-bind="visible: showSecurityCodeErrorMessage") Enter a valid security code
+						.save-card-input
+							.save-card-for-future-text-box(data-bind="click: saveCardInfoForFuture")
+							p.save-card-text Save card for future campaigns
 					.credit-card-help-container
 						p.card-help-title(data-bind="click: showCreditCardHelpText") Why do we need this information?
 						p.card-help-text SOJDfnsda fasd nbf absdif basdf uiasdf iuasdbfn isadnf sadufn sdanfi sudanfiuas nusdbnf uisdbf sadfuas fsndaf iusdnf isadfi usadnbfi asndf sa.
 					.sign-up-button-container-influencer
 						.sign-up-button-influencer(data-bind="click: placeOrder") PLACE ORDER
+					.cancel-order-button(data-bind="click: closeCreditInfoContainer") Cancel
 			.business-login-container.business-login-information-container
 				.business-login-wrapper
 					.influencer-account-form-wrapper
@@ -109,7 +126,8 @@ block content
 						p.data-static-text Engagement rate
 					.data-container.col-sm-4
 						p.influencer-selected-data-text(data-bind="text: selectedInfluencerShowtScore")
-						p.data-static-text Showt score
+						p.data-static-text.showt-score-text Showt score
+						img.help-icon#help-icon-14.showt-score-help-icon(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
 				.further-info-container
 					.bottom-selected-contianer
 						h3.bottom-selected-container-title.first-info-title About me
@@ -137,6 +155,65 @@ block content
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header CAMPAIGN BUDGET
 										input(type="text", placeholder="How much money do you want to spend", data-bind="textInput: campaignBudget")
+									.create-input-wrapper.create-input-wrapper-bottom
+										h4.section-header CAMPAIGN DEADLINE
+										img.help-icon#help-icon-15(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
+										.age-select-container
+											.age-select-wrapper.col-sm-5
+												.select-age
+													select(data-bind="value: deadlineMonth")
+														option(value="1") January
+														option(value="2") February
+														option(value="3") March
+														option(value="4") April
+														option(value="5") May
+														option(value="6") June
+														option(value="7") July
+														option(value="8") August
+														option(value="9") September
+														option(value="10") October
+														option(value="11") November
+														option(value="12") December
+											.age-select-wrapper.col-sm-3
+												.select-age
+													select(data-bind="value: deadlineDay")
+														option(value="1") 1
+														option(value="2") 2
+														option(value="3") 3
+														option(value="4") 4
+														option(value="5") 5
+														option(value="6") 6
+														option(value="7") 7
+														option(value="8") 8
+														option(value="9") 9
+														option(value="10") 10
+														option(value="11") 11
+														option(value="12") 12
+														option(value="13") 13
+														option(value="14") 14
+														option(value="15") 15
+														option(value="16") 16
+														option(value="17") 17
+														option(value="18") 18
+														option(value="19") 19
+														option(value="20") 20
+														option(value="21") 21
+														option(value="22") 22
+														option(value="23") 23
+														option(value="24") 24
+														option(value="25") 25
+														option(value="26") 26
+														option(value="27") 27
+														option(value="28") 28
+														option(value="29") 29
+														option(value="30") 30
+														option(value="31") 31
+											.age-select-wrapper.col-sm-4
+												.select-age
+													select(data-bind="value: deadLineYear")
+														option(value="2017") 2017
+														option(value="2018") 2018
+														option(value="2019") 2019
 									.create-input-wrapper.create-input-wrapper-bottom
 										h4.section-header POSTING REQUIREMENTS
 										img.help-icon#help-icon-9(src='/static/img/help.png', data-bind="event: { mouseover: showHelpPopUp, mouseout: hideHelpPopUp }")
@@ -266,6 +343,7 @@ block content
 								.influencer-interest-type-container(data-bind="foreach: interestArray")
 									.col-sm-3.interest-type-info-container(data-bind="click: $root.addInterestToList")
 										.influencer-interest-picture-container(data-bind="style: {backgroundImage: backgroundImageHere}", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover; ")
+											.interests-review-layer
 										h3.interest-type(data-bind="text: interestType")
 										.influencer-hover-container
 										.influencer-clicked-container
@@ -322,6 +400,9 @@ block content
 									p.review-p(data-bind="text: campaignName")
 								.create-input-wrapper.create-input-wrapper-bottom
 									h4.section-header CAMPAIGN BUDGET
+									p.review-p(data-bind="text: campaignBudget")
+								.create-input-wrapper.create-input-wrapper-bottom
+									h4.section-header CAMPAIGN DEADLINE
 									p.review-p(data-bind="text: campaignBudget")
 								.create-insput-wrapper.create-input-wrapper-bottom
 									h4.section-header PLATFORMS

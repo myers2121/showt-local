@@ -41,6 +41,8 @@
         self.currentOpenPlatform = ko.observable('');
         self.currentOpenTags = ko.observableArray([]);
         self.currentOpenVibePics = ko.observableArray([]);
+        self.showAddProfilePicText = ko.observable(false);
+        self.showProfileSavedButton = ko.observable(false);
 
         // Query in all of the users information
         var user = firebase.auth().currentUser;
@@ -72,12 +74,35 @@
           self.influencerDescription(currentUser.aboutMe);
           self.influencerProfileImageLocation(currentUser.pictureLocation);
 
-          console.log(currentUser);
-
           if (self.influencerProfileImageLocation() == "") {
             self.profileImage('/static/img/profile-add-camera.png');
+            self.showAddProfilePicText(true);
+            self.hideLoadingScreen();
           } else {
             // Perform the login to take down the image from firebase
+            var storage = firebase.storage();
+            var influencersPathRef = storage.ref('influencers/' + userID);
+            influencersPathRef.getDownloadURL().then(function(url) {
+            // `url` is the download URL for 'images/stars.jpg'
+
+            // This can be downloaded directly:
+            var xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = function(event) {
+              var blob = xhr.response;
+            };
+            xhr.open('GET', url);
+            xhr.send();
+            self.profileImage(url);
+            // Or inserted into an <img> element:
+            // var img = document.getElementById('myimg');
+            // img.src = url;
+            self.showAddProfilePicText(false);
+            self.hideLoadingScreen();
+          }).catch(function(error) {
+            // Handle any errors
+          });
+
           }
 
           if (self.influencerGender() == 'male') {
@@ -115,6 +140,7 @@
         const $femalButton = $('.female-button');
         const $profileImageFileInput = $('.profile-image-file-input');
         const $currentOrderContainer = $('.influencer-profile-orders-container');
+        const $profileLoadingScreen  = $('.influencer-loading-screen');
 
         self.newJobs       = ko.observableArray(
           [
@@ -287,15 +313,15 @@
             for (var j = 0; j < self.influencerInterestList().length; j++) {
               if (self.influencerInterestList()[j].interestText == self.interests()[i].interestTitle) {
                 self.interests()[i].classInterestName('interest-checked-layer-show');
-                console.log(self.interests()[i].classInterestName);
               } else {
-                console.log('Not working');
               }
             }
           };
-          console.log(self.interests());
         };
 
+        self.hideLoadingScreen = function() {
+          $profileLoadingScreen.fadeOut();
+        };
 
   // Set up the view with the data from the database
 
@@ -373,13 +399,17 @@
         };
 
         // Load the image from the invisible file input for the profile image
-
+        var newProfileImageString = '';
         function readProfileImageURL(image) {
           var reader = new FileReader();
 
           reader.onload = function (e) {
             self.profileImage(e.target.result);
-              // $('#blah').attr('src', e.target.result);
+            newProfileImageString = e.target.result.replace('data:image/jpeg;base64,','');
+            newProfileImageString = newProfileImageString.replace('data:image/png;base64,','');
+
+            self.showAddProfilePicText(false);
+            self.showProfileSavedButton(true);
           }
 
           reader.readAsDataURL(image);
@@ -387,6 +417,29 @@
           var imageWidth = $('.influencer-profile-image-container img').width();
           $('.influencer-profile-image-container img').css({'height':imageWidth+'px'});
         }
+
+        self.saveProfileImageBackToFirebase = function saveProfileImageButtonClicked() {
+          var storageRef = firebase.storage().ref();
+          var influencersRef = storageRef.child('influencers/' + userID);
+          influencersRef.putString(newProfileImageString, 'base64').then(function(snapshot) {
+            self.showProfileSavedButton(false);
+            var isUserInformationComplete = false;
+            if (self.influencerDescription() != '' && self.influencerLocation() != '') {
+              isUserInformationComplete = true;
+            }
+            if ( self.influencerProfileImageLocation() == '' ) {
+              var profilePictureUpdates = {
+                pictureLocation: 'influencers/' + userID,
+                profileCompleted: isUserInformationComplete
+              }
+              firebase.database().ref('influencers/' + userID).update(profilePictureUpdates);
+            }
+          });
+        };
+
+        self.checkIfUserProfileIsFinished = function() {
+
+        };
 
         self.daysOptionsList = ko.observableArray([]);
         self.yearOptionsList = ko.observableArray([]);
@@ -497,8 +550,6 @@
         self.selectInterest = function interestClickedOn( d, e ) {
 
           let $target = $( e.target );
-
-          console.log($target);
 
           let inArray = $target.hasClass('interest-checked-layer-show');
 
@@ -625,8 +676,6 @@
           };
 
           // Save back the data for the influencer
-
-          console.log(influencerTextList);
 
           firebase.database().ref('influencers/' + userID).set({
             email: self.influencerEmail(),

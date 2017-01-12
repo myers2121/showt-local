@@ -160,8 +160,11 @@
 
   var siteObjectVm = new SiteViewModel();
 
+  ko.cleanNode($('#sign-up-business-section')[0]);
   ko.applyBindings(siteObjectVm,$("#sign-up-business-section")[0]);
+  ko.cleanNode($('#log-in-business-section')[0]);
   ko.applyBindings(siteObjectVm,$("#log-in-business-section")[0]);
+  ko.cleanNode($('#forgot-password-business-section')[0]);
   ko.applyBindings(siteObjectVm,$("#forgot-password-business-section")[0]);
 
 })(jQuery); // End of use strict

@@ -1171,9 +1171,11 @@ Influencer pop up container styles
 }
 
 .added-influencer img {
-  width: 100%;
+  width: 100px;
+  height: 100px;
   padding: 12px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .added-influencer-name {

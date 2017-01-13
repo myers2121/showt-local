@@ -486,11 +486,11 @@
         self.totalPotentialReach(self.totalPotentialReach().toString().replace(/,/g, ""));
         if (self.influencersOrderList.indexOf(d) > -1) {
           self.influencersOrderList.remove(d);
-          self.totalPotentialReach(parseInt(self.totalPotentialReach()) - parseInt(d.instagramFollowers));
+          self.totalPotentialReach(parseInt(self.totalPotentialReach()) - parseInt(d.instagramFollowers.replace(',','')));
           self.totalCost(self.totalCost() - parseInt(d.showtPrice));
         } else {
           self.influencersOrderList.push(d);
-          self.totalPotentialReach(parseInt(self.totalPotentialReach()) + parseInt(d.instagramFollowers));
+          self.totalPotentialReach(parseInt(self.totalPotentialReach()) + parseInt(d.instagramFollowers.replace(',','')));
           self.totalCost(self.totalCost() + parseInt(d.showtPrice));
         }
         self.totalPotentialReach(self.addCommasInNumber(self.totalPotentialReach().toString()));

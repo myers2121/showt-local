@@ -82,7 +82,7 @@
 
         var currentSnapshot = snapshot.val();
         //console.log(currentSnapshot);
-
+        self.influencerList([]);
         for (i in currentSnapshot) {
           self.getUsersInformation(currentSnapshot[i], i);
         }

@@ -74,6 +74,14 @@
           self.influencerDescription(currentUser.aboutMe);
           self.influencerProfileImageLocation(currentUser.pictureLocation);
 
+          if (self.influencerTagList() == undefined) {
+            self.influencerTagList([]);
+          }
+
+          if (self.influencerInterestList() == undefined) {
+            self.influencerInterestList([]);
+          }
+
           if (self.influencerProfileImageLocation() == "") {
             self.profileImage('/static/img/profile-add-camera.png');
             self.showAddProfilePicText(true);

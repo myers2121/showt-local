@@ -4,6 +4,17 @@
 
       var self = this;
 
+      self.isInfluencerLoggedInOrSignedUp = ko.observable(false);
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+          self.isInfluencerLoggedInOrSignedUp(true);
+        } else {
+          // No user is signed in.
+          self.isInfluencerLoggedInOrSignedUp(false);
+        }
+      });
+
       self.brandName = ko.observable('');
       self.campaignName = ko.observable('');
       self.lowerAgeRange = ko.observable('');
@@ -58,12 +69,53 @@
       self.businessSignUpPassword = ko.observable('');
       self.businessSignUpPhoneNumber = ko.observable('');
       self.businessSignUpInstagram = ko.observable('');
+      self.influencerList = ko.observableArray([]);
 
       self.campaignInfoNotValidated = ko.observable(false);
       self.postInformationNotValidated = ko.observable(true);
 
       const $createCampaignSection = $('#create-campaign-section');
       const $campaignHelpContainer = $('.create-campaign-help-container');
+
+      var influencersRef = firebase.database().ref('influencers');
+      influencersRef.orderByChild("profileCompleted").equalTo(true).on("value", function(snapshot) {
+
+        var currentSnapshot = snapshot.val();
+        //console.log(currentSnapshot);
+
+        for (i in currentSnapshot) {
+          self.getUsersInformation(currentSnapshot[i], i);
+        }
+
+      });
+
+      self.getUsersInformation = function(currentInfluencer, influencerKey) {
+        var storage = firebase.storage();
+        var influencersPathRef = storage.ref(currentInfluencer.pictureLocation);
+        influencersPathRef.getDownloadURL().then(function(url) {
+          console.log(currentInfluencer.location);
+          var newInfluencerToAdd = {
+            image: url,
+            name: currentInfluencer.name,
+            location: currentInfluencer.location,
+            instagramFollowers: currentInfluencer.showtReach,
+            instagramFollowersText: currentInfluencer.showtReach,
+            showtPrice: currentInfluencer.showtPrice.replace('$',''),
+            showtPriceText: currentInfluencer.showtPrice,
+            showtScore: currentInfluencer.showtScore,
+            instagram: currentInfluencer.instagram,
+            engagementRate: currentInfluencer.showtEngagement,
+            aboutText: currentInfluencer.aboutMe,
+            influencerID: influencerKey
+          }
+
+          self.influencerList.push(newInfluencerToAdd);
+        }).catch(function(error) {
+          // Handle any errors
+          console.log(error.message);
+        });
+      };
+
 
       self.sampleInfluencerList = ko.observableArray([
         {
@@ -72,8 +124,8 @@
           location: 'Clovis, Ca',
           instagramFollowers: '4373',
           instagramFollowersText: '4.3K',
-          showtPrice: '75',
-          showtPriceText: '$75',
+          showtPrice: '200',
+          showtPriceText: '$200',
           showtScore: '6.4',
           instagram: 'justeenybell',
           engagementRate: '9%',
@@ -85,8 +137,8 @@
           location: 'Fresno, Ca',
           instagramFollowers: '10200',
           instagramFollowersText: '10.2K',
-          showtPrice: '100',
-          showtPriceText: '$100',
+          showtPrice: '200',
+          showtPriceText: '$200',
           showtScore: '7.1',
           instagram: 'ashtyyn',
           engagementRate: '5%',
@@ -98,11 +150,24 @@
           location: 'Fresno, Ca',
           instagramFollowers: '30900',
           instagramFollowersText: '30.9K',
-          showtPrice: '125',
-          showtPriceText: '$125',
+          showtPrice: '200',
+          showtPriceText: '$200',
           showtScore: '8.4',
           instagram: 'megooozzz',
           engagementRate: '10%',
+          aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
+        },
+        {
+          image: '/static/img/lexhammer.png',
+          name: 'Alexa Hammerschmidt',
+          location: 'Fresno, Ca',
+          instagramFollowers: '2902',
+          instagramFollowersText: '2.9K',
+          showtPrice: '200',
+          showtPriceText: '$200',
+          showtScore: '6.2',
+          instagram: 'lexaahammer',
+          engagementRate: '20%',
           aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         },
         {
@@ -116,19 +181,6 @@
           showtScore: '6.1',
           instagram: 'jaredlumbard',
           engagementRate: '10%',
-          aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
-        },
-        {
-          image: '/static/img/lexhammer.png',
-          name: 'Alexa Hammerschmidt',
-          location: 'Fresno, Ca',
-          instagramFollowers: '2902',
-          instagramFollowersText: '2.9K',
-          showtPrice: '75',
-          showtPriceText: '$75',
-          showtScore: '6.2',
-          instagram: 'lexaahammer',
-          engagementRate: '20%',
           aboutText: 'fdsafkjsda oifasdj asdjasdfiuadhsf iuadsfuadshadisu f hadsuiof dhsaiufhiuf adhsuifo adsiufb adsiufiufb adsuif adsuibf asduibf dsaiuf badsifu basidufb sdiufb sdaiufb sdiufb dsiufb sdaiufb asidufb asdiufb uisadb fiuasdbf iausbfd iuasbfdiu.'
         }
       ]);
@@ -311,7 +363,6 @@
         }
       };
 
-      self.isInfluencerLoggedInOrSignedUp = ko.observable(false);
       self.nextButtonClicked = function() {
 
         if (currentCampaignCreationIteration == 0) {
@@ -320,6 +371,8 @@
               $('.business-sign-up-login-container').fadeIn(function() {
                 $('body').css('overflow','hidden');
               });
+            } else {
+              $('.select-influencer-step-container').removeClass('select-influencer-step-container');
             }
             $('.active-create-campaign-container').fadeOut(function() {
               const $nextCampaignCreateItem = $('.active-create-campaign-container').next()
@@ -463,28 +516,84 @@
       // Validating both the log in and sign up forms
 
       self.businessLoginEmailTyping = function() {
-        if (self.businessLoginEmail().length > 0) {
           if (validateEmail(self.businessLoginEmail())) {
             self.showBusinessEmailErrorMessage(false);
           } else {
             self.showBusinessEmailErrorMessage(true);
           }
-        }
       };
 
       self.businessLoginPasswordTyping = function() {
         if (self.businessLoginPassword().length > 5) {
-          self.showPasswordErrorMessage(true);
+          self.showPasswordErrorMessage(false);
         } else {
           self.showPasswordErrorMessage(true);
         }
       };
 
+      self.showBusinessSignUpNameErrorMessage = ko.observable(false);
+      self.businessSignUpNameTyping = function() {
+        if (self.businessSignUpName().length > 3) {
+          self.showBusinessSignUpNameErrorMessage(false);
+        } else {
+          self.showBusinessSignUpNameErrorMessage(true);
+        }
+      };
+
+      self.showBusinessSignUpEmailErrorMessage = ko.observable(false);
+      self.businessSignUpEmailTyping = function() {
+        if (validateEmail(self.businessSignUpEmail())) {
+          self.showBusinessSignUpEmailErrorMessage(false);
+        } else {
+          self.showBusinessSignUpEmailErrorMessage(true);
+        }
+      };
+
+      self.showPasswordSignUpErrorMessage = ko.observable(false);
+      self.businessSignUpPasswordTyping = function() {
+        if (self.businessSignUpPassword().length > 5) {
+          self.showPasswordSignUpErrorMessage(false);
+        } else {
+          self.showPasswordSignUpErrorMessage(true);
+        }
+      };
+
+      self.showBusinessPhoneErrorMessage = ko.observable(false);
+      self.businessSignUpPhoneTyping = function() {
+        if (validatePhoneNumber(self.businessSignUpPhoneNumber())) {
+          self.showBusinessPhoneErrorMessage(false);
+        } else {
+
+          self.showBusinessPhoneErrorMessage(true);
+        }
+      };
+
+      self.showBusinessInstagramErrorMessage = ko.observable(false);
+      self.businessSignUpInstagramTyping = function() {
+        if (self.businessSignUpInstagram().length > 1) {
+          self.showBusinessInstagramErrorMessage(false);
+        } else {
+          self.showBusinessInstagramErrorMessage(true);
+        }
+      };
+
       self.logInBusinessFromCampaign = function businessLoginButtonClicked() {
-        $('.business-sign-up-login-container').fadeOut(function() {
-          self.isInfluencerLoggedInOrSignedUp(true);
-          $('.select-influencer-step-container').removeClass('select-influencer-step-container');
+
+        // Log the business in
+
+        firebase.auth().signInWithEmailAndPassword(self.businessLoginEmail(), self.businessLoginPassword()).then(function() {
+          $('.business-sign-up-login-container').fadeOut(function() {
+            self.isInfluencerLoggedInOrSignedUp(true);
+            $('.select-influencer-step-container').removeClass('select-influencer-step-container');
+          });
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(errorMessage);
+          // ...
         });
+
       };
 
       self.signUpBusiness = function businessSignUpButtonClicked() {
@@ -494,10 +603,34 @@
       };
 
       self.signUpBusinessCampaign = function signUpBusinessButtonClicked() {
-        $('.business-sign-up-login-container').fadeOut(function() {
-          self.isInfluencerLoggedInOrSignedUp(true);
-          $('.select-influencer-step-container').removeClass('select-influencer-step-container');
+
+        // Register the email and password for the business
+        firebase.auth().createUserWithEmailAndPassword(self.businessSignUpEmail(), self.businessSignUpPassword()).then(function(user) {
+
+          var userID = user.uid;
+          // Save the data back to the database for the business ref
+          firebase.database().ref('businesses/' + userID).set({
+            email: self.businessSignUpEmail(),
+            businessName: self.businessSignUpName(),
+            usersName: '',
+            phone: self.businessSignUpPhoneNumber(),
+            address: '',
+            interests: [],
+            tags: [],
+            instagram: self.businessSignUpInstagram()
+          }).then(function() {
+            $('.business-sign-up-login-container').fadeOut(function() {
+              self.isInfluencerLoggedInOrSignedUp(true);
+              $('.select-influencer-step-container').removeClass('select-influencer-step-container');
+            });
+          });
+        }).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
         });
+
       };
 
       self.showLoginSectionFromSignUp = function signUpButtonOnSignUpClicked() {

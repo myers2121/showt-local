@@ -31,3 +31,7 @@
 .business-login-form-wrapper input {
   width: 90% !important;
 }
+
+.businessCheckActive {
+  background: #ff9f00;
+}

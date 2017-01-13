@@ -78,27 +78,28 @@ block content
 					.influencer-input
 						.influencer-input-icon
 							img(src='/static/img/business-contact.png')
-						input(type='email',placeholder='Business name', data-bind="textInput: businessSignUpName, event: { blur: businessLoginEmailTyping }")
-					p.error-message(data-bind="visible: showBusinessEmailErrorMessage") Please enter a valid email
+						input(type='email',placeholder='Business name', data-bind="textInput: businessSignUpName, event: { blur: businessSignUpNameTyping }")
+					p.error-message(data-bind="visible: showBusinessSignUpNameErrorMessage") Please enter a valid email
 					.influencer-input
 						.influencer-input-icon
 							img(src='/static/img/email.png')
-						input(type='email',placeholder='Email address', data-bind="textInput: businessSignUpEmail, event: { blur: businessLoginEmailTyping }")
-					p.error-message(data-bind="visible: showBusinessEmailErrorMessage") Please enter a valid email
+						input(type='email',placeholder='Email address', data-bind="textInput: businessSignUpEmail, event: { blur: businessSignUpEmailTyping }")
+					p.error-message(data-bind="visible: showBusinessSignUpEmailErrorMessage") Please enter a valid email
 					.influencer-input
 						.influencer-input-icon
 							img(src='/static/img/lock-grey.png')
-						input(type='password',placeholder='Password', data-bind="textInput: businessSignUpPassword, event: { blur: businessLoginPasswordTyping }")
-					p.error-message(data-bind="visible: showPasswordErrorMessage") Please enter a password with at least 6 characters
+						input(type='password',placeholder='Password', data-bind="textInput: businessSignUpPassword, event: { blur: businessSignUpPasswordTyping }")
+					p.error-message(data-bind="visible: showPasswordSignUpErrorMessage") Please enter a password with at least 6 characters
 					.influencer-input
 						.influencer-input-icon
 							img(src='/static/img/phone.png')
-						input(type='email',placeholder='Number to reach you at', data-bind="textInput: businessSignUpPhoneNumber, event: { blur: businessLoginEmailTyping }")
+						input(type='email',placeholder='Number to reach you at', data-bind="textInput: businessSignUpPhoneNumber, event: { blur: businessSignUpPhoneTyping }")
+						p.error-message(data-bind="visible: showBusinessPhoneErrorMessage") Please enter a valid US phone number e.g. (559)123-4567
 					.influencer-input
 						.influencer-input-icon
 							img(src='/static/img/instagram-grey.png')
-						input(type='email',placeholder='Business instagram account', data-bind="textInput: businessSignUpInstagram, event: { blur: businessLoginEmailTyping }")
-					p.error-message(data-bind="visible: showBusinessEmailErrorMessage") Please enter a valid email
+						input(type='email',placeholder='Business instagram account', data-bind="textInput: businessSignUpInstagram, event: { blur: businessSignUpInstagramTyping }")
+					p.error-message(data-bind="visible: showBusinessInstagramErrorMessage") Please enter your business' instagram
 					.sign-up-button-container-influencer
 						.sign-up-button-influencer(data-bind="click: signUpBusinessCampaign") Sign up
 					p.no-account-text Already have a Showt account?
@@ -358,7 +359,7 @@ block content
 						p We believe the influencers below will give you the most success. Click hire me to add them to your campaign or click on them to get further information
 						.seperator-div
 					.influencers-found-container
-						.influencer-found-wrapper(data-bind="foreach: sampleInfluencerList")
+						.influencer-found-wrapper(data-bind="foreach: influencerList")
 							.influencer-found.col-sm-3
 								.influencer-found-inner-container(data-bind="click: $root.addInfluencerToOrderList")
 									.influencer-image-container

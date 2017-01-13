@@ -7,8 +7,8 @@ block content
     .business-login-form-container
       .business-login-form-wrapper
         .influencer-account-form-wrapper
-          h3 Business Login
-          p.account-text Log in to your account to start growing your company.
+          h3 Showt Login
+          p.account-text Log in to your Showt account.
         .influencer-input
           .influencer-input-icon
             img(src='/static/img/email.png')
@@ -19,6 +19,9 @@ block content
             img(src='/static/img/lock-grey.png')
           input(type='password',placeholder='Password', data-bind="textInput: businessLoginPassword, event: { keyup: businessLoginPasswordTyping }")
         p.error-message(data-bind="visible: businessLoginPasswordNotValidated") Please enter a password with at least 6 characters
+        .save-card-input
+          .save-card-for-future-text-box(data-bind="click: checkBusinessLogin")
+          p.save-card-text Are you a business?
         .sign-up-button-container-influencer
           .sign-up-button-influencer(data-bind="click: logInBusinessUser") Login
 block customJS

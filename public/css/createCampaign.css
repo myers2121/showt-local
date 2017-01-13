@@ -874,6 +874,8 @@ select:hover {
 .influencer-found-image {
   width: 100px;
   border-radius: 50%;
+  object-fit: cover;
+  height: 100px;
 }
 
 .influencer-found-wrapper {

@@ -335,6 +335,7 @@
 
             $('.influencer-information-sign-up-form-container').fadeOut(function() {
               $('.influencer-finish-sign-up-form-container').fadeIn();
+              $('body').css('overflow','auto');
             });
 
           })

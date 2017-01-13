@@ -2,6 +2,8 @@
 
   function BusinessLoginViewModel() {
 
+      firebase.auth().signOut();
+
       var self = this;
 
       self.businessLoginEmail = ko.observable('');
@@ -11,16 +13,26 @@
       self.businessLoginEmailValidated = ko.observable(false);
       self.businessLoginPasswordNotValidated = ko.observable(false);
       self.businessLoginPasswordValidated = ko.observable(false);
+      self.isABusiness = ko.observable(false);
+
+      const $businessCheckBox = $('.save-card-for-future-text-box');
+
+      self.checkBusinessLogin = function businessCheckboxClicked() {
+        $businessCheckBox.toggleClass('businessCheckActive');
+        if (self.isABusiness()) {
+          self.isABusiness(false);
+        } else {
+          self.isABusiness(true);
+        }
+      };
 
       self.businessLoginEmailTyping = function() {
-        if (self.businessLoginEmail().length > 0) {
           if (validateEmail(self.businessLoginEmail())) {
             self.businessLoginEmailNotValidated(false);
             self.businessLoginEmailValidated(true);
           } else {
             self.businessLoginEmailNotValidated(true);
           }
-        }
       };
 
       self.businessLoginPasswordTyping = function() {
@@ -33,10 +45,43 @@
       };
 
       self.logInBusinessUser = function() {
-        if (self.businessLoginEmailValidated() && self.businessLoginPasswordValidated()) {
-          location.href = '/business/dashboard';
+        if (self.isABusiness()) {
+          // Log in the business
+          if (self.businessLoginEmailValidated() && self.businessLoginPasswordValidated()) {
+            firebase.auth().signInWithEmailAndPassword(self.businessLoginEmail(), self.businessLoginPassword()).then(function() {
+              location.href = '/business/dashboard';
+            }).catch(function(error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              alert(errorMessage);
+              // ...
+            });
+          }
+        } else {
+          // Log in the influencer
+          if (self.businessLoginEmailValidated() && self.businessLoginPasswordValidated()) {
+            firebase.auth().signInWithEmailAndPassword(self.businessLoginEmail(), self.businessLoginPassword()).then(function(user) {
+              var userID = user.uid;
+              var influencersRef = firebase.database().ref('influencers/' + userID);
+              influencersRef.on('value', function(snapshot) {
+
+                var snapshot = snapshot.val();
+                location.href = '/users/' + snapshot.instagram;
+              });
+
+            }).catch(function(error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              alert(errorMessage);
+              // ...
+            });
+          }
         }
+
       };
+
 
   };
 

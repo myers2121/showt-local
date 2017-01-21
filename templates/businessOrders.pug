@@ -1,0 +1,84 @@
+extends ./layouts/_businessDashboardLayout.pug
+
+block content
+	include ./partials/editBusinessInfoSection.pug
+	section#business-dashboard-home-section
+		.business-dashboard-nav-container
+			.business-dashboard-nav-wrapper
+				.business-dashboard-top-navigation-container
+					.navigation-left-side-container.col-sm-6
+						.navigation-left-side-wrapper
+							.showt-out-icon-container
+								img(src='/static/img/showt-logo.png')
+					.navigation-right-side-container.col-sm-6
+						.navigation-right-side-wrapper
+							ul.right-link-container
+								li
+									p.business-dash-link.home-link(data-bind="click: sendHome") Home
+								li
+									p.business-dash-link.help-page-link(data-bind="click: sendToHelpPage") Help
+								li
+									p.business-dash-link.create-campaign-link Dashboard
+								li.business-right-container(data-bind="click: showBusinessDropDown")
+									p Nutrishop
+			.business-dashboard-bottom-navigation-container
+				.business-dashboard-bottom-navigation-wrapper
+					ul.business-bottom-nav-link-container
+						li.bottom-nav-link
+							a.active-link(href='/business/orders') Orders
+						li.bottom-nav-link
+							a(href='/business/payments') Payments
+						li.bottom-nav-link
+							a(href='/business/inbox') Inbox
+					.place-an-order-button(data-bind="click: placeAnOrder") Place order
+		.business-dropdown-container
+			.business-dropdown-wrapper
+				.business-action-item-container(data-bind="click: showEditBusinessInformationContainer")
+					.action-item-icon-container
+						img(src='/static/img/edit-orange.png')
+					p Edit info
+				.business-action-item-container(data-bind="click: signOutBusinessUser")
+					.action-item-icon-container
+						img(src='/static/img/user-orange.png')
+					p Sign out
+	section.business-dashbaord-home-container#business-dashboard-orders-container
+		.my-orders-container
+			h3.business-dashboard-layout-header My orders
+			.current-order-type-container
+				a.order-type.active-order-type(data-bind="click: changeOrderList") In Review
+				a.order-type(data-bind="click: changeOrderList") Active
+				a.order-type(data-bind="click: changeOrderList") Needs Approval
+				a.order-type(data-bind="click: changeOrderList") Delivered
+				a.order-type(data-bind="click: changeOrderList") Completed
+				a.order-type(data-bind="click: changeOrderList") Cancelled
+			.current-order-list-container
+				.current-order-list-wrapper
+					.current-order-list-titles
+						.col-sm-5
+						.col-sm-2
+							p.order-info-title Order date
+						.col-sm-2
+							p.order-info-title Deadline
+						.col-sm-1
+							p.order-info-title Cost
+						.col-sm-2
+							p.order-info-title Status
+					.current-order-list-info(data-bind="foreach: visibleOrdersList")
+						.current-order-influencer(data-bind="click: $root.showSpecificOrderInformation")
+							.col-sm-5
+								.influencer-picture
+									img(data-bind="attr: {src: influencerImage}")
+								.influencer-text-information
+									p.influencer-name-message(data-bind="text: influencerName")
+									p.posting-type(data-bind="text: order.postingRequirement")
+							.col-sm-2
+								p.order-date(data-bind="text: order.orderDate")
+							.col-sm-2
+								p.deadline-date(data-bind="text: order.deadline")
+							.col-sm-1
+								p.order-cost(data-bind="text: '$' + cost")
+							.col-sm-2
+								.status-button.in-review-button(data-bind="css: statusClass, text: status")
+	include ./partials/_footer.pug
+block customJS
+	script(src='/static/js/businessOrders.js')

@@ -1,6 +1,6 @@
 .business-dashboard-nav-container {
   overflow: auto;
-  height: 60px;
+  height: auto;
   width: 100%;
   position: fixed;
   top: 0;
@@ -26,6 +26,12 @@
   transform: translateY(-50%);
   padding-left: 0px !important;
   height: 100%;
+}
+
+.business-dashboard-top-navigation-container {
+  overflow-y: hidden;
+height: 60px;
+border-bottom: 1px solid #e3e3e3;
 }
 
 .showt-out-icon-container {
@@ -72,6 +78,7 @@
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+
 }
 
 .right-link-container p {
@@ -112,6 +119,7 @@ color: #484848;
 
 .business-right-container {
   margin-right: 16px !important;
+    padding-right: 16px;
 }
 
 .business-right-container:hover {
@@ -135,6 +143,53 @@ color: #484848;
   color: #484848;
 }
 
+.business-bottom-nav-link-container {
+  padding-left: 0px !important;
+  margin-bottom: 0px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: inline-block;
+}
+
+.business-bottom-nav-link-container li {
+  list-style-type: none !important;
+  display: inline-block;
+  margin-left: 24px;
+}
+
+.business-bottom-nav-link-container li a {
+  color: #aaa;
+}
+
+.business-bottom-nav-link-container li a:hover {
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.active-link {
+  color: #ff9f00 !important;
+}
+
+.place-an-order-button {
+  width: 120px;
+  background: rgba(255,159,0,0.9);
+  position: relative;
+  display: inline-block;
+  float: right;
+  color: #fff;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 3px;
+  margin-right: 16px;
+  margin-top: 10px;
+}
+
+.place-an-order-button:hover {
+  cursor: pointer;
+  background: #ff9f00;
+}
+
 /* Business button dropdown styles */
 
 .business-dropdown-container {
@@ -144,7 +199,7 @@ color: #484848;
   right: 6px;
   top: 64px;
   background: #FFF;
-  z-index: 1;
+  z-index: 11;
   -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
   -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
   box-shadow: 0 1px 5px rgba(0,0,0,0.1);
@@ -194,7 +249,7 @@ color: #484848;
 /* Dashboard campaign screen styles */
 
 .business-dashbaord-home-container {
-  margin-top: 84px;
+  margin-top: 120px;
 }
 
 .create-campaign-button-container {
@@ -433,153 +488,191 @@ transform: translateY(-50%);
   width: 20px;
 }
 
-/* Influencers campaign pop up */
+/* my orders container styles */
 
-.business-campaign-influencers-container,
-.business-campaign-money-spent-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 12;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0,0,0,0.75);
-  display: none;
+.business-dashbaord-home-container {
+  background: #f0f0f0;
 }
 
-.business-campaign-influencers-wrapper {
-  width: 400px;
-  background: #fff;
-  border-radius: 2px;
+.my-orders-container {
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 48px;
-  margin-bottom: 48px;
-  padding-left: 12px;
-  padding-right: 12px;
-  padding-top: 6px;
-  padding-bottom: 24px;
+  padding-top: 24px;
+  padding-bottom: 60px;
 }
 
-.business-campaign-influencers-wrapper .brand-name {
+.business-dashboard-layout-header {
   color: #ff9f00;
-  text-align: center;
-  margin-top: 0px;
+  font-size: 40px;
+  font-weight: 300;
 }
 
-.business-campaign-influencers-wrapper .campaign-name {
-  margin-bottom: 2px !important;
-  color: #484848;
-  font-size: 16px;
-  text-align: center;
-}
-
-.business-campaign-influencers-wrapper .influencers {
-  margin-top: 6px;
-  color: #aaa;
-  text-align: center;
-}
-
-.business-campaign-influencers-wrapper .seperator-div {
-  width: 100%;
-  height: 1px;
-  background: #e3e3e3;
-}
-
-.influencers-container {
+.current-order-type-container {
   margin-top: 24px;
 }
 
-.influencers-image-container {
-  width: 40px;
-  height: 40px;
+.active-order-type {
+  color: #484848 !important;
+}
+
+.order-type {
   display: inline-block;
-}
-
-.influencers-image-container img {
-  width: 100%;
-  border-radius: 25px;
-}
-
-.influencers-info-container {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 16px;
-}
-
-.influencers-info-container .influencers-name {
-  margin-bottom: 0px !important;
-}
-
-.influencers-info-container .influencers-instagram-tag {
-  margin-bottom: 0px !important;
+  margin-right: 32px;
+  font-size: 14px;
   color: #aaa;
-  font-size: 12px;
 }
 
-.exit-influencer-container {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  top: 0px;
-  right: -351px;
-  padding: 6px;
-  border-radius: 2px;
-}
-
-.exit-influencer-container:hover {
-  background: #f0f0f0;
+.order-type:hover {
   cursor: pointer;
+  text-decoration: none !important;
+  color: #aaa;
 }
 
-.exit-influencer-container:active {
-  background: #e3e3e3;
+.current-order-type-container {
+  overflow: auto;
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 12px;
 }
 
-.exit-influencer-container img {
-  width: 100%;
-  margin-bottom: 5px;
-}
-
-/* MOney spent container styles */
-
-.business-campaign-money-spent-container .col-sm-2 {
-  width: 16.6666666666666666666666666666667% !important;
+.current-order-list-info .col-sm-5,
+.current-order-list-info .col-sm-1 {
   padding: 0px !important;
 }
 
-.business-campaign-money-spent-container .influencers-image-container {
+.current-order-list-info .col-sm-1 p,
+.current-order-list-info .col-sm-2 p {
+  margin-bottom: 0px !important;
+  margin-top: 12px;
+}
+
+.influencer-picture {
+  width: 50px;
+  height: 50px;
+  float: left;
+  margin-right: 16px;
+}
+
+.influencer-picture img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.influencer-text-information {
   float: left;
 }
 
-.business-campaign-money-spent-container .money-spent-container {
-  text-align: right;
-  color: #ff9f00;
+.influencer-text-information p {
+  margin-bottom: 0px !important;
 }
 
-.business-campaign-money-spent-container .influencers-image-container img {
-    border-radius: 50px;
-}
-
-.business-campaign-money-spent-container .col-sm-8 {
-  margin-left: 0px !important;
-}
-
-.business-campaign-money-spent-container .influencers-container {
+.current-order-list-container {
   overflow: auto;
+  background: #fff;
+  margin-top: 24px;
+  border-radius: 2px;
 }
 
-.business-campaign-money-spent-container .brand-name {
-  color: #484848;
+.current-order-list-titles {
+  overflow: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e3e3e3;
 }
 
-.business-campaign-money-spent-container .campaign-name {
+.current-order-list-titles .col-sm-5,
+.current-order-list-titles .col-sm-1,
+.current-order-list-titles .col-sm-2 {
+  padding: 0px !important;
+}
+
+.current-order-list-titles .col-sm-2 {
+  width: 16.666666666666666667% !important;
+  padding: 0px !important;
+}
+
+.current-order-list-titles p {
+  font-size: 13px;
   color: #aaa;
+  margin-bottom: 0px !important;
 }
 
-.business-campaign-money-spent-container .money-spent {
-  color: #ff9f00;
-  font-size: 22px;
+.order-info-title {
+  margin-bottom: 0px !important;
+}
+
+.current-order-influencer {
+  overflow: auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.order-cost {
+  color: green;
   font-weight: 500;
-  margin-top: 16px;
+}
+
+.influencer-name-message {
+  margin-bottom: 0px !important;
+  color: #ff9f00;
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+.posting-type {
+  margin-bottom: 0px !important;
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.status-button {
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 2px;
+  margin-top: 8px;
+}
+
+.greyed-out {
+  background: #aaa;
+}
+
+.red-out {
+  background: red;
+}
+
+.orange-button {
+  background: #ff9f00;
+}
+
+.order-again {
+  background: green;
+}
+
+.status-button:hover {
+  cursor: pointer;
+}
+
+.current-order-influencer:hover {
+  cursor: pointer;
+  background: rgba(255,159,0,0.1);
+}
+
+
+.current-order-influencer:active {
+  background: rgba(255,159,0,0.2);
+}
+
+.current-order-influencer .col-sm-2 {
+  width: 16.66666666666666667% !important;
+  padding: 0px !important;
 }

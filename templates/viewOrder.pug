@@ -1,0 +1,75 @@
+extends ./layouts/_businessDashboardLayout.pug
+block customCSS
+	link(rel='stylesheet', href='/static/css/businessPayments.css', type='text/css')
+	link(rel='stylesheet', href='/static/css/viewOrder.css', type='text/css')
+block content
+	include ./partials/editBusinessInfoSection.pug
+	section#business-dashboard-home-section
+		.business-dashboard-nav-container
+			.business-dashboard-nav-wrapper
+				.business-dashboard-top-navigation-container
+					.navigation-left-side-container.col-sm-6
+						.navigation-left-side-wrapper
+							.showt-out-icon-container
+								img(src='/static/img/showt-logo.png')
+					.navigation-right-side-container.col-sm-6
+						.navigation-right-side-wrapper
+							ul.right-link-container
+								li
+									p.business-dash-link.home-link(data-bind="click: sendHome") Home
+								li
+									p.business-dash-link.help-page-link(data-bind="click: sendToHelpPage") Help
+								li
+									p.business-dash-link.create-campaign-link Dashboard
+								li.business-right-container(data-bind="click: showBusinessDropDown")
+									p Nutrishop
+			.business-dashboard-bottom-navigation-container
+				.business-dashboard-bottom-navigation-wrapper
+					ul.business-bottom-nav-link-container
+						li.bottom-nav-link
+							a(href='/business/orders') Orders
+						li.bottom-nav-link
+							a(href='/business/payments') Payments
+						li.bottom-nav-link
+							a(href='/business/inbox') Inbox
+					.place-an-order-button(data-bind="click: placeAnOrder") Place order
+		.business-dropdown-container
+			.business-dropdown-wrapper
+				.business-action-item-container(data-bind="click: showEditBusinessInformationContainer")
+					.action-item-icon-container
+						img(src='/static/img/edit-orange.png')
+					p Edit info
+				.business-action-item-container(data-bind="click: signOutBusinessUser")
+					.action-item-icon-container
+						img(src='/static/img/user-orange.png')
+					p Sign out
+	section.business-dashbaord-home-container#business-dashboard-view-order-container
+		.business-order-container
+			.business-order-wrapper
+				.order-left-info-container.col-sm-7
+					.influencer-order-information
+						.influencer-image-container.col-sm-3
+							img(data-bind="attr: {src: orderInfluencerImage}")
+						.influencer-order-information-container.col-sm-9
+							h3.influencer-name(data-bind="text: influencerName")
+							.order-status-container
+								.order-status-color(data-bind="css: orderStatusClass")
+								p(data-bind="text: orderStatusText, css: orderStatusTextClass")
+							.order-cost-container
+								p(data-bind="text: orderCost")
+				.order-right-info-container.col-sm-5
+					.order-right-info-wrapper
+						.order-info-container
+							p.order-info-title DATE ORDER WAS PLACED
+							p.order-info-text(data-bind="text: orderPlaced")
+						.order-info-container
+							p.order-info-title POSTING TYPE
+							p.order-info-text(data-bind="text: postingType")
+						.order-info-container
+							p.order-info-title DEADLINE
+							p.order-info-text(data-bind="text: deadline")
+						.order-info-container
+							p.order-info-title WHAT YOU NEED FROM THEM
+							p.order-info-text(data-bind="text: contentFromInfluencers")
+block customJS
+	script(src='/static/js/viewOrder.js')

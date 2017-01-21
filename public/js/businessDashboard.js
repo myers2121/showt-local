@@ -162,6 +162,10 @@
           $('body').css('overflow','scroll');
         });
       };
+
+      self.placeAnOrder = function placeOrderButtonClicked() {
+        location.href = '/influencers';
+      };
   };
 
   var businessDashboardObjectVm = new BusinessDashboardViewModel();

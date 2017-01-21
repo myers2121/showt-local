@@ -414,10 +414,21 @@ body {
 }
 
 .gig-name {
-  color: #484848;
-  font-size: 16px;
+  color: #aaa;
+  font-size: 12px;
   font-weight: 500;
+  margin-bottom: 4px !important;
   padding-left: 0px !important;
+}
+
+.business-name-order-section {
+  color: #484848;
+  font-size: 16px !important;
+  padding-left: 0px !important;
+}
+
+.previous-work-text-container {
+  padding-right: 16px;
 }
 
 .gig-description {
@@ -451,15 +462,15 @@ body {
 }
 
 .view-gig-button {
-  width: 100px;
+  width: 60px;
   text-align: center;
-  font-size: 12px;
+  font-size: 10px;
   border: 1px solid #FF9F00;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   border-radius: 3px;
   color: #ff9f00;
-  margin-top: 22px;
+  margin-top: 10px;
 }
 
 .view-gig-button:hover {
@@ -532,6 +543,8 @@ body {
   margin-top: -12px;
   color: #aaa;
   font-size: 12px;
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 24px;
 }
 
 .influencer-profile-image-private:hover {
@@ -623,7 +636,7 @@ body {
 
 .current-brand-name {
   color: #ff9f00;
-  margin-top: 24px;
+  margin-top: 12px;
   font-size: 32px;
 }
 
@@ -699,6 +712,31 @@ body {
   cursor: pointer;
   background: red;
   color: #FFF;
+}
+
+.deny-text-container {
+  display: none;
+}
+
+.deny-text-container textarea {
+  font-size: 12px !important;
+}
+
+.cancel-deny-button {
+  margin-top: 20px;
+  margin-bottom: 4px !important;
+  color: #ff9f00;
+  text-align: center;
+  font-size: 12px;
+}
+
+.cancel-deny-button:hover {
+  cursor: pointer;
+}
+
+.deny-text-container .deny-button {
+  margin-right: 0px !important;
+  margin-top: 12px !important;
 }
 
 .close-button {

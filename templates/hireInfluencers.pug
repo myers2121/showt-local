@@ -16,94 +16,6 @@ block content
 			.create-campaign-help-wrapper
 				p(data-bind="text: currentHelpText")
 				.hero
-		.business-sign-up-login-container
-			.business-login-container.business-credit-card-info-container
-				.business-login-wrapper
-					.influencer-account-form-wrapper
-						h3 Place order
-						p.account-text Enter your credit card information to place your Showt order. You will not be charged until an influencer accepts the job you asked them for. You can cancel your campaign at any time in your business dashboard.
-						p.card-info-title Card number
-						.influencer-input
-							.influencer-input-icon
-								img(src='/static/img/credit-card-grey.png')
-							input(type='text',placeholder='1111-1111-1111-1111', data-bind="textInput: businessCardNumber, event: { blur: cardNumberBlur, keyup: cardNumberTyping }")
-						p.error-message(data-bind="visible: showCardNumberErrorMessage") Enter a valid card number
-						.influencer-input-container.col-sm-7
-							p.card-info-title Expiration date
-							.influencer-input
-								.influencer-input-icon.expiration-input-icon
-									img(src='/static/img/calendar-grey.png')
-								input.expiration-input(type='text',placeholder='MM/YY', data-bind="textInput: businessCardExpirationDate, event: { blur: expirationDateBlur, keyup: expirationDateTyping }")
-							p.error-message(data-bind="visible: showExpirationDataErrorMessage") Enter a valid expiration date
-						.influencer-input-container.col-sm-5
-							p.card-info-title Security code
-							.influencer-input
-								.influencer-input-icon.cvc-input-icon
-									img(src='/static/img/lock-grey.png')
-								input.cvc-input(type='password',placeholder='CVC', data-bind="textInput: businessCardSecurityCode, event: { blur: securityCodeBlur, keyup: securityCodeTyping }")
-							p.error-message(data-bind="visible: showSecurityCodeErrorMessage") Enter a valid security code
-						.save-card-input
-							.save-card-for-future-text-box(data-bind="click: saveCardInfoForFuture")
-							p.save-card-text Save card for future campaigns
-					.credit-card-help-container
-						p.card-help-title(data-bind="click: showCreditCardHelpText") Why do we need this information?
-						p.card-help-text SOJDfnsda fasd nbf absdif basdf uiasdf iuasdbfn isadnf sadufn sdanfi sudanfiuas nusdbnf uisdbf sadfuas fsndaf iusdnf isadfi usadnbfi asndf sa.
-					.sign-up-button-container-influencer
-						.sign-up-button-influencer(data-bind="click: placeOrder") PLACE ORDER
-					.cancel-order-button(data-bind="click: closeCreditInfoContainer") Cancel
-			.business-login-container.business-login-information-container
-				.business-login-wrapper
-					.influencer-account-form-wrapper
-						h3 Business Login
-						p.account-text Log in to your Showt account to run this campaign.
-					.influencer-input
-						.influencer-input-icon
-							img(src='/static/img/email.png')
-						input(type='email',placeholder='Email address', data-bind="textInput: businessLoginEmail, event: { blur: businessLoginEmailTyping }")
-					p.error-message(data-bind="visible: showBusinessEmailErrorMessage") Please enter a valid email
-					.influencer-input
-						.influencer-input-icon
-							img(src='/static/img/lock-grey.png')
-						input(type='password',placeholder='Password', data-bind="textInput: businessLoginPassword, event: { blur: businessLoginPasswordTyping }")
-					p.error-message(data-bind="visible: showPasswordErrorMessage") Please enter a password with at least 6 characters
-					.sign-up-button-container-influencer
-						.sign-up-button-influencer(data-bind="click: logInBusinessFromCampaign") Login
-					p.no-account-text Don't yet have Showt account?
-					p.sign-up-login-text(data-bind="click: signUpBusiness") Sign up today!
-			.business-login-container.business-signup-container-campaign
-				.business-login-wrapper
-					.influencer-account-form-wrapper
-						h3 Business Signup
-						p.account-text You must have a Showt account to view our influencers. Don't worry it doesn't cost you anything to have an account with us!
-					.influencer-input
-						.influencer-input-icon
-							img(src='/static/img/business-contact.png')
-						input(type='email',placeholder='Business name', data-bind="textInput: businessSignUpName, event: { blur: businessSignUpNameTyping }")
-					p.error-message(data-bind="visible: showBusinessSignUpNameErrorMessage") Please enter a valid email
-					.influencer-input
-						.influencer-input-icon
-							img(src='/static/img/email.png')
-						input(type='email',placeholder='Email address', data-bind="textInput: businessSignUpEmail, event: { blur: businessSignUpEmailTyping }")
-					p.error-message(data-bind="visible: showBusinessSignUpEmailErrorMessage") Please enter a valid email
-					.influencer-input
-						.influencer-input-icon
-							img(src='/static/img/lock-grey.png')
-						input(type='password',placeholder='Password', data-bind="textInput: businessSignUpPassword, event: { blur: businessSignUpPasswordTyping }")
-					p.error-message(data-bind="visible: showPasswordSignUpErrorMessage") Please enter a password with at least 6 characters
-					.influencer-input
-						.influencer-input-icon
-							img(src='/static/img/phone.png')
-						input(type='email',placeholder='Number to reach you at', data-bind="textInput: businessSignUpPhoneNumber, event: { blur: businessSignUpPhoneTyping }")
-						p.error-message(data-bind="visible: showBusinessPhoneErrorMessage") Please enter a valid US phone number e.g. (559)123-4567
-					.influencer-input
-						.influencer-input-icon
-							img(src='/static/img/instagram-grey.png')
-						input(type='email',placeholder='Business instagram account', data-bind="textInput: businessSignUpInstagram, event: { blur: businessSignUpInstagramTyping }")
-					p.error-message(data-bind="visible: showBusinessInstagramErrorMessage") Please enter your business' instagram
-					.sign-up-button-container-influencer
-						.sign-up-button-influencer(data-bind="click: signUpBusinessCampaign") Sign up
-					p.no-account-text Already have a Showt account?
-					p.sign-up-login-text(data-bind="click: showLoginSectionFromSignUp") Log in now!
 		.view-influencer-container
 			.view-influencer-wrapper
 				img.exit-influencer-pop-up(src='/static/img/exit.png', data-bind="click: closeInfluencerPopUp")
@@ -137,7 +49,37 @@ block content
 						h3.bottom-selected-container-title I'm interested in
 					.bottom-selected-contianer
 						h3.bottom-selected-container-title I'm also interested in
-		.create-campaign-information-container.active-create-campaign-container
+		.create-campaign-information-container.active-create-campaign-container.select-influencer-step-container
+							.campaign-creation-step-container.campaign-info-container
+								.create-step-wrapper
+									.step-title-container
+										h3 Explore influencers
+										p Our influencers are ready to promote your business to the thousands of people that follow them, giving you and your business exposure to the younger generation like never before.
+										.seperator-div
+									.influencers-found-container
+										.influencer-found-wrapper(data-bind="foreach: influencerList")
+											.influencer-found.col-sm-3
+												.influencer-found-inner-container(data-bind="click: $root.addInfluencerToOrderList")
+													.influencer-image-container
+														img.influencer-found-image(data-bind="attr: {src: image}")
+													.influencer-information-container
+														p.influencer-found-name(data-bind="text: name")
+														.influencer-found-location-container
+															img.influencer-found-location-image(src='/static/img/location.png')
+															p.influencer-found-location(data-bind="text: location")
+													.showt-rating-container.col-sm-6
+														.platform-followers-container
+															img.instagram-orange(src='/static/img/instagram-orange.png')
+															p.influencer-found-rating(data-bind="text: instagramFollowersText")
+														p.influencer-rating-text Followers
+													.showt-rating-container.col-sm-6
+														.platform-followers-container
+															p.influencer-found-rating.showt-score-text.showt-list-text(data-bind="text: showtScore")
+														p.influencer-rating-text Showt score
+													p.influencer-price(data-bind="text: showtPriceText")
+													p.influencer-rating-text Per post
+												.hire-me-button(data-bind="click: $root.showInfluencerInformation") More info
+		.create-campaign-information-container
 			.campaign-creation-step-container.campaign-info-container
 				.create-step-wrapper
 					.step-title-container
@@ -351,40 +293,6 @@ block content
 											img.check-mark-box(src='/static/img/checked-box-white.png')
 						.bottom-action-buttons
 							.next-button(data-bind="click: nextButtonClicked") FIND INFLUENCERS
-		.create-campaign-information-container.select-influencer-step-container
-			.campaign-creation-step-container.campaign-info-container
-				.create-step-wrapper
-					.step-title-container
-						h3 Our influencers
-						p We believe the influencers below will give you the most success. Click hire me to add them to your campaign or click on them to get further information
-						.seperator-div
-					.influencers-found-container
-						.influencer-found-wrapper(data-bind="foreach: influencerList")
-							.influencer-found.col-sm-3
-								.influencer-found-inner-container(data-bind="click: $root.addInfluencerToOrderList")
-									.influencer-image-container
-										img.influencer-found-image(data-bind="attr: {src: image}")
-									.influencer-information-container
-										p.influencer-found-name(data-bind="text: name")
-										.influencer-found-location-container
-											img.influencer-found-location-image(src='/static/img/location.png')
-											p.influencer-found-location(data-bind="text: location")
-									.showt-rating-container.col-sm-6
-										.platform-followers-container
-											img.instagram-orange(src='/static/img/instagram-orange.png')
-											p.influencer-found-rating(data-bind="text: instagramFollowersText")
-										p.influencer-rating-text Followers
-									.showt-rating-container.col-sm-6
-										.platform-followers-container
-											p.influencer-found-rating.showt-score-text.showt-list-text(data-bind="text: showtScore")
-										p.influencer-rating-text Showt score
-									p.influencer-price(data-bind="text: showtPriceText")
-									p.influencer-rating-text Per post
-								.hire-me-button(data-bind="click: $root.showInfluencerInformation") More info
-					p.error-message.influencer-error-message(data-bind="visible: showInfluencerErrorMessage") Please select an influencer that you would like to work with
-					.bottom-action-buttons
-						.next-button.back-button(data-bind="click: backButtonClicked") BACK
-						.next-button(data-bind="click: nextButtonClicked") CONTINUE
 		.create-campaign-information-container
 			.create-step-wrapper
 				.step-title-container
@@ -399,21 +307,21 @@ block content
 								.create-input-wrapper
 									h4.section-header CAMPAIGN NAME
 									p.review-p(data-bind="text: campaignName")
-								.create-input-wrapper.create-input-wrapper-bottom
+								.create-input-wrapper.create-input-wrapper-bottom(data-bind="visible: showCampaignBudget")
 									h4.section-header CAMPAIGN BUDGET
 									p.review-p(data-bind="text: campaignBudget")
 								.create-input-wrapper.create-input-wrapper-bottom
 									h4.section-header CAMPAIGN DEADLINE
-									p.review-p(data-bind="text: campaignBudget")
+									p.review-p(data-bind="text: campaignDeadline")
 								.create-insput-wrapper.create-input-wrapper-bottom
 									h4.section-header PLATFORMS
 									.platform-image-container
 										img(src='/static/img/instagram-grey.png')
-								.create-input-wrapper.create-input-wrapper-bottom
+								.create-input-wrapper.create-input-wrapper-bottom(data-bind="visible: showTagsList")
 									h4.section-header TAGS
 									.tags-container(data-bind="foreach: tagsList")
 										p.review-p(data-bind="text: tagName")
-								.create-input-wrapper.create-input-wrapper-bottom
+								.create-input-wrapper.create-input-wrapper-bottom(data-bind="visible: showPostingType")
 									h4.section-header POSTING TYPE
 									p.review-p(data-bind="text: postingType")
 						.right-side-creation-container.col-sm-6
@@ -428,10 +336,10 @@ block content
 											p.review-title Gender
 											.gender-type-container(data-bind="foreach: genderList")
 												p.review-p(data-bind="text: $data")
-								.create-input-wrapper.create-input-wrapper-bottom
+								.create-input-wrapper.create-input-wrapper-bottom(data-bind="visible: showTargetRegion")
 									h4.section-header TARGET REGION
 									p.review-p(data-bind="text: targetLocation")
-								.create-input-wrapper.create-input-wrapper-bottom
+								.create-input-wrapper.create-input-wrapper-bottom(data-bind="visible: showInterestsList")
 									h4.section-header INTERESTS
 									.influencer-interests-container.influencer-interests-container-review(data-bind="foreach: interestsAddedList")
 										.interest-container-review.col-sm-6(data-bind="style: {backgroundImage: backgroundImageHere}", style="height: 75px; background-position: center;-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;	-o-background-size: cover; ")

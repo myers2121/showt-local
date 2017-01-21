@@ -124,40 +124,34 @@ block content
 		.influencer-profile-orders-container
 			.influencer-profile-orders-wrapper
 				.current-open-order-information-top
-					.current-brand-logo-container
-						img(data-bind="attr: {src: currentOpenBrandImage}")
 					h3.current-brand-name(data-bind="text: currentOpenBrandName")
 					p.current-campaign-name(data-bind="text: currentOpenCampaignName")
-					p.current-campaign-description(data-bind="text: currentOpenCampaignDescription")
+					p.current-campaign-description(data-bind="text: currentOpenPostingType")
 					p.current-campaign-price(data-bind="text: currentOpenCampaignPrice")
 				.current-open-order-information-bottom
 					.open-order-info-container
-						p.order-info-header POSTING TYPE
-						p.order-info-text(data-bind="text: currentOpenPostingType")
+						p.order-info-header DEADLINE
+						p.order-info-text(data-bind="text: currentOpenOrderDeadline")
 					.open-order-info-container
 						p.order-info-header CONTENT NEEDED FROM YOU
 						p.order-info-text(data-bind="text: currentOpenConentFromInfluencer")
-					.open-order-info-container
-						p.order-info-header CALL TO ACTION
-						p.order-info-text(data-bind="text: currentOpenCallToAction")
-					.open-order-info-container
-						p.order-info-header TAGS
-						.current-open-tags-container(data-bind="foreach: currentOpenTags")
-							p.order-info-text(data-bind="text: $data")
-					.open-order-info-container
-						p.order-info-header PLATFORM
-						img.platform-image(src='/static/img/instagram-grey.png')
-					.open-order-info-container
-						p.order-info-header VIBE PICS
-						p.order-info-text This is where the vibe pics will be going
+					.open-order-info-container.deny-text-container
+						p.order-info-header WHY ARE YOU DENYING THIS ORDER?
+						textarea.deny-oder-text(placeholder='Give a description as to why you are denying this offer. This helps make your experience here at Showt much better.',data-bind="textInput: denyOrderText")
+						p.error-message(data-bind="visible: showDenyOrderError") Please enter a reason for denying this order
+						.close-details-buttons-container
+							.deny-button(data-bind="click: denyOrder") DENY ORDER
+							.cancel-deny-button(data-bind="click: cancelDenyOrder") CANCEL
 					.buttons-container
-						.accept-deny-buttons-container(data-bind="visible: newOrderActivated")
+						.accept-deny-buttons-container(data-bind="visible: showAcceptDenyButtons")
 							.col-sm-6.deny-button-container
-								.deny-button(data-bind="click: denyOrder") Deny
+								.deny-button(data-bind="click: denyOrder") DENY ORDER
 							.col-sm-6.accept-button-container
-								.accept-button(data-bind="click: approveOrder") Accept
-						.close-details-buttons-container(data-bind="visible: detailsOrderActivated")
-							.close-button(data-bind="click: closeCurrentOrder") Close
+								.accept-button(data-bind="click: approveOrder") ACCEPT ORDER
+						.close-details-buttons-container(data-bind="visible: showUploadProofButton")
+							.close-button(data-bind="click: completeCurrentOrder") COMPLETE ORDER
+						.close-details-buttons-container(data-bind="visible: showCloseDeatilsButton")
+							.close-button(data-bind="click: closeCurrentOrder") CLOSE
 		.influencer-profile-not-finished-container(data-bind="visible: isProfileFinished")
 			.influencer-profile-not-finished-wrapper
 				h3 Complete your profile
@@ -221,42 +215,38 @@ block content
 							p.influencer-profile-explanation-text New orders are orders that have been sent to you by a company. You must accept the order to perform the job and make money.
 							.new-work-loop-contianer(data-bind="foreach: newJobs")
 								.row.gig-offering-row(data-bind="foreach: array")
-									.previous-work-inner-container.col-sm-6
+									.previous-work-inner-container.col-sm-4
 										.row
-											.previous-work-image-container.col-sm-3
-												img(src='/static/img/connor.jpg')
-											.previous-work-text-container.col-sm-9
+											.previous-work-text-container
 												.row
-													p.gig-name.col-sm-9(data-bind="text: orderTitle")
-													p.gig-cost.col-sm-3(data-bind="text: orderPrice")
-												p.gig-description(data-bind="text: orderDescription")
-												.view-gig-button(data-bind="click: $root.openNewOrder") Details
+													p.business-name-order-section.col-sm-9(data-bind="text: postingRequirement")
+													p.gig-cost.col-sm-3(data-bind="text: price")
+													p.gig-name.col-sm-9(data-bind="text: businessName")
+												.view-gig-button(data-bind="click: $root.openNewOrder.bind($data,$index())") Details
 						.current-accepted-jobs-container
-							p.influencer-profile-section-heading Current orders
+							p.influencer-profile-section-heading Active orders
+							p.influencer-profile-explanation-text These are the jobs that you are still working on. Finish the job by submitting proof of finishing to the business.
 							.current-work-loop-container(data-bind="foreach: currentJobs")
 								.row.gig-offering-row(data-bind="foreach: array")
-									.previous-work-inner-container.col-sm-6
-										.previous-work-image-container.col-sm-3
-											img(src='/static/img/connor.jpg')
-										.previous-work-text-container.col-sm-9
+									.previous-work-inner-container.col-sm-4
+										.previous-work-text-container
 											.row
-												p.gig-name.col-sm-9(data-bind="text: orderTitle")
-												p.gig-cost.col-sm-3(data-bind="text: orderPrice")
-											p.gig-description(data-bind="text: orderDescription")
-											.view-gig-button(data-bind="click: $root.openCurrentOrPreviousOrder") Details
+												p.business-name-order-section.col-sm-9(data-bind="text: postingRequirement")
+												p.gig-cost.col-sm-3(data-bind="text: price")
+												p.gig-name.col-sm-9(data-bind="text: businessName")
+											.view-gig-button(data-bind="click: $root.openCurrentOrder.bind($data, $index())") Details
 						.previous-work-container
 							.previous-work-wrapper
-								p.influencer-profile-section-heading Previous orders
+								p.influencer-profile-section-heading Completed orders
+								p.influencer-profile-explanation-text These are the jobs that you have done in the past.
 								.previous-work-loop-container(data-bind="foreach: previousJobs")
 									.row.gig-offering-row(data-bind="foreach: array")
-										.previous-work-inner-container.col-sm-6
-											.previous-work-image-container.col-sm-3
-												img(src='/static/img/connor.jpg')
-											.previous-work-text-container.col-sm-9
+										.previous-work-inner-container.col-sm-4
+											.previous-work-text-container
 												.row
-													p.gig-name.col-sm-9(data-bind="text: orderTitle")
-													p.gig-cost.col-sm-3(data-bind="text: orderPrice")
-												p.gig-description(data-bind="text: orderDescription")
-												.view-gig-button(data-bind="click: $root.openCurrentOrPreviousOrder") Details
+													p.business-name-order-section.col-sm-9(data-bind="text: postingRequirement")
+													p.gig-cost.col-sm-3(data-bind="text: price")
+													p.gig-name.col-sm-9(data-bind="text: businessName")
+												.view-gig-button(data-bind="click: $root.openPreviousOrder.bind($data, $index())") Details
 block customJS
 	script(src='/static/js/influencerPrivateProfile.js')

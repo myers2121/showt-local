@@ -1,0 +1,94 @@
+extends ./layouts/_businessDashboardLayout.pug
+block customCSS
+	link(rel='stylesheet', href='/static/css/businessPayments.css', type='text/css')
+	link(rel='stylesheet', href='/static/css/businessInbox.css', type='text/css')
+block content
+	include ./partials/editBusinessInfoSection.pug
+	section#business-dashboard-home-section
+		.business-dashboard-nav-container
+			.business-dashboard-nav-wrapper
+				.business-dashboard-top-navigation-container
+					.navigation-left-side-container.col-sm-6
+						.navigation-left-side-wrapper
+							.showt-out-icon-container
+								img(src='/static/img/showt-logo.png')
+					.navigation-right-side-container.col-sm-6
+						.navigation-right-side-wrapper
+							ul.right-link-container
+								li
+									p.business-dash-link.home-link(data-bind="click: sendHome") Home
+								li
+									p.business-dash-link.help-page-link(data-bind="click: sendToHelpPage") Help
+								li
+									p.business-dash-link.create-campaign-link Dashboard
+								li.business-right-container(data-bind="click: showBusinessDropDown")
+									p Nutrishop
+			.business-dashboard-bottom-navigation-container
+				.business-dashboard-bottom-navigation-wrapper
+					ul.business-bottom-nav-link-container
+						li.bottom-nav-link
+							a(href='/business/orders') Orders
+						li.bottom-nav-link
+							a(href='/business/payments') Payments
+						li.bottom-nav-link
+							a.active-link(href='/business/inbox') Inbox
+					.place-an-order-button(data-bind="click: placeAnOrder") Place order
+		.business-dropdown-container
+			.business-dropdown-wrapper
+				.business-action-item-container(data-bind="click: showEditBusinessInformationContainer")
+					.action-item-icon-container
+						img(src='/static/img/edit-orange.png')
+					p Edit info
+				.business-action-item-container(data-bind="click: signOutBusinessUser")
+					.action-item-icon-container
+						img(src='/static/img/user-orange.png')
+					p Sign out
+	section.business-dashbaord-home-container#business-dashboard-inbox-container
+		.my-orders-container
+			h3.business-dashboard-layout-header Inbox
+			.current-order-list-container.current-messages-container
+				.current-order-list-wrapper
+					.current-order-list-title
+						.col-sm-12
+							p.order-info-title.messages-title Messages
+					.current-order-list-titles.current-inbox-list-titles
+						.col-sm-4
+							p.order-info-title.influencer-title Influencer
+						.col-sm-6
+							p.order-info-title Message
+						.col-sm-2
+							p.order-info-title.last-message-title Last Message
+					.current-order-list-info(data-bind="foreach: conversationsList")
+						.message(data-bind="click: $root.influencerMessageClicked")
+							.col-sm-4
+								.influencer-check-box
+								.influencer-picture.influencer-message-picture
+									img(data-bind="attr:{ src: influencerImageLocation }")
+								.influencer-text-information
+									p.influencer-name.influencer-name-message(data-bind="text: influencerName")
+							.col-sm-6
+								p.influencer-message(data-bind="text: lastMessage")
+							.col-sm-2
+								p.last-message-date(data-bind="text: lastMessageDate")
+		.business-inbox-messages-container
+			.business-inbox-message-wrapper
+				.inbox-message-container-top
+					h3.influencer-message-name(data-bind="text: currentInfluencerName")
+					img.exit-influencer-message-icon(src='/static/img/exit.png',data-bind="click: closeInfluencerMessageContainer")
+				.inbox-message-container-middle#inbox-message-container-middle
+					.inbox-message-wrapper-middle(data-bind="foreach: {data: currentConversationMessages}")
+						.current-message(data-bind="css: messageTypeClass")
+							.influencer-image-container(data-bind="css: imageClass")
+								img(data-bind="attr: {src: $root.currentInfluencerImageLocation}")
+							.message-container(data-bind="css: textClass")
+								p(data-bind="text: text")
+				.inbox-message-container-bottom
+					.add-image-icon-container
+						img(src='/static/img/upload-image.png')
+					.enter-text-container
+						input.message-to-send-input(placeholder='Enter message here...')
+					.send-message-icon-container
+						img(src='/static/img/send-message-button.png')
+	include ./partials/_footer.pug
+block customJS
+	script(src='/static/js/businessInbox.js')

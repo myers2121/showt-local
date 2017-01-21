@@ -1,0 +1,80 @@
+extends ./layouts/_businessDashboardLayout.pug
+block customCSS
+	link(rel='stylesheet', href='/static/css/businessPayments.css', type='text/css')
+block content
+	include ./partials/editBusinessInfoSection.pug
+	section#business-dashboard-home-section
+		.business-dashboard-nav-container
+			.business-dashboard-nav-wrapper
+				.business-dashboard-top-navigation-container
+					.navigation-left-side-container.col-sm-6
+						.navigation-left-side-wrapper
+							.showt-out-icon-container
+								img(src='/static/img/showt-logo.png')
+					.navigation-right-side-container.col-sm-6
+						.navigation-right-side-wrapper
+							ul.right-link-container
+								li
+									p.business-dash-link.home-link(data-bind="click: sendHome") Home
+								li
+									p.business-dash-link.help-page-link(data-bind="click: sendToHelpPage") Help
+								li
+									p.business-dash-link.create-campaign-link Dashboard
+								li.business-right-container(data-bind="click: showBusinessDropDown")
+									p Nutrishop
+			.business-dashboard-bottom-navigation-container
+				.business-dashboard-bottom-navigation-wrapper
+					ul.business-bottom-nav-link-container
+						li.bottom-nav-link
+							a(href='/business/orders') Orders
+						li.bottom-nav-link
+							a.active-link(href='/business/payments') Payments
+						li.bottom-nav-link
+							a(href='/business/inbox') Inbox
+					.place-an-order-button(data-bind="click: placeAnOrder") Place order
+		.business-dropdown-container
+			.business-dropdown-wrapper
+				.business-action-item-container(data-bind="click: showEditBusinessInformationContainer")
+					.action-item-icon-container
+						img(src='/static/img/edit-orange.png')
+					p Edit info
+				.business-action-item-container(data-bind="click: signOutBusinessUser")
+					.action-item-icon-container
+						img(src='/static/img/user-orange.png')
+					p Sign out
+		.business-dashbaord-home-container
+			.my-orders-container
+				h3.business-dashboard-layout-header Payments
+				.payment-top-info-container
+					.payment-top-info-wrapper
+						.col-sm-4.total-this-month-container
+							h3.total-this-month $525
+							p.payments-top-explanation-text This Month
+						.col-sm-4.active-orders-container
+							h3.total-this-month $312
+							p.payments-top-explanation-text Active Orders
+						.col-sm-4
+							h3.total-this-month $1312.96
+							p.payments-top-explanation-text Completed Orders
+				.payment-bottom-info-container
+					.payment-bottom-info-wrapper
+						h3.transactions-container-text Transactions
+						.transactions-container
+							.transactions-top-title-container
+								.col-sm-2
+									p.order-info-title Date
+								.col-sm-8
+									p.order-info-title For
+								.col-sm-2
+									p.order-info-title Amount
+							.transactions-bottom-transaction-container
+								.transactions-bottom-transactions-wrapper
+									.transaction
+										.col-sm-2
+											p.transaction-date Jan 30, 2017
+										.col-sm-8
+											p.transaction-for Payment for order received
+											p.transaction-view-order (view order)
+										.col-sm-2
+											p.transaction-amount $9.50
+	include ./partials/_footer.pug

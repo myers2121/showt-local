@@ -9,6 +9,10 @@
       const $businessButton = $('.business-button');
 
       $influencerButton.click(function() {
+        location.href = '/benefits';
+      });
+
+      $('.earn-extra-money-link').click(function() {
         $('#influencer-sign-up-section').fadeIn();
         $('body').css('overflow-y','hidden');
       });

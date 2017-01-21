@@ -22,8 +22,20 @@ var jsonParser = bodyParser.json();
 		res.render('about');
 	});
 
-	router.get('/business/dashboard',function(req,res) {
-		res.render('businessDashboard');
+	router.get('/business/orders',function(req,res) {
+		res.render('businessOrders');
+	});
+
+	router.get('/business/order',function(req,res) {
+		res.render('viewOrder');
+	});
+
+	router.get('/business/payments', function(req,res) {
+		res.render('businessPayments');
+	});
+
+	router.get('/business/inbox',function(req,res) {
+		res.render('businessInbox');
 	});
 
 	router.get('/help',function(req,res) {
@@ -32,8 +44,12 @@ var jsonParser = bodyParser.json();
 
 	// Route for businesses to create their own campaigns
 
-	router.get('/hire-influencers',function(req,res) {
+	router.get('/influencers',function(req,res) {
 		res.render('hireInfluencers');
+	});
+
+	router.get('/influencers/:userId',function(req,res) {
+		res.render('hireInfluencersFinal');
 	});
 
 	router.get('/login',function(req,res) {

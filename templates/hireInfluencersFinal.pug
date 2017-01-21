@@ -1,0 +1,227 @@
+extends ./layout.pug
+block customCSS
+	link(rel='stylesheet', href='/static/css/hireInfluencersFinal.css', type='text/css')
+block content
+	section#hire-influencer-section
+		.influencer-loading-screen
+			.loading-screen-wrapper
+				.loading
+				p.loading-text Loading profile
+		.business-sign-up-login-container
+			.business-login-container.business-credit-card-info-container
+				.business-login-wrapper
+					.influencer-account-form-wrapper
+						h3 Place order
+						p.account-text Enter your credit card information to place your Showt order. You will not be charged until an influencer accepts the job you asked them for. You can cancel your campaign at any time in your business dashboard.
+						p.card-info-title Card number
+						.influencer-input
+							.influencer-input-icon
+								img(src='/static/img/credit-card-grey.png')
+							input(type='text',placeholder='1111-1111-1111-1111', data-bind="textInput: businessCardNumber, event: { blur: cardNumberBlur, keyup: cardNumberTyping }")
+						p.error-message(data-bind="visible: showCardNumberErrorMessage") Enter a valid card number
+						.influencer-input-container.col-sm-7
+							p.card-info-title Expiration date
+							.influencer-input
+								.influencer-input-icon.expiration-input-icon
+									img(src='/static/img/calendar-grey.png')
+								input.expiration-input(type='text',placeholder='MM/YY', data-bind="textInput: businessCardExpirationDate, event: { blur: expirationDateBlur, keyup: expirationDateTyping }")
+							p.error-message(data-bind="visible: showExpirationDataErrorMessage") Enter a valid expiration date
+						.influencer-input-container.col-sm-5
+							p.card-info-title Security code
+							.influencer-input
+								.influencer-input-icon.cvc-input-icon
+									img(src='/static/img/lock-grey.png')
+								input.cvc-input(type='password',placeholder='CVC', data-bind="textInput: businessCardSecurityCode, event: { blur: securityCodeBlur, keyup: securityCodeTyping }")
+							p.error-message(data-bind="visible: showSecurityCodeErrorMessage") Enter a valid security code
+						.save-card-input
+							.save-card-for-future-text-box(data-bind="click: saveCardInfoForFuture")
+							p.save-card-text Save card for future campaigns
+					.credit-card-help-container
+						p.card-help-title(data-bind="click: showCreditCardHelpText") Why do we need this information?
+						p.card-help-text SOJDfnsda fasd nbf absdif basdf uiasdf iuasdbfn isadnf sadufn sdanfi sudanfiuas nusdbnf uisdbf sadfuas fsndaf iusdnf isadfi usadnbfi asndf sa.
+					.sign-up-button-container-influencer
+						.sign-up-button-influencer(data-bind="click: placeOrder") PLACE ORDER
+					.cancel-order-button(data-bind="click: closeCreditInfoContainer") Cancel
+			.business-login-container.business-login-information-container
+				.business-login-wrapper
+					.influencer-account-form-wrapper
+						h3 Business Login
+						p.account-text Log in to your Showt account to run this campaign.
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/email.png')
+						input(type='email',placeholder='Email address', data-bind="textInput: businessLoginEmail, event: { blur: businessLoginEmailTyping }")
+					p.error-message(data-bind="visible: showBusinessEmailErrorMessage") Please enter a valid email
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/lock-grey.png')
+						input(type='password',placeholder='Password', data-bind="textInput: businessLoginPassword, event: { blur: businessLoginPasswordTyping }")
+					p.error-message(data-bind="visible: showPasswordErrorMessage") Please enter a password with at least 6 characters
+					.sign-up-button-container-influencer
+						.sign-up-button-influencer(data-bind="click: logInBusinessFromCampaign") Login
+					p.no-account-text Don't yet have Showt account?
+					p.sign-up-login-text(data-bind="click: signUpBusiness") Sign up today!
+			.business-login-container.business-signup-container-campaign
+				.business-login-wrapper
+					.influencer-account-form-wrapper
+						h3 Business Signup
+						p.account-text You must have a Showt account to view our influencers. Don't worry it doesn't cost you anything to have an account with us!
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/business-contact.png')
+						input(type='email',placeholder='Business name', data-bind="textInput: businessSignUpName, event: { blur: businessSignUpNameTyping }")
+					p.error-message(data-bind="visible: showBusinessSignUpNameErrorMessage") Please enter a valid email
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/email.png')
+						input(type='email',placeholder='Email address', data-bind="textInput: businessSignUpEmail, event: { blur: businessSignUpEmailTyping }")
+					p.error-message(data-bind="visible: showBusinessSignUpEmailErrorMessage") Please enter a valid email
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/lock-grey.png')
+						input(type='password',placeholder='Password', data-bind="textInput: businessSignUpPassword, event: { blur: businessSignUpPasswordTyping }")
+					p.error-message(data-bind="visible: showPasswordSignUpErrorMessage") Please enter a password with at least 6 characters
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/phone.png')
+						input(type='email',placeholder='Number to reach you at', data-bind="textInput: businessSignUpPhoneNumber, event: { blur: businessSignUpPhoneTyping }")
+						p.error-message(data-bind="visible: showBusinessPhoneErrorMessage") Please enter a valid US phone number e.g. (559)123-4567
+					.influencer-input
+						.influencer-input-icon
+							img(src='/static/img/instagram-grey.png')
+						input(type='email',placeholder='Business instagram account', data-bind="textInput: businessSignUpInstagram, event: { blur: businessSignUpInstagramTyping }")
+					p.error-message(data-bind="visible: showBusinessInstagramErrorMessage") Please enter your business' instagram
+					.sign-up-button-container-influencer
+						.sign-up-button-influencer(data-bind="click: signUpBusinessCampaign") Sign up
+					p.no-account-text Already have a Showt account?
+					p.sign-up-login-text(data-bind="click: showLoginSectionFromSignUp") Log in now!
+		.create-campaign-navigation-container.influencer-final-nav-container
+			.create-campaign-nav-left-container.col-sm-6
+				.showt-logo-container
+					img(src='/static/img/showt-local-favicon.png')
+			.create-campaign-nav-right-container.col-sm-6
+				ul.campaign-nav-links-container
+					li.campaign-link
+						a(href='/') Home
+					li.campaign-link
+						a(href='/how-it-works') How it works
+		//- .create-campaign-help-container
+		//- 	.create-campaign-help-wrapper
+		//- 		p(data-bind="text: currentHelpText")
+		//- 		.hero
+		.influencer-final-container
+			.top-influencer-container
+			.bottom-influencer-container
+				.current-influencer-information.col-sm-8
+					.influencer-profile-bottom-container
+						.influencer-profile-container
+							.influencer-profile-wrapper
+								.influencer-top-profile-information-container
+									.influencer-top-profile-information-wrapper
+										.influencer-profile-image-container.col-sm-3
+											img.influencer-profile-image-private(data-bind="attr: {src: profileImage}")
+											input.profile-image-file-input(type='file', data-bind="event: { change: function() { uploadProfileImage($element.files[0]) } }")
+										.influencer-profile-information-container.col-sm-9
+											h3.influencer-name(data-bind="text: influencerName")
+											.influencer-location-container
+												img(src='/static/img/instagram-grey.png')
+												p.influencer-location(data-bind="text: influencerInstagramName")
+											.influencer-location-container
+												img(src='/static/img/location.png')
+												p.influencer-location(data-bind="text: influencerLocation")
+											.influencer-ratings-container
+												.influencer-data-container.col-sm-4
+													p.influencer-reach(data-bind="text: influencerShowtReach")
+													p.text Overall reach
+												.influencer-data-container.col-sm-4
+													p.influencer-reach(data-bind="text: influencerShowtEngagement")
+													p.text Engagement rate
+												.influencer-data-container.col-sm-4
+													p.influencer-reach(data-bind="text: influencerShowtScore")
+													p.text Showt influencer score
+						.influencer-bottom-information-container
+							.influencer-about-information-container
+								.influencer-about-information-wrapper
+									.about-me-container
+										p.influencer-profile-section-heading About me
+										p.about-me-text(data-bind="text: influencerDescription")
+									.interests-container
+										p.influencer-profile-section-heading Work I'm interested in
+										.interest-images-container(data-bind="foreach: influencerInterestList")
+											.interest-container.col-sm-3.interest-container-img(data-bind="css: interestClass")
+												p.interest-type-text(data-bind="text: interestText")
+									.further-interests-container.further-interests-container-private
+										p.influencer-profile-section-heading Tags
+										.interest-tags-container(data-bind="foreach: influencerTagList")
+											p.tag-text.col-sm-3(data-bind="text: $data")
+							.influencer-work-information-container
+								.influencer-work-information-wrapper
+									.previous-work-container
+										.previous-work-wrapper
+											p.influencer-profile-section-heading Previous work
+											p.influencer-profile-explanation-text These are the jobs that they have done in the past.
+											.previous-work-loop-container(data-bind="foreach: previousJobs")
+												.row.gig-offering-row(data-bind="foreach: array")
+													.previous-work-inner-container.col-sm-4
+														.previous-work-text-container
+															.row
+																p.business-name-order-section.col-sm-9(data-bind="text: campaignName")
+																p.gig-cost.col-sm-3(data-bind="text: price")
+																p.gig-name.col-sm-9(data-bind="text: businessName")
+															.view-gig-button(data-bind="click: $root.openCurrentOrPreviousOrder") Details
+				.hire-influencer-info-container.col-sm-4
+					.hire-influencer-info-wrapper
+						.info-container-top
+							.showt-price.col-sm-6
+								p.showt-price-text(data-bind="text: influencerShowtPrice")
+							.per-post.col-sm-6
+								.per-post-text Per Post
+						.info-text-inputs
+							.influencer-input
+								p.input-text What do you need?
+								.posting-types-container
+									.posting-type-wrapper
+										.check-box(data-bind="click: fillCheckBox")
+										p In store posting
+									.posting-type-wrapper
+										.check-box(data-bind="click: fillCheckBox")
+										p Stock promo posting
+									.posting-type-wrapper
+										.check-box(data-bind="click: fillCheckBox")
+										p Special event
+							.influencer-input.bottom-input
+								p.input-text Deadline
+								.select-container
+									.col-sm-5.select-col.birthday-month-select
+										.select
+											select(name='birthMonth', data-bind="value: campaignDeadlineMonth")
+												option(value="January") January
+												option(value="February") February
+												option(value="March") March
+												option(value="April") April
+												option(value="May") May
+												option(value="June") June
+												option(value="July") July
+												option(value="August") August
+												option(value="September") September
+												option(value="October") October
+												option(value="November") November
+												option(value="December") December
+									.col-sm-3.select-col.birthday-month-select
+										.select
+											select(name='birthDay' data-bind="value: campaignDeadlineDay, foreach: daysOptionsList")
+												option(data-bind="text: dayNumber, value: dayNumber")
+									.col-sm-4.select-col.birthday-month-select
+										.select
+											select(name='birthYear' data-bind="value: campaignDeadlineYear, foreach: yearOptionsList")
+												option(data-bind="text: yearNumber, value: yearNumber")
+							.influencer-input.bottom-input
+								p.input-text What you need from them
+								textarea(type='text',placeholder='Give a brief explanation of what you are going to want them to post for you.', data-bind="textInput: contentNeededFromInfluencer")
+							p.campaign-info-error-message.error-message(data-bind="visible: isPostingInfoFinished") Please fill out all the forms above
+							.influencer-input
+								.book-influencer-button(data-bind="click: requestInfluencer") Request Influencer
+
+block customJS
+	script(src='/static/js/createCampaign.js')
+	script(src='/static/js/hireInfluencerFinal.js')

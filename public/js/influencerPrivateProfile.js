@@ -30,6 +30,9 @@
         self.isProfileFinished       = ko.observable(false);
         self.influencerProfileImageLocation = ko.observable('');
 
+        self.currentOpenCampaignID = ko.observable('');
+        self.currentOpenBusinessID = ko.observable('');
+        self.currentOpenOrderDeadline = ko.observable('');
         self.currentOpenBrandName = ko.observable('');
         self.currentOpenBrandImage = ko.observable('');
         self.currentOpenCampaignName = ko.observable('');
@@ -44,10 +47,19 @@
         self.showAddProfilePicText = ko.observable(false);
         self.showProfileSavedButton = ko.observable(false);
 
+        self.tempNewJobs = ko.observableArray([]);
+
+        self.newJobs       = ko.observableArray([]);
+
+        self.currentJobs       = ko.observableArray([]);
+
+        self.previousJobs       = ko.observableArray([]);
+
         // Query in all of the users information
         var user = firebase.auth().currentUser;
         var userID = user.uid;
         var influencersRef = firebase.database().ref('influencers/' + userID);
+        var campaignRef = firebase.database().ref('campaigns/');
         influencersRef.on('value', function(snapshot) {
 
           self.influencerTagList([]);
@@ -73,6 +85,7 @@
           self.influencerLocation(currentUser.location);
           self.influencerDescription(currentUser.aboutMe);
           self.influencerProfileImageLocation(currentUser.pictureLocation);
+          self.profileImage(currentUser.pictureLocation);
 
           if (self.influencerTagList() == undefined) {
             self.influencerTagList([]);
@@ -85,33 +98,9 @@
           if (self.influencerProfileImageLocation() == "") {
             self.profileImage('/static/img/profile-add-camera.png');
             self.showAddProfilePicText(true);
-            self.hideLoadingScreen();
-          } else {
-            // Perform the login to take down the image from firebase
-            var storage = firebase.storage();
-            var influencersPathRef = storage.ref('influencers/' + userID);
-            influencersPathRef.getDownloadURL().then(function(url) {
-            // `url` is the download URL for 'images/stars.jpg'
-
-            // This can be downloaded directly:
-            var xhr = new XMLHttpRequest();
-            xhr.responseType = 'blob';
-            xhr.onload = function(event) {
-              var blob = xhr.response;
-            };
-            xhr.open('GET', url);
-            xhr.send();
-            self.profileImage(url);
-            // Or inserted into an <img> element:
-            // var img = document.getElementById('myimg');
-            // img.src = url;
-            self.showAddProfilePicText(false);
-            self.hideLoadingScreen();
-          }).catch(function(error) {
-            // Handle any errors
-          });
-
           }
+
+          self.queryCampaigns();
 
           if (self.influencerGender() == 'male') {
             $maleButton.addClass('active');
@@ -136,6 +125,74 @@
           self.setUpEditProfileInterests();
         });
 
+        self.queryCampaigns = function() {
+
+          // Load in the campaigns
+          campaignRef.orderByChild("influencers/" + userID + '/activeInfluencer').equalTo(true).once("value", function(snapshot) {
+            var currentNewJobArray = [];
+            var currentActiveJobArray = [];
+            var currentPreviousJobArray = [];
+            var iterator = 0;
+            console.log(snapshot.val());
+            for (campaign in snapshot.val()) {
+              const currentCampaign = snapshot.val()[campaign];
+              var influencerCost = currentCampaign["influencers"][userID]["cost"];
+              var campaignActive = currentCampaign["influencers"][userID]["active"];
+              var campaignFinished = currentCampaign["influencers"][userID]["finished"];
+
+              console.log(campaignActive);
+
+              var campaignToAdd = {
+                active: currentCampaign.active,
+                business: currentCampaign.business,
+                businessName: currentCampaign.businessName,
+                campaignName: currentCampaign.campaignName,
+                deadline: currentCampaign.deadline,
+                finished: currentCampaign.finished,
+                location: currentCampaign.location,
+                campaignID: campaign,
+                postingRequirement: currentCampaign.postingRequirement,
+                visualProof: currentCampaign.visualProof,
+                price: '$' + influencerCost,
+                contentInfo: currentCampaign.contentInfo
+              };
+
+              console.log(campaignToAdd.active);
+
+              if (campaignActive == false && campaignFinished == false) {
+                currentNewJobArray.push(campaignToAdd);
+                if (currentNewJobArray.length % 3 == 0) {
+                  self.newJobs.push({array: currentNewJobArray});
+                  currentNewJobArray = [];
+                }
+              } else if (campaignActive == true) {
+                console.log('Why am I here?');
+                currentActiveJobArray.push(campaignToAdd);
+                if (currentActiveJobArray.length % 3 == 0) {
+                  self.currentJobs.push({array: currentActiveJobArray});
+                  currentActiveJobArray = [];
+                }
+              } else {
+                currentPreviousJobArray.push(campaignToAdd);
+                if (currentPreviousJobArray.length % 3 == 0) {
+                  self.previousJobs.push({array: currentPreviousJobArray});
+                  currentPreviousJobArray = [];
+                }
+              }
+              if (iterator == Object.keys(snapshot.val()).length - 1) {
+                self.newJobs.push({array: currentNewJobArray});
+                self.currentJobs.push({array: currentActiveJobArray});
+                self.previousJobs.push({array: currentPreviousJobArray});
+              }
+              iterator = iterator + 1;
+            };
+            self.hideLoadingScreen();
+          });
+
+            // hide the loading screen
+
+        };
+
         const $activeProfileButton = $('.active-profile-link');
         const $inactiveProfileButton = $('.inactive-profile-link');
         const $aboutInformationContainer = $('.influencer-about-information-container');
@@ -149,94 +206,6 @@
         const $profileImageFileInput = $('.profile-image-file-input');
         const $currentOrderContainer = $('.influencer-profile-orders-container');
         const $profileLoadingScreen  = $('.influencer-loading-screen');
-
-        self.newJobs       = ko.observableArray(
-          [
-            {
-              array: [
-                {
-                  brandName: "Nutrishop",
-                  brandLogo: '/static/img/fresno.png',
-                  orderTitle: "Nutrishop Protein Powder Push",
-                  orderPrice: "$175",
-                  orderDescription: "Take a picture in the Nutrishop store at Campus Pointe by Fresno State to help promote the protein that we make and sell here.",
-                  postingType: 'In-store picture',
-                  contentInfo: 'We are looking for girls around Fresno, Ca to come in to the Nutrishop at Campus Pointe to take a picture with some of our products and to post these products on their instagram. The entire process should only take 15 minutes.',
-                  callToAction: 'Come in to Nutrishop at Campus Pointe to get the best deals on all of your workout supplements.',
-                  tags: ["@nutrishop","#nutrishop",'#isItLegDayYet'],
-                  platform: [""],
-                  vibePictures: ["/static/img/bars-interest.png",'/static/img/books-interest.png','/static/img/animals-interest.png','/static/img/art-interest.png']
-                },
-                {
-                  orderTitle: "Nutrishop Brand Recognition",
-                  orderPrice: "$210",
-                  orderDescription: "Take a picture in the Nutrishop store at Campus Pointe by Fresno State to help promote the protein that we make and sell here."
-                }
-              ]
-            },
-            {
-              array: [
-                {
-                  orderTitle: "Beach Hut Deli Store",
-                  orderPrice: "$194",
-                  orderDescription: "Take a picture in the Nutrishop store at Campus Pointe by Fresno State to help promote the protein that we make and sell here."
-                },
-                {
-                  orderTitle: "Mad Duck Beerfest",
-                  orderPrice: "$170",
-                  orderDescription: "Take a picture in the Nutrishop store at Campus Pointe by Fresno State to help promote the protein that we make and sell here."
-                }
-              ]
-            }
-          ]
-        );
-
-        self.currentJobs       = ko.observableArray(
-          [
-            {
-              array: [
-                {
-                  orderTitle: "Nutrishop Protein Powder Push",
-                  orderPrice: "$175",
-                  orderDescription: "Take a picture in the Nutrishop store at Campus Pointe by Fresno State to help promote the protein that we make and sell here."
-                },
-                {
-                  orderTitle: "Nutrishop Brand Recognition",
-                  orderPrice: "$210",
-                  orderDescription: "Take a picture in the Nutrishop store at Campus Pointe by Fresno State to help promote the protein that we make and sell here."
-                }
-              ]
-            },
-            {
-              array: [
-                {
-                  orderTitle: "Beach Hut Deli Store",
-                  orderPrice: "$194",
-                  orderDescription: "Take a picture in the Nutrishop store at Campus Pointe by Fresno State to help promote the protein that we make and sell here."
-                }
-              ]
-            }
-          ]
-        );
-
-        self.previousJobs       = ko.observableArray(
-          [
-            {
-              array: [
-                {
-                  orderTitle: "Nutrishop Protein Powder Push",
-                  orderPrice: "$175",
-                  orderDescription: "Take a picture in the Nutrishop store at Campus Pointe by Fresno State to help promote the protein that we make and sell here."
-                },
-                {
-                  orderTitle: "Nutrishop Brand Recognition",
-                  orderPrice: "$210",
-                  orderDescription: "Take a picture in the Nutrishop store at Campus Pointe by Fresno State to help promote the protein that we make and sell here."
-                }
-              ]
-            }
-          ]
-        );
 
         self.interests = ko.observableArray([
           {
@@ -339,33 +308,75 @@
         $('.influencer-profile-image-container img').css({'height':imageWidth+'px'});
 
         // Handle the accept / deny buttons and pop up
-        self.newOrderActivated = ko.observable(false);
-        self.detailsOrderActivated = ko.observable(false);
-        self.openNewOrder = function acceptDenyButtonClicked(currentOrder) {
-          self.currentOpenBrandImage(currentOrder.brandLogo);
-          self.currentOpenBrandName(currentOrder.brandName);
-          self.currentOpenCallToAction(currentOrder.callToAction);
+        self.showAcceptDenyButtons = ko.observable(false);
+        self.showUploadProofButton = ko.observable(false);
+        self.showCloseDeatilsButton = ko.observable(false);
+
+        var currentOpenOrderIndex;
+
+        self.openNewOrder = function acceptDenyButtonClicked(index, currentOrder) {
+          currentOpenOrderIndex = index;
+
+          self.currentOpenBrandName(currentOrder.businessName);
           self.currentOpenConentFromInfluencer(currentOrder.contentInfo);
-          self.currentOpenCampaignDescription(currentOrder.orderDescription);
-          self.currentOpenCampaignName(currentOrder.orderTitle);
-          self.currentOpenCampaignPrice(currentOrder.orderPrice);
-          self.currentOpenPostingType(currentOrder.postingType);
-          self.currentOpenTags(currentOrder.tags);
-          self.currentOpenVibePics(currentOrder.vibePictures);
+          self.currentOpenCampaignPrice(currentOrder.price);
+          self.currentOpenPostingType(currentOrder.postingRequirement);
+          self.currentOpenConentFromInfluencer(currentOrder.contentInfo);
+          self.currentOpenBusinessID(currentOrder.business);
+          self.currentOpenOrderDeadline(currentOrder.deadline);
+          self.currentOpenCampaignID(currentOrder.campaignID);
 
           $currentOrderContainer.fadeIn();
           $('body').css('overflow','hidden');
 
-          self.newOrderActivated(true);
-          self.detailsOrderActivated(false);
+          self.showAcceptDenyButtons(true);
+          self.showUploadProofButton(false);
+          self.showCloseDeatilsButton(false);
 
         };
 
-        self.openCurrentOrPreviousOrder = function detailsButtonClicked() {
+        self.openCurrentOrder = function detailsButtonClicked(index, currentOrder) {
+
+          self.currentOpenBrandName(currentOrder.businessName);
+          self.currentOpenConentFromInfluencer(currentOrder.contentInfo);
+          self.currentOpenCampaignPrice(currentOrder.price);
+          self.currentOpenPostingType(currentOrder.postingRequirement);
+          self.currentOpenConentFromInfluencer(currentOrder.contentInfo);
+          self.currentOpenBusinessID(currentOrder.business);
+          self.currentOpenOrderDeadline(currentOrder.deadline);
+          self.currentOpenCampaignID(currentOrder.campaignID);
+
           $currentOrderContainer.fadeIn();
           $('body').css('overflow','hidden');
-          self.newOrderActivated(false);
-          self.detailsOrderActivated(true);
+          self.showAcceptDenyButtons(false);
+          self.showUploadProofButton(true);
+          self.showCloseDeatilsButton(false);
+        };
+
+        self.openPreviousOrder = function previousOrderClicked(index, currentOrder) {
+          self.currentOpenBrandName(currentOrder.businessName);
+          self.currentOpenConentFromInfluencer(currentOrder.contentInfo);
+          self.currentOpenCampaignPrice(currentOrder.price);
+          self.currentOpenPostingType(currentOrder.postingRequirement);
+          self.currentOpenConentFromInfluencer(currentOrder.contentInfo);
+          self.currentOpenBusinessID(currentOrder.business);
+          self.currentOpenOrderDeadline(currentOrder.deadline);
+          self.currentOpenCampaignID(currentOrder.campaignID);
+
+          $currentOrderContainer.fadeIn();
+          $('body').css('overflow','hidden');
+          self.showAcceptDenyButtons(false);
+          self.showUploadProofButton(false);
+          self.showCloseDeatilsButton(true);
+        };
+
+        self.completeCurrentOrder = function() {
+          $('.influencer-profile-orders-container').animate({
+             scrollTop: 0
+          }, function(){
+            $currentOrderContainer.fadeOut();
+            $('body').css('overflow','scroll');
+          });
         };
 
         self.closeCurrentOrder = function closeButtonClicked() {
@@ -375,25 +386,47 @@
             $currentOrderContainer.fadeOut();
             $('body').css('overflow','scroll');
           });
+        };
+
+        var denyIterator = 0;
+        self.denyOrderText = ko.observable('');
+        self.showDenyOrderError = ko.observable(false);
+        self.denyOrder = function denyButtonClicked() {
+          if (denyIterator == 0) {
+            // Slide down the text area
+            $('.accept-deny-buttons-container').css('display','none');
+            $('.deny-text-container').slideDown();
+            denyIterator = denyIterator + 1;
+          } else if (self.denyOrderText() != '' && denyIterator == 1) {
+            // Save the information back to firebase
+            firebase.database().ref('campaigns/' + self.currentOpenCampaignID()).update({denied: true, deniedText: self.denyOrderText()});
+            firebase.database().ref('campaigns/' + self.currentOpenCampaignID() + "/influencers/" + userID).update({active: false, activeInfluencer: false});
+            location.reload();
+            denyIterator = denyIterator + 1;
+          } else {
+            self.showDenyOrderError(true);
+          }
 
         };
 
-        self.denyOrder = function denyButtonClicked() {
-          $('.influencer-profile-orders-container').animate({
-             scrollTop: 0
-          }, function(){
-            $currentOrderContainer.fadeOut();
-            $('body').css('overflow','scroll');
-          });
+        self.cancelDenyOrder = function cancelDenyButtonClicked() {
+          $('.deny-text-container').slideUp();
+          $('.accept-deny-buttons-container').css('display','block');
+          denyIterator = 0;
         };
 
         self.approveOrder = function approveOrderButtonClicked() {
-          $('.influencer-profile-orders-container').animate({
-             scrollTop: 0
-          }, function(){
-            $currentOrderContainer.fadeOut();
-            $('body').css('overflow','scroll');
-          });
+          firebase.database().ref('campaigns/' + self.currentOpenCampaignID()).update({active: true});
+          firebase.database().ref('campaigns/' + self.currentOpenCampaignID() + "/influencers/" + userID).update({active: true});
+
+          location.reload();
+          // $('.influencer-profile-orders-container').animate({
+          //    scrollTop: 0
+          // }, function(){
+          //   $currentOrderContainer.fadeOut();
+          //   $('body').css('overflow','scroll');
+          // });
+
         };
 
         // Operations once the view has been populated with the data
@@ -430,6 +463,7 @@
           var storageRef = firebase.storage().ref();
           var influencersRef = storageRef.child('influencers/' + userID);
           influencersRef.putString(newProfileImageString, 'base64').then(function(snapshot) {
+            console.log(snapshot.downloadURL);
             self.showProfileSavedButton(false);
             var isUserInformationComplete = false;
             if (self.influencerDescription() != '' && self.influencerLocation() != '') {
@@ -437,8 +471,13 @@
             }
             if ( self.influencerProfileImageLocation() == '' ) {
               var profilePictureUpdates = {
-                pictureLocation: 'influencers/' + userID,
+                pictureLocation: snapshot.downloadURL,
                 profileCompleted: isUserInformationComplete
+              }
+              firebase.database().ref('influencers/' + userID).update(profilePictureUpdates);
+            } else {
+              var profilePictureUpdates = {
+                pictureLocation: snapshot.downloadURL
               }
               firebase.database().ref('influencers/' + userID).update(profilePictureUpdates);
             }
